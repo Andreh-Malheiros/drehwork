@@ -41,14 +41,6 @@ export function HomeMotion() {
           });
         }
 
-        const heroCopy = document.querySelector<HTMLElement>(".glsl-hero-copy");
-        if (heroCopy) {
-          gsap.fromTo(
-            heroCopy.querySelectorAll("h1, p"),
-            { autoAlpha: 0, filter: "blur(18px)" },
-            { autoAlpha: 1, filter: "blur(0px)", duration: 1.25, stagger: 0.14, ease: "power3.out", delay: 0.18 },
-          );
-        }
       });
 
       motion.add("(pointer: fine) and (prefers-reduced-motion: no-preference)", () => {

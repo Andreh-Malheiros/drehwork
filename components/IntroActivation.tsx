@@ -1,53 +1,200 @@
 "use client";
 
-import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
+
+const STORAGE_KEY = "dreh:intro";
+const LOCK_CLASS = "intro-scroll-lock";
+const READY_TIMEOUT = 3200;
+const MIN_BRAND_TIME = 520;
+const REDUCED_BRAND_TIME = 240;
+const EXIT_FALLBACK_DURATION = 2100;
+const BLOCKED_SCROLL_KEYS = new Set([" ", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "PageDown", "PageUp", "Home", "End"]);
+
+function wait(ms: number) {
+  return new Promise<void>((resolve) => window.setTimeout(resolve, ms));
+}
+
+function nextFrame() {
+  return new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+}
+
+async function waitForFirstViewportReady(signal: AbortSignal) {
+  const waitForFonts = "fonts" in document ? document.fonts.ready.catch(() => undefined) : Promise.resolve();
+  const waitForHero = new Promise<void>((resolve) => {
+    const findHero = () => {
+      if (signal.aborted) {
+        resolve();
+        return;
+      }
+      const hero = document.querySelector<HTMLElement>(".glsl-hero, .home-hero, .hero, .page-hero");
+      if (hero && hero.getBoundingClientRect().height > 0) {
+        resolve();
+        return;
+      }
+      requestAnimationFrame(findHero);
+    };
+    findHero();
+  });
+
+  const waitForCriticalImages = () => {
+    const images = Array.from(document.images).filter((image) => {
+      const rect = image.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    });
+    if (!images.length) return Promise.resolve();
+    return Promise.allSettled(images.map((image) => {
+      if (image.complete) return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        image.addEventListener("load", () => resolve(), { once: true });
+        image.addEventListener("error", () => resolve(), { once: true });
+      });
+    }));
+  };
+
+  await Promise.race([
+    (async () => {
+      await waitForHero;
+      await Promise.all([waitForFonts, waitForCriticalImages()]);
+      await nextFrame();
+      await nextFrame();
+    })(),
+    wait(READY_TIMEOUT),
+  ]);
+}
 
 export function IntroActivation() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [phase, setPhase] = useState<"waiting" | "exiting">("waiting");
   const root = useRef<HTMLDivElement>(null);
-  const timeline = useRef<gsap.core.Timeline>(null);
-  useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches || sessionStorage.getItem("dreh:intro")) return;
-    sessionStorage.setItem("dreh:intro", "seen");
-    const frame = requestAnimationFrame(() => setVisible(true));
-    return () => cancelAnimationFrame(frame);
+  const columns = useMemo(() => Array.from({ length: 18 }, (_, index) => index), []);
+
+  useLayoutEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = sessionStorage.getItem(STORAGE_KEY) === "seen";
+
+    if (alreadySeen) {
+      const frame = requestAnimationFrame(() => setVisible(false));
+      return () => cancelAnimationFrame(frame);
+    }
+
+    const bodyOverflow = document.body.style.overflow;
+    const htmlOverflow = document.documentElement.style.overflow;
+    document.documentElement.classList.add(LOCK_CLASS);
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    const rootElement = root.current;
+    const controller = new AbortController();
+    const startedAt = performance.now();
+    const restoreInert = Array.from(document.body.children)
+      .filter((element): element is HTMLElement => element instanceof HTMLElement && element !== rootElement)
+      .map((element) => [element, element.inert] as const);
+    restoreInert.forEach(([element]) => {
+      element.inert = true;
+    });
+    if (document.activeElement instanceof HTMLElement && !rootElement?.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
+    let completed = false;
+    let fallback = 0;
+
+    const complete = () => {
+      if (completed) return;
+      if (!rootElement?.isConnected) return;
+      completed = true;
+      controller.abort();
+      sessionStorage.setItem(STORAGE_KEY, "seen");
+      document.documentElement.classList.remove(LOCK_CLASS);
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = htmlOverflow;
+      restoreInert.forEach(([element, inert]) => {
+        element.inert = inert;
+      });
+      flushSync(() => setVisible(false));
+    };
+
+    const blockEvent = (event: Event) => event.preventDefault();
+    const blockKeys = (event: KeyboardEvent) => {
+      if (BLOCKED_SCROLL_KEYS.has(event.key)) event.preventDefault();
+    };
+    const keepFocusOffPage = (event: FocusEvent) => {
+      if (rootElement && event.target instanceof Node && !rootElement.contains(event.target)) {
+        event.preventDefault();
+        if (event.target instanceof HTMLElement) event.target.blur();
+      }
+    };
+
+    window.addEventListener("wheel", blockEvent, { passive: false });
+    window.addEventListener("touchmove", blockEvent, { passive: false });
+    window.addEventListener("keydown", blockKeys, { capture: true });
+    document.addEventListener("focusin", keepFocusOffPage, { capture: true });
+
+    const handleAnimationEnd = (event: AnimationEvent) => {
+      if (event.target === rootElement && event.animationName === "introLayerRelease") complete();
+    };
+    rootElement?.addEventListener("animationend", handleAnimationEnd);
+
+    const startExit = async () => {
+      await waitForFirstViewportReady(controller.signal);
+      if (controller.signal.aborted) return;
+      const minimum = reducedMotion ? REDUCED_BRAND_TIME : MIN_BRAND_TIME;
+      await wait(Math.max(0, minimum - (performance.now() - startedAt)));
+      if (controller.signal.aborted) return;
+      if (reducedMotion) {
+        complete();
+        return;
+      }
+      setPhase("exiting");
+      fallback = window.setTimeout(complete, EXIT_FALLBACK_DURATION);
+    };
+
+    startExit();
+
+    return () => {
+      controller.abort();
+      rootElement?.removeEventListener("animationend", handleAnimationEnd);
+      window.removeEventListener("wheel", blockEvent);
+      window.removeEventListener("touchmove", blockEvent);
+      window.removeEventListener("keydown", blockKeys, { capture: true });
+      document.removeEventListener("focusin", keepFocusOffPage, { capture: true });
+      window.clearTimeout(fallback);
+      if (!completed) {
+        document.documentElement.classList.remove(LOCK_CLASS);
+        document.body.style.overflow = bodyOverflow;
+        document.documentElement.style.overflow = htmlOverflow;
+        restoreInert.forEach(([element, inert]) => {
+          element.inert = inert;
+        });
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (!visible || !root.current) return;
-    let cancelled = false;
-    const context = gsap.context(() => {
-      const fonts = document.fonts?.ready ?? Promise.resolve();
-      fonts.finally(() => {
-        if (cancelled) return;
-        const compact = matchMedia("(max-width: 600px)").matches;
-        timeline.current = gsap.timeline({
-          defaults: { ease: "power3.out" },
-          onComplete: () => setVisible(false),
-        })
-          .fromTo(".activation-field", { autoAlpha: 0, scale: 0.96 }, { autoAlpha: 1, scale: 1, duration: compact ? 0.35 : 0.5 })
-          .fromTo(".activation-node", { autoAlpha: 0, x: (index) => index % 2 ? 24 : -24, y: (index) => index < 2 ? -14 : 14 }, { autoAlpha: 1, x: 0, y: 0, duration: 0.55, stagger: 0.06 }, "<0.08")
-          .fromTo(".line-a", { scaleX: 0 }, { scaleX: 1, duration: 0.45 }, "<0.1")
-          .fromTo(".line-b", { scaleY: 0 }, { scaleY: 1, duration: 0.45 }, "<")
-          .fromTo(".activation-signature", { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.5 }, "-=0.15")
-          .to(root.current, { autoAlpha: 0, yPercent: -3, duration: 0.65, ease: "power2.inOut" }, "+=0.45");
-      });
-    }, root);
-    return () => {
-      cancelled = true;
-      timeline.current?.kill();
-      context.revert();
-    };
+    if (visible) {
+      return undefined;
+    }
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.classList.remove(LOCK_CLASS);
+    return undefined;
   }, [visible]);
 
   if (!visible) return null;
-  return <div className="intro-activation" ref={root} role="status" aria-label="Dreh Work, presença digital ativada">
-    <div className="activation-field" aria-hidden>
-      <i className="activation-node node-a">CLAREZA</i><i className="activation-node node-b">BUSCA</i><i className="activation-node node-c">CONFIANÇA</i><i className="activation-node node-d">AÇÃO</i>
-      <span className="activation-line line-a" /><span className="activation-line line-b" />
+
+  return (
+    <div className="intro-activation" data-phase={phase} ref={root} aria-hidden="true">
+      <strong className="intro-loader-brand" data-phase={phase}>DREH WORK</strong>
+      {columns.map((column) => (
+        <div
+          className="intro-loader-column"
+          data-phase={phase}
+          data-tablet-hidden={column > 13 ? "" : undefined}
+          data-mobile-hidden={column > 11 ? "" : undefined}
+          key={column}
+          style={{ "--intro-index": column } as CSSProperties}
+        />
+      ))}
     </div>
-    <div className="activation-signature"><strong>DREH WORK</strong><span>PRESENÇA / ATIVADA</span></div>
-    <button onClick={() => { timeline.current?.kill(); setVisible(false); }}>Ir para o site <span aria-hidden>↗</span></button>
-  </div>;
+  );
 }
