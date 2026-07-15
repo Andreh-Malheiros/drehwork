@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound(){return <section className="not-found shell"><span>404</span><h1>Esta página saiu do mapa.</h1><p>O endereço pode ter mudado ou ainda não faz parte da presença digital da Dreh Work.</p><div className="button-row"><Link className="button primary" href="/">Voltar ao início</Link><Link className="button ghost" href="/diagnostico">Solicitar diagnóstico</Link></div></section>}
