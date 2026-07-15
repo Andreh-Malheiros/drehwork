@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DiagnosticWizard } from "@/components/DiagnosticWizard";
+import { HomeServices } from "@/components/HomeServices";
 import { ObjectiveSelector } from "@/components/ObjectiveSelector";
 import { PresenceComparison } from "@/components/PresenceComparison";
 import { brand, faqs, insights, processSteps, projects, services, whatsappUrl } from "@/content/site";
@@ -24,18 +25,63 @@ function Eyebrow({ children }: { children: React.ReactNode }) { return <p classN
 function CTA({ context = "meu projeto" }: { context?: string }) { return <section className="cta-band"><div className="shell"><Eyebrow>Próximo movimento</Eyebrow><h2>O que sua presença digital precisa provar?</h2><p>Receba uma análise inicial sobre clareza, confiança, descoberta e oportunidades.</p><div className="button-row"><Link className="button light" href="/diagnostico">Solicitar diagnóstico gratuito</Link><a className="text-link light" href={whatsappUrl(context)} target="_blank" rel="noreferrer">Conversar no WhatsApp</a></div></div></section>; }
 function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) { return <article className="project-card"><div className="media-fallback" role="img" aria-label={project.media[0].alt}><span>{String(index + 1).padStart(2,"0")}</span><b>MÍDIA<br/>PENDENTE</b><small>{project.name}</small></div><div className="project-copy"><p className="kicker">{project.category}</p><h3>{project.name}</h3><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência."}</p><Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link></div></article>; }
 
+const processPhases = [
+  ["Entender", processSteps.slice(0, 2)],
+  ["Estruturar", processSteps.slice(2, 4)],
+  ["Construir", processSteps.slice(4, 6)],
+  ["Validar", processSteps.slice(6, 9)],
+  ["Evoluir", processSteps.slice(9)],
+] as const;
+
 function Home() { return <>
-  <section className="hero"><div className="hero-grid" aria-hidden /><div className="shell hero-inner"><div><Eyebrow>Sites estratégicos / Presença digital</Eyebrow><h1>Sua empresa pode ser excelente. <em>A presença digital precisa demonstrar isso.</em></h1><p className="lead">A Dreh Work cria sites profissionais para empresas que precisam transmitir confiança, explicar melhor o que fazem e transformar atenção em oportunidades.</p><div className="button-row"><Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito</Link><Link className="button ghost" href="/projetos">Ver projetos</Link></div><p className="trust-line">Contrato · Nota fiscal · Atendimento remoto em todo o Brasil</p></div><aside className="signal-panel"><div className="signal-head"><span>SINAL / PRESENÇA</span><i>ATIVO</i></div><div className="signal-number">01</div><p>Clareza para ser compreendida.<br/>Estrutura para ser encontrada.<br/>Experiência para gerar ação.</p><div className="signal-axis"><span>NEGÓCIO</span><span>PERCEPÇÃO</span><span>RESULTADO</span></div></aside></div></section>
-  <section className="section shell split"><div><Eyebrow>O problema não é só não ter um site</Eyebrow><h2>Qualidade real não basta quando ela não é percebida.</h2></div><div className="prose"><p>Uma empresa pode prestar um excelente serviço e ainda perder oportunidades quando o cliente pesquisa, encontra informações dispersas ou não entende por que deveria confiar.</p><ul className="issue-list"><li>Dependência do Instagram</li><li>Indicações sem contexto</li><li>Concorrentes mais bem apresentados</li><li>Próximo passo pouco claro</li></ul></div></section>
-  <section className="section section-dark"><div className="shell"><Eyebrow>Demonstração</Eyebrow><div className="section-heading"><h2>Estar na internet não é o mesmo que ter presença.</h2><p>Alterne os estados para comparar como organização, hierarquia e ação mudam a percepção.</p></div><PresenceComparison /></div></section>
-  <section className="section shell"><Eyebrow>Capacidades</Eyebrow><div className="section-heading"><h2>Um sistema digital, não uma página isolada.</h2><Link className="text-link" href="/servicos">Ver todos os serviços</Link></div><div className="service-grid">{services.slice(0,4).map((s,i) => <Link className="service-card" href={`/servicos/${s.slug}`} key={s.slug}><span>0{i+1}</span><p className="kicker">{s.eyebrow}</p><h3>{s.title}</h3><p>{s.summary}</p><b aria-hidden>↗</b></Link>)}</div></section>
-  <section className="section projects-section"><div className="shell"><Eyebrow>Projetos reais</Eyebrow><div className="section-heading"><h2>Competência demonstrada por trabalho publicado.</h2><Link className="text-link" href="/projetos">Explorar portfólio</Link></div><div className="projects-list">{projects.slice(0,3).map((p,i) => <ProjectCard key={p.slug} project={p} index={i}/>)}</div></div></section>
-  <section className="section shell"><Eyebrow>Método Dreh Work</Eyebrow><div className="section-heading"><h2>O layout entra depois que a direção está clara.</h2><Link className="text-link" href="/processo">Conhecer o processo</Link></div><ol className="process-line">{processSteps.map((s,i) => <li key={s}><span>{String(i+1).padStart(2,"0")}</span>{s}</li>)}</ol></section>
-  <section className="section section-blue"><div className="shell split"><div><Eyebrow>Pesquisa e inteligência artificial</Eyebrow><h2>Informação organizada é parte da presença digital.</h2></div><div className="prose"><p>Um site bem estruturado ajuda mecanismos modernos de pesquisa e inteligência artificial a interpretar quem é a empresa, o que oferece, onde atua e como pode ser contatada.</p><p>Essa preparação melhora a base de descoberta — sem prometer ranking, citação ou resultado automático.</p></div></div></section>
-  <section className="section shell"><Eyebrow>Direção personalizada</Eyebrow><div className="section-heading"><h2>O que sua empresa precisa resolver agora?</h2><p>Escolha uma situação para ver o caminho mais relevante.</p></div><ObjectiveSelector /></section>
-  <section className="section section-light"><div className="shell"><Eyebrow>Confiança pela estrutura</Eyebrow><div className="proof-grid">{["Contrato e nota fiscal", "Atendimento direto", "Processo estruturado", "Publicação e verificação", "Suporte e evolução", "Todo o Brasil, remotamente"].map((x,i)=><div key={x}><span>0{i+1}</span><strong>{x}</strong></div>)}</div></div></section>
-  <section className="section shell"><Eyebrow>Perguntas frequentes</Eyebrow><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<span aria-hidden>+</span></summary><p>{a}</p></details>)}</div></section><CTA />
-  </>; }
+  <section className="hero home-hero">
+    <div className="hero-coordinate coordinate-x" aria-hidden>01 — POSICIONAMENTO</div><div className="hero-coordinate coordinate-y" aria-hidden>DREH / WORK / 2026</div>
+    <div className="shell hero-inner">
+      <div className="hero-copy" data-reveal>
+        <Eyebrow>Sites estratégicos / Presença digital</Eyebrow>
+        <h1>Sua empresa pode ser <span>excelente.</span> <em>A presença precisa provar.</em></h1>
+        <div className="hero-bottom"><p className="lead">A Dreh Work cria sites profissionais para empresas que precisam transmitir confiança, explicar melhor o que fazem e transformar atenção em oportunidades.</p><div className="button-row"><Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito <span aria-hidden>↗</span></Link><Link className="text-link hero-project-link" href="/projetos">Ver projetos <span aria-hidden>↓</span></Link></div></div>
+        <p className="trust-line">Contrato · Nota fiscal · Atendimento remoto em todo o Brasil</p>
+      </div>
+      <div className="hero-system" aria-label="Representação de uma presença digital sendo organizada" data-reveal>
+        <div className="system-meta"><span>SISTEMA / PRESENÇA</span><b>EM ATIVAÇÃO</b></div>
+        <span className="system-orbit orbit-one" aria-hidden /><span className="system-orbit orbit-two" aria-hidden />
+        <div className="system-node node-clarity"><small>01</small><strong>Clareza</strong></div>
+        <div className="system-node node-trust"><small>02</small><strong>Confiança</strong></div>
+        <div className="system-node node-discovery"><small>03</small><strong>Descoberta</strong></div>
+        <div className="system-node node-action"><small>04</small><strong>Ação</strong></div>
+        <div className="system-core"><span>D/W</span><small>ESTRUTURA<br/>ATIVA</small></div>
+        <p>Do valor disperso<br/>à presença convincente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section className="home-problem section-light">
+    <div className="shell" data-reveal><Eyebrow>O problema não é só não ter um site</Eyebrow><p className="problem-statement">Qualidade real pode ficar <span>invisível</span> quando a presença digital não organiza o valor da empresa.</p><div className="problem-grid"><p>O cliente pesquisa, encontra sinais dispersos e precisa montar sozinho a imagem do negócio.</p><ul><li><span>01</span>Dependência do Instagram</li><li><span>02</span>Indicações sem contexto</li><li><span>03</span>Concorrentes mais bem apresentados</li><li><span>04</span>Próximo passo pouco claro</li></ul></div></div>
+  </section>
+
+  <section className="section home-transformation"><div className="shell" data-reveal><Eyebrow>Demonstração / dois estados</Eyebrow><div className="home-section-heading"><h2>Estar na internet não é o mesmo que ter presença.</h2><p>A informação ganha hierarquia, conexão e direção. Compare os estados — a diferença continua legível mesmo sem interação.</p></div><PresenceComparison /></div></section>
+
+  <section className="home-projects" id="projetos"><div className="shell projects-intro" data-reveal><Eyebrow>Projetos reais / mídia em preparação</Eyebrow><div className="home-section-heading"><h2>Trabalho publicado é a prova.</h2><Link className="text-link" href="/projetos">Explorar portfólio</Link></div></div><div className="home-project-track">
+    {projects.map((project, index) => <article className="home-project" key={project.slug} data-reveal>
+      <div className="home-project-media" role="img" aria-label={project.media[0].alt}><div className="project-frame-meta"><span>{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><span>MÍDIA PENDENTE</span></div><strong>{project.name}</strong><div className="project-frame-axis"><i /><span>FRAME PREPARADO PARA CONTEÚDO REAL</span></div></div>
+      <div className="home-project-copy"><p className="kicker">{project.category}</p><h3>{project.name}</h3><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Manutenção e evolução contínua em Shopify — não criação integral."}</p><ul>{project.scope.slice(0, 4).map((item) => <li key={item}>{item}</li>)}</ul><Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link></div>
+    </article>)}
+  </div><div className="shell project-scroll-note"><span>Role horizontalmente para explorar</span><i aria-hidden>→</i></div></section>
+
+  <section className="section home-services-section"><div className="shell" data-reveal><Eyebrow>Capacidades / meios para o resultado</Eyebrow><div className="home-section-heading"><h2>Um sistema digital, não uma página isolada.</h2><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
+
+  <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Método Dreh Work / 10 etapas em 5 movimentos</Eyebrow><div className="home-section-heading"><h2>Precisão antes de decoração.</h2><p>O layout entra quando objetivo, mensagem, arquitetura e próximo passo já possuem direção.</p></div><ol className="process-phases">{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
+
+  <section className="section discovery-section"><div className="shell discovery-grid" data-reveal><div className="discovery-copy"><Eyebrow>Pesquisa e inteligência artificial</Eyebrow><h2>Ser compreendida também é ser encontrável.</h2><p>Um site bem estruturado ajuda mecanismos modernos de pesquisa e inteligência artificial a interpretar quem é a empresa, o que oferece, onde atua e como pode ser contatada.</p><p>Essa preparação melhora a base de descoberta — sem prometer ranking, citação ou resultado automático.</p></div><div className="discovery-system" aria-label="Fluxo de informações da empresa para mecanismos de pesquisa e inteligência artificial"><div className="source-nodes"><span>EMPRESA</span><span>SERVIÇOS</span><span>PÁGINAS</span><span>CONTEXTO</span></div><div className="discovery-core"><small>INFORMAÇÃO</small><strong>PRESENÇA<br/>ESTRUTURADA</strong><i /></div><div className="destination-nodes"><span>PESQUISA <b>↗</b></span><span>INTELIGÊNCIA ARTIFICIAL <b>↗</b></span></div></div></div></section>
+
+  <section className="section objective-section"><div className="shell" data-reveal><Eyebrow>Direção personalizada</Eyebrow><div className="home-section-heading"><h2>O que sua empresa precisa resolver agora?</h2><p>Selecione um objetivo. A interface organiza um caminho inicial sem enviar seus dados.</p></div><ObjectiveSelector /></div></section>
+
+  <section className="formalization-section section-light"><div className="shell" data-reveal><Eyebrow>Confiança pela estrutura</Eyebrow><div className="formalization-line">{["Contrato e nota fiscal", "Atendimento direto", "Processo estruturado", "Publicação e verificação", "Suporte e evolução", "Todo o Brasil, remotamente"].map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>)}</div></div></section>
+
+  <section className="section home-faq"><div className="shell faq-layout" data-reveal><div><Eyebrow>Perguntas frequentes</Eyebrow><h2>Clareza antes do primeiro contato.</h2><p>Escopo, prazo e necessidades são confirmados de acordo com cada projeto.</p></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden>+</span></summary><p>{answer}</p></details>)}</div></div></section>
+  <CTA />
+</>; }
 
 function ServicesPage() { return <><section className="page-hero shell"><Eyebrow>Serviços</Eyebrow><h1>Sites são o centro. Estratégia, descoberta e evolução completam o sistema.</h1><p className="lead">Cada serviço parte do problema do negócio e da ação que a experiência precisa gerar.</p></section><section className="section shell"><div className="service-grid wide">{services.map((s,i)=><Link className="service-card" href={`/servicos/${s.slug}`} key={s.slug}><span>{String(i+1).padStart(2,"0")}</span><p className="kicker">{s.eyebrow}</p><h2>{s.title}</h2><p>{s.summary}</p><b aria-hidden>↗</b></Link>)}</div></section><CTA /></>; }
 function ServicePage({ service }: { service: typeof services[number] }) { const schema={"@context":"https://schema.org","@type":"Service",name:service.title,provider:{"@type":"Organization",name:"Dreh Work"},areaServed:"BR",description:service.summary}; return <><section className="page-hero shell"><Eyebrow>{service.eyebrow}</Eyebrow><h1>{service.title}</h1><p className="lead">{service.summary}</p><div className="button-row"><Link className="button primary" href={`/diagnostico?objetivo=${encodeURIComponent(service.title)}`}>Solicitar diagnóstico</Link><Link className="button ghost" href="/projetos">Ver projetos</Link></div></section><section className="section section-dark"><div className="shell split"><div><Eyebrow>Escopo possível</Eyebrow><h2>Uma solução organizada ao redor do resultado.</h2></div><ul className="large-list">{service.items.map(x=><li key={x}>{x}</li>)}</ul></div></section><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><CTA context={service.title}/></>; }

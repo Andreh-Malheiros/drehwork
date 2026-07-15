@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroActivation } from "@/components/IntroActivation";
+import { HomeMotion } from "@/components/HomeMotion";
 import { brand } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 const organization = { "@context": "https://schema.org", "@type": "Organization", name: "Dreh Work", url: "https://drehwork.com.br", email: brand.email, areaServed: "BR", description: brand.positioning };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body><IntroActivation /><Header /><main id="conteudo">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
+  return <html lang="pt-BR"><body><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
 }
