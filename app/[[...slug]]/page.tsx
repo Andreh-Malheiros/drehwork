@@ -5,6 +5,7 @@ import { DiagnosticWizard } from "@/components/DiagnosticWizard";
 import { HomeServices } from "@/components/HomeServices";
 import { ObjectiveSelector } from "@/components/ObjectiveSelector";
 import { PresenceComparison } from "@/components/PresenceComparison";
+import { GLSLHills } from "@/components/ui/glsl-hills";
 import { brand, faqs, insights, processSteps, projects, services, whatsappUrl } from "@/content/site";
 
 type Props = { params: Promise<{ slug?: string[] }> };
@@ -34,25 +35,11 @@ const processPhases = [
 ] as const;
 
 function Home() { return <>
-  <section className="hero home-hero">
-    <div className="hero-coordinate coordinate-x" aria-hidden>01 — POSICIONAMENTO</div><div className="hero-coordinate coordinate-y" aria-hidden>DREH / WORK / 2026</div>
-    <div className="shell hero-inner">
-      <div className="hero-copy" data-reveal>
-        <Eyebrow>Sites estratégicos / Presença digital</Eyebrow>
-        <h1>Sua empresa pode ser <span>excelente.</span> <em>A presença precisa provar.</em></h1>
-        <div className="hero-bottom"><p className="lead">A Dreh Work cria sites profissionais para empresas que precisam transmitir confiança, explicar melhor o que fazem e transformar atenção em oportunidades.</p><div className="button-row"><Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito <span aria-hidden>↗</span></Link><Link className="text-link hero-project-link" href="/projetos">Ver projetos <span aria-hidden>↓</span></Link></div></div>
-        <p className="trust-line">Contrato · Nota fiscal · Atendimento remoto em todo o Brasil</p>
-      </div>
-      <div className="hero-system" aria-label="Representação de uma presença digital sendo organizada" data-reveal>
-        <div className="system-meta"><span>SISTEMA / PRESENÇA</span><b>EM ATIVAÇÃO</b></div>
-        <span className="system-orbit orbit-one" aria-hidden /><span className="system-orbit orbit-two" aria-hidden />
-        <div className="system-node node-clarity"><small>01</small><strong>Clareza</strong></div>
-        <div className="system-node node-trust"><small>02</small><strong>Confiança</strong></div>
-        <div className="system-node node-discovery"><small>03</small><strong>Descoberta</strong></div>
-        <div className="system-node node-action"><small>04</small><strong>Ação</strong></div>
-        <div className="system-core"><span>D/W</span><small>ESTRUTURA<br/>ATIVA</small></div>
-        <p>Do valor disperso<br/>à presença convincente.</p>
-      </div>
+  <section className="hero home-hero glsl-hero">
+    <GLSLHills />
+    <div className="glsl-hero-copy">
+      <h1><span>Sites que demonstram<br /></span>Valor Antes das Palavras</h1>
+      <p>A Dreh Work cria experiências digitais claras e profissionais que ajudam sua empresa a transmitir confiança, explicar valor e gerar oportunidades.</p>
     </div>
   </section>
 

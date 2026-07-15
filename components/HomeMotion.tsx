@@ -40,6 +40,56 @@ export function HomeMotion() {
             scrollTrigger: { trigger: ".home-hero", start: "top top", end: "bottom top", scrub: 0.8 },
           });
         }
+
+        const heroCopy = document.querySelector<HTMLElement>(".glsl-hero-copy");
+        if (heroCopy) {
+          gsap.fromTo(
+            heroCopy.querySelectorAll("h1, p"),
+            { autoAlpha: 0, filter: "blur(18px)" },
+            { autoAlpha: 1, filter: "blur(0px)", duration: 1.25, stagger: 0.14, ease: "power3.out", delay: 0.18 },
+          );
+        }
+      });
+
+      motion.add("(pointer: fine) and (prefers-reduced-motion: no-preference)", () => {
+        const hero = document.querySelector<HTMLElement>(".glsl-hero");
+        if (!hero) return undefined;
+
+        let frame = 0;
+        const setFromPointer = (event: PointerEvent) => {
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            const rect = hero.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+            hero.style.setProperty("--hero-x", `${(x * 100).toFixed(2)}%`);
+            hero.style.setProperty("--hero-y", `${(y * 100).toFixed(2)}%`);
+            hero.style.setProperty("--hero-rotate-x", `${((0.5 - y) * 7).toFixed(2)}deg`);
+            hero.style.setProperty("--hero-rotate-y", `${((x - 0.5) * 8).toFixed(2)}deg`);
+            hero.style.setProperty("--hero-drift-x", `${((x - 0.5) * 18).toFixed(2)}px`);
+            hero.style.setProperty("--hero-drift-y", `${((y - 0.5) * 14).toFixed(2)}px`);
+          });
+        };
+
+        const resetPointer = () => {
+          cancelAnimationFrame(frame);
+          hero.style.setProperty("--hero-x", "50%");
+          hero.style.setProperty("--hero-y", "50%");
+          hero.style.setProperty("--hero-rotate-x", "0deg");
+          hero.style.setProperty("--hero-rotate-y", "0deg");
+          hero.style.setProperty("--hero-drift-x", "0px");
+          hero.style.setProperty("--hero-drift-y", "0px");
+        };
+
+        hero.addEventListener("pointermove", setFromPointer);
+        hero.addEventListener("pointerleave", resetPointer);
+        resetPointer();
+
+        return () => {
+          cancelAnimationFrame(frame);
+          hero.removeEventListener("pointermove", setFromPointer);
+          hero.removeEventListener("pointerleave", resetPointer);
+        };
       });
 
       ScrollTrigger.create({
