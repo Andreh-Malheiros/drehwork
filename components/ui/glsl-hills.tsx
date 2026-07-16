@@ -170,7 +170,7 @@ export function GLSLHills({ width = "100vw", height = "100vh", cameraZ = 125, pl
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
-    const clock = new THREE.Clock();
+    const clock = new THREE.Timer();
     const plane = new Plane();
     let animationFrame = 0;
 

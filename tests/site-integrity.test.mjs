@@ -12,6 +12,17 @@ test("keeps factual portfolio classification and no fake insights", async () => 
   assert.doesNotMatch(content, /depoimento|% de conversão|clientes satisfeitos/i);
 });
 
+test("keeps intro scroll lock guarded and skippable after session", async () => {
+  const intro = await read("components/IntroActivation.tsx");
+  assert.match(intro, /function acquireIntroLock/);
+  assert.match(intro, /INTRO_WATCHDOG_DURATION/);
+  assert.match(intro, /finally\s*{\s*complete\(\)/);
+  assert.match(intro, /startExit\(\)\.catch/);
+  assert.match(intro, /if \(alreadySeen\)[\s\S]*setVisible\(false\)/);
+  assert.match(intro, /previousHtmlOverflow/);
+  assert.match(intro, /previousBodyOverflow/);
+});
+
 test("keeps review-mode diagnostic isolated", async () => {
   const adapter = await read("lib/diagnostic-service.ts");
   const wizard = await read("components/DiagnosticWizard.tsx");

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DiagnosticWizard } from "@/components/DiagnosticWizard";
+import { HomeProblem } from "@/components/HomeProblem";
 import { HomeServices } from "@/components/HomeServices";
 import { ObjectiveSelector } from "@/components/ObjectiveSelector";
 import { PresenceComparison } from "@/components/PresenceComparison";
@@ -34,6 +36,20 @@ const processPhases = [
   ["Evoluir", processSteps.slice(9)],
 ] as const;
 
+type ProjectPreviewStyle = CSSProperties & { "--project-preview-image": string };
+
+const projectPreviewImages: Record<string, string> = {
+  "bh-carimbos": "https://picsum.photos/seed/bh-carimbos/1200/900",
+  amftv: "https://picsum.photos/seed/amftv/1200/900",
+  "wayne-store": "https://picsum.photos/seed/wayne-store/1200/900",
+  "noar-oficial": "https://picsum.photos/seed/noar-oficial/1200/900",
+  "ammis-moda": "https://picsum.photos/seed/ammis-moda/1200/900",
+};
+
+const projectPreviewStyle = (slug: string): ProjectPreviewStyle => ({
+  "--project-preview-image": `url("${projectPreviewImages[slug] || "https://picsum.photos/seed/dreh-work-project/1200/900"}")`,
+});
+
 function Home() { return <>
   <section className="hero home-hero glsl-hero">
     <GLSLHills />
@@ -43,18 +59,60 @@ function Home() { return <>
     </div>
   </section>
 
-  <section className="home-problem section-light">
-    <div className="shell" data-reveal><Eyebrow>O problema não é só não ter um site</Eyebrow><p className="problem-statement">Qualidade real pode ficar <span>invisível</span> quando a presença digital não organiza o valor da empresa.</p><div className="problem-grid"><p>O cliente pesquisa, encontra sinais dispersos e precisa montar sozinho a imagem do negócio.</p><ul><li><span>01</span>Dependência do Instagram</li><li><span>02</span>Indicações sem contexto</li><li><span>03</span>Concorrentes mais bem apresentados</li><li><span>04</span>Próximo passo pouco claro</li></ul></div></div>
+  <HomeProblem />
+
+  <section className="section home-transformation"><div className="shell" data-reveal><PresenceComparison /></div></section>
+
+  <section className="home-projects" id="projetos" aria-labelledby="home-projects-title">
+    <div className="shell home-projects-layout" data-reveal>
+      <div className="home-projects-copy">
+        <h2 id="home-projects-title">Trabalho publicado é a prova.</h2>
+        <p>Projetos reais, com escopo confirmado e espaço preparado para receber as evidências visuais validadas de cada entrega.</p>
+        <div className="home-projects-actions">
+          <Link className="button primary" href="/projetos">Explorar portfólio</Link>
+          <Link className="text-link" href="/diagnostico">Solicitar diagnóstico</Link>
+        </div>
+      </div>
+
+      <div className="home-projects-stage" role="radiogroup" aria-label="Projetos em destaque">
+        <div className="home-project-accordion">
+          {projects.map((project, index) => {
+            const number = String(index + 1).padStart(2, "0");
+            const total = String(projects.length).padStart(2, "0");
+            const description = project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência Shopify.";
+            return <div className="home-project-option" key={project.slug}>
+              <input className="project-accordion-input" type="radio" id={`home-project-${project.slug}`} name="home-project-active" defaultChecked={index === 0} />
+              <label className="home-project-panel" htmlFor={`home-project-${project.slug}`} aria-label={`Destacar projeto ${project.name}`}>
+                <span className="home-project-fallback" style={projectPreviewStyle(project.slug)} aria-hidden="true">
+                  <strong>{project.name}</strong>
+                  <span className="home-project-hover-cue">Abrir projeto</span>
+                </span>
+                <span className="home-project-panel-copy">
+                  <span className="kicker">{project.category}</span>
+                  <span className="home-project-panel-title">{project.name}</span>
+                  <span className="home-project-panel-description">{description}</span>
+                  <span className="home-project-panel-scope">{project.scope.slice(0, 4).join(" / ")}</span>
+                  <span className="home-project-panel-progress" aria-hidden><i style={{ width: `${((index + 1) / projects.length) * 100}%` }} /></span>
+                  <span className="home-project-panel-counter">{number} / {total}</span>
+                </span>
+              </label>
+              <div className="home-project-links">
+                <Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link>
+                {project.url ? <a className="text-link" href={project.url} target="_blank" rel="noreferrer">Visitar projeto</a> : null}
+              </div>
+            </div>;
+          })}
+        </div>
+      </div>
+    </div>
+    <div className="home-project-marquee" aria-label="Projetos e empresas atendidas">
+      <div className="home-project-marquee-track">
+        {[0, 1, 2, 3].map(group => <div className="home-project-marquee-group" aria-hidden={group > 0 ? "true" : undefined} key={group}>
+          {projects.map(project => <span key={`${group}-${project.slug}`}>{project.name}</span>)}
+        </div>)}
+      </div>
+    </div>
   </section>
-
-  <section className="section home-transformation"><div className="shell" data-reveal><Eyebrow>Demonstração / dois estados</Eyebrow><div className="home-section-heading"><h2>Estar na internet não é o mesmo que ter presença.</h2><p>A informação ganha hierarquia, conexão e direção. Compare os estados — a diferença continua legível mesmo sem interação.</p></div><PresenceComparison /></div></section>
-
-  <section className="home-projects" id="projetos"><div className="shell projects-intro" data-reveal><Eyebrow>Projetos reais / mídia em preparação</Eyebrow><div className="home-section-heading"><h2>Trabalho publicado é a prova.</h2><Link className="text-link" href="/projetos">Explorar portfólio</Link></div></div><div className="home-project-track">
-    {projects.map((project, index) => <article className="home-project" key={project.slug} data-reveal>
-      <div className="home-project-media" role="img" aria-label={project.media[0].alt}><div className="project-frame-meta"><span>{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><span>MÍDIA PENDENTE</span></div><strong>{project.name}</strong><div className="project-frame-axis"><i /><span>FRAME PREPARADO PARA CONTEÚDO REAL</span></div></div>
-      <div className="home-project-copy"><p className="kicker">{project.category}</p><h3>{project.name}</h3><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Manutenção e evolução contínua em Shopify — não criação integral."}</p><ul>{project.scope.slice(0, 4).map((item) => <li key={item}>{item}</li>)}</ul><Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link></div>
-    </article>)}
-  </div><div className="shell project-scroll-note"><span>Role horizontalmente para explorar</span><i aria-hidden>→</i></div></section>
 
   <section className="section home-services-section"><div className="shell" data-reveal><Eyebrow>Capacidades / meios para o resultado</Eyebrow><div className="home-section-heading"><h2>Um sistema digital, não uma página isolada.</h2><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
 
