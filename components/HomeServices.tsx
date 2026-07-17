@@ -11,6 +11,7 @@ const groups = [
     href: "/servicos/sites-profissionais",
     items: ["Sites profissionais", "Reformulação", "Landing pages"],
     signal: "CLAREZA",
+    visual: "sites",
   },
   {
     label: "Comércio eletrônico",
@@ -19,6 +20,7 @@ const groups = [
     href: "/servicos/lojas-shopify",
     items: ["Shopify", "Experiência de compra", "Personalização"],
     signal: "AÇÃO",
+    visual: "shopify",
   },
   {
     label: "Presença e descoberta",
@@ -27,6 +29,7 @@ const groups = [
     href: "/servicos/presenca-digital",
     items: ["Presença digital", "Busca local", "Pesquisa e IA"],
     signal: "DESCOBERTA",
+    visual: "presence",
   },
   {
     label: "Suporte e evolução",
@@ -35,6 +38,7 @@ const groups = [
     href: "/servicos/manutencao",
     items: ["Manutenção", "Correções", "Evolução visual"],
     signal: "CONTINUIDADE",
+    visual: "support",
   },
 ] as const;
 
@@ -57,7 +61,7 @@ export function HomeServices() {
         <i aria-hidden>{active === index ? "—" : "+"}</i>
       </button>)}
     </div>
-    <div className="home-service-stage" id="service-stage" aria-live="polite">
+    <div className="home-service-stage" id="service-stage" aria-live="polite" data-service={current.visual}>
       <div className="service-stage-signal" aria-hidden><span>CAPACIDADE</span><b>{current.signal}</b><i /></div>
       <p className="kicker">{String(active + 1).padStart(2, "0")} / 04</p>
       <h3>{current.title}</h3>

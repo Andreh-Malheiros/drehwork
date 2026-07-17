@@ -5112,87 +5112,83 @@ textarea,
     color: rgba(255, 255, 255, 0.72);
   }
   .mega-service-card[data-visual="web"] {
-    --mega-card-image:
-      radial-gradient(
-        circle at 72% 42%,
-        rgba(255, 255, 255, 0.62),
-        transparent 18%
-      ),
-      linear-gradient(
-        115deg,
-        rgba(255, 255, 255, 0.08) 0 16%,
-        transparent 16% 100%
-      ),
-      linear-gradient(135deg, #1d1d1d, #4c4a44 52%, #111);
+    --mega-card-image: url("/images/sites-profissional.png");
   }
   .mega-service-card[data-visual="campaign"] {
-    --mega-card-image:
-      radial-gradient(
-        circle at 24% 56%,
-        rgba(255, 255, 255, 0.55),
-        transparent 17%
-      ),
-      repeating-linear-gradient(
-        130deg,
-        rgba(255, 255, 255, 0.22) 0 2px,
-        transparent 2px 19px
-      ),
-      linear-gradient(135deg, #101010, #33343a 58%, #080808);
+    --mega-card-image: url("/images/landing-page.png");
   }
   .mega-service-card[data-visual="structure"] {
-    --mega-card-image:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      radial-gradient(
-        circle at 68% 38%,
-        rgba(255, 255, 255, 0.35),
-        transparent 18%
-      ),
-      linear-gradient(140deg, #0e1118, #30353e 55%, #0b0b0c);
+    --mega-card-image: url("/images/reformulacao-sites.png");
   }
   .mega-service-card[data-visual="commerce"] {
-    --mega-card-image:
-      radial-gradient(
-        circle at 36% 42%,
-        rgba(255, 255, 255, 0.5),
-        transparent 18%
-      ),
-      linear-gradient(
-        110deg,
-        transparent 0 35%,
-        rgba(255, 255, 255, 0.22) 35% 52%,
-        transparent 52%
-      ),
-      linear-gradient(145deg, #17120f, #4c4035 52%, #090909);
+    --mega-card-image: url("/images/lojas-shopify.png");
   }
   .mega-service-card[data-visual="presence"] {
-    --mega-card-image:
-      radial-gradient(
-        circle at 28% 36%,
-        rgba(255, 255, 255, 0.4),
-        transparent 13%
-      ),
-      radial-gradient(
-        circle at 64% 58%,
-        rgba(255, 255, 255, 0.3),
-        transparent 16%
-      ),
-      linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px),
-      linear-gradient(145deg, #0f1110, #2f3630 56%, #080808);
+    --mega-card-image: url("/images/presenca-digital.png");
   }
   .mega-service-card[data-visual="support"] {
-    --mega-card-image:
-      radial-gradient(
-        circle at 72% 38%,
-        rgba(255, 255, 255, 0.46),
-        transparent 16%
-      ),
-      repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.1) 0 1px,
-        transparent 1px 16px
-      ),
-      linear-gradient(140deg, #111, #363636 52%, #080808);
+    --mega-card-image: url("/images/manutencao-e-evolucao.png");
+  }
+}
+
+/* Real glass backdrop for the services mega menu */
+@media (min-width: 821px) {
+  .site-header .nav-shell .mega-menu {
+    padding: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 14px !important;
+    background: rgba(18, 18, 18, 0.22) !important;
+    box-shadow:
+      0 26px 86px rgba(0, 0, 0, 0.42),
+      inset 0 1px rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(34px) saturate(125%) brightness(0.82) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(125%) brightness(0.82) !important;
+  }
+  .site-header .nav-shell .mega-menu:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    transform: none;
+    width: auto;
+    height: auto;
+    border-radius: inherit;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.02) 52%, rgba(0, 0, 0, 0.18));
+    color: transparent;
+    font-size: 0;
+    letter-spacing: 0;
+    filter: none;
+    opacity: 1;
+    pointer-events: none;
+  }
+  .site-header .nav-shell .mega-service-card,
+  .site-header .mega-service-grid .mega-service-card:nth-last-child(2) {
+    border: 1px solid rgba(255, 255, 255, 0.025) !important;
+    border-radius: 10px !important;
+    background: #111111 !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+    opacity: 1 !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .site-header .nav-shell .mega-service-card:before,
+  .site-header .nav-shell .mega-service-card:after {
+    display: none !important;
+    opacity: 0 !important;
+  }
+  .site-header .nav-shell .mega-service-column:has(.mega-service-card:hover)
+    .mega-service-card:not(:hover),
+  .site-header .nav-shell .mega-service-column:has(.mega-service-card:focus-visible)
+    .mega-service-card:not(:focus-visible) {
+    opacity: 1 !important;
+  }
+  .site-header .nav-shell .mega-service-card:hover,
+  .site-header .nav-shell .mega-service-card:focus-visible {
+    background: #141414 !important;
   }
 }
 
@@ -6790,6 +6786,138 @@ html.intro-scroll-lock body {
   .rolling-text-item[data-active="true"] .rolling-img {
     filter: grayscale(0);
     transform: scale(1.02);
+  }
+}
+
+/* Final real imagery overrides */
+.project-media {
+  position: relative;
+  min-height: 420px;
+  border: 1px solid rgba(247, 247, 244, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(5, 6, 8, 0.04), rgba(5, 6, 8, 0.72)),
+    linear-gradient(90deg, rgba(5, 6, 8, 0.68), rgba(5, 6, 8, 0.08) 58%),
+    var(--project-media-image) center top / cover no-repeat,
+    #101218;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+.project-media:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 82% 16%, rgba(113, 128, 255, 0.2), transparent 28%);
+  mix-blend-mode: screen;
+}
+.project-media span,
+.project-media small,
+.project-media b {
+  position: absolute;
+  z-index: 1;
+}
+.project-media span,
+.project-media small {
+  color: rgba(247, 247, 244, 0.72);
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.project-media span {
+  top: 22px;
+  left: 22px;
+}
+.project-media small {
+  right: 22px;
+  bottom: 22px;
+  max-width: min(340px, calc(100% - 44px));
+  text-align: right;
+}
+.project-media b {
+  left: 22px;
+  right: 22px;
+  bottom: 46px;
+  max-width: 620px;
+  color: #fff;
+  font-size: clamp(2.5rem, 5.2vw, 5.6rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+.project-media.large {
+  min-height: min(620px, 68vh);
+  aspect-ratio: var(--project-media-ratio);
+  align-self: stretch;
+  background-size: cover;
+}
+.project-media.large b {
+  font-size: clamp(2.1rem, 3.8vw, 4.6rem);
+}
+.home-service-stage {
+  isolation: isolate;
+}
+.home-service-stage[data-service="sites"] {
+  --service-stage-image: url("/images/sites-profissional.png");
+}
+.home-service-stage[data-service="shopify"] {
+  --service-stage-image: url("/images/lojas-shopify.png");
+}
+.home-service-stage[data-service="presence"] {
+  --service-stage-image: url("/images/presenca-digital.png");
+}
+.home-service-stage[data-service="support"] {
+  --service-stage-image: url("/images/manutencao-e-evolucao.png");
+}
+.home-service-stage:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(78, 92, 241, 0.94) 0%, rgba(78, 92, 241, 0.78) 48%, rgba(78, 92, 241, 0.28) 100%),
+    var(--service-stage-image) right center / auto 100% no-repeat;
+  opacity: 0.98;
+}
+.home-service-stage > * {
+  position: relative;
+  z-index: 2;
+}
+.home-service-stage h3,
+.home-service-stage > p:not(.kicker) {
+  max-width: min(660px, 72%);
+}
+
+@media (max-width: 900px) {
+  .project-media,
+  .project-media.large {
+    min-height: 360px;
+    aspect-ratio: 16 / 11;
+  }
+  .home-service-stage h3,
+  .home-service-stage > p:not(.kicker) {
+    max-width: none;
+  }
+  .home-service-stage:before {
+    background:
+      linear-gradient(180deg, rgba(78, 92, 241, 0.92), rgba(78, 92, 241, 0.78)),
+      var(--service-stage-image) center / cover no-repeat;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-media,
+  .project-media.large {
+    min-height: 300px;
+    border-radius: 14px;
+  }
+  .project-media b {
+    font-size: clamp(2rem, 12vw, 3.4rem);
+  }
+  .project-media small {
+    left: 20px;
+    right: 20px;
+    text-align: left;
   }
 }
 
