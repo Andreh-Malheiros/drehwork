@@ -12,9 +12,9 @@ Decisões futuras não devem contrariá-lo sem aprovação explícita.
 ## Site institucional e comercial — Dreh Work
 
 **Versão:** 1.0
-**Domínio:** drehwork.com.br
+**Domínio:** www.drehwork.com
 **Marca:** Dreh Work
-**E-mail:** [contato@drehwork.com.br](mailto:contato@drehwork.com.br)
+**E-mail:** [contato@drehwork.com](mailto:contato@drehwork.com)
 **Instagram:** @dreh.work
 **WhatsApp:** (31) 9 9965-6778
 **Área de atendimento:** Todo o Brasil, de forma remota

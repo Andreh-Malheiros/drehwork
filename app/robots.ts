@@ -1,2 +1,6 @@
 import type { MetadataRoute } from "next";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/"},sitemap:"https://drehwork.com.br/sitemap.xml"}}
+import { brand } from "@/content/site";
+
+export default function robots(): MetadataRoute.Robots {
+  return { rules: { userAgent: "*", allow: "/", disallow: ["/api/"] }, sitemap: `${brand.url}/sitemap.xml`, host: brand.url };
+}

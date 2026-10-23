@@ -1,22 +1,30 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroActivation } from "@/components/IntroActivation";
 import { HomeMotion } from "@/components/HomeMotion";
+import { CookieConsent } from "@/components/CookieConsent";
+import { AnalyticsBridge } from "@/components/AnalyticsBridge";
 import { brand } from "@/content/site";
+import { JsonLd, organizationSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://drehwork.com.br"),
-  title: { default: "Dreh Work | Sites estratégicos e presença digital", template: "%s | Dreh Work" },
-  description: "Sites profissionais e estratégicos para empresas que precisam transmitir confiança, ser encontradas e gerar oportunidades.",
-  alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "pt_BR", siteName: "Dreh Work", title: "Dreh Work | Sites estratégicos e presença digital", description: "Sua empresa pode ser excelente. A presença digital precisa demonstrar isso.", images: [{ url: "/og.png", width: 1792, height: 931, alt: "Dreh Work — Sites estratégicos. Presença que demonstra valor." }] },
-  twitter: { card: "summary_large_image", title: "Dreh Work | Sites estratégicos", description: "Presença digital estruturada para confiança, descoberta e oportunidades.", images: ["/og.png"] },
+  ...pageMetadata(""),
+  metadataBase: new URL(brand.url),
+  title: { default: "Dreh Work | Sites estratégicos, SEO e crescimento digital", template: "%s | Dreh Work" },
+  applicationName: "Dreh Work",
+  authors: [{ name: brand.legalName }],
+  creator: brand.legalName,
+  formatDetection: { telephone: false },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
-const organization = { "@context": "https://schema.org", "@type": "Organization", name: "Dreh Work", url: "https://drehwork.com.br", email: brand.email, areaServed: "BR", description: brand.positioning };
+const poppins = Poppins({ subsets: ["latin", "latin-ext"], weight: ["200", "300", "400", "500", "600", "700"], style: ["normal", "italic"], display: "swap", variable: "--font-poppins" });
+
+export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
+  return <html lang="pt-BR" className={poppins.variable}><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><CookieConsent /><AnalyticsBridge /><JsonLd data={organizationSchema()} /></body></html>;
 }

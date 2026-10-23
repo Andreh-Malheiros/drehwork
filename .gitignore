@@ -5,3 +5,8 @@ dist/
 !.env.example
 *.log
 *.tsbuildinfo
+.wrangler/
+.openai/
+.vercel
+.agents/
+.claude/skills/motion-design

@@ -3,11 +3,12 @@
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const STORAGE_KEY = "dreh:intro";
 const LOCK_CLASS = "intro-scroll-lock";
 const READY_TIMEOUT = 3200;
-const MIN_BRAND_TIME = 620;
+const MIN_BRAND_TIME = 850;
 const REDUCED_BRAND_TIME = 240;
 const EXIT_FALLBACK_DURATION = 2300;
 // Covers readiness timeout, minimum brand time, exit animation and a small safety margin.
@@ -287,7 +288,7 @@ export function IntroActivation() {
 
   return (
     <div className="intro-activation" data-phase={phase} ref={root} aria-hidden="true">
-      <strong className="intro-loader-brand" data-phase={phase}>DREH WORK</strong>
+      <strong className="intro-loader-brand" data-phase={phase}><BrandLogo className="intro-logo" /></strong>
       {columns.map((column) => (
         <div
           className="intro-loader-column"

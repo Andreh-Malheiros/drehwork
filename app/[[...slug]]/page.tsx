@@ -9,23 +9,22 @@ import { ObjectiveSelector } from "@/components/ObjectiveSelector";
 import { PresenceComparison } from "@/components/PresenceComparison";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 import { brand, faqs, insights, processSteps, projects, services, whatsappUrl } from "@/content/site";
+import { legalDocuments } from "@/content/legal";
+import { JsonLd, breadcrumbFor, homeFaqSchema, pageMetadata, serviceSchema, validPaths } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug?: string[] }> };
-const valid = new Set(["", "servicos", "projetos", "processo", "diagnostico", "contato", "insights", "politica-de-privacidade", "politica-de-cookies", "termos-de-uso", ...services.map(s => `servicos/${s.slug}`), ...projects.map(p => `projetos/${p.slug}`)]);
+const valid = validPaths;
 
 export async function generateStaticParams() {
   return [...valid].map(path => ({ slug: path ? path.split("/") : undefined }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const path = (await params).slug?.join("/") || "";
-  const service = services.find(s => `servicos/${s.slug}` === path); const project = projects.find(p => `projetos/${p.slug}` === path);
-  const title = service?.title || project?.name || ({ servicos: "Serviços", projetos: "Projetos", processo: "Processo", diagnostico: "Diagnóstico gratuito", contato: "Contato", insights: "Insights", "politica-de-privacidade": "Política de Privacidade", "politica-de-cookies": "Política de Cookies", "termos-de-uso": "Termos de Uso" } as Record<string,string>)[path];
-  return { title, description: service?.summary || (project ? `${project.name}: ${project.category}. Conheça a atuação confirmada da Dreh Work.` : undefined), alternates: { canonical: `/${path}` } };
+  return pageMetadata((await params).slug?.join("/") || "");
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="kicker"><span aria-hidden>+</span> {children}</p>; }
-function CTA({ context = "meu projeto" }: { context?: string }) { return <section className="cta-band"><div className="shell"><Eyebrow>Próximo movimento</Eyebrow><h2>O que sua presença digital precisa provar?</h2><p>Receba uma análise inicial sobre clareza, confiança, descoberta e oportunidades.</p><div className="button-row"><Link className="button light" href="/diagnostico">Solicitar diagnóstico gratuito</Link><a className="text-link light" href={whatsappUrl(context)} target="_blank" rel="noreferrer">Conversar no WhatsApp</a></div></div></section>; }
+function CTA({ context = "meu projeto" }: { context?: string }) { return <section className="cta-band"><div className="shell"><Eyebrow>Próximo passo</Eyebrow><h2>Quanto custa continuar invisível?</h2><p>Cada dia sem uma presença digital à altura é um cliente que escolheu o concorrente. O diagnóstico é gratuito, sem compromisso — e, se não fizer sentido para o seu momento, diremos isso com clareza.</p><div className="button-row"><Link className="button light" href="/diagnostico">Solicitar diagnóstico gratuito</Link><a className="text-link light" href={whatsappUrl(context)} target="_blank" rel="noreferrer">Conversar no WhatsApp</a></div></div></section>; }
 type ProjectMediaStyle = CSSProperties & { "--project-media-image": string; "--project-media-ratio": string };
 function projectMediaStyle(project: typeof projects[number]): ProjectMediaStyle {
   const cover = project.media[0];
@@ -41,7 +40,7 @@ function ProjectMedia({ project, index, large = false }: { project: typeof proje
     <small>{project.category}</small>
   </div>;
 }
-function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) { return <article className="project-card"><ProjectMedia project={project} index={index} /><div className="project-copy"><p className="kicker">{project.category}</p><h3>{project.name}</h3><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência."}</p><Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link></div></article>; }
+function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) { return <article className="project-card"><ProjectMedia project={project} index={index} /><div className="project-copy"><p className="kicker">{project.category}</p><h2>{project.name}</h2><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência."}</p><Link className="text-link" href={`/projetos/${project.slug}`}>Ver projeto</Link></div></article>; }
 
 const processPhases = [
   ["Entender", processSteps.slice(0, 2)],
@@ -51,26 +50,13 @@ const processPhases = [
   ["Evoluir", processSteps.slice(9)],
 ] as const;
 
-type ProjectPreviewStyle = CSSProperties & { "--project-preview-image": string };
-
-const projectPreviewImages: Record<string, string> = {
-  "bh-carimbos": "/images/bhcarimbos.png",
-  amftv: "/images/amftv.png",
-  "wayne-store": "/images/usewayne.png",
-  "noar-oficial": "/images/noaroficial.png",
-  "ammis-moda": "/images/ammismoda.png",
-};
-
-const projectPreviewStyle = (slug: string): ProjectPreviewStyle => ({
-  "--project-preview-image": `url("${projectPreviewImages[slug] || "/images/sites-profissional.png"}")`,
-});
-
 function Home() { return <>
   <section className="hero home-hero glsl-hero">
     <GLSLHills />
     <div className="glsl-hero-copy">
-      <h1><span>Sites que demonstram<br /></span>Valor Antes das Palavras</h1>
-      <p>A Dreh Work cria experiências digitais claras e profissionais que ajudam sua empresa a transmitir confiança, explicar valor e gerar oportunidades.</p>
+      <h1><span>Visão que transforma.<br /></span>Estratégia que gera resultado.</h1>
+      <p>Sites, SEO e automação para empresas que querem ser encontradas, transmitir confiança e receber clientes pela internet. Mais de {brand.projectsDelivered} projetos entregues em {brand.yearsInMarket} anos.</p>
+      <div className="hero-actions"><Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito</Link><Link className="text-link" href="/processo">Como trabalhamos</Link></div>
     </div>
   </section>
 
@@ -78,78 +64,66 @@ function Home() { return <>
 
   <section className="section home-transformation"><div className="shell" data-reveal><PresenceComparison /></div></section>
 
-  <section className="home-projects" id="projetos" aria-labelledby="home-projects-title">
-    <div className="shell home-projects-layout" data-reveal>
-      <div className="home-projects-copy">
-        <h2 id="home-projects-title">Trabalho publicado é a prova.</h2>
-        <p>Projetos reais, com escopo confirmado e espaço preparado para receber as evidências visuais validadas de cada entrega.</p>
-        <div className="home-projects-actions">
-          <Link className="button primary" href="/projetos">Explorar portfólio</Link>
-          <Link className="text-link" href="/diagnostico">Solicitar diagnóstico</Link>
-        </div>
-      </div>
-
-      <div className="home-projects-stage" role="radiogroup" aria-label="Projetos em destaque">
-        <div className="home-project-accordion">
-          {projects.map((project, index) => {
-            const number = String(index + 1).padStart(2, "0");
-            const total = String(projects.length).padStart(2, "0");
-            const description = project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência Shopify.";
-            return <div className="home-project-option" key={project.slug}>
-              <input className="project-accordion-input" type="radio" id={`home-project-${project.slug}`} name="home-project-active" defaultChecked={index === 0} />
-              <label className="home-project-panel" htmlFor={`home-project-${project.slug}`} aria-label={`Destacar projeto ${project.name}`}>
-                <span className="home-project-fallback" style={projectPreviewStyle(project.slug)} aria-hidden="true">
-                  <strong>{project.name}</strong>
-                  <span className="home-project-hover-cue">Abrir projeto</span>
-                </span>
-                <span className="home-project-panel-copy">
-                  <span className="kicker">{project.category}</span>
-                  <span className="home-project-panel-title">{project.name}</span>
-                  <span className="home-project-panel-description">{description}</span>
-                  <span className="home-project-panel-scope">{project.scope.slice(0, 4).join(" / ")}</span>
-                  <span className="home-project-panel-progress" aria-hidden><i style={{ width: `${((index + 1) / projects.length) * 100}%` }} /></span>
-                  <span className="home-project-panel-counter">{number} / {total}</span>
-                </span>
-              </label>
-              <div className="home-project-links">
-                <Link className="text-link" href={`/projetos/${project.slug}`}>Ver estudo de caso</Link>
-                {project.url ? <a className="text-link" href={project.url} target="_blank" rel="noreferrer">Visitar projeto</a> : null}
-              </div>
-            </div>;
-          })}
-        </div>
-      </div>
+  <section className="section home-proof" id="resultados" aria-labelledby="home-proof-title">
+    <div className="shell" data-reveal>
+      <Eyebrow>Prova antes da promessa</Eyebrow>
+      <div className="home-section-heading"><h2 id="home-proof-title">Empresas reais. Entregas publicadas. Evolução contínua.</h2><Link className="text-link" href="/projetos">Ver portfólio</Link></div>
+      <dl className="proof-stats">
+        <div><dt>Projetos entregues</dt><dd>+{brand.projectsDelivered}</dd></div>
+        <div><dt>Anos de mercado</dt><dd>{brand.yearsInMarket}</dd></div>
+        <div><dt>Atendimento</dt><dd>Todo o Brasil</dd></div>
+        <div><dt>Formalização</dt><dd>Contrato e NF</dd></div>
+      </dl>
+      <p className="proof-note">Sites institucionais, lojas virtuais e operações em evolução contínua — com novas empresas chegando constantemente e cada projeto conduzido diretamente por quem executa.</p>
     </div>
-    <div className="home-project-marquee" aria-label="Projetos e empresas atendidas">
-      <div className="home-project-marquee-track">
-        {[0, 1, 2, 3].map(group => <div className="home-project-marquee-group" aria-hidden={group > 0 ? "true" : undefined} key={group}>
-          {projects.map(project => <span key={`${group}-${project.slug}`}>{project.name}</span>)}
-        </div>)}
+  </section>
+
+  <section className="section home-fit" aria-labelledby="home-fit-title">
+    <div className="shell" data-reveal>
+      <Eyebrow>Antes de falar com a gente</Eyebrow>
+      <div className="home-section-heading"><h2 id="home-fit-title">Não é para todo mundo. E isso é intencional.</h2><p>Trabalhamos melhor com quem enxerga a presença digital como investimento — não como custo.</p></div>
+      <div className="fit-grid">
+        <div className="fit-card fit-yes"><h3>É para você se</h3><ul>
+          <li>quer receber clientes pela internet de forma previsível;</li>
+          <li>sabe que a primeira impressão online decide se o cliente liga ou fecha a aba;</li>
+          <li>quer uma marca que pareça do tamanho do serviço que entrega;</li>
+          <li>prefere estratégia e acompanhamento a um site feito às pressas.</li>
+        </ul></div>
+        <div className="fit-card fit-no"><h3>Não é para você se</h3><ul>
+          <li>não pretende atrair clientes pela internet;</li>
+          <li>procura apenas o menor preço possível;</li>
+          <li>quer um site para cumprir tabela e nunca mais olhar para ele;</li>
+          <li>espera resultado garantido sem participar do processo.</li>
+        </ul></div>
       </div>
     </div>
   </section>
 
-  <section className="section home-services-section"><div className="shell" data-reveal><Eyebrow>Capacidades / meios para o resultado</Eyebrow><div className="home-section-heading"><h2>Um sistema digital, não uma página isolada.</h2><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
+  <section className="section home-services-section"><div className="shell" data-reveal><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><h2>Um sistema de crescimento, não uma página isolada.</h2><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
 
-  <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Método Dreh Work / 10 etapas em 5 movimentos</Eyebrow><div className="home-section-heading"><h2>Precisão antes de decoração.</h2><p>O layout entra quando objetivo, mensagem, arquitetura e próximo passo já possuem direção.</p></div><ol className="process-phases">{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
+  <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Planejar / Criar / Evoluir</Eyebrow><div className="home-section-heading"><h2>Estratégia antes do design.</h2><p>O visual entra quando objetivo, mensagem e próximo passo do cliente já estão definidos. É isso que separa um site bonito de um site que gera resultado.</p></div><ol className="process-phases">{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
 
-  <section className="section discovery-section"><div className="shell discovery-grid" data-reveal><div className="discovery-copy"><Eyebrow>Pesquisa e inteligência artificial</Eyebrow><h2>Ser compreendida também é ser encontrável.</h2><p>Um site bem estruturado ajuda mecanismos modernos de pesquisa e inteligência artificial a interpretar quem é a empresa, o que oferece, onde atua e como pode ser contatada.</p><p>Essa preparação melhora a base de descoberta — sem prometer ranking, citação ou resultado automático.</p></div><div className="discovery-system" aria-label="Fluxo de informações da empresa para mecanismos de pesquisa e inteligência artificial"><div className="source-nodes"><span>EMPRESA</span><span>SERVIÇOS</span><span>PÁGINAS</span><span>CONTEXTO</span></div><div className="discovery-core"><small>INFORMAÇÃO</small><strong>PRESENÇA<br/>ESTRUTURADA</strong><i /></div><div className="destination-nodes"><span>PESQUISA <b>↗</b></span><span>INTELIGÊNCIA ARTIFICIAL <b>↗</b></span></div></div></div></section>
+  <section className="section discovery-section"><div className="shell discovery-grid" data-reveal><div className="discovery-copy"><Eyebrow>SEO, busca e inteligência artificial</Eyebrow><h2>Se o cliente não encontra, a empresa não existe para ele.</h2><p>Hoje a decisão começa no Google, no Maps e, cada vez mais, em assistentes de IA. Estruturamos o site para que esses sistemas entendam quem é a empresa, o que oferece, onde atua e como contratá-la.</p><p>É trabalho técnico de base — não promessa de primeira posição. Quem promete posição garantida está vendendo algo que não controla.</p></div><div className="discovery-system" aria-label="Fluxo de informações da empresa para mecanismos de pesquisa e inteligência artificial"><div className="source-nodes"><span>EMPRESA</span><span>SERVIÇOS</span><span>PÁGINAS</span><span>CONTEXTO</span></div><div className="discovery-core"><small>INFORMAÇÃO</small><strong>PRESENÇA<br/>ESTRUTURADA</strong><i /></div><div className="destination-nodes"><span>PESQUISA <b>↗</b></span><span>INTELIGÊNCIA ARTIFICIAL <b>↗</b></span></div></div></div></section>
 
   <section className="section objective-section"><div className="shell" data-reveal><Eyebrow>Direção personalizada</Eyebrow><div className="home-section-heading"><h2>O que sua empresa precisa resolver agora?</h2><p>Selecione um objetivo. A interface organiza um caminho inicial sem enviar seus dados.</p></div><ObjectiveSelector /></div></section>
 
-  <section className="formalization-section section-light"><div className="shell" data-reveal><Eyebrow>Confiança pela estrutura</Eyebrow><div className="formalization-line">{["Contrato e nota fiscal", "Atendimento direto", "Processo estruturado", "Publicação e verificação", "Suporte e evolução", "Todo o Brasil, remotamente"].map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>)}</div></div></section>
+  <section className="formalization-section section-light"><div className="shell" data-reveal><Eyebrow>Segurança para contratar</Eyebrow><div className="formalization-line">{["Contrato e nota fiscal", "Atendimento direto", "Processo estruturado", "Publicação e verificação", "Suporte e evolução", "Todo o Brasil, remotamente"].map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>)}</div></div></section>
 
-  <section className="section home-faq"><div className="shell faq-layout" data-reveal><div><Eyebrow>Perguntas frequentes</Eyebrow><h2>Clareza antes do primeiro contato.</h2><p>Escopo, prazo e necessidades são confirmados de acordo com cada projeto.</p></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden>+</span></summary><p>{answer}</p></details>)}</div></div></section>
+  <section className="section home-faq"><div className="shell faq-layout" data-reveal><div><Eyebrow>Perguntas frequentes</Eyebrow><h2>Respostas diretas, antes da primeira conversa.</h2><p>Escopo, prazo e investimento são confirmados em proposta, de acordo com cada projeto.</p></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden>+</span></summary><p>{answer}</p></details>)}</div></div></section>
+  <JsonLd data={homeFaqSchema()} />
   <CTA />
 </>; }
 
-function ServicesPage() { return <><section className="page-hero shell"><Eyebrow>Serviços</Eyebrow><h1>Sites são o centro. Estratégia, descoberta e evolução completam o sistema.</h1><p className="lead">Cada serviço parte do problema do negócio e da ação que a experiência precisa gerar.</p></section><section className="section shell"><div className="service-grid wide">{services.map((s,i)=><Link className="service-card" href={`/servicos/${s.slug}`} key={s.slug}><span>{String(i+1).padStart(2,"0")}</span><p className="kicker">{s.eyebrow}</p><h2>{s.title}</h2><p>{s.summary}</p><b aria-hidden>↗</b></Link>)}</div></section><CTA /></>; }
-function ServicePage({ service }: { service: typeof services[number] }) { const schema={"@context":"https://schema.org","@type":"Service",name:service.title,provider:{"@type":"Organization",name:"Dreh Work"},areaServed:"BR",description:service.summary}; return <><section className="page-hero shell"><Eyebrow>{service.eyebrow}</Eyebrow><h1>{service.title}</h1><p className="lead">{service.summary}</p><div className="button-row"><Link className="button primary" href={`/diagnostico?objetivo=${encodeURIComponent(service.title)}`}>Solicitar diagnóstico</Link><Link className="button ghost" href="/projetos">Ver projetos</Link></div></section><section className="section section-dark"><div className="shell split"><div><Eyebrow>Escopo possível</Eyebrow><h2>Uma solução organizada ao redor do resultado.</h2></div><ul className="large-list">{service.items.map(x=><li key={x}>{x}</li>)}</ul></div></section><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><CTA context={service.title}/></>; }
-function ProjectsPage() { return <><section className="page-hero shell"><Eyebrow>Projetos</Eyebrow><h1>Trabalho real, escopo confirmado e evidências visuais publicadas.</h1><p className="lead">Capas inseridas a partir dos arquivos reais de cada projeto, com proporção preservada e enquadramento adaptado para desktop e mobile.</p></section><section className="section projects-section"><div className="shell projects-list">{projects.map((p,i)=><ProjectCard key={p.slug} project={p} index={i}/>)}</div></section><CTA /></>; }
-function ProjectPage({ project }: { project: typeof projects[number] }) { const schema={"@context":"https://schema.org","@type":"CreativeWork",name:project.name,url:project.url,creator:project.createdByDrehWork?{"@type":"Organization",name:"Dreh Work"}:undefined}; return <><section className="page-hero project-hero shell"><div><Eyebrow>{project.category}</Eyebrow><h1>{project.name}</h1><p className="lead">{project.createdByDrehWork ? "Projeto integralmente criado e desenvolvido pela Dreh Work." : "Atuação contínua em manutenção, personalização, correções e evolução da experiência Shopify."}</p><a className="button primary" href={project.url} target="_blank" rel="noreferrer">Visitar projeto</a></div><ProjectMedia project={project} large /></section><section className="section shell case-grid"><div><Eyebrow>Atuação confirmada</Eyebrow><h2>Entregas</h2><ul className="large-list">{project.scope.map(x=><li key={x}>{x}</li>)}</ul></div><aside><p className="kicker">Estudo de caso</p><h3>Conteúdo detalhado em preparação.</h3><p>Contexto, desafio, estratégia, decisões, experiências desktop e mobile e resultados técnicos serão publicados somente após validação factual.</p></aside></section><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><CTA context={`um projeto como ${project.name}`}/></>; }
-function ProcessPage(){return <><section className="page-hero shell"><Eyebrow>Processo</Eyebrow><h1>Antes da interface, direção. Antes da publicação, validação.</h1><p className="lead">O método organiza negócio, público, conteúdo, experiência e tecnologia em uma sequência clara.</p></section><section className="section shell"><ol className="process-cards">{processSteps.map((s,i)=><li key={s}><span>{String(i+1).padStart(2,"0")}</span><h2>{s}</h2><p>{["Entendimento da empresa, objetivo, público e situação atual.","Definição de prioridades, mensagens, conversões e diferenciais.","Organização de páginas, conteúdo, navegação e fluxos.","Hierarquia, identidade, componentes e comportamento visual.","Construção com foco em desempenho, responsividade e manutenção.","Configuração dos canais e recursos previstos no escopo.","Testes técnicos, de conteúdo, acessibilidade e funcionamento.","Disponibilização no ambiente final após aprovação.","Validação do domínio, formulários, indexação e eventos.","Suporte, manutenção e melhorias futuras."][i]}</p></li>)}</ol></section><CTA/></>}
-function ContactPage(){return <><section className="page-hero shell"><Eyebrow>Contato</Eyebrow><h1>Vamos entender o que sua presença digital precisa resolver.</h1><p className="lead">Atendimento direto, remoto e profissional para empresas em todo o Brasil.</p></section><section className="section shell contact-grid"><a href={whatsappUrl("minha presença digital")} target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>{brand.whatsapp}</strong><small>{brand.hours}</small></a><a href={`mailto:${brand.email}`}><span>E-mail</span><strong>{brand.email}</strong><small>Para propostas e informações</small></a><a href="https://instagram.com/dreh.work" target="_blank" rel="noreferrer"><span>Instagram</span><strong>{brand.instagram}</strong><small>Conteúdo e bastidores</small></a></section><CTA/></>}
+function ServicesPage() { return <><section className="page-hero shell"><Eyebrow>Serviços</Eyebrow><h1>Tudo o que sua presença digital precisa para gerar resultado.</h1><p className="lead">O site é o centro. Estratégia, SEO, automação e evolução contínua completam o sistema. Cada serviço começa pelo problema do negócio, não pelo layout.</p></section><section className="section shell"><div className="service-grid wide">{services.map((s,i)=><Link className="service-card" href={`/servicos/${s.slug}`} key={s.slug}><span>{String(i+1).padStart(2,"0")}</span><p className="kicker">{s.eyebrow}</p><h2>{s.title}</h2><p>{s.summary}</p><b aria-hidden>↗</b></Link>)}</div></section><CTA /></>; }
+function ServicePage({ service }: { service: typeof services[number] }) { return <><section className="page-hero shell"><Eyebrow>{service.eyebrow}</Eyebrow><h1>{service.title}</h1><p className="lead">{service.summary}</p><div className="button-row"><Link className="button primary" href={`/diagnostico?objetivo=${encodeURIComponent(service.title)}`}>Solicitar diagnóstico</Link><Link className="button ghost" href="/projetos">Ver projetos</Link></div></section><section className="section section-dark"><div className="shell split"><div><Eyebrow>O que está incluído</Eyebrow><h2>Escopo pensado ao redor do resultado.</h2></div><ul className="large-list">{service.items.map(x=><li key={x}>{x}</li>)}</ul></div></section><section className="section home-faq"><div className="shell faq-layout"><div><Eyebrow>Perguntas frequentes</Eyebrow><h2>{service.title}: o que você precisa saber.</h2></div><div className="faq-list">{service.faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden>+</span></summary><p>{answer}</p></details>)}</div></div></section><JsonLd data={serviceSchema(service)}/><CTA context={service.title}/></>; }
+function ProjectsPage() { return <><section className="page-hero shell"><Eyebrow>Portfólio</Eyebrow><h1>Mais de {brand.projectsDelivered} projetos em {brand.yearsInMarket} anos.</h1><p className="lead">Uma seleção de trabalhos publicados — de sites institucionais a lojas virtuais em evolução contínua.</p></section><section className="section projects-section"><div className="shell projects-list">{projects.map((p,i)=><ProjectCard key={p.slug} project={p} index={i}/>)}</div></section><CTA /></>; }
+function ProjectPage({ project }: { project: typeof projects[number] }) { const schema={"@context":"https://schema.org","@type":"CreativeWork",name:project.name,url:project.url,inLanguage:"pt-BR",creator:project.createdByDrehWork?{"@id":`${brand.url}/#organization`}:undefined}; return <><section className="page-hero project-hero shell"><div><Eyebrow>{project.category}</Eyebrow><h1>{project.name}</h1><p className="lead">{project.createdByDrehWork ? "Projeto integralmente criado e desenvolvido pela Dreh Work." : "Atuação contínua em manutenção, personalização, correções e evolução da experiência Shopify."}</p><a className="button primary" href={project.url} target="_blank" rel="noreferrer">Visitar projeto</a></div><ProjectMedia project={project} large /></section><section className="section shell case-grid"><div><Eyebrow>Escopo</Eyebrow><h2>O que foi entregue</h2><ul className="large-list">{project.scope.map(x=><li key={x}>{x}</li>)}</ul></div><aside><p className="kicker">Seu projeto</p><h3>Quer uma presença neste nível?</h3><p>Comece pelo diagnóstico gratuito: entendemos o seu momento e indicamos o caminho mais curto até o resultado.</p><Link className="button primary" href="/diagnostico">Solicitar diagnóstico</Link></aside></section><JsonLd data={schema}/><CTA context={`um projeto como ${project.name}`}/></>; }
+function ProcessPage(){return <><section className="page-hero shell"><Eyebrow>Processo</Eyebrow><h1>Planejar. Criar. Evoluir.</h1><p className="lead">Um método em 10 etapas que organiza negócio, público, conteúdo, experiência e tecnologia — para que nada seja decidido no improviso.</p></section><section className="section shell"><ol className="process-cards">{processSteps.map((s,i)=><li key={s}><span>{String(i+1).padStart(2,"0")}</span><h2>{s}</h2><p>{["Entendimento da empresa, objetivo, público e situação atual.","Definição de prioridades, mensagens, conversões e diferenciais.","Organização de páginas, conteúdo, navegação e fluxos.","Hierarquia, identidade, componentes e comportamento visual.","Construção com foco em desempenho, responsividade e manutenção.","Configuração dos canais e recursos previstos no escopo.","Testes técnicos, de conteúdo, acessibilidade e funcionamento.","Disponibilização no ambiente final após aprovação.","Validação do domínio, formulários, indexação e eventos.","Suporte, manutenção e melhorias futuras."][i]}</p></li>)}</ol></section><CTA/></>}
+function ContactPage(){return <><section className="page-hero shell"><Eyebrow>Contato</Eyebrow><h1>Fale direto com quem vai executar o seu projeto.</h1><p className="lead">Sem intermediários e sem roteiro de vendas. Atendimento remoto para empresas de todo o Brasil.</p></section><section className="section shell contact-grid"><a href={whatsappUrl("minha presença digital")} target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>{brand.whatsapp}</strong><small>{brand.hours}</small></a><a href={`mailto:${brand.email}`}><span>E-mail</span><strong>{brand.email}</strong><small>Para propostas e informações</small></a><a href={brand.instagramUrl} target="_blank" rel="noreferrer"><span>Instagram</span><strong>{brand.instagram}</strong><small>Conteúdo e bastidores</small></a></section><CTA/></>}
+function AboutPage(){return <><section className="page-hero shell"><Eyebrow>Sobre</Eyebrow><h1>Uma empresa enxuta, com responsabilidade direta sobre cada entrega.</h1><p className="lead">A Dreh Work é conduzida por {brand.legalName}. Há {brand.yearsInMarket} anos no mercado, com mais de {brand.projectsDelivered} projetos realizados para empresas de diferentes segmentos.</p></section><section className="section section-dark"><div className="shell split"><div><Eyebrow>Como trabalhamos</Eyebrow><h2>Planejar. Criar. Evoluir.</h2></div><ul className="large-list"><li>Atendimento direto, sem intermediários entre você e quem executa.</li><li>Estratégia antes do design: objetivo, público e mensagem definidos primeiro.</li><li>Publicação verificada: domínio, formulários, indexação e eventos conferidos.</li><li>Evolução contínua depois da entrega, quando contratada.</li></ul></div></section><section className="section shell"><Eyebrow>Formalização</Eyebrow><h2>Contrato, nota fiscal e responsabilidade registrada.</h2><p className="lead">Todos os projetos são formalizados em contrato, com emissão de nota fiscal. Dreh Work é o nome comercial de {brand.legalName}, CNPJ {brand.cnpj}. Atendimento remoto em todo o Brasil.</p></section><CTA context="trabalhar com a Dreh Work"/></>}
 function InsightsPage(){return <><section className="page-hero shell"><Eyebrow>Insights</Eyebrow><h1>Conteúdo para decisões digitais mais claras.</h1><p className="lead">Esta área reunirá análises sobre sites, confiança, descoberta, conversão e evolução digital.</p></section><section className="section shell empty-state"><span>{String(insights.length).padStart(2,"0")}</span><h2>Nenhum artigo publicado ainda.</h2><p>Novos conteúdos aparecerão aqui somente quando estiverem completos e revisados. Rascunhos não fazem parte do site público.</p></section><CTA/></>}
-function LegalPage({kind}:{kind:string}) { const copy:Record<string,[string,string[]]>={"politica-de-privacidade":["Política de Privacidade",["Esta versão informativa descreve a preparação do site para tratamento responsável de dados.","O diagnóstico em modo de revisão mantém respostas somente no navegador e não realiza envio real.","Quando integrações forem ativadas, esta política deverá ser revisada para informar finalidade, base legal, retenção, fornecedores e direitos aplicáveis."]],"politica-de-cookies":["Política de Cookies",["Nesta versão não há ferramentas externas de analytics ou publicidade ativas.","O navegador é usado apenas para preferências locais, como progresso do diagnóstico, objetivo selecionado e exibição da abertura inicial.","Cookies e scripts não essenciais deverão respeitar consentimento quando forem ativados."]],"termos-de-uso":["Termos de Uso",["O conteúdo deste site apresenta os serviços e projetos confirmados da Dreh Work.","O diagnóstico gratuito é uma análise inicial e não representa auditoria completa ou garantia de resultados.","Condições comerciais definitivas são formalizadas em proposta e contrato."]]}; const [title,paras]=copy[kind]; return <section className="page-hero legal shell"><Eyebrow>Conteúdo sujeito a revisão antes da publicação definitiva</Eyebrow><h1>{title}</h1>{paras.map(p=><p key={p}>{p}</p>)}<p className="review-note">Texto informativo inicial. Não representa validação jurídica.</p></section> }
+function LegalPage({kind}:{kind:keyof typeof legalDocuments}) { const doc=legalDocuments[kind]; return <section className="page-hero legal legal-doc shell"><Eyebrow>Documento legal</Eyebrow><h1>{doc.title}</h1><p className="lead">{doc.summary}</p><p className="legal-updated">Última atualização: {doc.updated}</p>{doc.sections.map(section=><section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs?.map(p=><p key={p}>{p}</p>)}{section.items?<ul>{section.items.map(item=><li key={item}>{item}</li>)}</ul>:null}</section>)}</section> }
 
-export default async function Page({params}:Props){const path=(await params).slug?.join("/")||""; if(!valid.has(path))notFound(); if(!path)return <Home/>; if(path==="servicos")return <ServicesPage/>; if(path==="projetos")return <ProjectsPage/>; if(path==="processo")return <ProcessPage/>; if(path==="diagnostico")return <><section className="page-hero shell compact"><Eyebrow>Diagnóstico gratuito</Eyebrow><h1>Uma análise inicial para organizar o próximo passo.</h1><p className="lead">O fluxo abaixo funciona em modo seguro de revisão. Nenhuma resposta é enviada nesta versão.</p></section><section className="section shell"><DiagnosticWizard/></section></>; if(path==="contato")return <ContactPage/>; if(path==="insights")return <InsightsPage/>; const service=services.find(s=>`servicos/${s.slug}`===path); if(service)return <ServicePage service={service}/>; const project=projects.find(p=>`projetos/${p.slug}`===path); if(project)return <ProjectPage project={project}/>; if(path.startsWith("politica")||path==="termos-de-uso")return <LegalPage kind={path}/>; notFound();}
+export default async function Page({params}:Props){const path=(await params).slug?.join("/")||""; return <>{renderPage(path)}<JsonLd data={breadcrumbFor(path)}/></>;}
+
+function renderPage(path:string){ if(!valid.has(path))notFound(); if(!path)return <Home/>; if(path==="servicos")return <ServicesPage/>; if(path==="projetos")return <ProjectsPage/>; if(path==="processo")return <ProcessPage/>; if(path==="diagnostico")return <><section className="page-hero shell compact"><Eyebrow>Diagnóstico gratuito</Eyebrow><h1>Uma análise inicial para organizar o próximo passo.</h1><p className="lead">Cinco etapas rápidas. Você recebe uma leitura objetiva da sua presença digital e do caminho recomendado, sem compromisso de contratação.</p></section><section className="section shell"><DiagnosticWizard/></section></>; if(path==="contato")return <ContactPage/>; if(path==="insights")return <InsightsPage/>; if(path==="sobre")return <AboutPage/>; const service=services.find(s=>`servicos/${s.slug}`===path); if(service)return <ServicePage service={service}/>; const project=projects.find(p=>`projetos/${p.slug}`===path); if(project)return <ProjectPage project={project}/>; if(path.startsWith("politica")||path==="termos-de-uso")return <LegalPage kind={path as keyof typeof legalDocuments}/>; notFound();}
