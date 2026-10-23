@@ -5,21 +5,21 @@ import { Footer } from "@/components/Footer";
 import { IntroActivation } from "@/components/IntroActivation";
 import { HomeMotion } from "@/components/HomeMotion";
 import { brand } from "@/content/site";
+import { JsonLd, organizationSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  ...pageMetadata(""),
   metadataBase: new URL(brand.url),
-  title: { default: "Dreh Work | Sites estratégicos e presença digital", template: "%s | Dreh Work" },
-  description: "Sites profissionais e estratégicos para empresas que precisam transmitir confiança, ser encontradas e gerar oportunidades.",
-  alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "pt_BR", siteName: "Dreh Work", title: "Dreh Work | Sites estratégicos e presença digital", description: "Sua empresa pode ser excelente. A presença digital precisa demonstrar isso.", images: [{ url: "/og.png", width: 1200, height: 630, alt: `Dreh Work — ${brand.slogan}` }] },
+  title: { default: "Dreh Work | Sites estratégicos, SEO e crescimento digital", template: "%s | Dreh Work" },
   applicationName: "Dreh Work",
-  twitter: { card: "summary_large_image", title: "Dreh Work | Sites estratégicos", description: "Presença digital estruturada para confiança, descoberta e oportunidades.", images: ["/og.png"] },
+  authors: [{ name: brand.legalName }],
+  creator: brand.legalName,
+  formatDetection: { telephone: false },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
 export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
 
-const organization = { "@context": "https://schema.org", "@type": "Organization", name: "Dreh Work", url: brand.url, email: brand.email, areaServed: "BR", description: brand.positioning, logo: `${brand.url}${brand.logo}`, sameAs: [brand.instagramUrl] };
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
+  return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><JsonLd data={organizationSchema()} /></body></html>;
 }

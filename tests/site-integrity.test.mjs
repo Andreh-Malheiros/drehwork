@@ -34,7 +34,7 @@ test("keeps review-mode diagnostic isolated", async () => {
 
 test("includes required discovery and accessibility foundations", async () => {
   const [layout, css, page] = await Promise.all([read("app/layout.tsx"), read("app/globals.css"), read("app/[[...slug]]/page.tsx")]);
-  assert.match(layout, /application\/ld\+json/);
+  assert.match(layout, /JsonLd data=\{organizationSchema\(\)\}/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(page, /Política de Privacidade/);
   assert.match(page, /Página 404|notFound/);
@@ -55,4 +55,13 @@ test("ships brand icons, manifest and logo", async () => {
   for (const file of ["app/icon.svg", "app/favicon.ico", "app/apple-icon.png", "app/manifest.ts", "public/brand/icon-512.png", "public/brand/icon-maskable-512.png", "public/og.png"]) await access(new URL(file, root));
   const header = await read("components/Header.tsx");
   assert.match(header, /<BrandLogo \/>/);
+});
+
+test("keeps SEO foundations consistent", async () => {
+  const [seo, site] = await Promise.all([read("lib/seo.tsx"), read("content/site.ts")]);
+  assert.match(seo, /insights: \{[^}]*index: false/);
+  assert.match(seo, /sobre:/);
+  assert.match(seo, /replace\(\/<\/g/);
+  assert.doesNotMatch(site, /\["Insights", "\/insights"\]/);
+  await access(new URL("public/llms.txt", root));
 });

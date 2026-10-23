@@ -26,6 +26,7 @@ export type Service = {
   eyebrow: string;
   summary: string;
   items: string[];
+  faqs: [string, string][];
 };
 
 export const brand = {
@@ -41,6 +42,8 @@ export const brand = {
   hours: "Segunda a sexta, das 8h às 18h",
   lead: "Andreh Malheiros",
   legalName: "Andreh Malheiros Tiberio",
+  yearsInMarket: 2,
+  projectsDelivered: 20,
   cnpj: "65.415.209/0001-61",
   slogan: "Visão que transforma. Estratégia que gera resultado.",
   pillars: ["Planejar", "Criar", "Evoluir"],
@@ -49,17 +52,17 @@ export const brand = {
 } as const;
 
 export const navigation = [
-  ["Início", "/"], ["Serviços", "/servicos"], ["Projetos", "/projetos"],
-  ["Processo", "/processo"], ["Insights", "/insights"], ["Diagnóstico", "/diagnostico"], ["Contato", "/contato"],
+  ["Início", "/"], ["Serviços", "/servicos"], ["Portfólio", "/projetos"], ["Processo", "/processo"],
+  ["Sobre", "/sobre"], ["Diagnóstico", "/diagnostico"], ["Contato", "/contato"],
 ] as const;
 
 export const services: Service[] = [
-  { slug: "sites-profissionais", title: "Sites profissionais", eyebrow: "Serviço principal", summary: "Sites institucionais e comerciais estruturados para apresentar valor, transmitir confiança e gerar oportunidades.", items: ["Planejamento e arquitetura", "Design e desenvolvimento", "Responsividade", "Publicação e configuração"] },
-  { slug: "landing-pages", title: "Landing pages", eyebrow: "Campanhas", summary: "Páginas focadas em uma oferta, uma mensagem e uma próxima ação clara.", items: ["Estrutura de conversão", "Páginas de serviços", "Campanhas", "Integrações"] },
-  { slug: "reformulacao-de-sites", title: "Reformulação de sites", eyebrow: "Evolução", summary: "Reorganização estratégica de sites desatualizados, pouco claros ou pouco profissionais.", items: ["Diagnóstico", "Nova arquitetura", "Direção visual", "Desempenho e experiência mobile"] },
-  { slug: "lojas-shopify", title: "Lojas Shopify", eyebrow: "Comércio eletrônico", summary: "Criação, personalização e evolução de experiências de compra em Shopify.", items: ["Criação de loja", "Personalização de tema", "Navegação", "Ajustes de conversão"] },
-  { slug: "presenca-digital", title: "Presença digital", eyebrow: "Descoberta", summary: "Conteúdo e estrutura para ajudar clientes, mecanismos de busca e sistemas de IA a compreender a empresa.", items: ["Conteúdo estruturado", "Páginas estratégicas", "Dados estruturados", "Base técnica de descoberta"] },
-  { slug: "manutencao", title: "Manutenção e evolução", eyebrow: "Continuidade", summary: "Suporte técnico, correções, novas páginas e melhorias contínuas depois da entrega.", items: ["Manutenção", "Correções", "Evolução visual", "Acompanhamento mensal"] },
+  { slug: "sites-profissionais", title: "Sites profissionais", eyebrow: "Serviço principal", summary: "Sites institucionais e comerciais estruturados para apresentar valor, transmitir confiança e gerar oportunidades.", items: ["Planejamento e arquitetura", "Design e desenvolvimento", "Responsividade", "Publicação e configuração"], faqs: [["Para quem é um site profissional?", "Para empresas e profissionais que querem ser encontrados, transmitir confiança e receber contatos pela internet. Se a empresa não pretende atrair clientes online, o investimento não faz sentido."], ["O que está incluído?", "Planejamento da arquitetura, design, desenvolvimento responsivo, publicação, configuração de domínio e base técnica de SEO. O escopo final é confirmado em proposta."], ["Quanto tempo leva?", "Projetos no escopo padrão têm prazo previsto de até 10 dias após contrato e recebimento dos materiais."]] },
+  { slug: "landing-pages", title: "Landing pages", eyebrow: "Campanhas", summary: "Páginas focadas em uma oferta, uma mensagem e uma próxima ação clara.", items: ["Estrutura de conversão", "Páginas de serviços", "Campanhas", "Integrações"], faqs: [["Quando usar uma landing page?", "Quando existe uma oferta, campanha ou serviço específico que precisa de uma única mensagem e uma ação clara, como pedir orçamento ou falar no WhatsApp."], ["Landing page substitui um site?", "Não. Ela complementa o site, concentrando a atenção em um objetivo. Para apresentar a empresa como um todo, o site institucional é a base."], ["Funciona com anúncios?", "Sim. A página é estruturada para receber tráfego de campanhas e medir as conversões."]] },
+  { slug: "reformulacao-de-sites", title: "Reformulação de sites", eyebrow: "Evolução", summary: "Reorganização estratégica de sites desatualizados, pouco claros ou pouco profissionais.", items: ["Diagnóstico", "Nova arquitetura", "Direção visual", "Desempenho e experiência mobile"], faqs: [["Quando reformular um site?", "Quando o site está desatualizado, lento, difícil de usar no celular ou não representa mais o nível da empresa."], ["Perco o que já existe?", "Não necessariamente. Conteúdos e endereços relevantes são avaliados e preservados ou redirecionados para manter a base de busca."], ["O que muda na prática?", "Arquitetura, mensagem, direção visual, desempenho e experiência mobile são reorganizados ao redor do objetivo do negócio."]] },
+  { slug: "lojas-shopify", title: "Lojas Shopify", eyebrow: "Comércio eletrônico", summary: "Criação, personalização e evolução de experiências de compra em Shopify.", items: ["Criação de loja", "Personalização de tema", "Navegação", "Ajustes de conversão"], faqs: [["Vocês criam lojas do zero?", "Sim. A Dreh Work cria, configura e personaliza lojas Shopify, além de atuar na evolução contínua de lojas existentes."], ["Atendem lojas que já existem?", "Sim. Manutenção, personalização de tema, correções e melhorias de navegação e conversão em lojas já publicadas."], ["Por que Shopify?", "É uma plataforma estável, segura e escalável, que permite à loja crescer sem refazer a base técnica."]] },
+  { slug: "presenca-digital", title: "Presença digital", eyebrow: "Descoberta", summary: "Conteúdo e estrutura para ajudar clientes, mecanismos de busca e sistemas de IA a compreender a empresa.", items: ["Conteúdo estruturado", "Páginas estratégicas", "Dados estruturados", "Base técnica de descoberta"], faqs: [["O que é presença digital estruturada?", "É organizar páginas, conteúdo e dados para que clientes, mecanismos de busca e sistemas de IA entendam quem é a empresa, o que oferece e como contratá-la."], ["Isso garante primeira posição no Google?", "Não. Nenhum profissional sério garante posição. O trabalho constrói a base técnica e de conteúdo que aumenta as chances de ser encontrado."], ["Inclui preparação para IA?", "Sim. Dados estruturados e conteúdo claro facilitam a interpretação por assistentes e buscadores com IA, sem promessa de citação automática."]] },
+  { slug: "manutencao", title: "Manutenção e evolução", eyebrow: "Continuidade", summary: "Suporte técnico, correções, novas páginas e melhorias contínuas depois da entrega.", items: ["Manutenção", "Correções", "Evolução visual", "Acompanhamento mensal"], faqs: [["O que a manutenção cobre?", "Suporte técnico, correções, ajustes de conteúdo, novas páginas e melhorias contínuas, conforme o plano contratado."], ["Atendem sites feitos por outros profissionais?", "Sim, após uma avaliação técnica inicial do projeto."], ["Como funciona a contratação?", "Por acompanhamento mensal ou demanda pontual, formalizado em contrato."]] },
 ];
 
 const projectCover = (name: string, src: string, width: number, height: number): MediaItem[] => [

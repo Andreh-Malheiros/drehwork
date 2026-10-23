@@ -8,8 +8,8 @@ import { brand, services } from "@/content/site";
 const primaryNavigation = [
   ["Serviços", "/servicos"],
   ["Portfólio", "/projetos"],
-  ["Sobre", "/processo"],
-  ["Insights", "/insights"],
+  ["Processo", "/processo"],
+  ["Sobre", "/sobre"],
   ["Contato", "/contato"],
 ] as const;
 
