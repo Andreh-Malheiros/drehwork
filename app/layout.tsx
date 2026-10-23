@@ -7,7 +7,7 @@ import { HomeMotion } from "@/components/HomeMotion";
 import { brand } from "@/content/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://drehwork.com.br"),
+  metadataBase: new URL(brand.url),
   title: { default: "Dreh Work | Sites estratégicos e presença digital", template: "%s | Dreh Work" },
   description: "Sites profissionais e estratégicos para empresas que precisam transmitir confiança, ser encontradas e gerar oportunidades.",
   alternates: { canonical: "/" },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Dreh Work | Sites estratégicos", description: "Presença digital estruturada para confiança, descoberta e oportunidades.", images: ["/og.png"] },
 };
 
-const organization = { "@context": "https://schema.org", "@type": "Organization", name: "Dreh Work", url: "https://drehwork.com.br", email: brand.email, areaServed: "BR", description: brand.positioning };
+const organization = { "@context": "https://schema.org", "@type": "Organization", name: "Dreh Work", url: brand.url, email: brand.email, areaServed: "BR", description: brand.positioning };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;

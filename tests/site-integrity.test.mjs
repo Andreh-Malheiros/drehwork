@@ -42,3 +42,11 @@ test("includes required discovery and accessibility foundations", async () => {
   await access(new URL("app/robots.ts", root));
   await access(new URL("public/og.png", root));
 });
+
+test("uses the official www.drehwork.com domain everywhere", async () => {
+  const files = ["content/site.ts", "app/layout.tsx", "app/robots.ts", "app/sitemap.ts"];
+  const sources = await Promise.all(files.map(read));
+  for (const source of sources) assert.doesNotMatch(source, /drehwork\.com\.br/);
+  assert.match(sources[0], /url: "https:\/\/www\.drehwork\.com"/);
+  assert.match(sources[0], /email: "contato@drehwork\.com"/);
+});
