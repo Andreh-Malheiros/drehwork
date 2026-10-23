@@ -6,6 +6,7 @@ import { objectives, whatsappUrl } from "@/content/site";
 import { submitDiagnostic } from "@/lib/diagnostic-service";
 import { DIAGNOSTIC_FIELDS, MAX_FIELD_LENGTH, type DiagnosticField } from "@/lib/diagnostic-schema";
 import { track } from "@/lib/analytics";
+import { FIELD_MASKS } from "@/lib/masks";
 
 type Answers = Record<string, string | boolean>;
 type Status = "editing" | "sending" | "sent";
@@ -13,7 +14,7 @@ const STORAGE = "dreh:diagnostic:v1";
 const steps = [
   { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "text"]] },
   { id: "location", title: "Onde a empresa atua?", fields: [["city", "Cidade", "text"], ["state", "Estado", "text"]] },
-  { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "url"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa?", "select"]] },
+  { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "text"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa?", "select"]] },
   { id: "need", title: "O que precisa mudar?", fields: [["situation", "Situação atual", "select"], ["objective", "Principal objetivo", "select"], ["solution", "Solução de interesse", "select"], ["timeline", "Prazo desejado (opcional)", "text"]] },
   { id: "contact", title: "Como podemos responder?", fields: [["whatsapp", "WhatsApp com DDD", "tel"], ["email", "E-mail", "email"], ["period", "Melhor período para contato", "select"], ["reply", "Preferência de resposta", "select"]] },
 ] as const;
@@ -112,7 +113,7 @@ export function DiagnosticWizard() {
     <h2 ref={heading} tabIndex={-1}>{current.title}</h2>
     <div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}><span className="field-label">{label}{isRequired(id) ? <span className="field-required" aria-hidden> *</span> : null}</span>{type === "select"
       ? <select value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} required={isRequired(id)}><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select>
-      : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
+      : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, (FIELD_MASKS[id] ?? String)(e.target.value))} inputMode={({ whatsapp: "tel", email: "email", siteUrl: "url" } as Record<string, "tel" | "email" | "url">)[id]} placeholder={({ whatsapp: "(31) 99999-9999", state: "MG", instagram: "@suaempresa", siteUrl: "www.suaempresa.com.br", email: "voce@empresa.com" } as Record<string, string>)[id]} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
     {error && <p className="form-error" role="alert">{error}</p>}
     <div className="wizard-actions">{step > 0 && <button type="button" className="button secondary" onClick={back}>Voltar</button>}<button type="submit" className="button primary">Continuar</button><button type="button" className="text-link" onClick={restart}>Recomeçar</button></div>
     <p className="review-note">Seu progresso fica salvo neste navegador até o envio.</p>
