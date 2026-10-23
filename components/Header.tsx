@@ -1,6 +1,7 @@
 "use client";
 
 import { BrandLogo } from "@/components/BrandLogo";
+import { ProjectRequestForm } from "@/components/ProjectRequestForm";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { brand, services } from "@/content/site";
@@ -209,29 +210,10 @@ export function Header() {
       <div className="project-form-overlay" data-open={formOpen} aria-hidden={!formOpen} onClick={() => setFormOpen(false)}>
         <div className="project-form-panel" id="project-form-panel" role="dialog" aria-modal="true" aria-labelledby="project-form-title" onClick={(event) => event.stopPropagation()}>
           <button className="form-close" type="button" aria-label="Fechar formulário" onClick={() => setFormOpen(false)}>×</button>
-          <p className="form-brand">{brand.name}</p>
+          <BrandLogo className="form-brand" />
           <h2 id="project-form-title">Pronto para <span>começar?</span></h2>
-          <p className="form-kicker">Preencha o formulário para solicitar um orçamento:</p>
-          <form onSubmit={(event) => event.preventDefault()}>
-            <div className="form-fields">
-              <input aria-label="Seu Nome" placeholder="Seu Nome *" />
-              <input aria-label="E-mail" type="email" placeholder="E-mail *" />
-              <input aria-label="Telefone" placeholder="Telefone *" />
-              <textarea aria-label="Fale-nos sobre o seu projeto" placeholder="Fale-nos sobre o seu projeto *" />
-            </div>
-            <fieldset className="interest-group">
-              <legend>Serviços de seu interesse</legend>
-              <div>
-                {services.map((service) => (
-                  <label key={service.slug}>
-                    <input type="checkbox" name="services" value={service.slug} />
-                    <span>{service.title}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-            <button className="form-submit" type="submit">Enviar solicitação <span aria-hidden>→</span></button>
-          </form>
+          <p className="form-kicker">Conte sobre o projeto. A resposta vem de quem executa.</p>
+          <ProjectRequestForm />
         </div>
       </div>
     </header>

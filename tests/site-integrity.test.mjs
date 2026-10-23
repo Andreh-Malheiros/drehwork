@@ -28,7 +28,11 @@ test("diagnostic sends through the validated API with consent and honeypot", asy
   assert.match(adapter, /fetch\("\/api\/diagnostico"/);
   assert.match(route, /validateDiagnostic\(body\)/);
   assert.match(route, /body\.website/);
-  assert.match(route, /process\.env\.RESEND_API_KEY/);
+  assert.match(route, /mailerConfigured\(\)/);
+  assert.match(await read("lib/mailer.ts"), /process\.env\.RESEND_API_KEY/);
+  const contact = await read("app/api/contato/route.ts");
+  assert.match(contact, /body\.consent !== true/);
+  assert.doesNotMatch(await read("components/Header.tsx"), /event\.preventDefault\(\)\}>/);
   assert.match(schema, /source\.consent !== true/);
   assert.match(wizard, /localStorage/);
   assert.doesNotMatch(wizard, /modo de revisão|Nenhuma informação foi enviada/i);

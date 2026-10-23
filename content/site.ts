@@ -31,7 +31,7 @@ export type Service = {
 
 export const brand = {
   name: "DREH WORK",
-  positioning: "Estúdio digital especializado em sites estratégicos e presença digital.",
+  positioning: "Parceiro de crescimento digital: sites, estratégia, SEO e automação para empresas que tratam presença digital como investimento.",
   email: "contato@drehwork.com",
   whatsapp: "+55 31 99965-6778",
   whatsappDigits: "5531999656778",
@@ -82,6 +82,7 @@ export const processSteps = ["Diagnóstico", "Estratégia", "Arquitetura", "Dire
 export const objectives = ["Criar o primeiro site", "Reformular o site atual", "Gerar mais contatos", "Criar uma landing page", "Vender online", "Melhorar uma loja Shopify", "Melhorar a presença digital", "Ainda não sei"];
 
 export const faqs = [
+  ["Para quem a Dreh Work é indicada?", "Para empresas e profissionais que querem atrair clientes pela internet e veem a presença digital como investimento: negócios locais, profissionais liberais, lojas virtuais e empresas em crescimento."],
   ["Como funciona o orçamento?", "Cada orçamento é preparado de acordo com o escopo e as necessidades do projeto."],
   ["Qual é o prazo?", "Após a assinatura do contrato e o recebimento dos materiais necessários, projetos compatíveis com o escopo padrão possuem prazo previsto de até 10 dias para desenvolvimento, publicação e verificação."],
   ["Como funciona o pagamento?", "São aceitos Pix, boleto, cartões de crédito e débito, link de pagamento e parcelamento."],
