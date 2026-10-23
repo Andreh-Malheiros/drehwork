@@ -20,6 +20,11 @@ export function GLSLHills({ width = "100vw", height = "100vh", cameraZ = 125, pl
     const container = containerRef.current;
     if (!canvas || !container) return;
 
+    // Fewer vertices and a lower pixel ratio on small or low-power screens keep the hero smooth.
+    const compact = window.matchMedia("(max-width: 820px)").matches;
+    const segments = compact ? Math.round(planeSize / 2) : planeSize;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     class Plane {
       uniforms = {
         time: { value: 0 },
@@ -30,7 +35,7 @@ export function GLSLHills({ width = "100vw", height = "100vh", cameraZ = 125, pl
 
       createMesh() {
         return new THREE.Mesh(
-          new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
+          new THREE.PlaneGeometry(planeSize, planeSize, segments, segments),
           new THREE.RawShaderMaterial({
             uniforms: this.uniforms,
             vertexShader: `
@@ -173,6 +178,8 @@ export function GLSLHills({ width = "100vw", height = "100vh", cameraZ = 125, pl
     const clock = new THREE.Timer();
     const plane = new Plane();
     let animationFrame = 0;
+    let running = false;
+    let visible = true;
 
     const resize = () => {
       const bounds = container.getBoundingClientRect();
@@ -181,26 +188,43 @@ export function GLSLHills({ width = "100vw", height = "100vh", cameraZ = 125, pl
       camera.aspect = nextWidth / nextHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(nextWidth, nextHeight, false);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, compact ? 1.5 : 2));
+      if (!running) renderer.render(scene, camera);
     };
 
-    const renderLoop = () => {
-      plane.render(clock.getDelta());
+    const renderLoop = (timestamp?: number) => {
+      clock.update(timestamp);
+      plane.render(Math.min(clock.getDelta(), 0.1));
       renderer.render(scene, camera);
       animationFrame = requestAnimationFrame(renderLoop);
     };
+    const start = () => {
+      if (running || reducedMotion || !visible || document.hidden) return;
+      running = true;
+      clock.reset();
+      animationFrame = requestAnimationFrame(renderLoop);
+    };
+    const stop = () => { running = false; cancelAnimationFrame(animationFrame); };
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) start(); else stop(); });
+    const onVisibility = () => (document.hidden ? stop() : start());
 
     renderer.setClearColor(0x000000, 0);
     camera.position.set(0, 16, cameraZ);
     camera.lookAt(new THREE.Vector3(0, 28, 0));
     scene.add(plane.mesh);
     resize();
-    renderLoop();
+    plane.uniforms.time.value = 4;
+    renderer.render(scene, camera);
+    start();
+    observer.observe(container);
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       window.removeEventListener("resize", resize);
-      cancelAnimationFrame(animationFrame);
+      document.removeEventListener("visibilitychange", onVisibility);
+      observer.disconnect();
+      stop();
       scene.remove(plane.mesh);
       plane.dispose();
       renderer.dispose();

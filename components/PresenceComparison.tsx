@@ -127,11 +127,11 @@ const reveal2Dreh: Reveal2Props = {
     },
   ],
   beforeImage: {
-    src: "/reveal/presence-before.png",
+    src: "/reveal/presence-before.webp",
     alt: "Presença digital fragmentada com cartões e canais desconectados.",
   },
   afterImage: {
-    src: "/reveal/presence-after.png",
+    src: "/reveal/presence-after.webp",
     alt: "Presença digital estruturada com site, módulos conectados e ações claras.",
   },
   beforeLabel: "Antes",
