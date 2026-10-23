@@ -1,38 +1,114 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { brand, objectives } from "@/content/site";
-import { submitDiagnosticDemo } from "@/lib/diagnostic-service";
+import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { objectives, whatsappUrl } from "@/content/site";
+import { submitDiagnostic } from "@/lib/diagnostic-service";
+import { DIAGNOSTIC_FIELDS, MAX_FIELD_LENGTH, type DiagnosticField } from "@/lib/diagnostic-schema";
 import { track } from "@/lib/analytics";
 
 type Answers = Record<string, string | boolean>;
+type Status = "editing" | "sending" | "sent";
 const STORAGE = "dreh:diagnostic:v1";
 const steps = [
-  { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Nome do responsável", "text"], ["segment", "Segmento", "text"]] },
+  { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "text"]] },
   { id: "location", title: "Onde a empresa atua?", fields: [["city", "Cidade", "text"], ["state", "Estado", "text"]] },
   { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "url"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa?", "select"]] },
-  { id: "need", title: "O que precisa mudar?", fields: [["situation", "Situação atual", "selectSituation"], ["objective", "Principal objetivo", "selectObjective"], ["solution", "Solução de interesse", "selectSolution"], ["timeline", "Prazo desejado", "text"]] },
-  { id: "contact", title: "Como a Dreh Work pode responder?", fields: [["whatsapp", "WhatsApp", "tel"], ["email", "E-mail", "email"], ["period", "Melhor período para contato", "selectPeriod"], ["reply", "Preferência de resposta", "selectReply"]] },
+  { id: "need", title: "O que precisa mudar?", fields: [["situation", "Situação atual", "select"], ["objective", "Principal objetivo", "select"], ["solution", "Solução de interesse", "select"], ["timeline", "Prazo desejado (opcional)", "text"]] },
+  { id: "contact", title: "Como podemos responder?", fields: [["whatsapp", "WhatsApp com DDD", "tel"], ["email", "E-mail", "email"], ["period", "Melhor período para contato", "select"], ["reply", "Preferência de resposta", "select"]] },
 ] as const;
-const options: Record<string, string[]> = {
+const options: Record<string, readonly string[]> = {
   hasSite: ["Não", "Sim"], googleProfile: ["Não", "Sim", "Não sei"],
   situation: ["Ainda não temos um site", "Nosso site está desatualizado", "O site não transmite profissionalismo", "O site não gera contatos", "Dependemos muito do Instagram", "Não aparecemos adequadamente no Google", "Precisamos divulgar um serviço", "Precisamos de uma loja", "Precisamos melhorar uma loja Shopify", "Não sabemos exatamente o que precisa mudar"],
   objective: objectives, solution: ["Site profissional", "Landing page", "Reformulação", "Loja Shopify", "Presença digital", "Manutenção", "Ainda não sei"],
   period: ["Manhã", "Tarde"], reply: ["WhatsApp", "E-mail"],
 };
+const serviceToSolution: Record<string, string> = { "Sites profissionais": "Site profissional", "Landing pages": "Landing page", "Reformulação de sites": "Reformulação", "Lojas Shopify": "Loja Shopify", "Presença digital": "Presença digital", "Manutenção e evolução": "Manutenção" };
+const isRequired = (id: string) => DIAGNOSTIC_FIELDS[id as DiagnosticField]?.required ?? false;
+const save = (step: number, answers: Answers) => { try { localStorage.setItem(STORAGE, JSON.stringify({ step, answers })); } catch { /* private mode */ } };
 
 export function DiagnosticWizard() {
-  const [step, setStep] = useState(0); const [answers, setAnswers] = useState<Answers>({}); const [error, setError] = useState(""); const [done, setDone] = useState(false); const [ready, setReady] = useState(false);
-  useEffect(() => { const timer = setTimeout(() => { try { const saved = JSON.parse(localStorage.getItem(STORAGE) || "null"); if (saved) { setStep(saved.step || 0); setAnswers(saved.answers || {}); } const q = new URLSearchParams(location.search).get("objetivo"); if (q) setAnswers(a => ({ ...a, objective: q })); } catch { } finally { setReady(true); } }, 0); return () => clearTimeout(timer); }, []);
-  useEffect(() => { if (ready) localStorage.setItem(STORAGE, JSON.stringify({ step, answers })); }, [step, answers, ready]);
-  const current = steps[step]; const progress = Math.round(((step + 1) / (steps.length + 1)) * 100);
-  const required = useMemo(() => current?.fields.filter(([id]) => !["siteUrl", "instagram", "timeline"].includes(id)).map(([id]) => id) || [], [current]);
-  function update(id: string, value: string | boolean) { const nextAnswers = { ...answers, [id]: typeof value === "string" ? value.slice(0, 180) : value }; setAnswers(nextAnswers); if (ready) localStorage.setItem(STORAGE, JSON.stringify({ step, answers: nextAnswers })); setError(""); }
-  function next() { if (required.some(id => !answers[id])) { setError("Preencha os campos obrigatórios desta etapa."); track("diagnostic_validation_error", { step: step + 1 }); return; } const nextStep = step + 1; localStorage.setItem(STORAGE, JSON.stringify({ step: nextStep, answers })); setStep(nextStep); track("diagnostic_step_forward", { step: step + 1 }); }
-  function back() { const previousStep = Math.max(0, step - 1); localStorage.setItem(STORAGE, JSON.stringify({ step: previousStep, answers })); setStep(previousStep); track("diagnostic_step_back", { step }); }
-  function restart() { localStorage.removeItem(STORAGE); setAnswers({}); setStep(0); setDone(false); }
-  async function complete() { if (!answers.consent) { setError("Confirme o consentimento para continuar."); return; } await submitDiagnosticDemo(answers); setDone(true); localStorage.removeItem(STORAGE); track("diagnostic_submit"); }
-  if (done) return <div className="wizard complete"><p className="kicker">Modo de revisão concluído</p><h2>Seu resumo está pronto.</h2><p>Nenhuma informação foi enviada ou armazenada fora deste navegador. A integração real será ativada apenas na etapa final.</p><a className="button primary" target="_blank" rel="noreferrer" href={`https://wa.me/${brand.whatsappDigits}?text=${encodeURIComponent(`Olá, Dreh Work. Concluí a demonstração do diagnóstico e gostaria de conversar sobre: ${String(answers.objective || "presença digital")}.`)}`}>Continuar pelo WhatsApp</a><button className="text-link" onClick={restart}>Reiniciar demonstração</button></div>;
-  if (step >= steps.length) return <div className="wizard"><div className="progress"><span style={{ width: "100%" }} /></div><p className="kicker">Resumo para revisão</p><h2>Confira suas respostas</h2><dl className="summary">{Object.entries(answers).filter(([k]) => k !== "consent").map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{String(value)}</dd></div>)}</dl><label className="consent"><input type="checkbox" checked={Boolean(answers.consent)} onChange={e => update("consent", e.target.checked)} /> Autorizo o uso destas informações para resposta comercial. Nesta versão de revisão, os dados não serão enviados.</label>{error && <p className="form-error" role="alert">{error}</p>}<div className="wizard-actions"><button className="button secondary" onClick={back}>Voltar</button><button className="button primary" onClick={complete}>Concluir demonstração</button></div><p className="review-note">Envio real ainda não configurado. Agendamento de 15 minutos em configuração.</p></div>;
-  return <div className="wizard"><div className="progress" aria-label={`Progresso: ${progress}%`}><span style={{ width: `${progress}%` }} /></div><p className="kicker">Etapa {step + 1} de {steps.length}</p><h2>{current.title}</h2><div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}>{label}{type.startsWith("select") || type === "select" ? <select value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} required><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select> : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} maxLength={180} required={!['siteUrl', 'instagram', 'timeline'].includes(id)} />}</label>)}</div>{error && <p className="form-error" role="alert">{error}</p>}<div className="wizard-actions">{step > 0 && <button className="button secondary" onClick={back}>Voltar</button>}<button className="button primary" onClick={next}>Continuar</button><button className="text-link" onClick={restart}>Reiniciar</button></div><p className="review-note">Progresso salvo somente neste navegador.</p></div>;
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Answers>({});
+  const [error, setError] = useState("");
+  const [fallback, setFallback] = useState(false);
+  const [status, setStatus] = useState<Status>("editing");
+  const [ready, setReady] = useState(false);
+  const started = useRef(false);
+  const heading = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE) || "null");
+        if (saved) { setStep(saved.step || 0); setAnswers(saved.answers || {}); }
+        const q = new URLSearchParams(location.search).get("objetivo");
+        const solution = q ? serviceToSolution[q] : undefined;
+        if (solution) setAnswers(a => ({ ...a, solution }));
+      } catch { /* ignore corrupted draft */ } finally { setReady(true); }
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+  useEffect(() => { if (ready && status === "editing") save(step, answers); }, [step, answers, ready, status]);
+  useEffect(() => { if (ready) heading.current?.focus({ preventScroll: true }); }, [step, status, ready]);
+
+  const current = steps[step];
+  const progress = Math.round(((step + 1) / (steps.length + 1)) * 100);
+  const required = useMemo(() => current?.fields.map(([id]) => id).filter(isRequired) || [], [current]);
+
+  function update(id: string, value: string | boolean) {
+    if (!started.current) { started.current = true; track("diagnostic_start"); }
+    setAnswers(a => ({ ...a, [id]: typeof value === "string" ? value.slice(0, MAX_FIELD_LENGTH) : value }));
+    setError(""); setFallback(false);
+  }
+  function next() {
+    if (required.some(id => !String(answers[id] || "").trim())) { setError("Preencha os campos obrigatórios desta etapa."); track("diagnostic_validation_error", { step: step + 1 }); return; }
+    setStep(step + 1); track("diagnostic_step_forward", { step: step + 1 });
+  }
+  function back() { setStep(Math.max(0, step - 1)); setError(""); track("diagnostic_step_back", { step }); }
+  function restart() { try { localStorage.removeItem(STORAGE); } catch { /* ignore */ } setAnswers({}); setStep(0); setStatus("editing"); setError(""); }
+  async function submit() {
+    if (!answers.consent) { setError("Confirme a ciência da Política de Privacidade para enviar."); return; }
+    setStatus("sending"); setError("");
+    const result = await submitDiagnostic({ ...answers });
+    if (result.ok) {
+      setStatus("sent"); track("diagnostic_submit", { solution: String(answers.solution || "") });
+      try { localStorage.removeItem(STORAGE); } catch { /* ignore */ }
+      return;
+    }
+    setStatus("editing"); setError(result.error); setFallback(result.fallback);
+    track("diagnostic_submit_error", { reason: result.fallback ? "service" : "validation" });
+  }
+
+  const whatsappFallback = whatsappUrl(`um diagnóstico para ${String(answers.company || "minha empresa")}: ${String(answers.solution || "presença digital")}`);
+
+  if (status === "sent") return <div className="wizard complete" aria-live="polite">
+    <p className="kicker">Diagnóstico recebido</p>
+    <h2 ref={heading} tabIndex={-1}>Obrigado, {String(answers.responsible || "").split(" ")[0] || "recebemos suas respostas"}.</h2>
+    <p>Suas respostas chegaram à Dreh Work. A análise inicial será enviada por {answers.reply === "E-mail" ? "e-mail" : "WhatsApp"}, no período que você indicou.</p>
+    <div className="button-row"><a className="button primary" target="_blank" rel="noreferrer" href={whatsappFallback}>Adiantar a conversa no WhatsApp</a><Link className="text-link" href="/projetos">Ver portfólio</Link></div>
+  </div>;
+
+  if (step >= steps.length) return <div className="wizard">
+    <div className="progress" role="progressbar" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso do diagnóstico"><span style={{ width: "100%" }} /></div>
+    <p className="kicker">Revisão</p>
+    <h2 ref={heading} tabIndex={-1}>Confira suas respostas</h2>
+    <dl className="summary">{(Object.keys(DIAGNOSTIC_FIELDS) as DiagnosticField[]).filter(key => answers[key]).map(key => <div key={key}><dt>{DIAGNOSTIC_FIELDS[key].label}</dt><dd>{String(answers[key])}</dd></div>)}</dl>
+    <label className="honeypot" aria-hidden="true">Site<input tabIndex={-1} autoComplete="off" value={String(answers.website || "")} onChange={e => update("website", e.target.value)} /></label>
+    <label className="consent"><input type="checkbox" checked={Boolean(answers.consent)} onChange={e => update("consent", e.target.checked)} /> <span>Li a <Link href="/politica-de-privacidade" target="_blank">Política de Privacidade</Link> e estou ciente de que estes dados serão usados para responder à minha solicitação.</span></label>
+    {error && <p className="form-error" role="alert">{error}{fallback ? <> <a href={whatsappFallback} target="_blank" rel="noreferrer">Enviar pelo WhatsApp</a>.</> : null}</p>}
+    <div className="wizard-actions"><button type="button" className="button secondary" onClick={back} disabled={status === "sending"}>Voltar</button><button type="button" className="button primary" onClick={submit} disabled={status === "sending"} aria-busy={status === "sending"}>{status === "sending" ? "Enviando…" : "Enviar diagnóstico"}</button></div>
+  </div>;
+
+  return <form className="wizard" onSubmit={event => { event.preventDefault(); next(); }} noValidate>
+    <div className="progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso do diagnóstico"><span style={{ width: `${progress}%` }} /></div>
+    <p className="kicker">Etapa {step + 1} de {steps.length}</p>
+    <h2 ref={heading} tabIndex={-1}>{current.title}</h2>
+    <div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}>{label}{isRequired(id) ? <span aria-hidden> *</span> : null}{type === "select"
+      ? <select value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} required={isRequired(id)}><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select>
+      : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
+    {error && <p className="form-error" role="alert">{error}</p>}
+    <div className="wizard-actions">{step > 0 && <button type="button" className="button secondary" onClick={back}>Voltar</button>}<button type="submit" className="button primary">Continuar</button><button type="button" className="text-link" onClick={restart}>Recomeçar</button></div>
+    <p className="review-note">Seu progresso fica salvo neste navegador até o envio.</p>
+  </form>;
 }

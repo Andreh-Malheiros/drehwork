@@ -23,13 +23,15 @@ test("keeps intro scroll lock guarded and skippable after session", async () => 
   assert.match(intro, /previousBodyOverflow/);
 });
 
-test("keeps review-mode diagnostic isolated", async () => {
-  const adapter = await read("lib/diagnostic-service.ts");
-  const wizard = await read("components/DiagnosticWizard.tsx");
-  assert.match(adapter, /mode: "review"/);
-  assert.doesNotMatch(adapter, /fetch\(|axios|googleapis/i);
-  assert.match(wizard, /Nenhuma informação foi enviada/);
+test("diagnostic sends through the validated API with consent and honeypot", async () => {
+  const [adapter, wizard, route, schema] = await Promise.all([read("lib/diagnostic-service.ts"), read("components/DiagnosticWizard.tsx"), read("app/api/diagnostico/route.ts"), read("lib/diagnostic-schema.ts")]);
+  assert.match(adapter, /fetch\("\/api\/diagnostico"/);
+  assert.match(route, /validateDiagnostic\(body\)/);
+  assert.match(route, /body\.website/);
+  assert.match(route, /process\.env\.RESEND_API_KEY/);
+  assert.match(schema, /source\.consent !== true/);
   assert.match(wizard, /localStorage/);
+  assert.doesNotMatch(wizard, /modo de revisão|Nenhuma informação foi enviada/i);
 });
 
 test("includes required discovery and accessibility foundations", async () => {

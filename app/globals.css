@@ -6993,3 +6993,10 @@ html.intro-scroll-lock body {
   .cookie-consent-actions .button { flex: 1 1 auto; }
 }
 @media (prefers-reduced-motion: reduce) { .cookie-consent { animation: none; } }
+
+/* Diagnostic (Fase 6) */
+.honeypot { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.wizard .consent { display: flex; gap: 10px; align-items: flex-start; }
+.wizard .consent a, .form-error a { color: inherit; text-decoration: underline; }
+.wizard button[disabled] { opacity: .6; cursor: progress; }
+.wizard h2:focus { outline: none; }
