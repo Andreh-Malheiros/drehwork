@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { services, whatsappUrl } from "@/content/site";
 import { track } from "@/lib/analytics";
+import { maskEmail, maskPhone } from "@/lib/masks";
 
 type Status = "idle" | "sending" | "sent";
 
@@ -41,8 +42,8 @@ export function ProjectRequestForm() {
   return <form onSubmit={submit} noValidate>
     <div className="form-fields">
       <input name="name" aria-label="Seu nome" placeholder="Seu nome *" autoComplete="name" maxLength={120} required />
-      <input name="email" aria-label="E-mail" type="email" placeholder="E-mail *" autoComplete="email" maxLength={160} required />
-      <input name="phone" aria-label="Telefone com DDD" type="tel" placeholder="Telefone / WhatsApp *" autoComplete="tel" maxLength={40} required />
+      <input name="email" aria-label="E-mail" type="email" onChange={e => { e.currentTarget.value = maskEmail(e.currentTarget.value); }} placeholder="E-mail *" autoComplete="email" maxLength={160} required />
+      <input name="phone" aria-label="Telefone com DDD" type="tel" inputMode="tel" onChange={e => { e.currentTarget.value = maskPhone(e.currentTarget.value); }} placeholder="Telefone / WhatsApp *" autoComplete="tel" maxLength={40} required />
       <textarea name="message" aria-label="Fale sobre o seu projeto" placeholder="Fale sobre o seu projeto *" maxLength={2000} required />
       <input className="honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     </div>
