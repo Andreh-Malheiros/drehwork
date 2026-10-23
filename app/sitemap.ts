@@ -2,8 +2,10 @@ import type { MetadataRoute } from "next";
 import { brand } from "@/content/site";
 import { indexablePaths } from "@/lib/seo";
 
+// Update when page content changes; a build-time date would mark every URL as modified on each deploy.
+const lastModified = new Date("2026-10-23");
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return indexablePaths.map(path => ({
     url: path ? `${brand.url}/${path}` : brand.url,
     lastModified,

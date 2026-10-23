@@ -12,19 +12,21 @@ type Answers = Record<string, string | boolean>;
 type Status = "editing" | "sending" | "sent";
 const STORAGE = "dreh:diagnostic:v1";
 const steps = [
-  { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "text"]] },
-  { id: "location", title: "Onde a empresa atua?", fields: [["city", "Cidade", "text"], ["state", "Estado", "text"]] },
-  { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "text"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa?", "select"]] },
+  { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "select"]] },
+  { id: "location", title: "Onde a empresa atua?", fields: [["city", "Cidade", "text"], ["state", "Estado", "select"]] },
+  { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "text"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa? (opcional)", "select"]] },
   { id: "need", title: "O que precisa mudar?", fields: [["situation", "Situação atual", "select"], ["objective", "Principal objetivo", "select"], ["solution", "Solução de interesse", "select"], ["timeline", "Prazo desejado (opcional)", "text"]] },
   { id: "contact", title: "Como podemos responder?", fields: [["whatsapp", "WhatsApp com DDD", "tel"], ["email", "E-mail", "email"], ["period", "Melhor período para contato", "select"], ["reply", "Preferência de resposta", "select"]] },
 ] as const;
 const options: Record<string, readonly string[]> = {
-  hasSite: ["Não", "Sim"], googleProfile: ["Não", "Sim", "Não sei"],
+  hasSite: ["Não", "Sim", "Vendo só pelo Instagram ou WhatsApp", "Tenho loja em outra plataforma"], googleProfile: ["Não", "Sim", "Não sei"],
+  segment: ["Comércio local", "Prestação de serviços", "Moda e vestuário", "Loja virtual / e-commerce", "Saúde e bem-estar", "Jurídico e consultoria", "Alimentação", "Indústria", "Educação", "Outro"],
+  state: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
   situation: ["Ainda não temos um site", "Nosso site está desatualizado", "O site não transmite profissionalismo", "O site não gera contatos", "Dependemos muito do Instagram", "Não aparecemos adequadamente no Google", "Precisamos divulgar um serviço", "Precisamos de uma loja", "Precisamos melhorar uma loja Shopify", "Não sabemos exatamente o que precisa mudar"],
-  objective: objectives, solution: ["Site profissional", "Landing page", "Reformulação", "Loja Shopify", "Presença digital", "Manutenção", "Ainda não sei"],
+  objective: objectives, solution: ["Site profissional", "Landing page", "Reformulação", "Loja Shopify", "Consultoria de e-commerce", "Presença digital", "Automação de processos", "Manutenção", "Ainda não sei"],
   period: ["Manhã", "Tarde"], reply: ["WhatsApp", "E-mail"],
 };
-const serviceToSolution: Record<string, string> = { "Sites profissionais": "Site profissional", "Landing pages": "Landing page", "Reformulação de sites": "Reformulação", "Lojas Shopify": "Loja Shopify", "Presença digital": "Presença digital", "Manutenção e evolução": "Manutenção" };
+const serviceToSolution: Record<string, string> = { "sites-profissionais": "Site profissional", "landing-pages": "Landing page", "reformulacao-de-sites": "Reformulação", "lojas-shopify": "Loja Shopify", "presenca-digital": "Presença digital", "automacao-de-processos": "Automação de processos", "manutencao": "Manutenção" };
 const isRequired = (id: string) => DIAGNOSTIC_FIELDS[id as DiagnosticField]?.required ?? false;
 const save = (step: number, answers: Answers) => { try { localStorage.setItem(STORAGE, JSON.stringify({ step, answers })); } catch { /* private mode */ } };
 
@@ -32,6 +34,7 @@ export function DiagnosticWizard() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [error, setError] = useState("");
+  const [invalid, setInvalid] = useState<string[]>([]);
   const [fallback, setFallback] = useState(false);
   const [status, setStatus] = useState<Status>("editing");
   const [ready, setReady] = useState(false);
@@ -66,13 +69,17 @@ export function DiagnosticWizard() {
   function update(id: string, value: string | boolean) {
     if (!started.current) { started.current = true; track("diagnostic_start"); }
     setAnswers(a => ({ ...a, [id]: typeof value === "string" ? value.slice(0, MAX_FIELD_LENGTH) : value }));
-    setError(""); setFallback(false);
+    setError(""); setFallback(false); setInvalid(list => list.filter(field => field !== id));
   }
   function next() {
-    if (required.some(id => !String(answers[id] || "").trim())) { setError("Preencha os campos obrigatórios desta etapa."); track("diagnostic_validation_error", { step: step + 1 }); return; }
-    setStep(step + 1); track("diagnostic_step_forward", { step: step + 1 });
+    const missing = required.filter(id => !String(answers[id] || "").trim());
+    if (missing.length) {
+      const labels = current.fields.filter(([id]) => missing.includes(id)).map(([, label]) => label);
+      setInvalid(missing); setError(`Preencha: ${labels.join(", ")}.`); track("diagnostic_validation_error", { step: step + 1 }); return;
+    }
+    setInvalid([]); setStep(step + 1); track("diagnostic_step_forward", { step: step + 1 });
   }
-  function back() { setStep(Math.max(0, step - 1)); setError(""); track("diagnostic_step_back", { step }); }
+  function back() { setStep(Math.max(0, step - 1)); setError(""); setInvalid([]); track("diagnostic_step_back", { step }); }
   function restart() { try { localStorage.removeItem(STORAGE); } catch { /* ignore */ } setAnswers({}); setStep(0); setStatus("editing"); setError(""); }
   async function submit() {
     if (!answers.consent) { setError("Confirme a ciência da Política de Privacidade para enviar."); return; }
@@ -112,10 +119,10 @@ export function DiagnosticWizard() {
     <p className="kicker">Etapa {step + 1} de {steps.length}</p>
     <h2 ref={heading} tabIndex={-1}>{current.title}</h2>
     <div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}><span className="field-label">{label}{isRequired(id) ? <span className="field-required" aria-hidden> *</span> : null}</span>{type === "select"
-      ? <select value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} required={isRequired(id)}><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select>
-      : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, (FIELD_MASKS[id] ?? String)(e.target.value))} inputMode={({ whatsapp: "tel", email: "email", siteUrl: "url" } as Record<string, "tel" | "email" | "url">)[id]} placeholder={({ whatsapp: "(31) 99999-9999", state: "MG", instagram: "@suaempresa", siteUrl: "www.suaempresa.com.br", email: "voce@empresa.com" } as Record<string, string>)[id]} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
-    {error && <p className="form-error" role="alert">{error}</p>}
+      ? <select value={String(answers[id] || "")} aria-invalid={invalid.includes(id) || undefined} aria-describedby={invalid.includes(id) ? "wizard-error" : undefined} onChange={e => update(id, e.target.value)} required={isRequired(id)}><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select>
+      : <input type={type} value={String(answers[id] || "")} aria-invalid={invalid.includes(id) || undefined} aria-describedby={invalid.includes(id) ? "wizard-error" : undefined} onChange={e => update(id, (FIELD_MASKS[id] ?? String)(e.target.value))} inputMode={({ whatsapp: "tel", email: "email", siteUrl: "url" } as Record<string, "tel" | "email" | "url">)[id]} placeholder={({ whatsapp: "(31) 99999-9999", state: "MG", instagram: "@suaempresa", siteUrl: "www.suaempresa.com.br", email: "voce@empresa.com" } as Record<string, string>)[id]} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
+    {error && <p className="form-error" id="wizard-error" role="alert">{error}</p>}
     <div className="wizard-actions">{step > 0 && <button type="button" className="button secondary" onClick={back}>Voltar</button>}<button type="submit" className="button primary">Continuar</button><button type="button" className="text-link" onClick={restart}>Recomeçar</button></div>
-    <p className="review-note">Seu progresso fica salvo neste navegador até o envio.</p>
+    <p className="review-note">Seu progresso fica salvo neste navegador até o envio. Prefere ir direto ao ponto? <a href={whatsappUrl("um diagnóstico da minha presença digital")} target="_blank" rel="noreferrer">Fale pelo WhatsApp</a>.</p>
   </form>;
 }
