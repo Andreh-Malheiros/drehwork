@@ -11,6 +11,7 @@ const primaryNavigation = [
   ["Portfólio", "/projetos"],
   ["Processo", "/processo"],
   ["Sobre", "/sobre"],
+  ["Guias", "/insights"],
   ["Contato", "/contato"],
 ] as const;
 
@@ -20,6 +21,7 @@ const serviceVisuals = [
   { icon: "refresh", visual: "structure" },
   { icon: "bag", visual: "commerce" },
   { icon: "network", visual: "presence" },
+  { icon: "flow", visual: "structure" },
   { icon: "tool", visual: "support" },
 ] as const;
 
@@ -32,6 +34,7 @@ function ServiceIcon({ name }: { name: typeof serviceVisuals[number]["icon"] }) 
       {name === "refresh" && <><path d="M18.5 8.3A7 7 0 0 0 6.2 6.8L4.5 9.1" {...common} /><path d="M4.5 5.2v3.9h3.9M5.5 15.7a7 7 0 0 0 12.3 1.5l1.7-2.3" {...common} /><path d="M19.5 18.8v-3.9h-3.9" {...common} /></>}
       {name === "bag" && <><path d="M6.5 8.2h11l-.8 10.6a2 2 0 0 1-2 1.8H9.3a2 2 0 0 1-2-1.8L6.5 8.2Z" {...common} /><path d="M9 8.2V7a3 3 0 0 1 6 0v1.2" {...common} /></>}
       {name === "network" && <><circle cx="7" cy="8" r="2.2" {...common} /><circle cx="17" cy="7" r="2.2" {...common} /><circle cx="12" cy="17" r="2.2" {...common} /><path d="M9 9.1l6 5.8M15.2 8.3l-2.4 6.5M8.7 9.6l2.3 5.4" {...common} /></>}
+      {name === "flow" && <><rect x="3.5" y="4.5" width="6" height="5" rx="1.5" {...common} /><rect x="14.5" y="14.5" width="6" height="5" rx="1.5" {...common} /><path d="M6.5 9.5v4a3 3 0 0 0 3 3h5M12 14l2.5 2.5L12 19" {...common} /></>}
       {name === "tool" && <><path d="M14.4 5.1a5 5 0 0 0 4.5 6.7l-7.1 7.1a2.7 2.7 0 0 1-3.8-3.8l7.1-7.1a5 5 0 0 0-.7-2.9Z" {...common} /><path d="M7.8 16.2l-1.5 1.5" {...common} /></>}
     </svg>
   );

@@ -38,6 +38,34 @@
 - [Site para pequenas empresas e negócios locais](https://www.drehwork.com/site-para-negocios-locais)
 - [Loja virtual para marcas de moda](https://www.drehwork.com/loja-virtual-para-marcas-de-moda)
 
+## Guias (/insights)
+
+- [Quanto tempo leva para fazer um site profissional?](https://www.drehwork.com/insights/quanto-tempo-leva-para-fazer-um-site): As etapas de um projeto de site, o prazo realista de cada uma e o que costuma atrasar a publicação.
+- [Site ou Instagram: minha empresa precisa dos dois?](https://www.drehwork.com/insights/site-ou-instagram-qual-escolher): O que o Instagram faz bem, onde ele falha e por que o site continua sendo o endereço próprio da empresa.
+- [Landing page ou site: qual a diferença e qual escolher?](https://www.drehwork.com/insights/landing-page-ou-site-qual-escolher): A diferença prática entre uma página de conversão e um site completo, e como decidir qual vem primeiro.
+- [O que um site profissional precisa ter: checklist completo](https://www.drehwork.com/insights/o-que-um-site-profissional-precisa-ter): Os itens de conteúdo, confiança e técnica que separam um site profissional de um cartão de visita online.
+- [Por que meu site não gera contatos? 8 causas e como corrigir](https://www.drehwork.com/insights/por-que-meu-site-nao-gera-contatos): Um diagnóstico prático para descobrir onde o seu site está perdendo clientes e o que corrigir primeiro.
+- [Como aparecer no Google: guia para pequenas e médias empresas](https://www.drehwork.com/insights/como-aparecer-no-google): Os quatro pilares para uma empresa ser encontrada nas buscas: Perfil da Empresa, site, conteúdo e reputação.
+- [Como aparecer no Google Maps: passo a passo do Perfil da Empresa](https://www.drehwork.com/insights/como-aparecer-no-google-maps): Cadastro, verificação e otimização do Google Perfil da Empresa para ser encontrado por clientes da sua região.
+- [Como conseguir mais avaliações no Google (sem violar as regras)](https://www.drehwork.com/insights/como-conseguir-avaliacoes-no-google): Um processo simples para transformar clientes satisfeitos em avaliações reais e lidar bem com as críticas.
+- [Google Search Console: o que é e como usar no seu site](https://www.drehwork.com/insights/google-search-console-o-que-e-como-usar): A ferramenta gratuita que mostra como o Google enxerga o seu site e quais buscas trazem visitantes.
+- [Site lento perde clientes: o que são os Core Web Vitals](https://www.drehwork.com/insights/core-web-vitals-site-lento): As três métricas de experiência do Google, explicadas sem jargão, e o que costuma deixar um site lento.
+- [SEO local: como ser encontrado por clientes da sua cidade](https://www.drehwork.com/insights/seo-local-para-pequenas-empresas): As práticas que fazem uma empresa aparecer quando alguém busca um serviço perto de onde está.
+- [Como fazer sua empresa ser recomendada pelo ChatGPT e outras IAs](https://www.drehwork.com/insights/como-ser-recomendado-pelo-chatgpt): O que os assistentes de IA usam para indicar empresas e como preparar a sua marca para ser encontrada por eles.
+- [Visão geral criada por IA no Google: o que muda para sua empresa](https://www.drehwork.com/insights/visao-geral-criada-por-ia-google): Como os resumos gerados por IA no topo da busca mudam o comportamento do cliente e como adaptar o seu conteúdo.
+- [Dados estruturados e llms.txt: como explicar sua empresa para o Google e a IA](https://www.drehwork.com/insights/dados-estruturados-e-llms-txt): A camada técnica que descreve a empresa para buscadores e assistentes de IA, explicada sem programação.
+- [Shopify ou Nuvemshop: qual escolher para sua loja virtual?](https://www.drehwork.com/insights/shopify-ou-nuvemshop): Uma comparação honesta entre as duas plataformas mais lembradas por quem vai abrir uma loja virtual no Brasil.
+- [Quanto custa montar uma loja virtual? Todos os custos explicados](https://www.drehwork.com/insights/quanto-custa-montar-uma-loja-virtual): Os custos iniciais e recorrentes de um e-commerce, organizados para você montar um orçamento realista.
+- [Como vender pela internet além do direct do Instagram](https://www.drehwork.com/insights/vender-pela-internet-saindo-do-direct): Os sinais de que a venda manual chegou ao limite e como fazer a transição para uma loja própria sem perder clientes.
+- [Checklist para lançar loja virtual sem erros](https://www.drehwork.com/insights/checklist-para-lancar-loja-virtual): Tudo o que precisa estar pronto e testado antes de abrir a loja para o público.
+- [Presença digital: o que é e por onde sua empresa deve começar](https://www.drehwork.com/insights/presenca-digital-o-que-e): Os canais que formam a presença digital de uma empresa e a ordem mais sensata para construí-los.
+- [Bio do Instagram para empresas: como escrever uma que gera clientes](https://www.drehwork.com/insights/bio-do-instagram-para-empresas): A estrutura de uma bio que explica o negócio em segundos e leva o visitante ao próximo passo.
+- [WhatsApp Business para empresas: guia de configuração e uso](https://www.drehwork.com/insights/whatsapp-business-para-empresas): Os recursos do WhatsApp Business que organizam o atendimento e fazem a empresa responder melhor e mais rápido.
+- [Como escolher uma empresa para criar o site da sua empresa](https://www.drehwork.com/insights/como-escolher-empresa-para-criar-site): Um roteiro para comparar fornecedores, evitar armadilhas comuns e contratar com segurança.
+- [Domínio e hospedagem: o que são e por que devem estar no seu nome](https://www.drehwork.com/insights/dominio-e-hospedagem-o-que-sao): O básico que todo dono de site precisa saber para não perder o endereço da própria empresa na internet.
+- [LGPD no site da empresa: o que você precisa ter](https://www.drehwork.com/insights/lgpd-no-site-da-empresa): Os cuidados práticos com dados pessoais em sites, formulários e ferramentas de análise.
+- [Como reformular o site sem perder a posição no Google](https://www.drehwork.com/insights/reformular-site-sem-perder-posicao-no-google): O roteiro de migração que preserva visitas e contatos conquistados ao longo dos anos.
+
 ## Optional
 
 - [Portfólio](https://www.drehwork.com/projetos): BH Carimbos, AMFTV, Wayne Store, NOAR Oficial e Ammis Moda (atuação recorrente)

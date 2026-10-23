@@ -3984,7 +3984,7 @@ body[data-scrolled] .site-header {
   top: 23px;
   transform: translateX(-50%);
   display: block;
-  width: min(758px, calc(100vw - 260px));
+  width: min(860px, calc(100vw - 260px));
   height: 64px;
   padding: 0;
   border: 0;
@@ -3997,7 +3997,7 @@ body[data-scrolled] .site-header {
 .site-header .nav-shell .nav-links {
   height: 64px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 0;
 }
 .site-header .nav-shell .nav-links a {
@@ -4224,11 +4224,11 @@ body[data-scrolled] .site-header {
 
 @media (max-width: 1100px) {
   .site-header .nav-shell {
-    width: min(700px, calc(100vw - 210px));
+    width: min(760px, calc(100vw - 340px));
   }
   .site-header .nav-shell .nav-links a,
   .mega-tabs span {
-    font-size: 18px;
+    font-size: 16px;
   }
   .mega-menu {
     width: min(742px, calc(100vw - 34px));
@@ -6159,3 +6159,12 @@ button.text-link { appearance: none; background-color: transparent; border: 0; b
   .cookie-consent-toggle { margin-top: 6px; }
 }
 .rolling-title { display: block; margin: 0; }
+
+/* Guides (/insights). */
+.insight-grid { margin-top: 32px; }
+.insight-card h3 { margin: 8px 0; font-size: 1.15rem; line-height: 1.35; }
+.insight-category { scroll-margin-top: 110px; }
+.insight-meta { margin-top: 20px; font-size: 13px; opacity: 0.65; }
+.insight-article .prose-block h2 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.25; }
+
+.insight-grid .insight-card { min-height: 0; }
