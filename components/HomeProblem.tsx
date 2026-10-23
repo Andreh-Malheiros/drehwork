@@ -148,13 +148,13 @@ function RollingTextItem({
       <div className="rolling-text-window">
         <div className="rolling-text-track">
           <div className="rolling-text-state">
-            <h2>{item.title}</h2>
+            <span className="rolling-title">{item.title}</span>
           </div>
 
-          <div className="rolling-text-state">
-            <h2 className={cn("italic", colorClassMap[item.color])}>
+          <div className="rolling-text-state" aria-hidden>
+            <span className={cn("rolling-title italic", colorClassMap[item.color])}>
               {item.title}
-            </h2>
+            </span>
           </div>
         </div>
       </div>

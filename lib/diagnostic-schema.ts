@@ -7,7 +7,7 @@ export const DIAGNOSTIC_FIELDS = {
   hasSite: { label: "Possui site", required: true },
   siteUrl: { label: "Site atual", required: false },
   instagram: { label: "Instagram", required: false },
-  googleProfile: { label: "Google Perfil da Empresa", required: true },
+  googleProfile: { label: "Google Perfil da Empresa", required: false },
   situation: { label: "Situação atual", required: true },
   objective: { label: "Principal objetivo", required: true },
   solution: { label: "Solução de interesse", required: true },

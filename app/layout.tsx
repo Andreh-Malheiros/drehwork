@@ -7,13 +7,14 @@ import { IntroActivation } from "@/components/IntroActivation";
 import { HomeMotion } from "@/components/HomeMotion";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AnalyticsBridge } from "@/components/AnalyticsBridge";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { brand } from "@/content/site";
 import { JsonLd, organizationSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata(""),
   metadataBase: new URL(brand.url),
-  title: { default: "Dreh Work | Sites estratégicos, SEO e crescimento digital", template: "%s | Dreh Work" },
+  title: { default: "Criação de Sites Profissionais em BH e todo o Brasil | Dreh Work", template: "%s | Dreh Work" },
   applicationName: "Dreh Work",
   authors: [{ name: brand.legalName }],
   creator: brand.legalName,
@@ -26,5 +27,5 @@ const poppins = Poppins({ subsets: ["latin", "latin-ext"], weight: ["200", "300"
 export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR" className={poppins.variable}><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><CookieConsent /><AnalyticsBridge /><JsonLd data={organizationSchema()} /></body></html>;
+  return <html lang="pt-BR" className={poppins.variable}><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><WhatsAppFloat /><CookieConsent /><AnalyticsBridge /><JsonLd data={organizationSchema()} /></body></html>;
 }

@@ -1,12 +1,16 @@
 # Dreh Work
 
-> Dreh Work é um estúdio digital brasileiro que cria sites profissionais, landing pages e lojas Shopify, e cuida de estratégia, SEO, presença digital e automação para empresas que tratam a presença online como investimento. Atendimento remoto em todo o Brasil.
+> Dreh Work é um estúdio digital brasileiro que cria sites profissionais, landing pages e lojas Shopify, e cuida de estratégia, SEO, presença digital e automação para empresas que tratam a presença online como investimento. Baseado em Belo Horizonte (MG), com atendimento remoto em todo o Brasil.
 
 - Nome comercial de Andreh Malheiros Tiberio (MEI), CNPJ 65.415.209/0001-61.
 - 2 anos no mercado, mais de 20 projetos realizados.
 - Projetos formalizados por contrato, com emissão de nota fiscal.
 - Contato: contato@drehwork.com · WhatsApp +55 31 99965-6778 · Instagram @dreh.work
 - Horário: segunda a sexta, das 8h às 18h.
+- Prazo: projetos no escopo padrão têm prazo previsto de até 10 dias após contrato e recebimento dos materiais.
+- Preço: definido em proposta após diagnóstico gratuito; depende do tipo de projeto, número de páginas, textos, integrações e personalização. Assinatura de plataformas (como Shopify), domínio e hospedagem são custos à parte.
+- Pagamento: Pix, boleto, cartões, link de pagamento e parcelamento.
+- Presença digital inclui: Google Perfil da Empresa, Google Search Console, SEO, Instagram, copy estratégica, captação de avaliações e preparação da marca para assistentes de IA.
 
 ## Páginas principais
 
@@ -19,15 +23,23 @@
 
 ## Serviços
 
-- [Sites profissionais](https://www.drehwork.com/servicos/sites-profissionais)
+- [Criação de sites profissionais](https://www.drehwork.com/servicos/sites-profissionais)
 - [Landing pages](https://www.drehwork.com/servicos/landing-pages)
 - [Reformulação de sites](https://www.drehwork.com/servicos/reformulacao-de-sites)
-- [Lojas Shopify](https://www.drehwork.com/servicos/lojas-shopify)
-- [Presença digital](https://www.drehwork.com/servicos/presenca-digital)
-- [Manutenção e evolução](https://www.drehwork.com/servicos/manutencao)
+- [Lojas virtuais e Shopify, com consultoria de e-commerce](https://www.drehwork.com/servicos/lojas-shopify)
+- [Presença digital, SEO e Google Perfil da Empresa](https://www.drehwork.com/servicos/presenca-digital)
+- [Automação de processos](https://www.drehwork.com/servicos/automacao-de-processos)
+- [Manutenção de sites](https://www.drehwork.com/servicos/manutencao)
+
+## Guias e soluções
+
+- [Quanto custa um site](https://www.drehwork.com/quanto-custa-um-site)
+- [Criação de sites em Belo Horizonte](https://www.drehwork.com/criacao-de-sites-belo-horizonte)
+- [Site para pequenas empresas e negócios locais](https://www.drehwork.com/site-para-negocios-locais)
+- [Loja virtual para marcas de moda](https://www.drehwork.com/loja-virtual-para-marcas-de-moda)
 
 ## Optional
 
-- [Portfólio](https://www.drehwork.com/projetos)
+- [Portfólio](https://www.drehwork.com/projetos): BH Carimbos, AMFTV, Wayne Store, NOAR Oficial e Ammis Moda (atuação recorrente)
 - [Política de Privacidade](https://www.drehwork.com/politica-de-privacidade)
 - [Termos de Uso](https://www.drehwork.com/termos-de-uso)
