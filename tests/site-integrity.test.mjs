@@ -75,3 +75,10 @@ test("legal documents identify the controller and consent gates analytics", asyn
   assert.match(consent, /CONSENT_KEY = "dreh-consent"/);
   assert.match(layout, /<CookieConsent \/>/);
 });
+
+test("analytics only loads Google after consent", async () => {
+  const bridge = await read("components/AnalyticsBridge.tsx");
+  assert.match(bridge, /analytics_storage: "denied"/);
+  assert.match(bridge, /if \(!granted \|\| document\.getElementById\("ga4-script"\)\) return;/);
+  assert.doesNotMatch(bridge, /email:|whatsapp:|responsible/);
+});
