@@ -50,7 +50,13 @@ export function DiagnosticWizard() {
     return () => clearTimeout(timer);
   }, []);
   useEffect(() => { if (ready && status === "editing") save(step, answers); }, [step, answers, ready, status]);
-  useEffect(() => { if (ready) heading.current?.focus({ preventScroll: true }); }, [step, status, ready]);
+  useEffect(() => {
+    if (!ready) return;
+    heading.current?.focus({ preventScroll: true });
+    // Keep the new step in view below the fixed header when the visitor had scrolled past its top.
+    const wizard = heading.current?.closest(".wizard");
+    if (wizard && wizard.getBoundingClientRect().top < 0) wizard.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [step, status, ready]);
 
   const current = steps[step];
   const progress = Math.round(((step + 1) / (steps.length + 1)) * 100);
@@ -104,7 +110,7 @@ export function DiagnosticWizard() {
     <div className="progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="Progresso do diagnóstico"><span style={{ width: `${progress}%` }} /></div>
     <p className="kicker">Etapa {step + 1} de {steps.length}</p>
     <h2 ref={heading} tabIndex={-1}>{current.title}</h2>
-    <div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}>{label}{isRequired(id) ? <span aria-hidden> *</span> : null}{type === "select"
+    <div className="form-grid">{current.fields.map(([id, label, type]) => <label key={id}><span className="field-label">{label}{isRequired(id) ? <span className="field-required" aria-hidden> *</span> : null}</span>{type === "select"
       ? <select value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} required={isRequired(id)}><option value="">Selecione</option>{(options[id] || []).map(opt => <option key={opt}>{opt}</option>)}</select>
       : <input type={type} value={String(answers[id] || "")} onChange={e => update(id, e.target.value)} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
     {error && <p className="form-error" role="alert">{error}</p>}
