@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroActivation } from "@/components/IntroActivation";
 import { HomeMotion } from "@/components/HomeMotion";
+import { CookieConsent } from "@/components/CookieConsent";
 import { brand } from "@/content/site";
 import { JsonLd, organizationSchema, pageMetadata } from "@/lib/seo";
 
@@ -21,5 +22,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><JsonLd data={organizationSchema()} /></body></html>;
+  return <html lang="pt-BR"><body suppressHydrationWarning><IntroActivation /><HomeMotion /><Header /><main id="conteudo">{children}</main><Footer /><CookieConsent /><JsonLd data={organizationSchema()} /></body></html>;
 }

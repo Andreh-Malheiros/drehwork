@@ -36,7 +36,7 @@ test("includes required discovery and accessibility foundations", async () => {
   const [layout, css, page] = await Promise.all([read("app/layout.tsx"), read("app/globals.css"), read("app/[[...slug]]/page.tsx")]);
   assert.match(layout, /JsonLd data=\{organizationSchema\(\)\}/);
   assert.match(css, /prefers-reduced-motion:reduce/);
-  assert.match(page, /Política de Privacidade/);
+  assert.match(await read("content/legal.ts"), /Política de Privacidade/);
   assert.match(page, /Página 404|notFound/);
   await access(new URL("app/sitemap.ts", root));
   await access(new URL("app/robots.ts", root));
@@ -64,4 +64,14 @@ test("keeps SEO foundations consistent", async () => {
   assert.match(seo, /replace\(\/<\/g/);
   assert.doesNotMatch(site, /\["Insights", "\/insights"\]/);
   await access(new URL("public/llms.txt", root));
+});
+
+test("legal documents identify the controller and consent gates analytics", async () => {
+  const [legal, consent, layout] = await Promise.all([read("content/legal.ts"), read("lib/consent.ts"), read("app/layout.tsx")]);
+  assert.match(legal, /brand\.legalName/);
+  assert.match(legal, /brand\.cnpj/);
+  assert.match(legal, /art\. 18 da LGPD/);
+  assert.doesNotMatch(legal, /sujeito a revisão|não representa validação jurídica/i);
+  assert.match(consent, /CONSENT_KEY = "dreh-consent"/);
+  assert.match(layout, /<CookieConsent \/>/);
 });

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
+import { CookiePreferencesLink } from "@/components/CookiePreferencesLink";
 import { brand, navigation, whatsappUrl } from "@/content/site";
 
 export function Footer() {
@@ -14,6 +15,6 @@ export function Footer() {
       <div><p className="kicker">Navegação</p>{navigation.slice(1).map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
       <div><p className="kicker">Contato</p><a href={`mailto:${brand.email}`}>{brand.email}</a><a href={whatsappUrl("meu projeto")} target="_blank" rel="noreferrer">WhatsApp</a><a href={brand.instagramUrl} target="_blank" rel="noreferrer">{brand.instagram}</a></div>
     </div>
-    <div className="shell footer-bottom"><span>{brand.serviceArea}</span><span>{brand.hours}</span><span>© {new Date().getFullYear()} Dreh Work · {brand.legalName} · CNPJ {brand.cnpj}</span></div>
+    <div className="shell footer-bottom"><span>{brand.serviceArea} · {brand.hours}</span><nav className="footer-legal-links" aria-label="Documentos legais"><Link href="/politica-de-privacidade">Privacidade</Link><Link href="/politica-de-cookies">Cookies</Link><Link href="/termos-de-uso">Termos</Link><CookiePreferencesLink /></nav><span>© {new Date().getFullYear()} Dreh Work · {brand.legalName} · CNPJ {brand.cnpj}</span></div>
   </footer>;
 }
