@@ -5,10 +5,9 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const read = path => readFile(new URL(path, root), "utf8");
 
-test("keeps factual portfolio classification and no fake insights", async () => {
+test("keeps factual portfolio classification and no fake claims", async () => {
   const content = await read("content/site.ts");
   assert.match(content, /name: "Ammis Moda"[\s\S]*createdByDrehWork: false/);
-  assert.match(content, /export const insights: Insight\[\] = \[\]/);
   assert.doesNotMatch(content, /depoimento|% de conversão|clientes satisfeitos/i);
 });
 
@@ -65,10 +64,10 @@ test("ships brand icons, manifest and logo", async () => {
 
 test("keeps SEO foundations consistent", async () => {
   const [seo, site] = await Promise.all([read("lib/seo.tsx"), read("content/site.ts")]);
-  assert.match(seo, /insights: \{[^}]*index: false/);
   assert.match(seo, /sobre:/);
   assert.match(seo, /replace\(\/<\/g/);
-  assert.doesNotMatch(site, /\["Insights", "\/insights"\]/);
+  assert.doesNotMatch(seo, /insights: \{[^}]*index: false/);
+  assert.match(site, /\["Guias", "\/insights"\]/);
   await access(new URL("public/llms.txt", root));
 });
 

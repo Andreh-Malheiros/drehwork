@@ -62,7 +62,7 @@ export const brand = {
 
 export const navigation = [
   ["Início", "/"], ["Serviços", "/servicos"], ["Portfólio", "/projetos"], ["Processo", "/processo"],
-  ["Sobre", "/sobre"], ["Diagnóstico", "/diagnostico"], ["Contato", "/contato"],
+  ["Sobre", "/sobre"], ["Guias", "/insights"], ["Diagnóstico", "/diagnostico"], ["Contato", "/contato"],
 ] as const;
 
 export const services: Service[] = [
@@ -279,8 +279,5 @@ export const faqs = [
   ["O diagnóstico é gratuito?", "Sim. É uma análise inicial de presença digital, respondida por mensagem."],
   ["Existe contrato e nota fiscal?", "Sim. Os projetos são formalizados por contrato e a Dreh Work emite nota fiscal."],
 ] as const;
-
-export type Insight = { title: string; slug: string; summary: string; date: string; updated?: string; category: string; cover?: string; alt?: string; content: string; seo: { title: string; description: string }; status: "draft" | "published" };
-export const insights: Insight[] = [];
 
 export const whatsappUrl = (context: string) => `https://wa.me/${brand.whatsappDigits}?text=${encodeURIComponent(`Olá, Dreh Work. Gostaria de conversar sobre ${context}.`)}`;
