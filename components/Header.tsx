@@ -169,7 +169,7 @@ export function Header() {
                         >
                           <span className="mega-service-icon" aria-hidden><ServiceIcon name={visual.icon} /></span>
                           <strong>{service.title}</strong>
-                          <small>/{service.items.length} serviços</small>
+                          <small>{service.eyebrow}</small>
                         </Link>
                       );
                     })}
