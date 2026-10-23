@@ -1026,7 +1026,7 @@ em {
 }
 .not-found > span {
   font-size: 10rem;
-  color: #252833;
+  color: #5b6070;
 }
 .intro-activation {
   position: fixed;
@@ -3005,7 +3005,7 @@ body[data-scrolled] .site-header {
   --paper: #f3f3ef;
   --surface: rgba(19, 21, 27, 0.68);
   --line: rgba(255, 255, 255, 0.11);
-  --blue: #5967ff;
+  --blue: #4f5ef7;
   --blue-light: #9ba4ff;
   --blue-deep: #343ca5;
   --radius: 26px;
@@ -4377,7 +4377,7 @@ body[data-scrolled] .site-header {
     justify-content: space-between;
     padding: 0 18px;
     border-radius: 11px;
-    background: #5967ff;
+    background: #4f5ef7;
     color: #fff;
     font-weight: 700;
   }
@@ -5360,9 +5360,9 @@ html.intro-scroll-lock body {
   max-width: 760px;
   margin-left: auto;
 }
-.rolling-text-list > h3 {
+.rolling-text-list > .rolling-heading {
   margin: 0 0 28px;
-  color: #6c7078;
+  color: #5f636b;
   font: 11px var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -5415,7 +5415,7 @@ html.intro-scroll-lock body {
   position: absolute;
   top: 30px;
   right: 0;
-  color: #8b8f98;
+  color: #5f636b;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -5490,7 +5490,7 @@ html.intro-scroll-lock body {
   .home-problem .problem-grid {
     gap: 42px;
   }
-  .rolling-text-list > h3 {
+  .rolling-text-list > .rolling-heading {
     margin-bottom: 14px;
   }
   .rolling-text-item {
@@ -5556,9 +5556,9 @@ html.intro-scroll-lock body {
   max-width: none;
   margin: 0;
 }
-.rolling-text-list > h3 {
+.rolling-text-list > .rolling-heading {
   margin-bottom: 13px;
-  color: #6c7078;
+  color: #5f636b;
 }
 .rolling-text-item {
   padding: 14px 0;
@@ -5658,7 +5658,7 @@ html.intro-scroll-lock body {
 .rolling-text-list {
   min-width: 0;
 }
-.rolling-text-list > h3 {
+.rolling-text-list > .rolling-heading {
   margin-bottom: 10px;
 }
 .rolling-text-item {
@@ -6003,7 +6003,7 @@ html.intro-scroll-lock body {
 .footer-legal-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 .footer-legal-links a { color: inherit; }
 .legal-doc { max-width: 820px; }
-.legal-doc .legal-updated { opacity: .6; font-size: 14px; }
+.legal-doc .legal-updated { opacity: .78; font-size: 14px; }
 .legal-doc h2 { font-size: clamp(20px, 2.2vw, 26px); margin: 44px 0 12px; }
 .legal-doc p, .legal-doc li { line-height: 1.7; opacity: .88; }
 .legal-doc ul { padding-left: 20px; display: grid; gap: 8px; }
@@ -6098,3 +6098,8 @@ html.intro-scroll-lock body {
 .intro-activation .intro-logo, .intro-activation .intro-logo .brand-logo-type { font-size: clamp(18px, 2.4vw, 26px); font-weight: inherit; letter-spacing: 0; }
 .intro-activation .intro-logo .brand-logo-type { font-size: 1em; }
 .intro-activation .intro-logo .brand-logo-type i { position: static; width: auto; height: auto; background: none; animation: none; }
+
+/* Accessibility pass (Fase 9) */
+.project-copy h2 { font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; margin: 8px 0 12px; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.section-light :focus-visible, .formalization-section :focus-visible { outline-color: #050505; }

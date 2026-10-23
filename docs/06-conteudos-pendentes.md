@@ -41,3 +41,7 @@
 - Google Tag Manager
 - Search Console
 - Vercel Analytics
+
+## Status (out/2026)
+
+Identidade, favicon, imagem de compartilhamento, textos principais, FAQ, políticas e termos, Analytics, Vercel Analytics e envio do diagnóstico foram concluídos. Ver `docs/09-continuidade-profissionalizacao.md`. Ainda pendentes: ferramenta de agendamento, estudos de caso detalhados, screenshots mobile dos projetos e foto profissional para /sobre.

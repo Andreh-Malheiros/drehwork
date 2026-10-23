@@ -182,7 +182,7 @@ function RollingTextList() {
 
   return (
     <div className="rolling-text-list">
-      <h3>Percepção em risco</h3>
+      <p className="rolling-heading">Percepção em risco</p>
       <div>
         {items.map((item) => (
           <RollingTextItem

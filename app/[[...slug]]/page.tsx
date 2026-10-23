@@ -40,7 +40,7 @@ function ProjectMedia({ project, index, large = false }: { project: typeof proje
     <small>{project.category}</small>
   </div>;
 }
-function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) { return <article className="project-card"><ProjectMedia project={project} index={index} /><div className="project-copy"><p className="kicker">{project.category}</p><h3>{project.name}</h3><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência."}</p><Link className="text-link" href={`/projetos/${project.slug}`}>Ver projeto</Link></div></article>; }
+function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) { return <article className="project-card"><ProjectMedia project={project} index={index} /><div className="project-copy"><p className="kicker">{project.category}</p><h2>{project.name}</h2><p>{project.createdByDrehWork ? "Projeto criado e desenvolvido pela Dreh Work." : "Atuação recorrente em manutenção, personalização e evolução da experiência."}</p><Link className="text-link" href={`/projetos/${project.slug}`}>Ver projeto</Link></div></article>; }
 
 const processPhases = [
   ["Entender", processSteps.slice(0, 2)],
