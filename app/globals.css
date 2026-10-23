@@ -4156,20 +4156,6 @@ body[data-scrolled] .site-header {
   z-index: 95;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
 }
-.brand-mark span {
-  height: 35px;
-  background: #f4f4f4;
-  border-radius: 8px 8px 1px 1px;
-  clip-path: polygon(
-    50% 0,
-    100% 23%,
-    74% 23%,
-    74% 100%,
-    26% 100%,
-    26% 23%,
-    0 23%
-  );
-}
 .menu-button {
   display: none;
 }
@@ -6967,4 +6953,17 @@ html.intro-scroll-lock body {
   .reveal2-console strong{font-size:2.35rem}
   .reveal2-signal-grid{grid-template-columns:1fr 1fr;border-radius:13px}
   .reveal2-signal-grid>div{min-height:92px;padding:12px}
+}
+
+/* Brand logo (Fase 2) */
+.brand-logo { display: inline-flex; align-items: center; gap: 0.7em; color: #fff; line-height: 1; }
+.brand-logo-symbol { width: 1.9em; height: auto; flex: none; }
+.brand-logo-type { display: grid; gap: 0.32em; text-transform: uppercase; }
+.brand-logo-type b { font-weight: 500; font-size: 1em; letter-spacing: 0.42em; }
+.brand-logo-type i { font-style: normal; font-weight: 300; font-size: 0.82em; letter-spacing: 0.62em; }
+.brand-mark { letter-spacing: 0; font-weight: 500; }
+.brand-mark .brand-logo { font-size: 17px; }
+.footer-logo { font-size: 20px; margin-bottom: 18px; }
+@media (max-width: 700px) {
+  .brand-mark .brand-logo { font-size: 13px; }
 }

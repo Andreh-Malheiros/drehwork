@@ -40,6 +40,12 @@ export const brand = {
   serviceArea: "Atendimento remoto em todo o Brasil",
   hours: "Segunda a sexta, das 8h às 18h",
   lead: "Andreh Malheiros",
+  legalName: "Andreh Malheiros Tiberio",
+  cnpj: "65.415.209/0001-61",
+  slogan: "Visão que transforma. Estratégia que gera resultado.",
+  pillars: ["Planejar", "Criar", "Evoluir"],
+  logo: "/brand/icon-512.png",
+  instagramUrl: "https://instagram.com/dreh.work",
 } as const;
 
 export const navigation = [

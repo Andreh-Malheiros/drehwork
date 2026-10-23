@@ -50,3 +50,9 @@ test("uses the official www.drehwork.com domain everywhere", async () => {
   assert.match(sources[0], /url: "https:\/\/www\.drehwork\.com"/);
   assert.match(sources[0], /email: "contato@drehwork\.com"/);
 });
+
+test("ships brand icons, manifest and logo", async () => {
+  for (const file of ["app/icon.svg", "app/favicon.ico", "app/apple-icon.png", "app/manifest.ts", "public/brand/icon-512.png", "public/brand/icon-maskable-512.png", "public/og.png"]) await access(new URL(file, root));
+  const header = await read("components/Header.tsx");
+  assert.match(header, /<BrandLogo \/>/);
+});

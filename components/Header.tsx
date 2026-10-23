@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { brand, services } from "@/content/site";
@@ -110,7 +111,7 @@ export function Header() {
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <div className="nav-row">
         <Link href="/" className="brand-mark" aria-label={`${brand.name} - início`} onClick={closeAll}>
-          {brand.name}
+          <BrandLogo />
         </Link>
 
         <nav

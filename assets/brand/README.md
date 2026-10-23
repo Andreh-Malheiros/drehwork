@@ -1,11 +1,12 @@
 # Identidade visual
 
-A logo definitiva ainda não foi criada.
+Logo oficial: símbolo "D" geométrico (dois planos) + assinatura tipográfica DREH / WORK.
 
-Durante as primeiras fases, a marca deverá utilizar uma assinatura tipográfica provisória com o texto:
+- Símbolo vetorial: `assets/brand/dreh-symbol.svg` (branco, fundo transparente)
+- Ícone circular: `assets/brand/dreh-icon-circle.svg` (favicon, `app/icon.svg`)
+- Ícone quadrado: `assets/brand/dreh-icon-square.svg` (apple-icon, PWA maskable)
+- Artes originais: `assets/brand/source/`
+- Componente React: `components/BrandLogo.tsx`
 
-DREH WORK
-
-Tipografia principal: Poppins.
-
-A assinatura provisória não deverá ser tratada como logo definitiva.
+Slogan: "Visão que transforma. Estratégia que gera resultado."
+Pilares: Planejar / Criar / Evoluir. Base preto e branco; tipografia Poppins.
