@@ -1,1 +1,99 @@
-[]
+[
+  {
+    "slug": "relatorio-de-ia-no-search-console",
+    "title": "Relatório de IA no Search Console: o que ele mostra e o que fazer",
+    "seoTitle": "Relatório de IA no Search Console: o que muda",
+    "description": "O Google lançou o relatório de IA no Search Console, que mostra impressões em AI Overviews e Modo IA. Veja o que ele mede, o que não mede e como usar.",
+    "keyword": "relatório de ia no search console",
+    "category": "Notícias e tendências",
+    "date": "2026-10-26",
+    "updated": "2026-10-26",
+    "summary": "O Google passou a mostrar no Search Console quantas vezes as páginas de um site aparecem nos recursos de IA da busca. Veja o que isso muda para pequenas empresas.",
+    "intro": "O relatório de IA no Search Console é um painel novo do Google que mostra quantas vezes as páginas do seu site apareceram em recursos de inteligência artificial da busca, como a visão geral criada por IA (AI Overviews) e o Modo IA (AI Mode), além de recursos de IA no Discover. Segundo o Google, o relatório foi anunciado em 3 de junho de 2026 para parte dos sites e, desde 31 de agosto de 2026, está disponível para todos os sites do mundo. Para o dono de uma pequena empresa, a novidade responde a uma pergunta antiga: \"minha empresa aparece nessas respostas de IA?\". Mas é preciso entender bem o que o painel mede, e o que ele não mede, antes de tirar conclusões.",
+    "sections": [
+      {
+        "heading": "O que o Google anunciou",
+        "paragraphs": [
+          "O Search Console é a ferramenta gratuita do Google em que o dono de um site acompanha como a página aparece na busca. Em junho de 2026, o Google Search Central, blog oficial para donos de sites, apresentou os relatórios de desempenho de IA generativa no Search Console, com visões dedicadas para a Busca e para o Discover.",
+          "Os dados desses recursos já faziam parte do relatório geral de desempenho, que continua a registrá-los. A novidade é uma visão separada, só com a visibilidade vinda dos recursos de IA, para que seja possível enxergá-la isoladamente.",
+          "O próprio Google informou que a liberação começou em um subconjunto de sites, para testar e receber comentários, e que, em 31 de agosto de 2026, os dados foram liberados para todos os sites no mundo. Se o seu painel ainda não mostra o relatório, verifique se o site está cadastrado e confirmado no Search Console."
+        ]
+      },
+      {
+        "heading": "O que o relatório mostra",
+        "paragraphs": [
+          "Segundo o anúncio oficial, o relatório traz as seguintes informações:"
+        ],
+        "items": [
+          "Impressões: quantas vezes URLs do seu site apareceram nos recursos de IA da Busca e do Discover.",
+          "Páginas: quais endereços do site apareceram dentro desses recursos.",
+          "Países: a visibilidade separada por país.",
+          "Dispositivos: quais aparelhos as pessoas usavam ao ver o seu site (disponível para resultados da Busca).",
+          "Datas: a evolução ao longo do tempo, com granularidade por hora, dia, semana e mês."
+        ]
+      },
+      {
+        "heading": "O que o relatório não mostra",
+        "paragraphs": [
+          "O anúncio descreve o relatório como uma visão de impressões, isto é, de quantas vezes um endereço do seu site apareceu. O texto não lista cliques, taxa de cliques nem consultas entre os dados disponíveis. O Google diz que trabalha com donos de sites para entender quais dados seriam mais úteis, como a inclusão de novas métricas com o tempo.",
+          "Na prática, isso significa que o painel serve para saber se o seu site é usado como fonte e em quais páginas, mas não para medir quantos clientes vieram dali. Para isso, continue acompanhando contatos, ligações e mensagens pelos canais do próprio negócio. Evite também prometer ou esperar resultados específicos a partir de um único número do painel."
+        ]
+      },
+      {
+        "heading": "O que fazer com essa informação na sua empresa",
+        "paragraphs": [
+          "O Google publicou em maio de 2026 um guia para donos de sites sobre os recursos de IA na Busca. Ele afirma que as boas práticas de SEO continuam valendo, que não há requisitos técnicos adicionais para aparecer na visão geral criada por IA ou no Modo IA, e que não é preciso criar arquivos ou marcações especiais para isso. Para ser exibida como link de apoio, uma página precisa estar indexada e elegível para aparecer na Busca com snippet (o trecho de texto exibido no resultado). O Google ressalta que indexação e exibição não são garantidas.",
+          "Com base nesse guia, um roteiro simples para uma pequena empresa é:"
+        ],
+        "items": [
+          "Cadastre e confirme o site no Search Console, para ter acesso aos relatórios.",
+          "Garanta que as páginas importantes possam ser rastreadas e estejam indexadas.",
+          "Mantenha o conteúdo principal em texto, com respostas claras sobre o que a empresa faz, onde atua e como contratar.",
+          "Facilite a navegação com links internos entre as páginas do site.",
+          "Mantenha atualizadas as informações do Perfil da Empresa no Google, que o guia cita como parte das boas práticas.",
+          "Compare, a cada mês, as páginas que mais aparecem no relatório com as páginas que mais geram contato, e melhore as que têm visibilidade mas pouca ação."
+        ]
+      },
+      {
+        "heading": "Como interpretar sem se enganar",
+        "paragraphs": [
+          "Impressão não é visita nem venda. Uma página pode aparecer em um recurso de IA sem que a pessoa clique, e o relatório atual não informa esse desfecho. Use o painel como termômetro de visibilidade, nunca como prova de retorno.",
+          "Observe tendências, e não oscilações de um dia. Como o Google pode ajustar os recursos de IA e os relatórios com o tempo, comparar períodos mais longos tende a ser mais confiável. E lembre que o Google informa que o relatório pode ganhar novas métricas, então vale revisar a ferramenta de tempos em tempos."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O relatório de IA no Search Console é pago?",
+        "O anúncio do Google trata o relatório como parte do Search Console, que é uma ferramenta oferecida pelo Google para donos de sites. Consulte a Central de Ajuda do Search Console para confirmar as condições atuais."
+      ],
+      [
+        "Preciso fazer algo especial para aparecer nas respostas de IA do Google?",
+        "Segundo o guia do Google para donos de sites, não há requisitos técnicos adicionais além dos exigidos para aparecer na Busca, nem marcações ou arquivos especiais. As boas práticas de SEO continuam sendo a base, embora o Google ressalte que não há garantia de exibição."
+      ],
+      [
+        "O relatório mostra quantos clientes vieram pela IA?",
+        "Não. De acordo com o anúncio, o relatório mostra impressões, páginas, países, dispositivos e datas. Cliques e conversões em contatos precisam ser acompanhados pelos seus próprios canais, como formulário, WhatsApp e telefone."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Introducing Search Generative AI performance reports in Search Console (Google Search Central Blog, 3 de junho de 2026)",
+        "url": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports"
+      },
+      {
+        "title": "A new resource for optimizing for generative AI in Google Search (Google Search Central Blog, 15 de maio de 2026)",
+        "url": "https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing"
+      },
+      {
+        "title": "AI features and your website (Google Search Central)",
+        "url": "https://developers.google.com/search/docs/appearance/ai-features"
+      }
+    ],
+    "status": "published"
+  }
+]
