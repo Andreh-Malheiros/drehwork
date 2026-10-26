@@ -121,7 +121,7 @@ export function serviceSchema(service: typeof services[number]) {
 
 export function articleSchema(insight: Insight) {
   const url = `${brand.url}/insights/${insight.slug}`;
-  return { "@context": "https://schema.org", "@type": "Article", headline: insight.title, description: insight.description, url, mainEntityOfPage: url, inLanguage: "pt-BR", datePublished: insight.date, dateModified: insight.updated, articleSection: insight.category, keywords: insight.keyword, image: `${brand.url}/og.png`, author: { "@type": "Person", name: brand.legalName, url: `${brand.url}/sobre` }, publisher: { "@id": orgId } };
+  return { "@context": "https://schema.org", "@type": "Article", headline: insight.title, description: insight.description, url, mainEntityOfPage: url, inLanguage: "pt-BR", datePublished: insight.date, dateModified: insight.updated, articleSection: insight.category, keywords: insight.keyword, citation: insight.sources?.map(source => source.url), image: `${brand.url}/og.png`, author: { "@type": "Person", name: brand.legalName, url: `${brand.url}/sobre` }, publisher: { "@id": orgId } };
 }
 
 export function JsonLd({ data }: { data: object | null }) {
