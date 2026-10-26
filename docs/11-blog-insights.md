@@ -23,7 +23,7 @@ Responder às dúvidas reais de quem está decidindo sobre site, loja virtual, G
 | 7 | Linguagem para leigos: termos técnicos explicados na primeira menção. | Público principal são donos de negócio, não técnicos. |
 | 8 | Cada guia aponta para **pelo menos 2 serviços** relacionados existentes. | Liga conteúdo informacional à oferta (links internos). |
 | 9 | Título de busca (`seoTitle`) com **até 60 caracteres**; descrição entre **110 e 160 caracteres**. | Evita corte nos resultados de busca. |
-| 10 | Categoria obrigatória dentre as definidas em `content/insights/index.ts`. | Organização e navegação. |
+| 10 | Categoria obrigatória dentre as definidas em `content/insights/index.ts`. Posts de "Notícias e tendências" exigem 2+ fontes (`sources`). | Organização, navegação e verificabilidade. |
 | 11 | Data de publicação e de atualização em ISO (`AAAA-MM-DD`). Guias com informação sensível a tempo devem ser revisados a cada 6 meses. | Sinal de atualidade e controle de revisão. |
 
 As regras 1, 3, 4 (percentual), 5, 8, 9, 10 e 11 são verificadas automaticamente em `tests/insights.test.mjs`.

@@ -4,9 +4,10 @@ import iaEBuscas from "./ia-e-buscas.json";
 import ecommerce from "./ecommerce.json";
 import presencaDigital from "./presenca-digital.json";
 import gestaoEInvestimento from "./gestao-e-investimento.json";
+import noticias from "./noticias-e-tendencias.json";
 
 /** Regras editoriais e critérios de qualidade: docs/11-blog-insights.md (verificados em tests/insights.test.mjs). */
-export const insightCategories = ["Sites e conversão", "SEO e Google", "IA e buscas", "E-commerce", "Presença digital", "Gestão e investimento"] as const;
+export const insightCategories = ["Sites e conversão", "SEO e Google", "IA e buscas", "E-commerce", "Presença digital", "Gestão e investimento", "Notícias e tendências"] as const;
 
 export type InsightCategory = typeof insightCategories[number];
 export type InsightSection = { heading: string; paragraphs?: string[]; items?: string[] };
@@ -25,10 +26,12 @@ export type Insight = {
   sections: InsightSection[];
   faqs: [string, string][];
   relatedServices: string[];
+  /** Obrigatório em "Notícias e tendências": fontes primárias verificáveis. */
+  sources?: { title: string; url: string }[];
   status: "draft" | "published";
 };
 
-const all = [...sitesEConversao, ...seoEGoogle, ...iaEBuscas, ...ecommerce, ...presencaDigital, ...gestaoEInvestimento] as Insight[];
+const all = [...sitesEConversao, ...seoEGoogle, ...iaEBuscas, ...ecommerce, ...presencaDigital, ...gestaoEInvestimento, ...noticias] as Insight[];
 
 export const insights = all
   .filter(insight => insight.status === "published")

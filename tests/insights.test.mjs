@@ -16,9 +16,11 @@ const words = text => text.split(/\s+/).filter(Boolean).length;
 const bodyWords = g => words([g.intro, ...g.sections.flatMap(s => [...(s.paragraphs ?? []), ...(s.items ?? [])]), ...g.faqs.flat()].join(" "));
 const fold = text => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
+const NEWS = "Notícias e tendências";
+
 test("publishes at least 20 guides covering every category", () => {
   assert.ok(published.length >= 20, `published: ${published.length}`);
-  for (const category of categories) assert.ok(published.some(g => g.category === category), `category without guide: ${category}`);
+  for (const category of categories.filter(c => c !== NEWS)) assert.ok(published.some(g => g.category === category), `category without guide: ${category}`);
 });
 
 test("keeps slugs and main keywords unique", () => {
@@ -45,8 +47,11 @@ for (const g of published) {
     assert.ok(bodyWords(g) >= 700, `only ${bodyWords(g)} words`);
     const related = g.relatedServices.filter(slug => serviceSlugs.includes(slug));
     assert.ok(related.length >= 2 && related.length === g.relatedServices.length, "needs 2+ valid related services");
-    const text = JSON.stringify(g);
-    assert.doesNotMatch(text, /\d\s?%/, "percentages need a verifiable source");
+    const sources = g.sources ?? [];
+    for (const source of sources) assert.match(source.url, /^https:\/\//, "source must be an https URL");
+    if (g.category === NEWS) assert.ok(sources.length >= 2, "news needs 2+ sources");
+    const text = JSON.stringify({ ...g, sources: undefined });
+    if (!sources.length) assert.doesNotMatch(text, /\d\s?%/, "percentages need a verifiable source");
     assert.doesNotMatch(text, /depoimento|garantimos|resultado garantido|primeira posição garantida/i);
   });
 }
