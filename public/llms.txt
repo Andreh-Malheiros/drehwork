@@ -65,6 +65,7 @@
 - [Domínio e hospedagem: o que são e por que devem estar no seu nome](https://www.drehwork.com/insights/dominio-e-hospedagem-o-que-sao): O básico que todo dono de site precisa saber para não perder o endereço da própria empresa na internet.
 - [LGPD no site da empresa: o que você precisa ter](https://www.drehwork.com/insights/lgpd-no-site-da-empresa): Os cuidados práticos com dados pessoais em sites, formulários e ferramentas de análise.
 - [Como reformular o site sem perder a posição no Google](https://www.drehwork.com/insights/reformular-site-sem-perder-posicao-no-google): O roteiro de migração que preserva visitas e contatos conquistados ao longo dos anos.
+- [Black Friday para loja virtual: checklist para se preparar em 2026](https://www.drehwork.com/insights/black-friday-para-loja-virtual): O que revisar na loja virtual antes de 27 de novembro: estoque, margem, checkout, frete, atendimento e e-mail.
 
 ## Optional
 
