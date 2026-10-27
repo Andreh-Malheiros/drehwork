@@ -1,5 +1,95 @@
 [
   {
+    "slug": "cobranca-api-whatsapp-business-2026",
+    "title": "Cobrança da API do WhatsApp Business em 2026: o que muda para sua empresa",
+    "seoTitle": "Cobrança da API do WhatsApp Business: o que muda",
+    "description": "Desde 1º de outubro de 2026 a Meta cobra respostas de serviço acima de 1.000 por mês na API do WhatsApp Business. Veja quem é afetado e o que fazer.",
+    "keyword": "cobrança da api do whatsapp business",
+    "category": "Notícias e tendências",
+    "date": "2026-10-27",
+    "updated": "2026-10-27",
+    "summary": "A Meta passou a cobrar parte das mensagens enviadas pela API oficial do WhatsApp Business. O aplicativo gratuito não é afetado. Entenda quem paga e como se preparar.",
+    "intro": "A cobrança da API do WhatsApp Business mudou em 1º de outubro de 2026: segundo a documentação da Meta, cada número de empresa continua com 1.000 mensagens de serviço gratuitas por mês, e o que passar disso passa a ser cobrado. Isso vale para quem usa a API oficial, a conexão do WhatsApp com sistemas, chatbots e plataformas de atendimento. Quem usa apenas o aplicativo gratuito WhatsApp Business no celular não é afetado, segundo a imprensa que acompanhou a mudança. Neste guia explicamos, com base nas fontes citadas ao final, o que mudou, quem deve se preocupar e o que uma pequena empresa pode fazer agora.",
+    "sections": [
+      {
+        "heading": "O que mudou em 1º de outubro de 2026",
+        "paragraphs": [
+          "A API (interface que conecta o WhatsApp a outros sistemas) é a versão do WhatsApp Business usada por empresas que integram o canal a um CRM, a um chatbot ou a uma ferramenta de atendimento com vários atendentes. Ela é diferente do aplicativo WhatsApp Business que se instala no celular.",
+          "Segundo a documentação de preços da Meta, as mensagens de serviço, que são as respostas dentro da janela de atendimento aberta pelo cliente, eram gratuitas desde 1º de novembro de 2024. Com a atualização, cada número de telefone comercial recebe 1.000 mensagens de serviço gratuitas por mês, sem acúmulo para o mês seguinte. O que exceder essa franquia passa a ser cobrado.",
+          "A Meta também informa que os modelos de mensagem de utilidade enviados em resposta ao cliente, que eram gratuitos dentro de uma janela de atendimento aberta desde 1º de julho de 2025, agora são cobrados conforme a tabela de preços de utilidade."
+        ]
+      },
+      {
+        "heading": "Quanto custa, segundo a imprensa",
+        "paragraphs": [
+          "A Meta não altera os preços do Brasil nessa atualização, segundo a documentação oficial. A Forbes Brasil informa que o valor de cada mensagem de serviço é de US$ 0,0068, ou R$ 0,035 para contas faturadas em reais, o mesmo valor já praticado para mensagens de utilidade e autenticação. O jornal O Tempo cita uma estimativa de cerca de R$ 0,04 por mensagem com impostos.",
+          "As fontes variam em alguns detalhes, e a tabela oficial da Meta é a referência final. Por isso, não use os valores deste guia para fazer contas fechadas: confira a página de preços da Meta e a fatura da plataforma que você contrata."
+        ]
+      },
+      {
+        "heading": "Quem é afetado e quem não é",
+        "paragraphs": [
+          "Não são afetados os usuários do WhatsApp comum nem do aplicativo gratuito WhatsApp Business, segundo a Forbes Brasil e O Tempo. A mudança atinge as empresas que usam a API oficial, diretamente ou por meio de uma plataforma de atendimento.",
+          "Em O Tempo, um representante da CDL/BH avalia que o maior impacto será para médias e grandes operações, e que poucas pequenas empresas devem ser afetadas. Um executivo de uma empresa de tecnologia ouvido pela mesma reportagem diz que pequenas empresas com vários vendedores na API também podem sentir o efeito. Ou seja: depende do volume de conversas de cada número.",
+          "A documentação da Meta cita ainda que governos e organizações sem fins lucrativos elegíveis continuam isentos além da franquia até 31 de dezembro de 2027."
+        ]
+      },
+      {
+        "heading": "Como uma pequena empresa pode se preparar",
+        "paragraphs": [
+          "Nada aqui exige pânico. Os passos abaixo são boas práticas de organização, e não garantias de economia:"
+        ],
+        "items": [
+          "Descubra se você usa a API: se o seu atendimento roda por uma plataforma com vários atendentes ou chatbot, pergunte ao fornecedor qual conexão é usada.",
+          "Veja o volume real: peça o relatório de conversas por número e compare com a franquia de 1.000 mensagens de serviço por mês.",
+          "Revise fluxos: mensagens repetidas ou desnecessárias passam a ter custo, e a imprensa cita a revisão de fluxos como medida comum.",
+          "Confira a forma de pagamento: a Meta orienta ter um meio de pagamento cadastrado na conta de mensagens, ou as mensagens que passarem da franquia deixam de ser entregues.",
+          "Não dependa de um só canal: site com formulário e botão de WhatsApp, Instagram e Google Perfil da Empresa mantêm os contatos chegando mesmo se um canal mudar de regra."
+        ]
+      },
+      {
+        "heading": "O que isso diz sobre a presença digital",
+        "paragraphs": [
+          "Regras de plataformas mudam, e o WhatsApp é um canal alugado: a empresa não controla preço nem política. O site próprio continua sendo o endereço que o negócio controla, com informações, formulário de contato e um botão que leva ao WhatsApp para quem prefere conversar.",
+          "Para quem atende bem pelo aplicativo gratuito, o guia sobre WhatsApp Business para empresas explica a configuração. Para quem está crescendo e pensa em automação, vale planejar o atendimento antes de contratar ferramentas, justamente para não pagar por mensagens que não ajudam o cliente."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O aplicativo WhatsApp Business gratuito passou a ser cobrado?",
+        "Não. Segundo a Forbes Brasil e O Tempo, o WhatsApp comum e o aplicativo gratuito WhatsApp Business continuam sem cobrança. A mudança é na API oficial."
+      ],
+      [
+        "Qual é a franquia gratuita?",
+        "A documentação da Meta informa 1.000 mensagens de serviço gratuitas por mês para cada número de telefone comercial, sem acúmulo para o mês seguinte."
+      ],
+      [
+        "Como saber se minha empresa usa a API?",
+        "Se o atendimento é feito por uma plataforma com chatbot, vários atendentes ou integração com sistema, provavelmente usa a API. Pergunte ao fornecedor e peça o relatório de mensagens."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Updates to pricing (Meta for Developers, documentação do WhatsApp Business Platform)",
+        "url": "https://developers.facebook.com/docs/whatsapp/pricing/updates-to-pricing/"
+      },
+      {
+        "title": "Entenda o que muda para as empresas com a cobrança no WhatsApp Business (Forbes Brasil, outubro de 2026)",
+        "url": "https://forbes.com.br/forbes-tech/2026/10/entenda-o-que-muda-para-as-empresas-com-a-cobranca-no-whatsapp-business/"
+      },
+      {
+        "title": "WhatsApp Business muda cobrança de empreendedores por mensagens (O Tempo, 1º de outubro de 2026)",
+        "url": "https://www.otempo.com.br/economia/2026/10/1/whatsapp-business-muda-cobranca-de-empreendedores-por-mensagens-entenda-quem-sera-afetado"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "relatorio-de-ia-no-search-console",
     "title": "Relatório de IA no Search Console: o que ele mostra e o que fazer",
     "seoTitle": "Relatório de IA no Search Console: o que muda",
