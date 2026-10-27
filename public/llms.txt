@@ -67,6 +67,7 @@
 - [Como reformular o site sem perder a posição no Google](https://www.drehwork.com/insights/reformular-site-sem-perder-posicao-no-google): O roteiro de migração que preserva visitas e contatos conquistados ao longo dos anos.
 - [Black Friday para loja virtual: checklist para se preparar em 2026](https://www.drehwork.com/insights/black-friday-para-loja-virtual): O que revisar na loja virtual antes de 27 de novembro: estoque, margem, checkout, frete, atendimento e e-mail.
 - [Relatório de IA no Search Console: o que ele mostra e o que fazer](https://www.drehwork.com/insights/relatorio-de-ia-no-search-console): O novo relatório do Google com impressões em AI Overviews e Modo IA, o que ele não mede e como usar na sua empresa.
+- [Cobrança da API do WhatsApp Business em 2026: o que muda para sua empresa](https://www.drehwork.com/insights/cobranca-api-whatsapp-business-2026): Desde 1º de outubro de 2026 a Meta cobra respostas de serviço acima da franquia na API; o app gratuito não é afetado.
 
 ## Optional
 
