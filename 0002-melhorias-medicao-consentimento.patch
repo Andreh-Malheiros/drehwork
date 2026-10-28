@@ -1,0 +1,1383 @@
+From c7f4198e3e2b5d7d9be99c9ad5e2354f401b01f6 Mon Sep 17 00:00:00 2001
+From: Andreh Malheiros <andrehmalheirostiberio@gmail.com>
+Date: Wed, 28 Oct 2026 20:32:54 +0000
+Subject: [PATCH] =?UTF-8?q?feat:=20consentimento=20do=20Google,=20medi?=
+ =?UTF-8?q?=C3=A7=C3=A3o=20por=20p=C3=A1gina=20e=20p=C3=A1ginas=20antigas?=
+ =?UTF-8?q?=20revisadas?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Modo de consentimento do Google: Ads e Analytics só gravam cookies após o aceite;
+  banner e políticas de cookies e privacidade descrevem o que é usado de fato.
+- Clique no WhatsApp: mantém a conversão do Ads e registra página, tipo e local do link
+  (GA4, se configurado, e Vercel Analytics); a mensagem leva a página de origem.
+- Formulário: envia página atual, página de entrada e origem da visita.
+- Topo: "Aberto agora / Fechado" conforme o horário da loja; menu ganha "Carimbos".
+- Selo do rodapé: troca a imagem externa por selo próprio de conexão segura.
+- Páginas comerciais: primeiro passo e observação de prazo próprios de cada página;
+  breadcrumb dos dados estruturados igual ao visual (/carimbos-bh/).
+- vercel.json: redireciona endereços sem barra no fim (exceto /api, arquivos e /_vercel).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012JuhhodzKu3JEYniBZJudL
+---
+ src/components/forms/ContactForm.astro |   8 +-
+ src/components/layout/Footer.astro     |  67 +++++---
+ src/components/layout/Header.astro     |  67 +++++++-
+ src/components/ui/CookieConsent.astro  |  37 +++--
+ src/data/commercialPages.ts            | 204 +++++++++++++++++++------
+ src/data/consent.ts                    |   3 +
+ src/data/legalPages.ts                 |  49 +++---
+ src/data/navigation.ts                 |   1 +
+ src/data/routes.ts                     |  29 ++--
+ src/data/site.ts                       |   9 ++
+ src/layouts/BaseLayout.astro           |  83 +++++-----
+ src/lib/tracking.ts                    | 158 +++++++++++++++++++
+ src/styles/global.css                  |  42 +++++
+ vercel.json                            |  10 ++
+ 14 files changed, 617 insertions(+), 150 deletions(-)
+ create mode 100644 src/data/consent.ts
+ create mode 100644 src/lib/tracking.ts
+ create mode 100644 vercel.json
+
+diff --git a/src/components/forms/ContactForm.astro b/src/components/forms/ContactForm.astro
+index c7d29e8..d811eeb 100644
+--- a/src/components/forms/ContactForm.astro
++++ b/src/components/forms/ContactForm.astro
+@@ -54,6 +54,7 @@ import { regionOptions, stampTypeOptions } from "@lib/contactValidation";
+ 
+ <script>
+   import { submitContactForm, type ContactFormPayload } from "@lib/form";
++  import { describeVisitOrigin } from "@lib/tracking";
+ 
+   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+   const status = document.querySelector<HTMLElement>("[data-form-status]");
+@@ -64,7 +65,7 @@ import { regionOptions, stampTypeOptions } from "@lib/contactValidation";
+   let lastSubmissionKey = "";
+ 
+   if (pageUrlInput) {
+-    pageUrlInput.value = window.location.href;
++    pageUrlInput.value = describeVisitOrigin();
+   }
+ 
+   function formatWhatsapp(value: string): string {
+@@ -116,7 +117,7 @@ import { regionOptions, stampTypeOptions } from "@lib/contactValidation";
+       region: String(formData.get("region") ?? ""),
+       consent: formData.get("consent") === "on",
+       website: String(formData.get("website") ?? ""),
+-      pageUrl: String(formData.get("pageUrl") ?? window.location.href)
++      pageUrl: String(formData.get("pageUrl") || describeVisitOrigin())
+     };
+ 
+     const submissionKey = JSON.stringify({
+@@ -147,8 +148,9 @@ import { regionOptions, stampTypeOptions } from "@lib/contactValidation";
+     if (result.ok) {
+       form.reset();
+       if (pageUrlInput) {
+-        pageUrlInput.value = window.location.href;
++        pageUrlInput.value = describeVisitOrigin();
+       }
++      document.dispatchEvent(new CustomEvent("bh:lead"));
+     }
+   });
+ </script>
+diff --git a/src/components/layout/Footer.astro b/src/components/layout/Footer.astro
+index 848cca8..187c66e 100644
+--- a/src/components/layout/Footer.astro
++++ b/src/components/layout/Footer.astro
+@@ -53,19 +53,21 @@ const developerWhatsAppUrl = `https://wa.me/${developerWhatsAppNumber}?text=${de
+ 
+       <a
+         class="site-footer__security-seal"
+-        href="https://postimg.cc/NLvdhyNg"
++        href="https://transparencyreport.google.com/safe-browsing/search?url=bhcarimbos.com.br&hl=pt_BR"
+         target="_blank"
+         rel="noopener noreferrer"
+-        aria-label="Site seguro"
++        aria-label="Conexão segura (HTTPS). Consultar o site no relatório de Navegação Segura do Google"
+       >
+-        <img
+-          src="https://i.postimg.cc/NLvdhyNg/site-seguro-google-1.png"
+-          alt="Site seguro"
+-          width="180"
+-          height="56"
+-          loading="lazy"
+-          decoding="async"
+-        />
++        <svg class="site-footer__security-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
++          <path
++            fill="currentColor"
++            d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 1 1 6 0v3H9Zm3 3.5a1.75 1.75 0 0 1 1 3.19V19h-2v-2.31a1.75 1.75 0 0 1 1-3.19Z"
++          />
++        </svg>
++        <span class="site-footer__security-text">
++          <strong>Conexão segura</strong>
++          <small>HTTPS · consultar no Google</small>
++        </span>
+       </a>
+     </section>
+ 
+@@ -232,18 +234,47 @@ const developerWhatsAppUrl = `https://wa.me/${developerWhatsAppNumber}?text=${de
+ 
+   .site-footer__security-seal {
+     display: inline-flex;
+-    width: min(100%, 11.25rem);
++    width: max-content;
++    max-width: 100%;
+     align-items: center;
+-    justify-content: flex-start;
++    gap: 0.65rem;
++    border: 1px solid rgb(255 255 255 / 22%);
++    border-radius: var(--radius-sm);
++    padding: 0.55rem 0.85rem;
++    color: var(--color-white);
+     text-decoration: none;
++    background: rgb(255 255 255 / 5%);
++    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+   }
+ 
+-  .site-footer__security-seal img {
+-    display: block;
+-    width: 100%;
+-    height: auto;
+-    max-width: 100%;
+-    object-fit: contain;
++  .site-footer__security-seal:hover {
++    border-color: rgb(74 222 128 / 70%);
++    background: rgb(255 255 255 / 9%);
++  }
++
++  .site-footer__security-seal:focus-visible {
++    outline: var(--focus-ring);
++    outline-offset: var(--focus-offset);
++  }
++
++  .site-footer__security-icon {
++    flex: none;
++    color: #4ade80;
++  }
++
++  .site-footer__security-text {
++    display: grid;
++    gap: 0.1rem;
++    line-height: 1.15;
++  }
++
++  .site-footer__security-text strong {
++    font-size: 0.86rem;
++  }
++
++  .site-footer__security-text small {
++    color: rgb(255 255 255 / 70%);
++    font-size: 0.72rem;
+   }
+ 
+   .site-footer__section {
+diff --git a/src/components/layout/Header.astro b/src/components/layout/Header.astro
+index 9498d82..c7a31a1 100644
+--- a/src/components/layout/Header.astro
++++ b/src/components/layout/Header.astro
+@@ -1,5 +1,5 @@
+ ---
+-import { brandAssets } from "@data/site";
++import { brandAssets, businessInfo } from "@data/site";
+ import { mainNavigation } from "@data/navigation";
+ import { getWhatsAppUrl } from "@lib/whatsapp";
+ import ButtonLink from "@components/ui/ButtonLink.astro";
+@@ -12,8 +12,14 @@ const whatsappUrl = getWhatsAppUrl("general");
+ <header class="site-header">
+   <div class="site-header__bar" aria-label="Informações rápidas">
+     <div class="container site-header__bar-inner">
+-      <span class="site-header__bar-location">Atendimento em Belo Horizonte e região</span>
+-      <a class="site-header__bar-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
++      <span class="site-header__bar-status">
++        <span class="site-header__status" data-open-status hidden>
++          <span class="site-header__status-dot" aria-hidden="true"></span>
++          <span data-open-status-text></span>
++        </span>
++        <span class="site-header__bar-location">Atendimento em Belo Horizonte e região</span>
++      </span>
++      <a class="site-header__bar-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-open-status-link>
+         Pedido rápido pelo WhatsApp
+       </a>
+     </div>
+@@ -95,4 +101,57 @@ const whatsappUrl = getWhatsAppUrl("general");
+       </div>
+     </div>
+   </div>
+-</header>
+\ No newline at end of file
++</header>
++<script define:vars={{ schedule: businessInfo.openingSchedule }} is:inline>
++  (function () {
++    const status = document.querySelector("[data-open-status]");
++    const text = document.querySelector("[data-open-status-text]");
++    const link = document.querySelector("[data-open-status-link]");
++    if (!status || !text) return;
++
++    const dayNames = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
++
++    function nowInBh() {
++      const parts = new Intl.DateTimeFormat("en-US", {
++        timeZone: "America/Sao_Paulo",
++        weekday: "short",
++        hour: "numeric",
++        minute: "numeric",
++        hourCycle: "h23"
++      }).formatToParts(new Date());
++      const get = (type) => parts.find((part) => part.type === type)?.value ?? "";
++      const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
++      return { day, minutes: Number(get("hour")) * 60 + Number(get("minute")) };
++    }
++
++    function nextOpening(day, minutes) {
++      for (let offset = 0; offset < 8; offset += 1) {
++        const candidate = (day + offset) % 7;
++        const hours = schedule[candidate];
++        if (!hours) continue;
++        if (offset === 0 && minutes >= hours[0] * 60) continue;
++        const label = offset === 0 ? "hoje" : offset === 1 ? "amanhã" : dayNames[candidate];
++        return `${label} às ${String(hours[0]).padStart(2, "0")}h`;
++      }
++      return "";
++    }
++
++    function render() {
++      const { day, minutes } = nowInBh();
++      const hours = schedule[day];
++      const isOpen = Boolean(hours) && minutes >= hours[0] * 60 && minutes < hours[1] * 60;
++
++      status.dataset.state = isOpen ? "open" : "closed";
++      text.textContent = isOpen
++        ? `Aberto agora · até ${String(hours[1]).padStart(2, "0")}h`
++        : `Fechado agora · abre ${nextOpening(day, minutes)}`;
++      if (link) {
++        link.textContent = isOpen ? "Pedido rápido pelo WhatsApp" : "Deixe sua mensagem no WhatsApp";
++      }
++      status.hidden = false;
++    }
++
++    render();
++    setInterval(render, 60000);
++  })();
++</script>
+diff --git a/src/components/ui/CookieConsent.astro b/src/components/ui/CookieConsent.astro
+index e58c04e..af798eb 100644
+--- a/src/components/ui/CookieConsent.astro
++++ b/src/components/ui/CookieConsent.astro
+@@ -3,8 +3,8 @@
+     <div>
+       <strong>Preferências de cookies</strong>
+       <p>
+-        Usamos cookies necessários para funcionamento do site e para lembrar sua escolha. Cookies
+-        opcionais só serão usados se ferramentas correspondentes forem implementadas e autorizadas.
++        Usamos cookies necessários para o site funcionar e lembrar sua escolha. Com sua autorização,
++        também usamos cookies do Google para medir visitas e os resultados dos nossos anúncios.
+       </p>
+       <a href="/cookies/">Ver Política de Cookies</a>
+     </div>
+@@ -34,8 +34,8 @@
+       </div>
+ 
+       <p class="cookie-consent__intro">
+-        Cookies necessários permanecem ativos. As demais categorias são opcionais e poderão ser usadas
+-        apenas se ferramentas correspondentes forem implementadas.
++        Cookies necessários permanecem ativos. As demais categorias são opcionais e só funcionam se você
++        autorizar. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies" no rodapé.
+       </p>
+ 
+       <div class="cookie-consent__options">
+@@ -50,7 +50,7 @@
+         <label class="cookie-option">
+           <span>
+             <strong>Preferências</strong>
+-            <em>Podem lembrar escolhas do visitante, quando aplicável.</em>
++            <em>Hoje o site não usa cookies desta categoria.</em>
+           </span>
+           <input type="checkbox" data-cookie-toggle="preferences" />
+         </label>
+@@ -58,7 +58,7 @@
+         <label class="cookie-option">
+           <span>
+             <strong>Estatística/medição</strong>
+-            <em>No momento, esta categoria só será usada se ferramentas correspondentes forem implementadas.</em>
++            <em>Google Analytics: conta visitas e páginas vistas, sem identificar você pelo nome.</em>
+           </span>
+           <input type="checkbox" data-cookie-toggle="analytics" />
+         </label>
+@@ -66,7 +66,7 @@
+         <label class="cookie-option">
+           <span>
+             <strong>Marketing</strong>
+-            <em>No momento, esta categoria só será usada se campanhas ou ferramentas específicas forem implementadas.</em>
++            <em>Google Ads: mede se quem chegou por um anúncio pediu orçamento pelo WhatsApp.</em>
+           </span>
+           <input type="checkbox" data-cookie-toggle="marketing" />
+         </label>
+@@ -82,6 +82,8 @@
+ </div>
+ 
+ <script>
++  import { consentStorageKey as storageKey, consentVersion as policyVersion } from "@data/consent";
++
+   type CookieConsentValue = {
+     necessary: true;
+     preferences: boolean;
+@@ -91,8 +93,6 @@
+     version: string;
+   };
+ 
+-  const storageKey = "bhcarimbos_cookie_consent";
+-  const policyVersion = "2026-07";
+   const maxAge = 60 * 60 * 24 * 180;
+ 
+   const root = document.querySelector<HTMLElement>("[data-cookie-consent]");
+@@ -133,11 +133,28 @@
+       version: policyVersion
+     };
+ 
+-    localStorage.setItem(storageKey, JSON.stringify(consent));
++    try {
++      localStorage.setItem(storageKey, JSON.stringify(consent));
++    } catch {
++      // Sem localStorage: a escolha fica só no cookie.
++    }
+     setCookie(consent);
++    updateGoogleConsent(consent);
+     hideAll();
+   }
+ 
++  function updateGoogleConsent(consent: CookieConsentValue) {
++    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
++    if (typeof gtag !== "function") return;
++    const marketing = consent.marketing ? "granted" : "denied";
++    gtag("consent", "update", {
++      ad_storage: marketing,
++      ad_user_data: marketing,
++      ad_personalization: marketing,
++      analytics_storage: consent.analytics ? "granted" : "denied"
++    });
++  }
++
+   function setToggles(value: Partial<CookieConsentValue>) {
+     toggles.forEach((toggle) => {
+       const key = toggle.dataset.cookieToggle as "preferences" | "analytics" | "marketing";
+diff --git a/src/data/commercialPages.ts b/src/data/commercialPages.ts
+index 49bbd67..56aceec 100644
+--- a/src/data/commercialPages.ts
++++ b/src/data/commercialPages.ts
+@@ -107,6 +107,16 @@ const bhServiceArea =
+ const locationServiceArea =
+   "A loja física fica em Venda Nova, no bairro Maria Helena. Para outras regiões de Belo Horizonte, o pedido pode ser feito pelo WhatsApp com consulta de entrega por motoboy.";
+ 
++/** Troca o primeiro passo do processo pelo que é específico de cada tipo de carimbo. */
++function withFirstStep(firstStep: string): string[] {
++  return [firstStep, ...defaultProcess.slice(1)];
++}
++
++/** Acrescenta ao prazo padrão uma observação própria da página. */
++function withDeliveryNote(note: string): string {
++  return `${defaultDelivery} ${note}`;
++}
++
+ export const commercialHubPage = {
+   path: "/carimbos-bh/",
+   eyebrow: "Central de carimbos em BH",
+@@ -457,8 +467,12 @@ export const commercialPages = [
+       "Logotipo enviado pelo cliente",
+       "Telefone, e-mail, setor ou informação de atendimento"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Conte no WhatsApp para que vai usar o carimbo e mande o texto que precisa aparecer. Se ainda não sabe o modelo, o atendimento indica."
++    ),
++    delivery: withDeliveryNote(
++      "Se o pedido tiver mais de um carimbo, mande todos de uma vez para combinar arte e prazo juntos."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Ver todos os tipos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -525,8 +539,12 @@ export const commercialPages = [
+       "Logotipo em arquivo digital, se houver",
+       "Endereço, telefone, e-mail ou mensagem curta"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o texto e, se houver, o logotipo em arquivo digital (PNG, PDF ou vetor)."
++    ),
++    delivery: withDeliveryNote(
++      "Logotipos com detalhes muito finos podem precisar de ajuste para ficarem legíveis no tamanho do carimbo, e isso aparece na arte antes da produção."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Conhecer outras opções de carimbos em BH", href: "/carimbos-bh/" },
+@@ -592,8 +610,12 @@ export const commercialPages = [
+       "Endereço, telefone ou e-mail, quando necessário",
+       "Setor, departamento ou texto auxiliar"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie razão social ou nome fantasia e o número do CNPJ exatamente como devem sair, conferindo os dígitos antes de mandar."
++    ),
++    delivery: withDeliveryNote(
++      "Um dígito errado no CNPJ obriga a refazer o carimbo, por isso a conferência da arte é a etapa mais importante deste pedido."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -669,7 +691,9 @@ export const commercialPages = [
+       "Aguarde a confirmação de modelo, prazo possível e arte.",
+       "Após aprovação, combine retirada em Venda Nova ou consulte entrega."
+     ],
+-    delivery: defaultDelivery,
++    delivery: withDeliveryNote(
++      "Para tentar a produção no mesmo dia, mande o texto já revisado e confirme a disponibilidade antes de ir à loja."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Modelos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -737,8 +761,12 @@ export const commercialPages = [
+       "Logotipo, se a arte permitir boa leitura",
+       "Texto curto para protocolos, conferências ou atendimento"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o texto e diga quantas linhas ele tem. Isso ajuda a indicar o tamanho certo do carimbo automático."
++    ),
++    delivery: withDeliveryNote(
++      "No automático, o tamanho da área de gravação depende do modelo, e textos longos podem pedir um modelo maior."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Ver todos os tipos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -806,8 +834,12 @@ export const commercialPages = [
+       "Dados profissionais enviados pelo solicitante",
+       "Contato ou informação complementar, se couber no layout"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie nome, CRM e especialidade exatamente como devem aparecer, conforme o seu registro."
++    ),
++    delivery: withDeliveryNote(
++      "Confira na arte cada número e sigla do registro: depois de gravado, um erro só se resolve refazendo o carimbo."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Conhecer opções de carimbos profissionais", href: "/carimbos-bh/" },
+@@ -876,8 +908,12 @@ export const commercialPages = [
+       "Departamento, setor ou função do carimbo",
+       "Texto de protocolo, recebido, pago ou conferido"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Diga quais setores vão usar carimbo e envie razão social, CNPJ e o texto de cada um."
++    ),
++    delivery: withDeliveryNote(
++      "Quando a empresa pede vários carimbos, dá para manter o mesmo padrão visual em todos."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -943,8 +979,12 @@ export const commercialPages = [
+       "Logotipo simples, se houver boa leitura",
+       "Tamanho desejado ou referência de uso"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o texto ou desenho e o tamanho aproximado que você quer no carimbo de madeira."
++    ),
++    delivery: withDeliveryNote(
++      "O carimbo de madeira usa almofada separada. Se ainda não tem uma, avise no pedido."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Modelos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1011,8 +1051,12 @@ export const commercialPages = [
+       "Logotipo, quando houver",
+       "Modelo desejado ou finalidade de uso"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Mande o texto pelo WhatsApp antes de passar na loja da Rua Tenente Marino Freire, 679, para adiantar a arte."
++    ),
++    delivery: withDeliveryNote(
++      "Para quem está em Venda Nova, retirar na loja evita depender da rota de entrega."
++    ),
+     serviceArea:
+       "A loja fica na Rua Tenente Marino Freire, 679, Bairro Maria Helena, região de Venda Nova, Belo Horizonte/MG. A retirada deve ser combinada pelo atendimento.",
+     relatedLinks: [
+@@ -1082,8 +1126,12 @@ export const commercialPages = [
+       "Escritório, telefone, e-mail ou endereço, quando necessário",
+       "Texto de identificação, protocolo ou atendimento jurídico"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o nome profissional e, se quiser incluir, o número da OAB com a seccional."
++    ),
++    delivery: withDeliveryNote(
++      "Nome e número de registro são conferidos com você na arte antes de aprovar."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Conhecer outras opções de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1156,8 +1204,12 @@ export const commercialPages = [
+       "Consultório, clínica ou contato, quando necessário",
+       "Informações complementares que caibam com boa leitura"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o nome profissional e o número do CRP como devem aparecer no carimbo."
++    ),
++    delivery: withDeliveryNote(
++      "O número de registro é conferido com você na arte antes da produção."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Ver carimbos profissionais em BH", href: "/carimbos-bh/" },
+@@ -1225,8 +1277,12 @@ export const commercialPages = [
+       "Nome da clínica ou consultório, se desejado",
+       "Contato, endereço ou informação complementar"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o nome profissional e o número do CRN, com a região do conselho, como devem aparecer."
++    ),
++    delivery: withDeliveryNote(
++      "Se quiser o nome da clínica ou do consultório junto, mande também para conferir se cabe com boa leitura."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1293,8 +1349,12 @@ export const commercialPages = [
+       "Função, setor ou unidade, quando desejado",
+       "Contato ou identificação complementar"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie nome, categoria profissional e número do Coren como devem aparecer no carimbo."
++    ),
++    delivery: withDeliveryNote(
++      "Para equipes, mande os dados de cada profissional em lista, na mesma conversa, para conferir tudo de uma vez."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Conhecer carimbos profissionais em BH", href: "/carimbos-bh/" },
+@@ -1361,8 +1421,12 @@ export const commercialPages = [
+       "Setor, empresa ou texto de apoio",
+       "Tamanho e finalidade de uso para orientar o modelo"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Assine em papel branco com caneta preta, fotografe ou escaneie de perto e envie a imagem."
++    ),
++    delivery: withDeliveryNote(
++      "Quanto mais nítida a imagem da assinatura, mais fiel fica a gravação. Se a foto não servir, o atendimento avisa antes de produzir."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Modelos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1429,8 +1493,12 @@ export const commercialPages = [
+       "Formato de uso desejado",
+       "Informações adicionais que caibam no layout"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Diga o texto que vai junto da data (recebido, pago, protocolado) e com que frequência o carimbo vai ser usado."
++    ),
++    delivery: withDeliveryNote(
++      "No datador, a data é ajustada no próprio carimbo. O que vai na arte é o texto fixo."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Ver opções administrativas de carimbos", href: "/carimbos-bh/" },
+@@ -1497,8 +1565,12 @@ export const commercialPages = [
+       "Setor, empresa ou identificação interna",
+       "Frequência de uso para orientar o modelo"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Conte para que serve a numeração e quantos dígitos ela precisa ter."
++    ),
++    delivery: withDeliveryNote(
++      "A quantidade de dígitos e o texto fixo definem o modelo do numerador."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1565,8 +1637,12 @@ export const commercialPages = [
+       "Dados profissionais informados pelo cliente",
+       "Textos de atendimento, recebido, conferido ou identificação"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Liste os carimbos da clínica: recepção, setores e os de cada profissional, com os dados de registro de cada um."
++    ),
++    delivery: withDeliveryNote(
++      "Mande os dados de cada profissional por escrito, para que tudo seja conferido na arte antes da produção."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Conhecer outras opções de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1636,8 +1712,12 @@ export const commercialPages = [
+       "Texto de protocolo, recebido, pago ou conferido",
+       "Setor, departamento ou identificação interna"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Diga quais textos de controle o escritório usa (recebido, pago, conferido) e os dados que vão em cada carimbo."
++    ),
++    delivery: withDeliveryNote(
++      "Se a rotina pede a data junto, o carimbo datador evita escrever à mão em cada documento."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Modelos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1712,7 +1792,9 @@ export const commercialPages = [
+       "Aguarde confirmação real de prazo, fila e disponibilidade.",
+       "Aprove a arte rapidamente para liberar a produção."
+     ],
+-    delivery: defaultDelivery,
++    delivery: withDeliveryNote(
++      "Em pedido urgente, o prazo só é confirmado depois que o atendimento verifica a produção do dia."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Ver todos os tipos de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1781,8 +1863,12 @@ export const commercialPages = [
+       "Endereço ou contato, se for entrar no carimbo",
+       "Informação sobre retirada ou entrega desejada"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Mande o texto pelo WhatsApp e informe o bairro da Pampulha para consultar a entrega."
++    ),
++    delivery: withDeliveryNote(
++      "Da Pampulha, dá para retirar na loja de Venda Nova ou consultar a entrega por motoboy."
++    ),
+     serviceArea: locationServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -1851,8 +1937,12 @@ export const commercialPages = [
+       "Especialidade, quando o profissional informar que pode divulgá-la",
+       "Endereço, telefone ou nome da clínica, se couber com boa leitura"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie nome profissional, número do CRO e, se for divulgar, a especialidade, como devem aparecer."
++    ),
++    delivery: withDeliveryNote(
++      "Confira na arte o número do CRO e a especialidade antes de aprovar."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Carimbo para clínica em BH", href: "/carimbo-para-clinica-bh/" },
+@@ -1920,8 +2010,12 @@ export const commercialPages = [
+       "Área de atuação, quando o profissional informar",
+       "Nome da clínica ou contato, se couber no layout"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o nome profissional e o número do Crefito como devem aparecer no carimbo."
++    ),
++    delivery: withDeliveryNote(
++      "O número de registro é conferido com você na arte antes da produção."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Carimbo para clínica em BH", href: "/carimbo-para-clinica-bh/" },
+@@ -1989,8 +2083,12 @@ export const commercialPages = [
+       "Nome da clínica ou do estabelecimento, quando houver",
+       "Telefone ou endereço, se couber com boa leitura"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie o nome profissional e o número do CRMV como devem aparecer no carimbo."
++    ),
++    delivery: withDeliveryNote(
++      "Se quiser o nome da clínica junto, mande também para conferir se cabe com boa leitura."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Carimbo para clínica em BH", href: "/carimbo-para-clinica-bh/" },
+@@ -2058,8 +2156,12 @@ export const commercialPages = [
+       "Textos de controle: recebido, conferido, lançado, arquivado",
+       "Data, com carimbo datador, para protocolo"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Envie nome, CRC e dados do escritório, e diga quais carimbos de controle a rotina usa."
++    ),
++    delivery: withDeliveryNote(
++      "Se a rotina pede a data junto, o carimbo datador resolve o protocolo sem escrever à mão."
++    ),
+     serviceArea: bhServiceArea,
+     relatedLinks: [
+       { label: "Carimbo para escritório em BH", href: "/carimbo-para-escritorio-bh/" },
+@@ -2127,8 +2229,12 @@ export const commercialPages = [
+       "Endereço do escritório, sala ou andar, se for entrar no carimbo",
+       "Endereço de entrega e horário em que alguém pode receber"
+     ],
+-    process: defaultProcess,
+-    delivery: defaultDelivery,
++    process: withFirstStep(
++      "Mande o texto pelo WhatsApp e o endereço com sala ou andar para consultar a entrega no Centro."
++    ),
++    delivery: withDeliveryNote(
++      "No Centro, informe também o horário em que alguém pode receber, para combinar a entrega."
++    ),
+     serviceArea: locationServiceArea,
+     relatedLinks: [
+       { label: "Central de carimbos em BH", href: "/carimbos-bh/" },
+@@ -2189,7 +2295,7 @@ export function getCommercialPageSchemas(page: CommercialPage) {
+           "@type": "ListItem",
+           position: 2,
+           name: "Carimbos em BH",
+-          item: getCanonicalUrl("/carimbo-em-bh/")
++          item: getCanonicalUrl("/carimbos-bh/")
+         },
+         {
+           "@type": "ListItem",
+diff --git a/src/data/consent.ts b/src/data/consent.ts
+new file mode 100644
+index 0000000..79c50f3
+--- /dev/null
++++ b/src/data/consent.ts
+@@ -0,0 +1,3 @@
++/** Chave e versão do consentimento de cookies. Mudar a versão faz o banner aparecer de novo para todos. */
++export const consentStorageKey = "bhcarimbos_cookie_consent";
++export const consentVersion = "2026-10";
+diff --git a/src/data/legalPages.ts b/src/data/legalPages.ts
+index 1cc7743..5c04dcd 100644
+--- a/src/data/legalPages.ts
++++ b/src/data/legalPages.ts
+@@ -102,14 +102,14 @@ export const legalPages = [
+     eyebrow: "Privacidade",
+     title: "Política de Cookies",
+     subtitle:
+-      "Entenda como o site BH Carimbos utiliza cookies necessários, preferências e possíveis cookies de medição.",
++      "Entenda quais cookies o site BH Carimbos usa, para que servem e como mudar sua escolha.",
+     seo: {
+       title: "Política de Cookies",
+       description:
+-        "Entenda como o site BH Carimbos utiliza cookies necessários, preferências e possíveis cookies de medição para melhorar a navegação.",
++        "Entenda quais cookies o site BH Carimbos usa (necessários, Google Analytics e Google Ads), para que servem e como mudar sua escolha.",
+       canonicalPath: "/cookies/"
+     },
+-    updatedAt: "Julho de 2026",
++    updatedAt: "Outubro de 2026",
+     sections: [
+       {
+         title: "O que são cookies",
+@@ -119,13 +119,11 @@ export const legalPages = [
+       },
+       {
+         title: "Como usamos cookies",
+-        paragraphs: ["O site pode utilizar cookies para:"],
++        paragraphs: ["O site usa cookies para:"],
+         bullets: [
+-          "funcionamento técnico do site;",
+-          "segurança e prevenção de falhas;",
+-          "lembrar preferências de consentimento;",
+-          "melhorar a experiência de navegação;",
+-          "medir desempenho e uso do site, somente quando houver ferramenta ativa e consentimento aplicável."
++          "funcionamento técnico do site e registro da sua escolha sobre cookies;",
++          "contar visitas e páginas vistas (Google Analytics), somente se você autorizar a categoria Estatística;",
++          "medir se quem chegou por um anúncio do Google pediu orçamento pelo WhatsApp (Google Ads), somente se você autorizar a categoria Marketing."
+         ]
+       },
+       {
+@@ -139,36 +137,52 @@ export const legalPages = [
+           },
+           {
+             name: "Cookies de preferências",
+-            purpose: "Podem lembrar escolhas do usuário, quando aplicável.",
++            purpose: "Hoje o site não usa cookies desta categoria.",
+             type: "Opcional"
+           },
+           {
+             name: "Cookies de estatística/medição",
+             purpose:
+-              "Podem ser usados para entender visitas e desempenho, somente se ferramentas de medição forem implementadas.",
++              "Google Analytics: mostra quantas pessoas visitaram o site e quais páginas foram vistas, de forma agregada.",
+             type: "Opcional"
+           },
+           {
+             name: "Cookies de marketing",
+             purpose:
+-              "O site não utiliza cookies de marketing no momento, salvo se futuramente forem integradas campanhas ou ferramentas que exijam consentimento específico.",
++              "Google Ads: mede o resultado dos anúncios, por exemplo, se um clique no anúncio terminou em contato pelo WhatsApp.",
+             type: "Opcional"
+           }
+         ]
+       },
+       {
+-        title: "Cookies atualmente previstos",
++        title: "Cookies usados",
+         table: [
+           {
+             name: "bhcarimbos_cookie_consent",
+             purpose: "Armazenar a escolha do visitante sobre cookies.",
+-            type: "Necessário/preferência",
++            type: "Necessário",
+             duration: "180 dias",
+             owner: siteName
++          },
++          {
++            name: "_ga, _ga_*",
++            purpose: "Diferenciar visitantes e sessões para estatísticas de visitas (Google Analytics).",
++            type: "Estatística",
++            duration: "até 2 anos",
++            owner: "Google"
++          },
++          {
++            name: "_gcl_au",
++            purpose: "Relacionar cliques em anúncios do Google com pedidos de orçamento (Google Ads).",
++            type: "Marketing",
++            duration: "até 90 dias",
++            owner: "Google"
+           }
+         ],
+         paragraphs: [
+-          "No momento, este site não ativa cookies de estatística, marketing ou publicidade por conta própria. Caso ferramentas de medição ou publicidade sejam adicionadas futuramente, esta política será atualizada e o consentimento será solicitado quando necessário."
++          "Antes da sua escolha, e se você recusar, as ferramentas do Google funcionam no modo de consentimento negado: não gravam esses cookies e enviam apenas sinais sem identificação, conforme as regras do próprio Google.",
++          "As estatísticas de desempenho da hospedagem (Vercel) não usam cookies.",
++          "Os nomes e prazos dos cookies do Google são definidos pelo Google e podem mudar. Esta página será revisada quando isso acontecer."
+         ]
+       },
+       {
+@@ -201,7 +215,7 @@ export const legalPages = [
+         "Saiba como a BH Carimbos trata dados pessoais enviados pelo site, WhatsApp, e-mail e formulário de contato, conforme a LGPD.",
+       canonicalPath: "/politica-de-privacidade/"
+     },
+-    updatedAt: "Julho de 2026",
++    updatedAt: "Outubro de 2026",
+     sections: [
+       {
+         title: "Quem somos",
+@@ -254,7 +268,8 @@ export const legalPages = [
+           "serviços de e-mail;",
+           "serviços de entrega ou motoboy, quando houver entrega;",
+           "sistemas fiscais ou contábeis, quando necessário;",
+-          "fornecedores técnicos de hospedagem e infraestrutura."
++          "fornecedores técnicos de hospedagem e infraestrutura;",
++          "Google (Analytics e Ads), apenas dados de navegação e somente quando o visitante autoriza os cookies opcionais."
+         ]
+       },
+       {
+diff --git a/src/data/navigation.ts b/src/data/navigation.ts
+index 046b02b..6e412ff 100644
+--- a/src/data/navigation.ts
++++ b/src/data/navigation.ts
+@@ -1,6 +1,7 @@
+ export const mainNavigation = [
+   { label: "Início", href: "/" },
+   { label: "Produtos", href: "/nossos-produtos/" },
++  { label: "Carimbos", href: "/carimbos-bh/" },
+   { label: "Serviços", href: "/servicos/" },
+   { label: "Como pedir", href: "/como-pedir/" },
+   { label: "Prazos e entrega", href: "/prazos-e-entrega/" },
+diff --git a/src/data/routes.ts b/src/data/routes.ts
+index 88a3b33..18e703c 100644
+--- a/src/data/routes.ts
++++ b/src/data/routes.ts
+@@ -13,7 +13,7 @@ export type SiteRoute = {
+ /** Data da última alteração de conteúdo das páginas que não definem lastModified. */
+ export const defaultLastModified = "2026-08-07";
+ 
+-/** Data de publicação das páginas novas e do blog (entrega de outubro/novembro de 2026). */
++/** Data das páginas novas, do blog e da revisão das páginas antigas e da política de cookies (outubro de 2026). */
+ const contentUpdate = "2026-10-28";
+ 
+ export const requiredRoutes: SiteRoute[] = [
+@@ -30,7 +30,8 @@ export const requiredRoutes: SiteRoute[] = [
+     label: "Carimbo em BH",
+     kind: "service",
+     draftTitle: "Carimbo em BH",
+-    description: "Página principal de SEO local."
++    description: "Página principal de SEO local.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbos-bh/",
+@@ -45,7 +46,8 @@ export const requiredRoutes: SiteRoute[] = [
+     label: "Carimbo personalizado",
+     kind: "service",
+     draftTitle: "Carimbo personalizado BH",
+-    description: "Página de serviço para carimbos personalizados."
++    description: "Página de serviço para carimbos personalizados.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-na-hora-bh/",
+@@ -116,35 +118,40 @@ export const requiredRoutes: SiteRoute[] = [
+     label: "Carimbo nutricionista",
+     kind: "service",
+     draftTitle: "Carimbo para nutricionista BH",
+-    description: "Página comercial para carimbos de nutricionista em Belo Horizonte."
++    description: "Página comercial para carimbos de nutricionista em Belo Horizonte.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-enfermagem-bh/",
+     label: "Carimbo enfermagem",
+     kind: "service",
+     draftTitle: "Carimbo para enfermagem BH",
+-    description: "Página comercial para carimbos de enfermagem em Belo Horizonte."
++    description: "Página comercial para carimbos de enfermagem em Belo Horizonte.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-assinatura-bh/",
+     label: "Carimbo de assinatura",
+     kind: "service",
+     draftTitle: "Carimbo de assinatura BH",
+-    description: "Página comercial para carimbo de assinatura em Belo Horizonte."
++    description: "Página comercial para carimbo de assinatura em Belo Horizonte.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-datador-bh/",
+     label: "Carimbo datador",
+     kind: "service",
+     draftTitle: "Carimbo datador BH",
+-    description: "Página comercial para carimbo datador em Belo Horizonte."
++    description: "Página comercial para carimbo datador em Belo Horizonte.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-numerador-bh/",
+     label: "Carimbo numerador",
+     kind: "service",
+     draftTitle: "Carimbo numerador BH",
+-    description: "Página comercial para carimbo numerador em Belo Horizonte."
++    description: "Página comercial para carimbo numerador em Belo Horizonte.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/carimbo-para-clinica-bh/",
+@@ -273,14 +280,16 @@ export const requiredRoutes: SiteRoute[] = [
+     label: "Cookies",
+     kind: "legal",
+     draftTitle: "Cookies",
+-    description: "Página preparada para informações sobre cookies."
++    description: "Página preparada para informações sobre cookies.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/politica-de-privacidade/",
+     label: "Política de privacidade",
+     kind: "legal",
+     draftTitle: "Política de privacidade",
+-    description: "Página legal com informações de privacidade."
++    description: "Página legal com informações de privacidade.",
++    lastModified: contentUpdate
+   },
+   {
+     path: "/termos-de-uso/",
+diff --git a/src/data/site.ts b/src/data/site.ts
+index 25936b1..bdd281a 100644
+--- a/src/data/site.ts
++++ b/src/data/site.ts
+@@ -26,6 +26,15 @@ export const businessInfo = {
+     weekdays: "Segunda a sexta, das 07:00 às 18:00",
+     saturday: "Sábado, das 07:00 às 12:00"
+   },
++  /** Mesmo horário em formato de máquina (0 = domingo). Usado no aviso "Aberto agora" do topo. */
++  openingSchedule: {
++    1: [7, 18],
++    2: [7, 18],
++    3: [7, 18],
++    4: [7, 18],
++    5: [7, 18],
++    6: [7, 12]
++  } as Record<number, [number, number]>,
+   paymentMethods: ["Cartão de crédito", "Cartão de débito", "Pix"],
+   averageProductionTime: "24 horas",
+   averageDeliveryTime: "48 horas",
+diff --git a/src/layouts/BaseLayout.astro b/src/layouts/BaseLayout.astro
+index 4f89ca3..9b5786a 100644
+--- a/src/layouts/BaseLayout.astro
++++ b/src/layouts/BaseLayout.astro
+@@ -6,6 +6,7 @@ import SpeedInsights from '@vercel/speed-insights/astro'
+ import CookieConsent from "@components/ui/CookieConsent.astro";
+ import SeoHead from "@components/seo/SeoHead.astro";
+ import { brandAssets } from "@data/site";
++import { consentStorageKey, consentVersion } from "@data/consent";
+ import {
+   getLocalBusinessSchema,
+   getOrganizationSchema,
+@@ -28,6 +29,7 @@ const webSiteSchema = getWebSiteSchema();
+ const webPageSchema = getWebPageSchema({ title, description, canonicalPath });
+ const localBusinessSchema = getLocalBusinessSchema();
+ const schemas = [organizationSchema, webSiteSchema, localBusinessSchema, webPageSchema, ...structuredData];
++const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? "";
+ ---
+ 
+ <!doctype html>
+@@ -42,58 +44,61 @@ const schemas = [organizationSchema, webSiteSchema, localBusinessSchema, webPage
+       noindex={noindex}
+     />
+ 
+-<!-- Google tag (gtag.js) -->
+-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11538800483"></script>
+-<script is:inline>
++<!-- Google tag (gtag.js) com modo de consentimento: nada de cookie de anúncio/medição antes do aceite. -->
++<script is:inline define:vars={{ consentStorageKey, consentVersion, ga4MeasurementId }}>
+   window.dataLayer = window.dataLayer || [];
+-  function gtag(){dataLayer.push(arguments);}
+-  gtag("js", new Date());
++  window.gtag = function gtag(){window.dataLayer.push(arguments);};
++  window.gtag("consent", "default", {
++    ad_storage: "denied",
++    ad_user_data: "denied",
++    ad_personalization: "denied",
++    analytics_storage: "denied",
++    wait_for_update: 500
++  });
+ 
+-  gtag("config", "AW-11538800483");
+-</script>
++  try {
++    const stored = JSON.parse(window.localStorage.getItem(consentStorageKey) || "null");
++    if (stored && stored.version === consentVersion) {
++      const marketing = stored.marketing ? "granted" : "denied";
++      window.gtag("consent", "update", {
++        ad_storage: marketing,
++        ad_user_data: marketing,
++        ad_personalization: marketing,
++        analytics_storage: stored.analytics ? "granted" : "denied"
++      });
++    }
++  } catch (error) {
++    // Sem acesso ao localStorage: segue com tudo negado.
++  }
++
++  window.gtag("js", new Date());
++  window.gtag("config", "AW-11538800483");
++  if (ga4MeasurementId) window.gtag("config", ga4MeasurementId);
+ 
+-<script is:inline>
+   window.gtag_report_conversion = function (url) {
++    let done = false;
+     const callback = function () {
++      if (done) return;
++      done = true;
+       if (typeof url !== "undefined") {
+         window.location = url;
+       }
+     };
+ 
+-    if (typeof window.gtag === "function") {
+-      window.gtag("event", "conversion", {
+-        send_to: "AW-11538800483/GKFtCMKMvb4aEOO-kP4q",
+-        value: 2.0,
+-        currency: "BRL",
+-        event_callback: callback
+-      });
+-
+-      setTimeout(callback, 800);
+-      return false;
+-    }
++    window.gtag("event", "conversion", {
++      send_to: "AW-11538800483/GKFtCMKMvb4aEOO-kP4q",
++      value: 2.0,
++      currency: "BRL",
++      event_callback: callback
++    });
+ 
+-    callback();
++    setTimeout(callback, 800);
+     return false;
+   };
+-
+-  document.addEventListener("click", function (event) {
+-    const target = event.target;
+-    const link = target instanceof Element ? target.closest("a") : null;
+-
+-    if (!link) return;
+-
+-    const href = link.getAttribute("href") || "";
+-    const isWhatsAppLink =
+-      href.includes("wa.me/") ||
+-      href.includes("api.whatsapp.com") ||
+-      href.includes("web.whatsapp.com") ||
+-      link.dataset.conversion === "whatsapp";
+-
+-    if (!isWhatsAppLink) return;
+-
+-    event.preventDefault();
+-    window.gtag_report_conversion(link.href);
+-  });
++</script>
++<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11538800483"></script>
++<script>
++  import "@lib/tracking";
+ </script>
+ 
+     <link rel="icon" href={brandAssets.favicon} sizes="any" />
+diff --git a/src/lib/tracking.ts b/src/lib/tracking.ts
+new file mode 100644
+index 0000000..a7275dc
+--- /dev/null
++++ b/src/lib/tracking.ts
+@@ -0,0 +1,158 @@
++import { track } from "@vercel/analytics";
++
++// Medição de cliques no WhatsApp e de envios do formulário.
++// A conversão do Google Ads continua a mesma (gtag_report_conversion, definida no BaseLayout);
++// aqui só acrescentamos de qual página e de qual parte da página veio o clique.
++
++type GtagWindow = Window & {
++  gtag?: (...args: unknown[]) => void;
++  gtag_report_conversion?: (url?: string) => boolean;
++};
++
++type VisitOrigin = {
++  landing: string;
++  referrer: string;
++};
++
++const originStorageKey = "bhcarimbos_origem";
++const campaignParams = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"];
++const ga4MeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? "";
++const gtagWindow = window as GtagWindow;
++
++function sendGa4Event(name: string, params: Record<string, string>): void {
++  if (!ga4MeasurementId || typeof gtagWindow.gtag !== "function") return;
++  gtagWindow.gtag("event", name, { ...params, send_to: ga4MeasurementId });
++}
++
++function sendVercelEvent(name: string, params: Record<string, string>): void {
++  try {
++    track(name, params);
++  } catch {
++    // Sem Web Analytics ativo: ignora.
++  }
++}
++
++function getPageType(path: string): string {
++  if (path === "/") return "home";
++  if (path === "/blog/") return "blog";
++  if (path.startsWith("/blog/")) return "guia";
++  if (path === "/contato/") return "contato";
++  return "pagina";
++}
++
++function getLinkLocation(link: Element): string {
++  const marked = link.closest<HTMLElement>("[data-track-location]");
++  if (marked?.dataset.trackLocation) return marked.dataset.trackLocation;
++  if (link.closest(".site-header__bar")) return "barra-topo";
++  if (link.closest(".mobile-menu")) return "menu-mobile";
++  if (link.closest("header.site-header")) return "topo";
++  if (link.closest("footer")) return "rodape";
++  return "conteudo";
++}
++
++/** Guarda a primeira página vista na visita e os parâmetros de campanha (sem dados pessoais). */
++function rememberOrigin(): VisitOrigin {
++  try {
++    const stored = sessionStorage.getItem(originStorageKey);
++    if (stored) return JSON.parse(stored) as VisitOrigin;
++  } catch {
++    // sessionStorage indisponível: calcula sem guardar.
++  }
++
++  const params = new URLSearchParams(window.location.search);
++  const campaign = new URLSearchParams();
++  campaignParams.forEach((key) => {
++    const value = params.get(key);
++    if (value) campaign.set(key, value.slice(0, 80));
++  });
++
++  const query = campaign.toString();
++  let referrer = "";
++  try {
++    const referrerUrl = document.referrer ? new URL(document.referrer) : null;
++    if (referrerUrl && referrerUrl.host !== window.location.host) referrer = referrerUrl.host;
++  } catch {
++    referrer = "";
++  }
++
++  const origin: VisitOrigin = {
++    landing: `${window.location.pathname}${query ? `?${query}` : ""}`,
++    referrer
++  };
++
++  try {
++    sessionStorage.setItem(originStorageKey, JSON.stringify(origin));
++  } catch {
++    // ignora
++  }
++
++  return origin;
++}
++
++/** Texto curto para o formulário: página atual, página de entrada e origem. Máximo 300 caracteres. */
++export function describeVisitOrigin(): string {
++  const origin = rememberOrigin();
++  const parts = [window.location.href.split("#")[0]];
++  if (origin.landing && origin.landing !== window.location.pathname) parts.push(`entrada: ${origin.landing}`);
++  if (origin.referrer) parts.push(`veio de: ${origin.referrer}`);
++  return parts.join(" | ").slice(0, 300);
++}
++
++/** Acrescenta a página de origem na mensagem pronta do WhatsApp, para o atendimento saber de onde veio. */
++function withPageReference(href: string, path: string): string {
++  try {
++    const url = new URL(href);
++    const text = url.searchParams.get("text");
++    if (!text || path === "/" || text.includes("bhcarimbos.com.br/")) return href;
++    url.searchParams.set("text", `${text}\n\n(Página: bhcarimbos.com.br${path})`);
++    return url.toString();
++  } catch {
++    return href;
++  }
++}
++
++function isWhatsAppLink(link: HTMLAnchorElement): boolean {
++  const href = link.getAttribute("href") || "";
++  return (
++    href.includes("wa.me/") ||
++    href.includes("api.whatsapp.com") ||
++    href.includes("web.whatsapp.com") ||
++    link.dataset.conversion === "whatsapp"
++  );
++}
++
++rememberOrigin();
++
++document.addEventListener("click", (event) => {
++  const target = event.target;
++  const link = target instanceof Element ? target.closest<HTMLAnchorElement>("a") : null;
++  if (!link || !isWhatsAppLink(link)) return;
++
++  const path = window.location.pathname;
++  const params = {
++    page_path: path,
++    page_type: getPageType(path),
++    link_location: getLinkLocation(link)
++  };
++
++  sendGa4Event("whatsapp_click", params);
++  sendVercelEvent("WhatsApp", params);
++
++  // Modelos de mensagem do blog já são o texto que o cliente quer mandar: não mexe neles.
++  const href = link.hasAttribute("data-template-send") ? link.href : withPageReference(link.href, path);
++
++  if (typeof gtagWindow.gtag_report_conversion === "function") {
++    event.preventDefault();
++    gtagWindow.gtag_report_conversion(href);
++    return;
++  }
++
++  if (href !== link.href) link.href = href;
++});
++
++document.addEventListener("bh:lead", () => {
++  const path = window.location.pathname;
++  const params = { page_path: path, page_type: getPageType(path), method: "formulario" };
++  sendGa4Event("generate_lead", params);
++  sendVercelEvent("Formulario enviado", params);
++});
+diff --git a/src/styles/global.css b/src/styles/global.css
+index 4546fb6..8b067e9 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -113,6 +113,44 @@ h2,
+   color: rgb(255 255 255 / 84%);
+ }
+ 
++.site-header__bar-status {
++  display: inline-flex;
++  align-items: center;
++  gap: var(--space-3);
++  min-width: 0;
++}
++
++.site-header__status {
++  display: inline-flex;
++  align-items: center;
++  gap: 0.4rem;
++  white-space: nowrap;
++}
++
++.site-header__status[hidden] {
++  display: none;
++}
++
++.site-header__status-dot {
++  width: 0.5rem;
++  height: 0.5rem;
++  border-radius: 999px;
++  background: #f87171;
++}
++
++.site-header__status[data-state="open"] {
++  color: #86efac;
++}
++
++.site-header__status[data-state="open"] .site-header__status-dot {
++  background: #4ade80;
++  box-shadow: 0 0 0 3px rgb(74 222 128 / 22%);
++}
++
++.site-header__status[data-state="closed"] {
++  color: #fecaca;
++}
++
+ .site-header__bar-link {
+   color: var(--color-orange-100);
+   text-decoration: none;
+@@ -782,6 +820,10 @@ h2,
+     display: none;
+   }
+ 
++  .site-header__status:not([hidden]) + .site-header__bar-location {
++    display: none;
++  }
++
+   .site-header__inner {
+     min-height: 66px;
+     grid-template-columns: auto auto;
+diff --git a/vercel.json b/vercel.json
+new file mode 100644
+index 0000000..79541fd
+--- /dev/null
++++ b/vercel.json
+@@ -0,0 +1,10 @@
++{
++  "$schema": "https://openapi.vercel.sh/vercel.json",
++  "redirects": [
++    {
++      "source": "/:path((?!api(?:/|$)|_)(?:[^/.]+/)*[^/.]+)",
++      "destination": "/:path/",
++      "permanent": true
++    }
++  ]
++}
+-- 
+2.43.0
+
