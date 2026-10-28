@@ -1,5 +1,90 @@
 [
   {
+    "slug": "pix-por-aproximacao-sem-limite-de-500-reais",
+    "title": "Pix por aproximação sem teto de R$ 500: o que muda para o seu negócio",
+    "seoTitle": "Pix por aproximação sem limite de R$ 500: o que muda",
+    "description": "Desde 1º de outubro de 2026 o Pix por aproximação não tem mais teto fixo de R$ 500. Veja o que muda para lojas e prestadores e como se preparar.",
+    "keyword": "pix por aproximação",
+    "category": "Notícias e tendências",
+    "date": "2026-10-28",
+    "updated": "2026-10-28",
+    "summary": "O Banco Central acabou com o teto fixo de R$ 500 do Pix por aproximação. Cada cliente passa a ter o limite definido na própria conta. Entenda o efeito para o caixa e para a loja virtual.",
+    "intro": "O Pix por aproximação deixou de ter o teto fixo de R$ 500 por transação em 1º de outubro de 2026, conforme a Instrução Normativa BCB nº 746, do Banco Central. Pix por aproximação é o pagamento em que o cliente encosta o celular na maquininha ou no leitor, sem digitar chave nem ler código. Agora não existe um novo teto único: o limite passa a depender da conta e da configuração de cada cliente, que pode pedir ao banco para aumentá-lo ou reduzi-lo. Neste guia, com base nas fontes citadas ao final, explicamos o que mudou, o que isso significa para uma pequena empresa e o que vale revisar na loja, no atendimento e no site.",
+    "sections": [
+      {
+        "heading": "O que mudou em 1º de outubro de 2026",
+        "paragraphs": [
+          "Segundo a imprensa que acompanhou a norma, o Banco Central publicou a Instrução Normativa BCB nº 746 em junho de 2026 e deu às instituições financeiras até outubro para ajustar seus sistemas. Desde 1º de outubro, o limite fixo de R$ 500 por transação no Pix por aproximação deixou de existir.",
+          "Isso não significa que o pagamento ficou sem limite algum. Os veículos consultados explicam que não há um novo teto único no lugar dos R$ 500. Quem define o valor máximo é o banco ou a instituição de pagamento do cliente, de acordo com as regras de segurança de cada conta, e o próprio cliente pode solicitar mudança pelo aplicativo da instituição.",
+          "A reportagem do Correio da Manhã informa ainda que a mudança alcança também pagamentos feitos por Código QR, por chaves de acesso e pela jornada sem redirecionamento (JSR) do Open Finance, um modelo em que o pagamento é iniciado sem levar o cliente para outro aplicativo."
+        ]
+      },
+      {
+        "heading": "O que muda na prática para quem vende",
+        "paragraphs": [
+          "Para o comerciante, a mudança é na conta do cliente, não numa obrigação nova para a empresa. As fontes consultadas não descrevem taxas, limites ou exigências adicionais para lojistas. O que muda é a possibilidade: um cliente com limite maior configurado pode pagar uma compra acima de R$ 500 só encostando o celular, algo que antes esbarrava no teto.",
+          "O Tecnoblog lembra que as empresas também precisam fazer a sua parte, adotando soluções que aceitem o recurso, e que muitas operadoras de maquininhas e terminais de pagamento já oferecem essa opção. Ou seja, quem aceita Pix por aproximação depende do equipamento e do contrato com a operadora, e não de uma configuração própria do negócio.",
+          "Como cada cliente tem um limite diferente, um pagamento maior pode ser recusado pelo banco dele. Isso não é falha da sua loja. Ter um plano B, como QR Code do Pix, chave ou link de pagamento, evita perder a venda."
+        ]
+      },
+      {
+        "heading": "Como se preparar: checklist para pequenas empresas",
+        "items": [
+          "Pergunte à operadora da maquininha se o equipamento aceita Pix por aproximação e se há algo a ativar. Não presuma que todos os modelos aceitam.",
+          "Treine a equipe para explicar que o limite é definido pelo banco do cliente e que ele mesmo pode ajustá-lo no aplicativo.",
+          "Mantenha um segundo meio de cobrança para compras de maior valor: QR Code do Pix, chave Pix ou link de pagamento.",
+          "Informe no balcão, no Instagram e no site quais formas de pagamento a empresa aceita, sem prometer o que a maquininha não oferece.",
+          "Confirme com seu contador ou com a operadora qualquer dúvida sobre tarifas e conciliação, já que as fontes consultadas não tratam desses pontos."
+        ]
+      },
+      {
+        "heading": "E a loja virtual e o site?",
+        "paragraphs": [
+          "A notícia trata de pagamentos presenciais, mas o tema aparece também no ambiente online porque a norma menciona o Código QR e a jornada do Open Finance. Quem vende pela internet deve conferir com a plataforma de pagamento ou com o gateway (o serviço que processa os pagamentos da loja) como o Pix é oferecido e se houve alguma atualização. Não afirmamos aqui que o checkout da sua loja muda: isso depende do provedor.",
+          "No site, vale deixar claras as formas de pagamento e o canal para tirar dúvidas, por exemplo o WhatsApp. Uma página de pagamento ou de orçamento que explique o passo a passo reduz mensagens repetidas e dá segurança a quem vai pagar um valor maior.",
+          "Se a sua empresa vende no balcão e online, trate os dois como uma só experiência: o cliente que paga por aproximação na loja pode querer a mesma facilidade na hora de recomprar pelo site ou pelo Instagram."
+        ]
+      },
+      {
+        "heading": "Cuidados de segurança",
+        "paragraphs": [
+          "Os textos consultados lembram que as regras gerais de segurança do Pix e os controles de cada banco continuam valendo, e que o antigo teto de R$ 500 funcionava como limite de segurança. Para o cliente, vale conferir no aplicativo do banco qual é o limite do Pix por aproximação e reduzi-lo se achar mais prudente.",
+          "Para a empresa, o cuidado é com a conferência do pagamento: confirme sempre na maquininha ou no extrato antes de entregar o produto ou liberar o serviço, principalmente em valores mais altos."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O limite de R$ 500 do Pix por aproximação acabou de vez?",
+        "Sim, o teto fixo de R$ 500 por transação deixou de existir em 1º de outubro de 2026, segundo a Instrução Normativa BCB nº 746. Mas não há um novo teto único: o limite passa a ser o definido por cada banco para a conta do cliente."
+      ],
+      [
+        "Preciso fazer algo na minha empresa por causa dessa mudança?",
+        "As fontes consultadas não citam obrigações novas para lojistas. O que vale fazer é confirmar com a operadora se a maquininha aceita Pix por aproximação e manter outra forma de cobrança caso o limite do cliente seja menor que o valor da compra."
+      ],
+      [
+        "Posso receber Pix por aproximação sem maquininha?",
+        "Isso depende da solução de pagamento contratada. O Pix por aproximação exige um equipamento ou serviço compatível, e muitas operadoras já o oferecem, segundo o Tecnoblog. Consulte a sua operadora ou instituição de pagamento."
+      ]
+    ],
+    "relatedServices": [
+      "sites-profissionais",
+      "lojas-shopify",
+      "presenca-digital"
+    ],
+    "sources": [
+      {
+        "title": "Pix por aproximação deixa de ter limite de R$ 500 (Tecnoblog, outubro de 2026)",
+        "url": "https://tecnoblog.net/noticias/pix-por-aproximacao-deixa-de-ter-limite-de-r-500-agora-vai/"
+      },
+      {
+        "title": "Pix por aproximação deixa de ter teto de R$ 500 (Correio da Manhã, outubro de 2026)",
+        "url": "https://www.correiodamanha.com.br/economia/2026/10/323796-pix-por-aproximacao-deixa-de-ter-teto-de-rs-500.html"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "cobranca-api-whatsapp-business-2026",
     "title": "Cobrança da API do WhatsApp Business em 2026: o que muda para sua empresa",
     "seoTitle": "Cobrança da API do WhatsApp Business: o que muda",
