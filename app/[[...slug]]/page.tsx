@@ -7,9 +7,10 @@ import { DiagnosticWizard } from "@/components/DiagnosticWizard";
 import { HomeCases } from "@/components/HomeCases";
 import { HomeHills } from "@/components/HomeHills";
 import { HomeProblem } from "@/components/HomeProblem";
+import { DiscoveryDemo } from "@/components/DiscoveryDemo";
 import { HomeServices } from "@/components/HomeServices";
 import { ObjectiveSelector } from "@/components/ObjectiveSelector";
-import { PresenceComparison } from "@/components/PresenceComparison";
+import { PresenceShift } from "@/components/PresenceShift";
 import { SplitHeading } from "@/components/SplitHeading";
 import { brand, faqs, processSteps, projects, services, whatsappUrl } from "@/content/site";
 import { landings, type Landing } from "@/content/landings";
@@ -61,7 +62,7 @@ function Home() { return <>
 
   <HomeProblem />
 
-  <section className="section home-transformation"><div className="shell" data-reveal><PresenceComparison /></div></section>
+  <section className="section home-transformation" aria-labelledby="shift-title"><div className="shell"><PresenceShift /></div></section>
 
   <section className="section home-proof" id="resultados" aria-labelledby="home-proof-title">
     <div className="shell" data-reveal>
@@ -98,11 +99,11 @@ function Home() { return <>
     </div>
   </section>
 
-  <section className="section home-services-section"><div className="shell" data-reveal><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>Um sistema de crescimento, não uma página isolada.</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
+  <section className="section home-svc"><div className="shell"><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>Um sistema de crescimento, não uma página isolada.</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
 
   <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Planejar / Criar / Evoluir</Eyebrow><div className="home-section-heading"><SplitHeading>Estratégia antes do design.</SplitHeading><p>O visual entra quando objetivo, mensagem e próximo passo do cliente já estão definidos. É isso que separa um site bonito de um site que gera resultado.</p></div><ol className="process-phases" data-stagger>{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
 
-  <section className="section discovery-section"><div className="shell discovery-grid" data-reveal><div className="discovery-copy"><Eyebrow>SEO, busca e inteligência artificial</Eyebrow><SplitHeading>Se o cliente não encontra, a empresa não existe para ele.</SplitHeading><p>Hoje a decisão começa no Google, no Maps e, cada vez mais, em assistentes de IA. Estruturamos o site para que esses sistemas entendam quem é a empresa, o que oferece, onde atua e como contratá-la.</p><p>É trabalho técnico de base — não promessa de primeira posição. Quem promete posição garantida está vendendo algo que não controla.</p></div><div className="discovery-system" aria-label="Fluxo de informações da empresa para mecanismos de pesquisa e inteligência artificial"><div className="source-nodes"><span>EMPRESA</span><span>SERVIÇOS</span><span>PÁGINAS</span><span>CONTEXTO</span></div><div className="discovery-core"><small>INFORMAÇÃO</small><strong>PRESENÇA<br/>ESTRUTURADA</strong><i /></div><div className="destination-nodes"><span>PESQUISA <b>↗</b></span><span>INTELIGÊNCIA ARTIFICIAL <b>↗</b></span></div></div></div></section>
+  <section className="section home-found" aria-labelledby="found-title"><div className="shell"><Eyebrow>SEO, busca e inteligência artificial</Eyebrow><div className="home-section-heading"><SplitHeading id="found-title">Se o cliente não encontra, a empresa não existe para ele.</SplitHeading><p>A decisão começa no Google, no Maps e, cada vez mais, em assistentes de IA. Estruturamos site e perfil para que esses sistemas entendam quem é a empresa, o que oferece, onde atua e como contratá-la.</p></div><DiscoveryDemo /></div></section>
 
   <section className="section objective-section"><div className="shell" data-reveal><Eyebrow>Direção personalizada</Eyebrow><div className="home-section-heading"><SplitHeading>O que sua empresa precisa resolver agora?</SplitHeading><p>Selecione um objetivo. A interface organiza um caminho inicial sem enviar seus dados.</p></div><ObjectiveSelector /></div></section>
 
