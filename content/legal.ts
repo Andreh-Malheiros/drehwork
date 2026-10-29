@@ -5,19 +5,19 @@ export type LegalDocument = { title: string; summary: string; updated: string; s
 
 export const LEGAL_UPDATED = "23 de outubro de 2026";
 
-const controller = `${brand.legalName}, microempreendedor individual inscrito no CNPJ sob o nº ${brand.cnpj}, que atua sob o nome comercial Dreh Work`;
+const controller = `${brand.legalName}, microempreendedor individual inscrito no CNPJ sob o nº ${brand.cnpj}, que atua sob o nome comercial DrehWork`;
 
 export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-cookies" | "termos-de-uso", LegalDocument> = {
   "politica-de-privacidade": {
     title: "Política de Privacidade",
-    summary: "Como a Dreh Work coleta, usa, compartilha e protege dados pessoais, em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 — LGPD) e o Marco Civil da Internet (Lei nº 12.965/2014).",
+    summary: "Como a DrehWork coleta, usa, compartilha e protege dados pessoais, em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 — LGPD) e o Marco Civil da Internet (Lei nº 12.965/2014).",
     updated: LEGAL_UPDATED,
     sections: [
       {
         heading: "1. Quem é o controlador",
         paragraphs: [
-          `O controlador dos dados pessoais tratados neste site (${brand.domain}) é ${controller} ("Dreh Work", "nós").`,
-          `Contato para assuntos de privacidade e proteção de dados: ${brand.email}. O próprio titular da Dreh Work, ${brand.legalName}, é o responsável por atender as solicitações dos titulares de dados e por comunicar-se com a Autoridade Nacional de Proteção de Dados (ANPD).`,
+          `O controlador dos dados pessoais tratados neste site (${brand.domain}) é ${controller} ("DrehWork", "nós").`,
+          `Contato para assuntos de privacidade e proteção de dados: ${brand.email}. O próprio titular da DrehWork, ${brand.legalName}, é o responsável por atender as solicitações dos titulares de dados e por comunicar-se com a Autoridade Nacional de Proteção de Dados (ANPD).`,
         ],
       },
       {
@@ -46,8 +46,8 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
         items: [
           "Vercel Inc. (Estados Unidos): hospedagem do site, registros de acesso e métricas agregadas.",
           "Google LLC (Estados Unidos): Google Analytics 4, somente após o seu consentimento.",
-          "Resend (Estados Unidos): envio, por e-mail, das respostas do diagnóstico para a Dreh Work.",
-          "Provedor de e-mail corporativo da Dreh Work: recebimento e guarda das mensagens.",
+          "Resend (Estados Unidos): envio, por e-mail, das respostas do diagnóstico para a DrehWork.",
+          "Provedor de e-mail corporativo da DrehWork: recebimento e guarda das mensagens.",
           "Meta Platforms (WhatsApp): quando você escolhe conversar pelo WhatsApp, sujeito também aos termos e à política dessa plataforma.",
           "Contabilidade e autoridades públicas: quando necessário para cumprir obrigação legal ou ordem judicial.",
         ],
@@ -99,7 +99,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
       },
       {
         heading: "10. Crianças e adolescentes",
-        paragraphs: ["Este site e os serviços da Dreh Work são voltados a empresas e profissionais adultos. Não coletamos intencionalmente dados de menores de 18 anos."],
+        paragraphs: ["Este site e os serviços da DrehWork são voltados a empresas e profissionais adultos. Não coletamos intencionalmente dados de menores de 18 anos."],
       },
       {
         heading: "11. Alterações",
@@ -109,7 +109,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
   },
   "politica-de-cookies": {
     title: "Política de Cookies",
-    summary: "Quais cookies e tecnologias semelhantes o site da Dreh Work utiliza e como você controla seu consentimento.",
+    summary: "Quais cookies e tecnologias semelhantes o site da DrehWork utiliza e como você controla seu consentimento.",
     updated: LEGAL_UPDATED,
     sections: [
       {
@@ -152,7 +152,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
   },
   "termos-de-uso": {
     title: "Termos de Uso",
-    summary: "Condições para uso do site da Dreh Work. Ao navegar, você declara estar ciente destes termos.",
+    summary: "Condições para uso do site da DrehWork. Ao navegar, você declara estar ciente destes termos.",
     updated: LEGAL_UPDATED,
     sections: [
       {
@@ -161,7 +161,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
       },
       {
         heading: "2. Finalidade do site",
-        paragraphs: ["O site apresenta os serviços, o método e os projetos da Dreh Work e permite solicitar um diagnóstico gratuito ou iniciar um atendimento. Não há venda ou contratação concluída diretamente pelo site."],
+        paragraphs: ["O site apresenta os serviços, o método e os projetos da DrehWork e permite solicitar um diagnóstico gratuito ou iniciar um atendimento. Não há venda ou contratação concluída diretamente pelo site."],
       },
       {
         heading: "3. Diagnóstico gratuito",
@@ -173,7 +173,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
       },
       {
         heading: "5. Resultados",
-        paragraphs: ["A Dreh Work aplica boas práticas técnicas de desenvolvimento, desempenho e otimização para mecanismos de busca. Posições em buscadores, citações por sistemas de inteligência artificial e resultados comerciais dependem de fatores externos e, por isso, não são garantidos."],
+        paragraphs: ["A DrehWork aplica boas práticas técnicas de desenvolvimento, desempenho e otimização para mecanismos de busca. Posições em buscadores, citações por sistemas de inteligência artificial e resultados comerciais dependem de fatores externos e, por isso, não são garantidos."],
       },
       {
         heading: "6. Uso adequado",
@@ -185,7 +185,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
       },
       {
         heading: "7. Propriedade intelectual",
-        paragraphs: ["Textos, marca, logotipo, identidade visual, código e demais conteúdos do site pertencem à Dreh Work ou são usados com autorização, e estão protegidos pela Lei nº 9.610/1998 (direitos autorais) e pela Lei nº 9.279/1996 (propriedade industrial). A reprodução depende de autorização prévia, ressalvados os usos permitidos em lei. Marcas e imagens de projetos de clientes pertencem aos respectivos titulares e são exibidas apenas como portfólio."],
+        paragraphs: ["Textos, marca, logotipo, identidade visual, código e demais conteúdos do site pertencem à DrehWork ou são usados com autorização, e estão protegidos pela Lei nº 9.610/1998 (direitos autorais) e pela Lei nº 9.279/1996 (propriedade industrial). A reprodução depende de autorização prévia, ressalvados os usos permitidos em lei. Marcas e imagens de projetos de clientes pertencem aos respectivos titulares e são exibidas apenas como portfólio."],
       },
       {
         heading: "8. Links externos",
@@ -201,7 +201,7 @@ export const legalDocuments: Record<"politica-de-privacidade" | "politica-de-coo
       },
       {
         heading: "11. Legislação e foro",
-        paragraphs: ["Estes termos são regidos pelas leis brasileiras. Nas relações de consumo, vale o foro do domicílio do consumidor, conforme o Código de Defesa do Consumidor. Nos demais casos, fica eleito o foro do domicílio da Dreh Work."],
+        paragraphs: ["Estes termos são regidos pelas leis brasileiras. Nas relações de consumo, vale o foro do domicílio do consumidor, conforme o Código de Defesa do Consumidor. Nos demais casos, fica eleito o foro do domicílio da DrehWork."],
       },
     ],
   },

@@ -20,7 +20,7 @@ export const mailerConfigured = () => Boolean(process.env.RESEND_API_KEY && proc
 
 const escapeHtml = (value: string) => value.replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!);
 
-/** Sends a lead notification to the Dreh Work inbox through the Resend REST API. */
+/** Sends a lead notification to the DrehWork inbox through the Resend REST API. */
 export async function sendLeadEmail({ subject, title, rows, replyTo, source }: { subject: string; title: string; rows: (readonly [string, string])[]; replyTo?: string; source: string }) {
   const html = `<h2>${escapeHtml(title)}</h2><table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">${rows.map(([label, value]) => `<tr><td style="color:#666;vertical-align:top"><b>${escapeHtml(label)}</b></td><td style="white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("")}</table><p style="color:#888;font-size:12px">Enviado pelo ${escapeHtml(source)} de ${brand.domain}. O titular declarou ciência da Política de Privacidade.</p>`;
   const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");

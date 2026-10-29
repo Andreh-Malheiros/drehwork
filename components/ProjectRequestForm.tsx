@@ -36,7 +36,7 @@ export function ProjectRequestForm() {
 
   if (status === "sent") return <div className="form-success" role="status">
     <p className="form-kicker">Pedido recebido.</p>
-    <p>Obrigado. A Dreh Work vai analisar o seu projeto e responder pelo contato informado.</p>
+    <p>Obrigado. A DrehWork vai analisar o seu projeto e responder pelo contato informado.</p>
   </div>;
 
   return <form onSubmit={submit} noValidate>

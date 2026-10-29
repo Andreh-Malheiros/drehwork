@@ -6,17 +6,17 @@ import { insights, type Insight } from "@/content/insights";
 type PageMeta = { title: string; description: string; index?: boolean };
 
 export const staticPages: Record<string, PageMeta> = {
-  "": { title: "Criação de Sites Profissionais em BH e todo o Brasil | Dreh Work", description: "Criação de sites profissionais, landing pages, lojas Shopify e presença digital com SEO. Empresa de Belo Horizonte com atendimento em todo o Brasil. Diagnóstico gratuito." },
+  "": { title: "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork", description: "Criação de sites profissionais, landing pages, lojas Shopify e presença digital com SEO. Empresa de Belo Horizonte com atendimento em todo o Brasil. Diagnóstico gratuito." },
   servicos: { title: "Serviços de Criação de Sites, Lojas Virtuais e SEO", description: "Sites profissionais, landing pages, reformulação, lojas Shopify, presença digital e manutenção — cada serviço parte do resultado que a empresa precisa gerar." },
-  projetos: { title: "Portfólio de Sites e Lojas Virtuais", description: "Projetos publicados pela Dreh Work em sites institucionais, comércio eletrônico e evolução contínua de lojas Shopify." },
-  processo: { title: "Como Criamos o seu Site: Processo em 10 Etapas", description: "Planejar, criar e evoluir: o método da Dreh Work em 10 etapas, do diagnóstico à publicação verificada e à evolução contínua." },
-  sobre: { title: "Sobre a Dreh Work, Estúdio Digital de Belo Horizonte", description: "Quem está por trás da Dreh Work, como o trabalho é conduzido e por que a presença digital é tratada como investimento." },
+  projetos: { title: "Portfólio de Sites e Lojas Virtuais", description: "Projetos publicados pela DrehWork em sites institucionais, comércio eletrônico e evolução contínua de lojas Shopify." },
+  processo: { title: "Como Criamos o seu Site: Processo em 10 Etapas", description: "Planejar, criar e evoluir: o método da DrehWork em 10 etapas, do diagnóstico à publicação verificada e à evolução contínua." },
+  sobre: { title: "Sobre a DrehWork, Estúdio Digital de Belo Horizonte", description: "Quem está por trás da DrehWork, como o trabalho é conduzido e por que a presença digital é tratada como investimento." },
   diagnostico: { title: "Diagnóstico Gratuito de Site e Presença Digital", description: "Responda algumas perguntas e receba gratuitamente uma análise inicial do seu site, Google e Instagram, com o próximo passo recomendado e sem compromisso." },
   contato: { title: "Contato e Orçamento de Site pelo WhatsApp", description: `Peça um orçamento de site, landing page ou loja virtual pelo WhatsApp ou e-mail (${brand.email}). Belo Horizonte e todo o Brasil, ${brand.hours.toLowerCase()}.` },
   insights: { title: "Guias sobre Sites, Google, Lojas Virtuais e IA", description: "Guias práticos para donos de negócio: como aparecer no Google e no Maps, quanto custa um site, Shopify ou Nuvemshop, SEO, IA e presença digital." },
-  "politica-de-privacidade": { title: "Política de Privacidade", description: "Como a Dreh Work trata dados pessoais em conformidade com a LGPD (Lei 13.709/2018)." },
-  "politica-de-cookies": { title: "Política de Cookies", description: "Quais cookies e tecnologias semelhantes o site da Dreh Work utiliza e como gerenciar seu consentimento." },
-  "termos-de-uso": { title: "Termos de Uso", description: "Condições de uso do site da Dreh Work, responsabilidades, propriedade intelectual e canais de contato." },
+  "politica-de-privacidade": { title: "Política de Privacidade", description: "Como a DrehWork trata dados pessoais em conformidade com a LGPD (Lei 13.709/2018)." },
+  "politica-de-cookies": { title: "Política de Cookies", description: "Quais cookies e tecnologias semelhantes o site da DrehWork utiliza e como gerenciar seu consentimento." },
+  "termos-de-uso": { title: "Termos de Uso", description: "Condições de uso do site da DrehWork, responsabilidades, propriedade intelectual e canais de contato." },
 };
 
 export const indexablePaths = [
@@ -37,7 +37,7 @@ export function pageMetadata(path: string): Metadata {
   const meta: PageMeta | undefined = service
     ? { title: service.seoTitle, description: service.metaDescription }
     : project
-      ? { title: `${project.name}: ${project.category}`, description: `${project.name}: ${project.category}. Veja o escopo entregue pela Dreh Work neste projeto: ${project.scope.slice(0, 4).join(", ").toLowerCase()}.` }
+      ? { title: `${project.name}: ${project.category}`, description: `${project.name}: ${project.category}. Veja o escopo entregue pela DrehWork neste projeto: ${project.scope.slice(0, 4).join(", ").toLowerCase()}.` }
       : landing
         ? { title: landing.seoTitle, description: landing.description }
         : insight
@@ -46,13 +46,13 @@ export function pageMetadata(path: string): Metadata {
   if (!meta) return {};
   const url = `${brand.url}/${path}`.replace(/\/$/, "");
   const title = path === "" ? { absolute: meta.title } : meta.title;
-  const fullTitle = path === "" ? meta.title : `${meta.title} | Dreh Work`;
+  const fullTitle = path === "" ? meta.title : `${meta.title} | DrehWork`;
   return {
     title,
     description: meta.description,
     alternates: { canonical: url },
     robots: meta.index === false ? { index: false, follow: true } : undefined,
-    openGraph: { ...(insight ? { type: "article" as const, publishedTime: insight.date, modifiedTime: insight.updated, section: insight.category } : { type: "website" as const }), locale: "pt_BR", siteName: "Dreh Work", url, title: fullTitle, description: meta.description, images: [{ url: "/og.png", width: 1200, height: 630, alt: `Dreh Work — ${brand.slogan}` }] },
+    openGraph: { ...(insight ? { type: "article" as const, publishedTime: insight.date, modifiedTime: insight.updated, section: insight.category } : { type: "website" as const }), locale: "pt_BR", siteName: "DrehWork", url, title: fullTitle, description: meta.description, images: [{ url: "/og.png", width: 1200, height: 630, alt: `DrehWork — ${brand.slogan}` }] },
     twitter: { card: "summary_large_image", title: fullTitle, description: meta.description, images: ["/og.png"] },
   };
 }
@@ -67,7 +67,7 @@ export function organizationSchema() {
       {
         "@type": "ProfessionalService",
         "@id": orgId,
-        name: "Dreh Work",
+        name: "DrehWork",
         legalName: brand.legalName,
         url: brand.url,
         logo: `${brand.url}${brand.logo}`,
@@ -79,14 +79,14 @@ export function organizationSchema() {
         taxID: brand.cnpj,
         address: { "@type": "PostalAddress", addressLocality: brand.city, addressRegion: brand.region, addressCountry: "BR" },
         areaServed: areaServed(),
-        openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
+        openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" },
         founder: { "@type": "Person", name: brand.legalName },
         sameAs: [brand.instagramUrl],
         contactPoint: [{ "@type": "ContactPoint", contactType: "customer service", email: brand.email, telephone: brand.whatsapp, areaServed: "BR", availableLanguage: "Portuguese" }],
         knowsAbout: ["Criação de sites", "Desenvolvimento web", "SEO", "SEO local", "Google Perfil da Empresa", "Shopify", "E-commerce", "Landing pages", "Presença digital", "Automação de processos"],
         hasOfferCatalog: { "@type": "OfferCatalog", name: "Serviços", itemListElement: services.map(s => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, url: `${brand.url}/servicos/${s.slug}` } })) },
       },
-      { "@type": "WebSite", "@id": `${brand.url}/#website`, url: brand.url, name: "Dreh Work", inLanguage: "pt-BR", publisher: { "@id": orgId } },
+      { "@type": "WebSite", "@id": `${brand.url}/#website`, url: brand.url, name: "DrehWork", inLanguage: "pt-BR", publisher: { "@id": orgId } },
     ],
   };
 }
