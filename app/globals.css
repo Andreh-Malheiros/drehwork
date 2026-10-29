@@ -6871,3 +6871,41 @@ button.text-link { appearance: none; background-color: transparent; border: 0; b
   html body .site-header .mega-menu { height: auto !important; min-height: 0 !important; }
   html body .site-header .mega-service-grid { height: auto !important; align-items: start !important; }
 }
+
+/* ==========================================================================
+   Rodapé (Fase 10b): chamada final, quatro colunas legíveis e linha legal.
+   ========================================================================== */
+footer.site-footer.foot { padding: clamp(72px, 9vw, 120px) 0 28px; border-top: 1px solid rgba(255, 255, 255, .08); background: radial-gradient(circle at 80% 0%, rgba(77, 91, 255, .1), transparent 40%), #050608; }
+.foot-lead { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 48px; padding-bottom: clamp(48px, 6vw, 72px); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.foot .foot-statement { max-width: 12ch; margin: 0; color: #fff; font-size: clamp(2.4rem, 5.4vw, 4.8rem); font-weight: 600; line-height: .98; letter-spacing: -.055em; }
+.foot .foot-statement em { color: #6f7380; font-style: normal; }
+.foot-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.foot .foot-whatsapp { border: 1px solid rgba(255, 255, 255, .2); background: transparent; color: #fff; }
+.foot .foot-whatsapp:hover { border-color: var(--blue-light); background: rgba(77, 91, 255, .12); }
+
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr) minmax(0, 1fr) minmax(0, 1fr); gap: 40px clamp(24px, 4vw, 56px); padding-block: clamp(48px, 6vw, 72px); }
+.foot-brand > p { max-width: 32ch; margin: 0 0 22px; color: #a5a9b4; font-size: 15px; line-height: 1.6; }
+.foot ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.foot-contact li { color: #7f838e; font-size: 14px; line-height: 1.5; }
+.foot-grid nav h2 { margin: 0 0 18px; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.foot-grid a, .foot-contact a { color: #a5a9b4; font-size: 14px; line-height: 1.5; text-decoration: none; transition: color var(--dur-quick); }
+.foot-grid a:hover, .foot-grid a:focus-visible { color: #fff; }
+
+.foot-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .08); }
+.foot-bottom p { margin: 0; color: #6f7380; font-size: 13px; letter-spacing: 0; }
+.foot-bottom .footer-legal-links { gap: 8px 22px; }
+.foot-bottom .footer-legal-links a, .foot-bottom .footer-link-button { color: #8d919c; font-size: 13px; letter-spacing: 0; text-decoration: none; }
+.foot-bottom .footer-legal-links a:hover, .foot-bottom .footer-link-button:hover { color: #fff; }
+
+@media (max-width: 1023px) {
+  .foot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .foot-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
+  .foot-grid nav:last-child { grid-column: 1 / -1; }
+  .foot-actions, .foot-actions .button { width: 100%; }
+  .foot-actions .button { justify-content: center; }
+  .foot-bottom { flex-direction: column; align-items: flex-start; padding-bottom: 72px; }
+}
+@media (min-width: 641px) { .foot-bottom { padding-right: 190px; } }
