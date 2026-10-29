@@ -19,7 +19,10 @@ export const metadata: Metadata = {
   authors: [{ name: brand.legalName }],
   creator: brand.legalName,
   formatDetection: { telephone: false },
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : {}),
+    other: { "facebook-domain-verification": "xpcex0bye3xfq99z0mvew0jwy95xui" },
+  },
 };
 
 const poppins = Poppins({ subsets: ["latin", "latin-ext"], weight: ["200", "300", "400", "500", "600", "700"], style: ["normal", "italic"], display: "swap", variable: "--font-poppins" });
