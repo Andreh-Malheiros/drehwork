@@ -270,5 +270,95 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "visualizacoes-de-posts-perfil-da-empresa-google",
+    "title": "Visualizações de posts do Perfil da Empresa no Google: o que mudou",
+    "seoTitle": "Visualizações de posts no Perfil da Empresa Google",
+    "description": "O Google voltou a mostrar quantas pessoas viram cada post do Perfil da Empresa. Veja o que o número mede, o que não mede e como usar na sua empresa.",
+    "keyword": "visualizações de posts do perfil da empresa",
+    "category": "Notícias e tendências",
+    "date": "2026-10-29",
+    "updated": "2026-10-29",
+    "summary": "O Perfil da Empresa no Google voltou a exibir o número de visualizações de cada post. Entenda o alcance da novidade e o que ela muda para negócios locais.",
+    "intro": "As visualizações de posts do Perfil da Empresa voltaram ao painel do Google: agora cada post (atualização, oferta ou evento) mostra quantas vezes foi visto, somando as exibições na Busca e no Maps. Segundo a imprensa especializada, o Google anunciou o recurso, chamado Google Posts Reporting, no boletim para pequenos negócios de setembro de 2026, e a liberação está em andamento no mundo todo. Para o dono de uma empresa local, é a chance de saber quais publicações do perfil realmente são vistas, sem depender de achismo. Mas o número tem limites claros, e é importante conhecê-los antes de tirar conclusões.",
+    "sections": [
+      {
+        "heading": "O que o Google anunciou",
+        "paragraphs": [
+          "O Perfil da Empresa (antigo Google Meu Negócio) é a ficha gratuita que aparece quando alguém pesquisa o nome da sua empresa no Google ou a encontra no Google Maps. Dentro dela existe o recurso de posts, no qual o dono publica novidades, promoções e eventos.",
+          "De acordo com o Search Engine Journal e o PPC Land, o Google apresentou a contagem de visualizações por post no boletim para pequenos negócios de 10 de setembro de 2026, publicado por uma funcionária do Google na comunidade de ajuda do Perfil da Empresa. O Google descreveu o recurso como em liberação global (rollout) e ainda indisponível na API, a conexão técnica usada por ferramentas e agências para puxar dados automaticamente.",
+          "A contagem é uma volta: segundo o Search Engine Journal, as visualizações e os cliques de posts deixaram de ser oferecidos em fevereiro de 2023, na migração para a Business Profile Performance API, e não tinham substituto até agora."
+        ]
+      },
+      {
+        "heading": "Onde ver e o que aparece",
+        "paragraphs": [
+          "Segundo as reportagens, o número aparece no cartão de cada post, na seção de posts do painel do Perfil da Empresa. As características divulgadas são:"
+        ],
+        "items": [
+          "Tipos de post: atualizações, ofertas e eventos.",
+          "Período: posts publicados nos últimos 18 meses, em janela contínua.",
+          "Origem: as visualizações vindas da Busca e do Maps são somadas em um único número.",
+          "Disponibilidade: em liberação mundial, o que significa que pode não aparecer ainda no seu painel. As reportagens não detalham a liberação país a país."
+        ]
+      },
+      {
+        "heading": "O que o número não mostra",
+        "paragraphs": [
+          "Pelo que foi noticiado, o boletim fala em visualizações, mas não em cliques. Você consegue saber que um post foi visto, mas não quantas pessoas clicaram, ligaram ou pediram rota por causa dele.",
+          "O Search Engine Journal também aponta que o Google não publicou uma definição precisa de \"visualização\". Não está claro se o número conta pessoas diferentes ou todas as vezes em que o post apareceu. Por isso, use a contagem para comparar seus próprios posts entre si, e não como medida absoluta de público.",
+          "O PPC Land lembra ainda que a novidade não está na integração do Perfil da Empresa com o Google Analytics lançada em junho de 2026. Se você acompanha resultados lá, esses dados não virão junto."
+        ]
+      },
+      {
+        "heading": "O que isso muda para pequenas empresas brasileiras",
+        "paragraphs": [
+          "A mudança não cria um benefício automático: ela dá visibilidade a algo que já existia. Quem publica posts agora consegue enxergar o que foi visto. Isso ajuda a decidir onde gastar o pouco tempo disponível. Uma forma simples de usar:"
+        ],
+        "items": [
+          "Publique de forma regular por algumas semanas, variando o tipo (oferta, novidade, evento).",
+          "Compare as visualizações de cada post e observe quais assuntos e formatos se repetem entre os mais vistos.",
+          "Cruze com os números de ligações, rotas e visitas ao site que o próprio painel já mostra.",
+          "Mantenha telefone, endereço e horários corretos: o recurso mostra alcance, mas quem decide contatar a empresa olha primeiro a ficha completa."
+        ]
+      },
+      {
+        "heading": "Cuidados na hora de interpretar",
+        "paragraphs": [
+          "Como a métrica é nova e sem definição pública, evite metas rígidas. Também não é correto concluir que mais visualizações significam mais vendas: o painel, nesta etapa, não liga o post a um pedido ou a uma ligação.",
+          "Vale lembrar que o Perfil da Empresa é só uma parte da presença digital. Um site claro, com contato fácil, é para onde o cliente vai depois de ver o seu post. Se quiser entender como seu perfil e seu site estão hoje, o diagnóstico gratuito da Dreh Work pode ajudar a priorizar o que ajustar primeiro."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "As visualizações de posts do Perfil da Empresa já estão no meu painel?",
+        "O Google descreveu a liberação como global e em andamento. Isso quer dizer que ela chega de forma gradual, então o recurso pode ainda não ter aparecido para você. Abra a seção de posts do painel do Perfil da Empresa e confira o cartão de cada post."
+      ],
+      [
+        "O Google mostra quantos cliques cada post recebeu?",
+        "Segundo as reportagens sobre o boletim de setembro de 2026, o anúncio fala de visualizações, e não de cliques. Para acompanhar ações como ligações e pedidos de rota, use as métricas gerais de desempenho do próprio Perfil da Empresa."
+      ],
+      [
+        "Vale a pena publicar posts no Perfil da Empresa?",
+        "Os posts são gratuitos e ficam ligados à sua ficha no Google. Com a contagem de visualizações, agora é possível ver quais foram vistos. Não há garantia de resultado: o efeito depende do seu negócio, da concorrência local e da qualidade do perfil como um todo."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Google Business Profile post view counts return (Search Engine Journal, 10 de setembro de 2026)",
+        "url": "https://www.searchenginejournal.com/google-business-profile-post-view-counts/589128/"
+      },
+      {
+        "title": "Google adds post view counts to Business Profile, no API access yet (PPC Land, 11 de setembro de 2026)",
+        "url": "https://ppc.land/google-adds-post-view-counts-to-business-profile-no-api-access-yet/"
+      }
+    ],
+    "status": "published"
   }
 ]

@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Visualizações de posts do Perfil da Empresa no Google: o que mudou](https://www.drehwork.com/insights/visualizacoes-de-posts-perfil-da-empresa-google): O Google voltou a mostrar quantas pessoas viram cada post do Perfil da Empresa; o que o número mede, o que não mede e como usar.
 - [Pix por aproximação sem teto de R$ 500: o que muda para o seu negócio](https://www.drehwork.com/insights/pix-por-aproximacao-sem-limite-de-500-reais): O Banco Central acabou com o teto fixo de R$ 500 no Pix por aproximação; o limite agora é definido na conta de cada cliente.
 - [Quanto tempo leva para fazer um site profissional?](https://www.drehwork.com/insights/quanto-tempo-leva-para-fazer-um-site): As etapas de um projeto de site, o prazo realista de cada uma e o que costuma atrasar a publicação.
 - [Site ou Instagram: minha empresa precisa dos dois?](https://www.drehwork.com/insights/site-ou-instagram-qual-escolher): O que o Instagram faz bem, onde ele falha e por que o site continua sendo o endereço próprio da empresa.
