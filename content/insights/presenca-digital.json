@@ -305,5 +305,98 @@
       "automacao-de-processos"
     ],
     "status": "published"
+  },
+  {
+    "slug": "horario-de-natal-e-ano-novo-no-google",
+    "title": "Horário de Natal e Ano Novo no Google: como configurar o Perfil da Empresa",
+    "seoTitle": "Horário de Natal e Ano Novo no Google: Como Configurar",
+    "description": "Passo a passo para configurar o horário especial de Natal e Ano Novo no Perfil da Empresa do Google e evitar cliente na porta de uma loja fechada.",
+    "keyword": "horário de natal e ano novo no google",
+    "category": "Presença digital",
+    "date": "2026-10-30",
+    "updated": "2026-10-30",
+    "summary": "Como cadastrar o horário especial de fim de ano no Perfil da Empresa, com o passo a passo, os limites do recurso e um checklist antes das festas.",
+    "intro": "Para configurar o horário de Natal e Ano Novo no Google, abra o Perfil da Empresa, vá em Editar perfil e depois em Horários, e adicione cada data especial (como 24 e 25 de dezembro e 31 de dezembro e 1º de janeiro) com o horário de funcionamento ou marcada como fechada. Isso evita que o cliente veja o horário normal, vá até a loja e a encontre fechada, ou, o contrário, que desista de ir por achar que você não abre. Como o fim de ano é o período de maior movimento para muitos negócios, vale deixar tudo pronto com antecedência. Este guia mostra o passo a passo, os limites do recurso e um checklist para o fim de ano.",
+    "sections": [
+      {
+        "heading": "Por que o horário especial importa no fim de ano",
+        "paragraphs": [
+          "O Perfil da Empresa é a ficha gratuita que aparece quando alguém pesquisa o nome do seu negócio no Google ou o encontra no Google Maps. Ali ficam endereço, telefone, avaliações e horário de funcionamento. Na hora de decidir se vai até o local, muita gente olha primeiro o horário.",
+          "Em datas como Natal e Ano Novo, o horário muda: algumas empresas fecham, outras abrem por menos horas, outras estendem o expediente. Se o Google continua mostrando o horário normal, o cliente recebe uma informação errada, e a experiência ruim acontece antes mesmo do primeiro contato."
+        ]
+      },
+      {
+        "heading": "Passo a passo para cadastrar o horário especial",
+        "paragraphs": [
+          "Segundo a página de ajuda oficial do Google, o caminho pela Busca é este:"
+        ],
+        "items": [
+          "Acesse o seu Perfil da Empresa (pesquisando o nome do negócio logado na conta que o gerencia).",
+          "Selecione Editar perfil e depois Horários.",
+          "Na seção de horário de funcionamento, clique no ícone de edição ao lado de Horário especial.",
+          "Escolha uma data sugerida pelo Google ou use Adicionar uma data para informar a sua.",
+          "Se a empresa abre, desmarque Fechado e informe o horário de abertura e fechamento. Se não abre, mantenha Fechado marcado. Para mais de um período no mesmo dia, use a opção de adicionar horários.",
+          "Salve."
+        ]
+      },
+      {
+        "heading": "Limites e detalhes que costumam passar despercebidos",
+        "paragraphs": [
+          "Alguns pontos da documentação do Google evitam dor de cabeça:"
+        ],
+        "items": [
+          "Os horários de funcionamento precisam estar definidos como Aberto com horário principal para que o horário especial apareça no perfil.",
+          "O horário especial serve para fechar ou alterar o expediente por até 6 dias seguidos. Para 7 dias ou mais, ou um período de fechamento sem data para acabar, o Google orienta marcar a empresa como Temporariamente fechada. Isso importa para quem para por férias coletivas no fim de ano.",
+          "Cada horário especial não pode passar de 24 horas. Se o expediente vai além da meia-noite, é preciso dividir em duas entradas.",
+          "O Google recomenda confirmar o horário dos feriados oficiais mesmo quando ele é igual ao normal, o que mostra aos clientes que a informação está correta.",
+          "Quem tem várias unidades pode cadastrar os horários especiais por planilha, usando a coluna de horário especial."
+        ]
+      },
+      {
+        "heading": "Checklist de fim de ano para sua presença digital",
+        "paragraphs": [
+          "O horário no Google é só uma parte. Para o cliente encontrar a mesma informação em todo lugar, revise também:"
+        ],
+        "items": [
+          "Site: avise na página inicial e na página de contato o horário de Natal, de Ano Novo e a data de retorno, se houver recesso.",
+          "Instagram: atualize a bio ou um destaque com o calendário de atendimento.",
+          "WhatsApp Business: configure a mensagem de ausência com a data em que você volta a responder.",
+          "Loja virtual: informe o último dia para pedidos com entrega antes do Natal, de acordo com os prazos reais da sua transportadora.",
+          "Telefone e e-mail: confirme quem atende no período e deixe isso claro nos canais."
+        ]
+      },
+      {
+        "heading": "Quando fazer e como manter atualizado",
+        "paragraphs": [
+          "Como é possível agendar horários especiais com antecedência, o ideal é cadastrar as datas assim que o calendário do fim de ano estiver definido, em vez de esperar a semana do Natal. Depois do período, confira se o perfil voltou ao horário normal e se não restou nenhuma data antiga.",
+          "Se o seu horário muda ao longo do ano (feriados municipais, eventos, sazonalidades), transforme isso em rotina: uma revisão do perfil por trimestre já evita a maior parte dos erros. Nenhum ajuste de horário garante mais clientes, mas informação correta evita perdê-los por engano."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "Preciso cadastrar o horário se vou abrir normalmente no feriado?",
+        "O Google recomenda confirmar o horário dos feriados oficiais mesmo quando ele coincide com o normal, para mostrar aos clientes que a informação está correta."
+      ],
+      [
+        "Vou fechar por duas semanas no fim de ano. Uso horário especial?",
+        "O horário especial é indicado para até 6 dias seguidos. Para 7 dias ou mais, a orientação do Google é marcar a empresa como Temporariamente fechada e depois reabri-la."
+      ],
+      [
+        "Posso alterar o horário de várias unidades de uma vez?",
+        "Sim. A documentação do Google prevê o cadastro em massa por planilha, com uma coluna própria para horários especiais, o que ajuda quem tem mais de um endereço."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Como definir horários especiais — Ajuda do Perfil da Empresa (Google)",
+        "url": "https://support.google.com/business/answer/6303076"
+      }
+    ],
+    "status": "published"
   }
 ]
