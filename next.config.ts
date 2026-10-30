@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    // Cases sem autorização pública (decisão D13): as páginas antigas apontam para o portfólio.
+    return ["wayne-store", "noar-oficial"].map(slug => ({ source: `/projetos/${slug}`, destination: "/projetos", permanent: true }));
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

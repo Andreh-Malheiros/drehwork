@@ -14,8 +14,8 @@ import { JsonLd, organizationSchema, pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = {
   ...pageMetadata(""),
   metadataBase: new URL(brand.url),
-  title: { default: "Criação de Sites Profissionais em BH e todo o Brasil | Dreh Work", template: "%s | Dreh Work" },
-  applicationName: "Dreh Work",
+  title: { default: "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork", template: "%s | DrehWork" },
+  applicationName: "DrehWork",
   authors: [{ name: brand.legalName }],
   creator: brand.legalName,
   formatDetection: { telephone: false },

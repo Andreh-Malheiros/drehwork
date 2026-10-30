@@ -15,6 +15,7 @@ export function HomeMotion() {
 
       motion.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(elements, { autoAlpha: 1, y: 0, clearProps: "transform" });
+        gsap.set(".split-word > span, [data-stagger] > *", { clearProps: "all" });
       });
 
       motion.add("(prefers-reduced-motion: no-preference)", () => {
@@ -30,6 +31,38 @@ export function HomeMotion() {
             ease: "power3.out",
             overwrite: true,
           }),
+        });
+
+        // Section titles rise word by word, echoing the hero headline.
+        gsap.utils.toArray<HTMLElement>(".split-heading").forEach(heading => {
+          gsap.fromTo(heading.querySelectorAll(".split-word > span"), { yPercent: 105 }, {
+            yPercent: 0,
+            duration: 0.9,
+            stagger: 0.045,
+            ease: "power4.out",
+            scrollTrigger: { trigger: heading, start: "top 88%", once: true },
+          });
+        });
+
+        // Lists and grids settle in order once their section is reached.
+        gsap.utils.toArray<HTMLElement>("[data-stagger]").forEach(group => {
+          // fromTo: explicit end state, so a CSS opacity transition can't leave items hidden.
+          gsap.fromTo(group.children, { autoAlpha: 0, y: 22 }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.07,
+            ease: "power3.out",
+            scrollTrigger: { trigger: group, start: "top 86%", once: true },
+          });
+        });
+
+        document.querySelectorAll<HTMLElement>(".cta-band").forEach(band => {
+          gsap.fromTo(band, { "--cta-rotate": "-14deg" }, {
+            "--cta-rotate": "10deg",
+            ease: "none",
+            scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: 0.8 },
+          });
         });
 
         const heroSystem = document.querySelector<HTMLElement>(".hero-system");

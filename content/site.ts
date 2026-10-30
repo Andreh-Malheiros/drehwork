@@ -37,22 +37,22 @@ export type Service = {
 };
 
 export const brand = {
-  name: "DREH WORK",
+  name: "DrehWork",
   positioning: "Parceiro de crescimento digital: sites, estratégia, SEO e automação para empresas que tratam presença digital como investimento.",
   email: "contato@drehwork.com",
-  whatsapp: "+55 31 99965-6778",
-  whatsappDigits: "5531999656778",
+  whatsapp: "+55 31 98541-5964",
+  whatsappDigits: "5531985415964",
   instagram: "@dreh.work",
   domain: "www.drehwork.com",
   url: "https://www.drehwork.com",
   serviceArea: "Belo Horizonte (MG) e atendimento remoto em todo o Brasil",
   city: "Belo Horizonte",
   region: "MG",
-  hours: "Segunda a sexta, das 8h às 18h",
+  hours: "Atendimento todos os dias, 24 horas",
   lead: "Andreh Malheiros",
   legalName: "Andreh Malheiros Tiberio",
-  yearsInMarket: 2,
-  projectsDelivered: 20,
+  /** Início da atuação profissional: 19/08/2024 (decisão D11). */
+  activeSince: "agosto de 2024",
   cnpj: "65.415.209/0001-61",
   slogan: "Visão que transforma. Estratégia que gera resultado.",
   pillars: ["Planejar", "Criar", "Evoluir"],
@@ -88,7 +88,7 @@ export const services: Service[] = [
     faqs: [
       ["Para quem é um site profissional?", "Para empresas e profissionais que querem ser encontrados, transmitir confiança e receber contatos pela internet. Se a empresa não pretende atrair clientes online, o investimento não faz sentido."],
       ["O que está incluído na criação do site?", "Planejamento da arquitetura, design, desenvolvimento responsivo, publicação, configuração de domínio e base técnica de SEO. O escopo final é confirmado em proposta."],
-      ["Quanto tempo leva para criar um site?", "Projetos no escopo padrão têm prazo previsto de até 10 dias após contrato e recebimento dos materiais."],
+      ["Quanto tempo leva para criar um site?", "Projetos no escopo padrão têm prazo previsto de até 5 dias úteis de desenvolvimento, contados da aprovação dos textos e do recebimento dos materiais."],
       ["Quanto custa um site profissional?", "Depende principalmente do número de páginas, de quem produz os textos, das integrações e do nível de personalização. Os fatores estão explicados na página Quanto custa um site, e o valor exato é apresentado em proposta após o diagnóstico."],
       ["O site vai aparecer no Google?", "O site é entregue com a base técnica correta para ser indexado e configurado no Google Search Console. Ninguém pode garantir a primeira posição, mas sem essa base a empresa dificilmente é encontrada."],
       ["Vou conseguir atualizar o site depois?", "Sim. A estrutura é pensada para facilitar ajustes, e a manutenção pode ser contratada para alterações, novas páginas e evolução contínua."],
@@ -162,12 +162,12 @@ export const services: Service[] = [
       ["Autonomia para a marca", "Orientação para que a equipe consiga cadastrar produtos e operar o dia a dia da loja."],
       ["Evolução contínua", "Manutenção, correções e melhorias de interface em lojas já publicadas."],
     ],
-    relatedProjects: ["noar-oficial", "wayne-store", "ammis-moda"],
+    relatedProjects: ["ammis-moda"],
     faqs: [
-      ["Vocês criam lojas do zero?", "Sim. A Dreh Work cria, configura e personaliza lojas Shopify, além de atuar na evolução contínua de lojas existentes."],
+      ["Vocês criam lojas do zero?", "Sim. A DrehWork cria, configura e personaliza lojas Shopify, além de atuar na evolução contínua de lojas existentes."],
       ["Atendem lojas que já existem?", "Sim. Manutenção, personalização de tema, correções e melhorias de navegação e conversão em lojas já publicadas."],
       ["Por que Shopify?", "É uma plataforma estável, segura e escalável, que permite à loja crescer sem refazer a base técnica."],
-      ["O plano da Shopify está incluído no valor do projeto?", "Não. A assinatura da Shopify, temas pagos, aplicativos e taxas de pagamento são contratados diretamente pela marca, com valores definidos pela própria plataforma. O projeto da Dreh Work cobre criação, configuração e personalização."],
+      ["O plano da Shopify está incluído no valor do projeto?", "Não. A assinatura da Shopify, temas pagos, aplicativos e taxas de pagamento são contratados diretamente pela marca, com valores definidos pela própria plataforma. O projeto da DrehWork cobre criação, configuração e personalização."],
       ["Vou conseguir gerenciar a loja sozinha?", "Sim. A Shopify permite cadastrar produtos, acompanhar pedidos e editar conteúdos pelo painel, e a entrega inclui orientação para a operação do dia a dia."],
       ["Vocês fazem consultoria de e-commerce?", "Sim. A consultoria ajuda a decidir estrutura de catálogo, experiência de compra e prioridades antes ou depois de a loja ser publicada."],
     ],
@@ -255,8 +255,6 @@ const projectCover = (name: string, src: string, width: number, height: number):
 export const projects: Project[] = [
   { slug: "bh-carimbos", name: "BH Carimbos", url: "https://bhcarimbos.com.br/", category: "Site institucional e presença local", createdByDrehWork: true, status: "Concluído", scope: ["Estratégia", "Arquitetura das páginas", "Design", "Desenvolvimento", "Responsividade", "Integrações", "Publicação", "Presença local", "Estrutura para busca"], media: projectCover("BH Carimbos", "/images/bhcarimbos.webp", 1905, 1811), pendingCaseStudy: true },
   { slug: "amftv", name: "AMFTV", url: "https://amftv.com.br/", category: "Site institucional", createdByDrehWork: true, status: "Concluído", scope: ["Estratégia", "Arquitetura", "Design", "Desenvolvimento", "Responsividade", "Publicação"], media: projectCover("AMFTV", "/images/amftv.webp", 1905, 905), pendingCaseStudy: true },
-  { slug: "wayne-store", name: "Wayne Store", url: "https://usewayne.com.br/", category: "Comércio eletrônico", createdByDrehWork: true, status: "Concluído", scope: ["Criação", "Desenvolvimento", "Configuração da loja", "Personalização", "Estrutura visual", "Experiência de navegação"], media: projectCover("Wayne Store", "/images/usewayne.webp", 1910, 1773), pendingCaseStudy: true },
-  { slug: "noar-oficial", name: "NOAR Oficial", url: "https://noaroficial.com.br/", category: "Comércio eletrônico e moda", createdByDrehWork: true, status: "Concluído", scope: ["Criação", "Desenvolvimento", "Configuração da loja", "Personalização", "Direção visual", "Experiência de navegação"], media: projectCover("NOAR Oficial", "/images/noaroficial.webp", 1905, 1922), pendingCaseStudy: true },
   { slug: "ammis-moda", name: "Ammis Moda", url: "https://ammismoda.com.br/", category: "Evolução contínua em Shopify", createdByDrehWork: false, status: "Atuação recorrente", scope: ["Manutenção mensal", "Personalização", "Correções", "Melhorias de interface", "Evolução da experiência", "Modificações Shopify", "Suporte técnico"], media: projectCover("Ammis Moda", "/images/ammismoda.webp", 1905, 2550), pendingCaseStudy: true },
 ];
 
@@ -265,9 +263,9 @@ export const processSteps = ["Diagnóstico", "Estratégia", "Arquitetura", "Dire
 export const objectives = ["Criar o primeiro site", "Reformular o site atual", "Gerar mais contatos", "Criar uma landing page", "Vender online", "Melhorar uma loja Shopify", "Melhorar a presença digital", "Ainda não sei"];
 
 export const faqs = [
-  ["Para quem a Dreh Work é indicada?", "Para empresas e profissionais que querem atrair clientes pela internet e veem a presença digital como investimento: negócios locais, profissionais liberais, lojas virtuais e empresas em crescimento."],
+  ["Para quem a DrehWork é indicada?", "Para empresas e profissionais que querem atrair clientes pela internet e veem a presença digital como investimento: negócios locais, profissionais liberais, lojas virtuais e empresas em crescimento."],
   ["Quanto custa um site?", "O valor depende do tipo de projeto, do número de páginas, de quem produz os textos, das integrações e do nível de personalização. Os fatores estão explicados na página Quanto custa um site, e cada proposta é preparada de acordo com o escopo."],
-  ["Qual é o prazo?", "Após a assinatura do contrato e o recebimento dos materiais necessários, projetos compatíveis com o escopo padrão possuem prazo previsto de até 10 dias para desenvolvimento, publicação e verificação."],
+  ["Qual é o prazo?", "Após a assinatura do contrato e o recebimento dos materiais necessários, projetos compatíveis com o escopo padrão possuem prazo previsto de até 5 dias úteis de desenvolvimento, contados da aprovação dos textos e do recebimento dos materiais."],
   ["Como funciona o pagamento?", "São aceitos Pix, boleto, cartões de crédito e débito, link de pagamento e parcelamento."],
   ["Preciso fornecer os textos?", "A organização do conteúdo faz parte do processo. A necessidade de materiais e textos é definida de acordo com o projeto."],
   ["Preciso possuir domínio?", "Não. A configuração de domínio pode fazer parte da entrega."],
@@ -275,9 +273,9 @@ export const faqs = [
   ["O site poderá ser encontrado no Google?", "O projeto recebe uma base técnica correta para descoberta, sem promessa de posição garantida."],
   ["Como funciona a preparação para mecanismos de IA?", "A estrutura organiza informações, páginas e dados para facilitar a interpretação da empresa, sem prometer citações automáticas."],
   ["Existe manutenção?", "Sim. A manutenção pode ser contratada para suporte, correções e evolução contínua."],
-  ["A Dreh Work atende todo o Brasil?", "Sim. A Dreh Work é de Belo Horizonte (MG) e atende empresas de todo o Brasil de forma remota."],
+  ["A DrehWork atende todo o Brasil?", "Sim. A DrehWork é de Belo Horizonte (MG) e atende empresas de todo o Brasil de forma remota."],
   ["O diagnóstico é gratuito?", "Sim. É uma análise inicial de presença digital, respondida por mensagem."],
-  ["Existe contrato e nota fiscal?", "Sim. Os projetos são formalizados por contrato e a Dreh Work emite nota fiscal."],
+  ["Existe contrato e nota fiscal?", "Sim. Os projetos são formalizados por contrato e a DrehWork emite nota fiscal."],
 ] as const;
 
-export const whatsappUrl = (context: string) => `https://wa.me/${brand.whatsappDigits}?text=${encodeURIComponent(`Olá, Dreh Work. Gostaria de conversar sobre ${context}.`)}`;
+export const whatsappUrl = (context: string) => `https://wa.me/${brand.whatsappDigits}?text=${encodeURIComponent(`Olá, DrehWork. Gostaria de conversar sobre ${context}.`)}`;

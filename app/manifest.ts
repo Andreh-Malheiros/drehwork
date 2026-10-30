@@ -3,8 +3,8 @@ import { brand } from "@/content/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Dreh Work",
-    short_name: "Dreh Work",
+    name: "DrehWork",
+    short_name: "DrehWork",
     description: brand.positioning,
     start_url: "/",
     display: "standalone",

@@ -3,6 +3,7 @@
 import { BrandLogo } from "@/components/BrandLogo";
 import { ProjectRequestForm } from "@/components/ProjectRequestForm";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { brand, services } from "@/content/site";
 
@@ -45,6 +46,7 @@ export function Header() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
+  const pathname = usePathname();
 
   const clearCloseTimer = () => {
     if (closeTimer.current === null) return;
@@ -139,8 +141,10 @@ export function Header() {
                 onMouseEnter={index === 0 ? openMega : requestMegaClose}
                 onFocus={index === 0 ? openMega : requestMegaClose}
                 onClick={closeAll}
+                aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>{label}
+                {index === 0 ? <svg className="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg> : null}
               </Link>
             ))}
           </div>
@@ -187,6 +191,9 @@ export function Header() {
         </nav>
 
         <div className="nav-actions" aria-label="Opções rápidas">
+          <button className="header-start" type="button" aria-haspopup="dialog" aria-controls="project-form-panel" onClick={() => { closeAll(); setFormOpen(true); }}>
+            Iniciar um projeto
+          </button>
           <button
             className="grid-chip"
             type="button"

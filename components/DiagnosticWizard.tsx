@@ -99,7 +99,7 @@ export function DiagnosticWizard() {
   if (status === "sent") return <div className="wizard complete" aria-live="polite">
     <p className="kicker">Diagnóstico recebido</p>
     <h2 ref={heading} tabIndex={-1}>Obrigado, {String(answers.responsible || "").split(" ")[0] || "recebemos suas respostas"}.</h2>
-    <p>Suas respostas chegaram à Dreh Work. A análise inicial será enviada por {answers.reply === "E-mail" ? "e-mail" : "WhatsApp"}, no período que você indicou.</p>
+    <p>Suas respostas chegaram à DrehWork. A análise inicial será enviada por {answers.reply === "E-mail" ? "e-mail" : "WhatsApp"}, no período que você indicou.</p>
     <div className="button-row"><a className="button primary" target="_blank" rel="noreferrer" href={whatsappFallback}>Adiantar a conversa no WhatsApp</a><Link className="text-link" href="/projetos">Ver portfólio</Link></div>
   </div>;
 

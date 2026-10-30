@@ -46,7 +46,7 @@ export const landings: Landing[] = [
         "Um site feito às pressas costuma custar menos no início e mais depois: lento no celular, difícil de encontrar no Google e sem caminho claro para o cliente entrar em contato. O resultado é refazer o projeto em pouco tempo.",
         "O critério mais útil não é o menor preço, e sim quanto o site ajuda a empresa a ser encontrada, transmitir confiança e receber contatos.",
       ] },
-      { heading: "Como funciona o orçamento na Dreh Work", items: [
+      { heading: "Como funciona o orçamento na DrehWork", items: [
         "Diagnóstico gratuito para entender o momento da empresa e o objetivo do projeto.",
         "Proposta com escopo, prazo e investimento detalhados por item.",
         "Contrato e nota fiscal em todos os projetos.",
@@ -58,7 +58,7 @@ export const landings: Landing[] = [
       ["O orçamento é gratuito?", "Sim. O diagnóstico inicial e a proposta não têm custo nem compromisso de contratação."],
       ["Landing page custa menos que um site?", "Em geral, sim, porque tem uma única página e um único objetivo. Mas uma landing page com copy estratégica e integrações de anúncio pode exigir mais trabalho que um site simples."],
       ["É possível parcelar?", "Sim. São aceitos Pix, boleto, cartões de crédito e débito, link de pagamento e parcelamento."],
-      ["Qual é o prazo de entrega?", "Projetos no escopo padrão têm prazo previsto de até 10 dias após contrato e recebimento dos materiais. Projetos maiores têm prazo definido na proposta."],
+      ["Qual é o prazo de entrega?", "Projetos no escopo padrão têm prazo previsto de até 5 dias úteis de desenvolvimento, contados da aprovação dos textos e do recebimento dos materiais. Projetos maiores têm prazo definido na proposta."],
     ],
     relatedServices: ["sites-profissionais", "landing-pages", "lojas-shopify", "manutencao"],
     relatedProjects: [],
@@ -70,7 +70,7 @@ export const landings: Landing[] = [
     description: "Criação de sites profissionais, landing pages e lojas virtuais em Belo Horizonte. Empresa de BH que cuida também de Google Perfil da Empresa e presença digital local.",
     eyebrow: "Belo Horizonte · MG",
     h1: "Criação de sites em Belo Horizonte para empresas que querem ser encontradas",
-    lead: "A Dreh Work é de Belo Horizonte. Criamos sites, landing pages e lojas virtuais para empresas de BH e região metropolitana, com a mesma estrutura de SEO e presença digital que oferecemos para todo o Brasil.",
+    lead: "A DrehWork é de Belo Horizonte. Criamos sites, landing pages e lojas virtuais para empresas de BH e região metropolitana, com a mesma estrutura de SEO e presença digital que oferecemos para todo o Brasil.",
     sections: [
       { heading: "Por que contratar uma empresa de sites de BH", paragraphs: [
         "Para um negócio local, ser encontrado na busca da própria cidade é o que gera contato. Conhecer o mercado de Belo Horizonte ajuda a escrever páginas com a linguagem, os bairros e os serviços que o cliente da região realmente procura.",
@@ -89,7 +89,7 @@ export const landings: Landing[] = [
       ] },
     ],
     faqs: [
-      ["A Dreh Work fica em Belo Horizonte?", "Sim. A Dreh Work é de Belo Horizonte (MG) e atende empresas de BH, região metropolitana e de todo o Brasil."],
+      ["A DrehWork fica em Belo Horizonte?", "Sim. A DrehWork é de Belo Horizonte (MG) e atende empresas de BH, região metropolitana e de todo o Brasil."],
       ["Vocês atendem presencialmente?", "O atendimento é principalmente remoto, por WhatsApp e videochamada, o que agiliza o projeto. Reuniões presenciais em BH podem ser combinadas quando fizerem sentido."],
       ["Vocês ajudam a aparecer no Google Maps em BH?", "Sim. A configuração e otimização do Google Perfil da Empresa faz parte da presença digital, junto com o site e a estratégia de avaliações."],
       ["Quanto custa um site em Belo Horizonte?", "Depende do tipo de projeto, do número de páginas, dos textos e das integrações. Os fatores estão explicados na página Quanto custa um site, e o valor é apresentado em proposta após o diagnóstico gratuito."],
@@ -126,7 +126,7 @@ export const landings: Landing[] = [
       ["Pequena empresa precisa de site?", "Se os clientes pesquisam no Google antes de contratar, sim. Sem site, a empresa depende de indicação e de redes sociais, que não aparecem bem na busca."],
       ["O site vai me ajudar a aparecer no Google Maps?", "O Maps depende principalmente do Google Perfil da Empresa. O site reforça essas informações, e os dois são configurados juntos na presença digital."],
       ["Vou receber contatos pelo WhatsApp?", "Sim. O site é planejado com o WhatsApp como principal canal de contato, com botões visíveis e medição de cliques."],
-      ["Quanto tempo leva?", "Projetos no escopo padrão têm prazo previsto de até 10 dias após contrato e recebimento dos materiais."],
+      ["Quanto tempo leva?", "Projetos no escopo padrão têm prazo previsto de até 5 dias úteis de desenvolvimento, contados da aprovação dos textos e do recebimento dos materiais."],
     ],
     relatedServices: ["sites-profissionais", "presenca-digital", "manutencao"],
     relatedProjects: ["bh-carimbos"],
@@ -156,17 +156,17 @@ export const landings: Landing[] = [
         "A Shopify é estável, segura e permite personalizar a experiência sem refazer a base técnica quando a marca cresce. A assinatura da plataforma, temas e aplicativos pagos são contratados diretamente pela marca.",
       ] },
       { heading: "Experiência com marcas de moda", paragraphs: [
-        "A Dreh Work criou a loja da NOAR Oficial e atua de forma recorrente na evolução da loja Shopify da Ammis Moda, com manutenção, personalização e melhorias de interface.",
+        "A DrehWork atua de forma recorrente na evolução da loja Shopify da Ammis Moda, com manutenção, personalização e melhorias de interface.",
       ] },
     ],
     faqs: [
       ["Quanto custa uma loja virtual de moda?", "Depende do número de produtos, do nível de personalização do tema, das integrações e da consultoria envolvida. A assinatura da Shopify é paga à parte. Os fatores estão na página Quanto custa um site."],
       ["Consigo cadastrar os produtos sozinha?", "Sim. O painel da Shopify permite cadastrar produtos e acompanhar pedidos, e a entrega inclui orientação para a operação do dia a dia."],
-      ["Vocês melhoram uma loja que já existe?", "Sim. A Dreh Work atua na personalização, correção e evolução de lojas Shopify já publicadas."],
+      ["Vocês melhoram uma loja que já existe?", "Sim. A DrehWork atua na personalização, correção e evolução de lojas Shopify já publicadas."],
       ["Vocês fazem consultoria de e-commerce?", "Sim. A consultoria ajuda a definir catálogo, experiência de compra e prioridades de crescimento da loja."],
     ],
     relatedServices: ["lojas-shopify", "manutencao", "presenca-digital"],
-    relatedProjects: ["noar-oficial", "ammis-moda", "wayne-store"],
+    relatedProjects: ["ammis-moda"],
     context: "uma loja virtual para minha marca de moda",
   },
 ];
