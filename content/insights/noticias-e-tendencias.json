@@ -1,5 +1,94 @@
 [
   {
+    "slug": "gemini-central-de-negocios-pequenas-empresas",
+    "title": "Central de negócios do Gemini: o que muda para pequenas empresas",
+    "seoTitle": "Central de negócios do Gemini para pequenas empresas",
+    "description": "O Google lançou uma central de negócios no app Gemini, ligada ao Perfil da Empresa e ao Google Ads. Veja o que ela faz e como se preparar.",
+    "keyword": "central de negócios do gemini",
+    "category": "Notícias e tendências",
+    "date": "2026-10-31",
+    "updated": "2026-10-31",
+    "summary": "O Google anunciou em 20 de outubro de 2026 uma página de negócios no app Gemini, conectada ao Perfil da Empresa, ao Google Ads e ao Workspace. Entenda o que ela faz e o que fazer agora.",
+    "intro": "A central de negócios do Gemini é uma página dentro do aplicativo Gemini, do Google, voltada a donos de pequenas empresas: ela reúne em um só lugar tarefas de marca, finanças e marketing e pode ser conectada ao Perfil da Empresa no Google, ao Google Ads e ao Google Workspace. O Google anunciou a novidade em 20 de outubro de 2026, durante a Feira do Empreendedor do Sebrae-SP, e informou que os recursos começam a ser liberados de forma gradual para usuários do app em todo o mundo. Gemini é o assistente de inteligência artificial (IA) do Google, com o qual você conversa para pedir textos, imagens e análises. Neste guia, com base nas fontes citadas ao final, explicamos o que foi anunciado, o que ainda não está claro e o que vale organizar no seu negócio para aproveitar a ferramenta sem correr riscos.",
+    "sections": [
+      {
+        "heading": "O que o Google anunciou",
+        "paragraphs": [
+          "Segundo a reportagem da Exame e o blog oficial do Google, o Gemini ganhou uma página de negócios pensada para microempreendedores, autônomos e pequenas empresas. A ideia é que o dono do negócio tenha um painel central, em vez de abrir várias ferramentas separadas para cuidar da marca, das finanças e do relacionamento com clientes.",
+          "A imprensa brasileira registrou o anúncio na Feira do Empreendedor do Sebrae-SP, em 20 de outubro de 2026. O texto publicado pelo Google é de 21 de outubro e diz que os recursos começam a ser liberados nos dias seguintes, de forma global, para os usuários do aplicativo Gemini."
+        ],
+        "items": [
+          "Visuais alinhados à marca: você envia o site, o manual de marca, as fontes ou a paleta de cores, e o Gemini mantém esse estilo ao criar imagens e peças de divulgação, usando o modelo de imagens que o Google chama de Nano Banana 2.1.",
+          "Finanças: o Gemini transforma planilhas bagunçadas, recibos e registros de compras em gráficos e modelos interativos, segundo o Google.",
+          "Painel de negócios: uma página central para construir a marca, analisar finanças e entender o comportamento dos clientes."
+        ]
+      },
+      {
+        "heading": "Quais serviços podem ser conectados",
+        "paragraphs": [
+          "O Google informa que o Gemini pode ser conectado ao Perfil da Empresa no Google (antiga ficha do negócio no Google Maps e na Busca), ao Google Ads e ao Google Workspace. Também cita aplicativos de terceiros: Adobe, Canva, Dropbox, Shopify, Wix, Zoho e Xero.",
+          "Há uma ressalva importante. O anúncio não detalha o que cada conexão consegue fazer, por exemplo, se o Gemini apenas lê informações do Perfil da Empresa ou se também pode publicar posts e alterar dados. Enquanto isso não estiver claro, trate essas conexões com cuidado e revise tudo o que a IA sugerir antes de publicar."
+        ]
+      },
+      {
+        "heading": "O que ainda não foi informado",
+        "paragraphs": [
+          "As fontes consultadas não dizem em que data cada recurso chega ao Brasil, quais idiomas são aceitos nem quais funções são gratuitas ou pagas. O Google afirma que a liberação é gradual, então é normal que algumas contas vejam a novidade antes de outras.",
+          "os números de uso e os relatos de empresários divulgados no anúncio foram apresentados pelo próprio Google e não foram verificados de forma independente. Por isso, não os usamos como base para recomendações."
+        ]
+      },
+      {
+        "heading": "Como uma pequena empresa pode se preparar",
+        "paragraphs": [
+          "A ferramenta aproveita o que já existe sobre o seu negócio. Quanto mais organizadas estiverem as informações, mais útil e menos arriscado será o uso de qualquer assistente de IA. Sem prometer resultado: a novidade não garante mais clientes nem melhor posição no Google, apenas facilita algumas tarefas."
+        ],
+        "items": [
+          "Confira o Perfil da Empresa: nome, endereço, telefone, horários (inclusive os de fim de ano), categoria e fotos atualizados.",
+          "Reúna sua identidade visual em um só lugar: logotipo, cores, fontes e um site que represente bem a marca, já que ele pode servir de referência para o Gemini.",
+          "Mantenha o site claro e atual, com serviços, contatos e política de privacidade visíveis.",
+          "Defina quem na empresa pode conectar contas e autorizar o acesso do Gemini ao Perfil, ao Ads ou a planilhas financeiras.",
+          "Evite enviar dados pessoais de clientes ou documentos sensíveis sem entender como serão tratados, e consulte as regras de privacidade do Google e a LGPD."
+        ]
+      },
+      {
+        "heading": "Vale mudar a rotina agora?",
+        "paragraphs": [
+          "Para a maioria das pequenas empresas, a resposta é testar com calma. Use a ferramenta para rascunhos de materiais e para organizar números, sempre com revisão humana. Decisões de preço, promessas a clientes e informações públicas do negócio devem continuar sob sua responsabilidade.",
+          "O que não muda: um site próprio bem feito, um Perfil da Empresa completo e uma presença digital consistente seguem sendo a base. Ferramentas de IA como o Gemini trabalham melhor quando encontram informações claras e coerentes sobre o negócio."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "A central de negócios do Gemini já está disponível no Brasil?",
+        "O Google diz que os recursos começam a ser liberados de forma gradual para usuários do app Gemini em todo o mundo. As fontes consultadas não informam uma data específica para o Brasil. Abra o aplicativo e verifique se a página de negócios aparece na sua conta."
+      ],
+      [
+        "O Gemini pode alterar o meu Perfil da Empresa sozinho?",
+        "O anúncio do Google diz que é possível conectar o Gemini ao Perfil da Empresa, mas não detalha se a conexão é apenas de leitura ou se permite editar e publicar. Até haver essa informação, revise qualquer sugestão antes de aplicar e confira as permissões concedidas."
+      ],
+      [
+        "Essa novidade substitui ter um site?",
+        "Não há, nas fontes consultadas, nada que indique isso. O Google cita inclusive o site da empresa como uma das referências que o dono pode enviar ao Gemini para manter a identidade visual. Um site próprio continua sendo o endereço oficial do seu negócio na internet."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "New Gemini tools for small business owners (Google, blog oficial, 21 de outubro de 2026)",
+        "url": "https://blog.google/intl/en-in/products/new-gemini-tools-for-small-business-owners/"
+      },
+      {
+        "title": "Do anúncio ao fluxo de caixa: Google amplia Gemini para pequenas e médias empresas (Exame, 20 de outubro de 2026)",
+        "url": "https://exame.com/inteligencia-artificial/do-anuncio-ao-fluxo-de-caixa-google-amplia-gemini-para-pequenas-e-medias-empresas/"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "pix-por-aproximacao-sem-limite-de-500-reais",
     "title": "Pix por aproximação sem teto de R$ 500: o que muda para o seu negócio",
     "seoTitle": "Pix por aproximação sem limite de R$ 500: o que muda",

@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Central de negócios do Gemini: o que muda para pequenas empresas](https://www.drehwork.com/insights/gemini-central-de-negocios-pequenas-empresas): O Google lançou uma página de negócios no app Gemini, conectada ao Perfil da Empresa e ao Google Ads; o que foi anunciado e como se preparar.
 - [Horário de Natal e Ano Novo no Google: como configurar o Perfil da Empresa](https://www.drehwork.com/insights/horario-de-natal-e-ano-novo-no-google): Passo a passo para cadastrar o horário especial de fim de ano no Perfil da Empresa e checklist para site, Instagram e WhatsApp.
 - [Visualizações de posts do Perfil da Empresa no Google: o que mudou](https://www.drehwork.com/insights/visualizacoes-de-posts-perfil-da-empresa-google): O Google voltou a mostrar quantas pessoas viram cada post do Perfil da Empresa; o que o número mede, o que não mede e como usar.
 - [Pix por aproximação sem teto de R$ 500: o que muda para o seu negócio](https://www.drehwork.com/insights/pix-por-aproximacao-sem-limite-de-500-reais): O Banco Central acabou com o teto fixo de R$ 500 no Pix por aproximação; o limite agora é definido na conta de cada cliente.
