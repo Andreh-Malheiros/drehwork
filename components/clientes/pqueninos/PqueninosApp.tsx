@@ -1,7 +1,8 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- fotos já otimizadas em WebP 760px; o vidro e o recorte da transição precisam do <img> simples. */
 
-import { AnimatePresence, motion, type Variants } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { flushSync } from "react-dom";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import { avaliacoes, instagramPosts, modelos, produtos, type Produto } from "@/content/clientes/pqueninos-catalogo";
 import { ICONS } from "./icons";
@@ -65,75 +66,95 @@ function titleFor(r: Route) {
   return "Pqueninos Lembranças · Lembranças artesanais em BH";
 }
 
-/* ===== transição: a tela nova se abre a partir do que foi tocado (recorte que cresce, curva de mola do iOS); ao voltar, encolhe para a origem ===== */
+/* ===== transição em faixas (escolhida pelo Andreh em 02/11, inspirada na abertura do drehwork.com) =====
+   Faixas na paleta da marca descem e cobrem a tela, a tela nova monta por baixo e as faixas sobem; ao voltar, o movimento se inverte.
+   Desempenho: só transform é animado (roda na GPU). A tela nova é montada enquanto está coberta e só é revelada depois que as
+   primeiras fotos estão decodificadas, então o trabalho pesado não aparece. */
 type Dir = "fwd" | "bwd";
-type Ctx = { dir: Dir; clip: string };
-const FULL = "inset(0px 0px 0px 0px round 0px)";
+type Ctx = { dir: Dir };
 const EASE = [0.32, 0.72, 0, 1] as const;
-const screenVariants: Variants = {
-  initial: ({ dir, clip }: Ctx) => (dir === "fwd" ? { clipPath: clip, opacity: 0.4, scale: 1, zIndex: 2 } : { clipPath: FULL, opacity: 0.35, scale: 0.93, zIndex: 1 }),
-  enter: { clipPath: FULL, opacity: 1, scale: 1, transition: { duration: 0.58, ease: EASE } },
-  exit: ({ dir, clip }: Ctx) => (dir === "fwd"
-    ? { opacity: 0.35, scale: 0.93, zIndex: 1, transition: { duration: 0.56, ease: EASE } }
-    : { clipPath: clip, opacity: [1, 1, 0], zIndex: 2, transition: { duration: 0.54, ease: EASE, opacity: { times: [0, 0.8, 1], duration: 0.54 } } }),
-};
+const BANDS = 5;
+const wait = (ms: number) => new Promise<void>(r => window.setTimeout(r, ms));
+const frame = () => new Promise<void>(r => requestAnimationFrame(() => r()));
+function play(el: Element, from: string, to: string, opt: KeyframeAnimationOptions) {
+  return el.animate([{ transform: from }, { transform: to }], { fill: "forwards", ...opt }).finished;
+}
+/** Fase 1: as faixas descem (ou sobem, ao voltar) e cobrem a tela, uma após a outra. */
+async function coverUp(root: HTMLElement, dir: Dir) {
+  const els = Array.from(root.children), order = dir === "fwd" ? els : [...els].reverse(), off = dir === "fwd" ? "-101%" : "101%";
+  await Promise.all(order.map((el, i) => play(el, `translate3d(0,${off},0)`, "translate3d(0,0,0)", { duration: 340, delay: i * 34, easing: "cubic-bezier(.76,0,.24,1)" })));
+}
+/** Fase 2: as faixas voltam por onde vieram e revelam a tela nova. */
+async function reveal(root: HTMLElement, dir: Dir) {
+  const els = Array.from(root.children), order = dir === "fwd" ? els : [...els].reverse(), off = dir === "fwd" ? "-101%" : "101%";
+  await Promise.all(order.map((el, i) => play(el, "translate3d(0,0,0)", `translate3d(0,${off},0)`, { duration: 420, delay: i * 38, easing: "cubic-bezier(.76,0,.24,1)" })));
+  els.forEach(el => el.getAnimations().forEach(a => a.cancel()));
+}
+/** Espera as fotos visíveis da tela nova ficarem prontas (com limite), para ela já aparecer inteira. */
+async function screenReady(app: HTMLElement) {
+  const h = app.clientHeight;
+  const imgs = Array.from(app.querySelectorAll<HTMLImageElement>(".screen img")).filter(i => i.getBoundingClientRect().top < h).slice(0, 8);
+  await Promise.race([Promise.all(imgs.map(i => i.decode().catch(() => undefined))), wait(260)]);
+  await frame(); await frame();
+}
 
 type Bag = Record<string, number>;
 
 export function PqueninosApp() {
   // Montado só no navegador (ClientOnly), então pode ler endereço e armazenamento local já no estado inicial.
   const [route, setRoute] = useState<Route>(() => parse(location.hash));
-  const [ctx, setCtx] = useState<Ctx>({ dir: "fwd", clip: FULL });
+  const [ctx, setCtx] = useState<Ctx>({ dir: "fwd" });
   const [bag, setBag] = useState<Bag>(() => store.get<Bag>("sacolinha", {}));
   const [pop, setPop] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const appRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const tap = useRef<{ r: DOMRect; t: number } | null>(null);
-  const origin = useRef<Record<string, DOMRect | null>>({});
+  const curtainRef = useRef<HTMLDivElement>(null);
+  const busy = useRef(false);
+  const pending = useRef<{ next: Route; dir: Dir } | null>(null);
   const stack = useRef<string[]>([hashOf(route)]);
   const scrollMem = useRef<Record<string, number>>({});
   const routeRef = useRef(route);
 
   useEffect(() => { routeRef.current = route; document.title = titleFor(route); }, [route]);
 
-  const clipFrom = useCallback((r: DOMRect | null | undefined) => {
-    const A = appRef.current?.getBoundingClientRect();
-    if (!A) return FULL;
-    const b = r
-      ? { t: Math.max(0, r.top - A.top), l: Math.max(0, r.left - A.left), bt: Math.max(0, A.bottom - r.bottom), rt: Math.max(0, A.right - r.right) }
-      : { t: A.height * 0.32, l: A.width * 0.18, bt: A.height * 0.32, rt: A.width * 0.18 };
-    return `inset(${b.t}px ${b.rt}px ${b.bt}px ${b.l}px round 24px)`;
-  }, []);
+  const show = useCallback((next: Route, dir: Dir) => { flushSync(() => { setCtx({ dir }); setRoute(next); }); }, []);
+
+  const transition = useCallback(async (next: Route, dir: Dir) => {
+    const app = appRef.current, curtain = curtainRef.current;
+    if (!app || !curtain || matchMedia("(prefers-reduced-motion: reduce)").matches) { show(next, dir); return; }
+    if (busy.current) { pending.current = { next, dir }; return; }
+    // Pega a troca pedida enquanto a animação rodava (ex.: voltar do navegador), se houver.
+    const take = () => { const p = pending.current; pending.current = null; return p; };
+    busy.current = true; app.dataset.moving = "";
+    try {
+      let job: { next: Route; dir: Dir } | null = { next, dir };
+      while (job) {
+        await coverUp(curtain, job.dir);
+        show(job.next, job.dir);
+        await screenReady(app);
+        // Pedidos que chegaram enquanto cobria: mostra o mais recente ainda por baixo da cortina.
+        for (let p = take(); p; p = take()) { job = p; show(p.next, p.dir); await screenReady(app); }
+        await reveal(curtain, job.dir);
+        // Pedido que chegou durante a revelação: roda outra transição completa.
+        job = take();
+      }
+    } finally { busy.current = false; delete app.dataset.moving; }
+  }, [show]);
 
   useEffect(() => {
-    const onDown = (e: PointerEvent) => {
-      const el = (e.target as Element).closest("[data-go],[data-back]");
-      if (el) tap.current = { r: el.getBoundingClientRect(), t: performance.now() };
-    };
     const onHash = () => {
       const h = location.hash.replace(/^#/, "") || "inicio";
       const next = parse(h), cur = routeRef.current, s = stack.current;
       let dir: Dir;
       if (s.length > 1 && s[s.length - 2] === h) { s.pop(); dir = "bwd"; }
       else { dir = ORDER[next.name] < ORDER[cur.name] || h === "inicio" ? "bwd" : "fwd"; if (h === "inicio") s.length = 0; s.push(h); }
-      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let clip = FULL;
-      if (!reduce) {
-        if (dir === "fwd") {
-          const r = tap.current && performance.now() - tap.current.t < 1200 ? tap.current.r : null;
-          origin.current[keyOf(next)] = r;
-          clip = clipFrom(r);
-        } else clip = clipFrom(origin.current[keyOf(cur)]);
-      }
-      setCtx({ dir, clip });
-      setRoute(next);
+      void transition(next, dir);
     };
-    document.addEventListener("pointerdown", onDown, true);
     window.addEventListener("hashchange", onHash);
-    return () => { document.removeEventListener("pointerdown", onDown, true); window.removeEventListener("hashchange", onHash); };
-  }, [clipFrom]);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [transition]);
 
   const go = useCallback((h: string) => { if ((location.hash.replace(/^#/, "") || "inicio") !== h) location.hash = h; }, []);
   const back = useCallback((fallback: string) => { if (stack.current.length > 1) history.back(); else location.replace("#" + fallback); }, []);
@@ -163,11 +184,8 @@ export function PqueninosApp() {
 
   return <>
     <div className="app" ref={appRef}>
-      <AnimatePresence initial={false} custom={ctx}>
-        <Screen key={k} id={k} ctx={ctx} mem={scrollMem}>
-          <View route={route} api={api} />
-        </Screen>
-      </AnimatePresence>
+      <Screen key={k} id={k} ctx={ctx} mem={scrollMem}><View route={route} api={api} /></Screen>
+      <div ref={curtainRef} className="curtain" aria-hidden>{Array.from({ length: BANDS }, (_, i) => <i key={i} />)}</div>
     </div>
     <nav className="nav" ref={navRef} aria-label="Navegação principal">
       <a href="#inicio" className={route.name === "inicio" ? "on" : ""} data-go="inicio" onClick={e => { e.preventDefault(); go("inicio"); }}><Icon name="house" />Início</a>
@@ -190,7 +208,7 @@ function Screen({ id, ctx, mem, children }: { id: string; ctx: Ctx; mem: RefObje
     if (el) el.scrollTop = backward ? saved[id] || 0 : 0;
     return () => { if (el) saved[id] = el.scrollTop; };
   }, [backward, id, mem]);
-  return <motion.main ref={ref} className="screen" custom={ctx} variants={screenVariants} initial="initial" animate="enter" exit="exit">{children}</motion.main>;
+  return <main ref={ref} className="screen">{children}</main>;
 }
 
 type Api = {
