@@ -138,7 +138,9 @@ export function PqueninosApp() {
   const go = useCallback((h: string) => { if ((location.hash.replace(/^#/, "") || "inicio") !== h) location.hash = h; }, []);
   const back = useCallback((fallback: string) => { if (stack.current.length > 1) history.back(); else location.replace("#" + fallback); }, []);
 
-  const saveBag = useCallback((b: Bag, bump = false) => { setBag(b); store.set("sacolinha", b); if (bump) setPop(x => x + 1); }, []);
+  // Sempre a partir do estado mais recente: toques seguidos ou mudanças durante a animação não se sobrescrevem.
+  const saveBag = useCallback((change: (b: Bag) => Bag) => { setBag(prev => { const b = change(prev); store.set("sacolinha", b); return b; }); }, []);
+  const bumpBag = useCallback(() => setPop(x => x + 1), []);
   const toastTimer = useRef<number | undefined>(undefined);
   const say = useCallback((t: string) => { setToast(t); window.clearTimeout(toastTimer.current); toastTimer.current = window.setTimeout(() => setToast(null), 2100); }, []);
 
@@ -157,7 +159,7 @@ export function PqueninosApp() {
 
   const count = Object.keys(bag).filter(n => P[+n]).length;
   const k = keyOf(route);
-  const api = { go, back, bag, saveBag, say, flyToBag, openModelos: setLightbox };
+  const api = { go, back, bag, saveBag, bumpBag, say, flyToBag, openModelos: setLightbox };
 
   return <>
     <div className="app" ref={appRef}>
@@ -192,7 +194,7 @@ function Screen({ id, ctx, mem, children }: { id: string; ctx: Ctx; mem: RefObje
 }
 
 type Api = {
-  go: (h: string) => void; back: (f: string) => void; bag: Bag; saveBag: (b: Bag, bump?: boolean) => void;
+  go: (h: string) => void; back: (f: string) => void; bag: Bag; saveBag: (change: (b: Bag) => Bag) => void; bumpBag: () => void;
   say: (t: string) => void; flyToBag: (src: HTMLImageElement | null, done: () => void) => void; openModelos: (i: number) => void;
 };
 
@@ -319,7 +321,8 @@ function ProdutoView({ p, api }: { p: Produto; api: Api }) {
         {p.preco != null && <div className="subtotal"><span>Subtotal estimado</span><b>{brl(p.preco * q)}</b></div>}
         <button className="btn pri" onClick={() => {
           const src = track.current?.querySelector("img") ?? null;
-          api.flyToBag(src, () => api.saveBag({ ...api.bag, [p.n]: (api.bag[p.n] || 0) + q }, true));
+          api.saveBag(b => ({ ...b, [p.n]: (b[p.n] || 0) + q }));
+          api.flyToBag(src, api.bumpBag);
           api.say(`${q} ${q > 1 ? "unidades adicionadas" : "unidade adicionada"} à sacolinha`);
         }}><Icon name="gift" />Adicionar à sacolinha</button>
         <a className="btn ghost" target="_blank" rel="noopener" href={wa}><Icon name="b-whatsapp-icon" />{p.preco == null ? "Pedir orçamento no WhatsApp" : "Pedir só este no WhatsApp"}</a>
@@ -351,7 +354,7 @@ function Sacolinha({ api }: { api: Api }) {
   if (ev.ocasiao) msg += `\nOcasião: ${ev.ocasiao}`;
   if (ev.data) { const [y, m, d] = ev.data.split("-"); msg += `\nData do evento: ${d}/${m}/${y}`; }
   msg += "\n\nPode me confirmar valores e prazo?";
-  const setLine = (n: string, v: number) => { const p = P[+n]; api.saveBag({ ...bag, [n]: Math.max(p.min, Number.isFinite(v) ? v : p.min) }); };
+  const setLine = (n: string, v: number) => { const p = P[+n]; api.saveBag(b => ({ ...b, [n]: Math.max(p.min, Number.isFinite(v) ? v : p.min) })); };
   return <>
     <Bar to="inicio" label="Continuar escolhendo" api={api} />
     <div style={{ margin: "2px 0 12px" }}><span className="kick">seu pedido</span><h1 style={{ fontSize: "1.45rem" }}>Sacolinha</h1></div>
@@ -362,7 +365,7 @@ function Sacolinha({ api }: { api: Api }) {
           <img src={cover(p)} alt="" />
           <div style={{ minWidth: 0 }}>
             <div className="top"><span className="nm">{p.nome}</span>
-              <button className="rm" aria-label={`Remover ${p.nome}`} onClick={() => { const b = { ...bag }; delete b[n]; api.saveBag(b); api.say("Item removido"); }}><Icon name="trash" /></button></div>
+              <button className="rm" aria-label={`Remover ${p.nome}`} onClick={() => { api.saveBag(b => { const r = { ...b }; delete r[n]; return r; }); api.say("Item removido"); }}><Icon name="trash" /></button></div>
             <div className="row">
               <div className="stepper">
                 <button aria-label="Diminuir" disabled={q <= p.min} onClick={() => setLine(n, q - step)}><Icon name="minus" /></button>
