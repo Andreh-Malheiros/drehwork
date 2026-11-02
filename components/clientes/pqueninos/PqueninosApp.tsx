@@ -151,14 +151,21 @@ export function PqueninosApp() {
     const app = appRef.current, curtain = curtainRef.current;
     if (mode === "fluido" || !app || !curtain || matchMedia("(prefers-reduced-motion: reduce)").matches) { show(next, dir); return; }
     if (busy.current) { pending.current = { next, dir }; return; }
+    // Pega a troca pedida enquanto a animação rodava (ex.: voltar do navegador), se houver.
+    const take = () => { const p = pending.current; pending.current = null; return p; };
     busy.current = true; app.dataset.moving = "";
     try {
-      await coverUp(curtain, mode, dir);
-      show(next, dir);
-      await screenReady(app);
-      // Se outra troca chegou enquanto cobria, já mostra a mais recente antes de revelar.
-      while (pending.current) { const p = pending.current; pending.current = null; show(p.next, p.dir); await screenReady(app); }
-      await reveal(curtain, mode, dir);
+      let job: { next: Route; dir: Dir } | null = { next, dir };
+      while (job) {
+        await coverUp(curtain, mode, job.dir);
+        show(job.next, job.dir);
+        await screenReady(app);
+        // Pedidos que chegaram enquanto cobria: mostra o mais recente ainda por baixo da cortina.
+        for (let p = take(); p; p = take()) { job = p; show(p.next, p.dir); await screenReady(app); }
+        await reveal(curtain, mode, job.dir);
+        // Pedido que chegou durante a revelação: roda outra transição completa.
+        job = take();
+      }
     } finally { busy.current = false; delete app.dataset.moving; }
   }, [mode, show]);
 
