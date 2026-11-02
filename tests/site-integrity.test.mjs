@@ -38,7 +38,7 @@ test("diagnostic sends through the validated API with consent and honeypot", asy
 });
 
 test("includes required discovery and accessibility foundations", async () => {
-  const [layout, css, page] = await Promise.all([read("app/layout.tsx"), read("app/globals.css"), read("app/[[...slug]]/page.tsx")]);
+  const [layout, css, page] = await Promise.all([read("app/(site)/layout.tsx"), read("app/globals.css"), read("app/(site)/[[...slug]]/page.tsx")]);
   assert.match(layout, /JsonLd data=\{organizationSchema\(\)\}/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(await read("content/legal.ts"), /Política de Privacidade/);
@@ -49,7 +49,7 @@ test("includes required discovery and accessibility foundations", async () => {
 });
 
 test("uses the official www.drehwork.com domain everywhere", async () => {
-  const files = ["content/site.ts", "app/layout.tsx", "app/robots.ts", "app/sitemap.ts"];
+  const files = ["content/site.ts", "app/(site)/layout.tsx", "app/robots.ts", "app/sitemap.ts"];
   const sources = await Promise.all(files.map(read));
   for (const source of sources) assert.doesNotMatch(source, /drehwork\.com\.br/);
   assert.match(sources[0], /url: "https:\/\/www\.drehwork\.com"/);
@@ -72,7 +72,7 @@ test("keeps SEO foundations consistent", async () => {
 });
 
 test("legal documents identify the controller and consent gates analytics", async () => {
-  const [legal, consent, layout] = await Promise.all([read("content/legal.ts"), read("lib/consent.ts"), read("app/layout.tsx")]);
+  const [legal, consent, layout] = await Promise.all([read("content/legal.ts"), read("lib/consent.ts"), read("app/(site)/layout.tsx")]);
   assert.match(legal, /brand\.legalName/);
   assert.match(legal, /brand\.cnpj/);
   assert.match(legal, /art\. 18 da LGPD/);
@@ -86,4 +86,12 @@ test("analytics only loads Google after consent", async () => {
   assert.match(bridge, /analytics_storage: "denied"/);
   assert.match(bridge, /if \(!granted \|\| document\.getElementById\("ga4-script"\)\) return;/);
   assert.doesNotMatch(bridge, /email:|whatsapp:|responsible/);
+});
+
+test("client page for Pqueninos stays out of search and is served on its subdomain", async () => {
+  const [layout, config] = await Promise.all([read("app/clientes/pqueninos/layout.tsx"), read("next.config.ts")]);
+  assert.match(layout, /robots: \{ index: false, follow: false \}/);
+  assert.doesNotMatch(layout, /globals\.css/);
+  assert.match(config, /host: "pqueninos\.drehwork\.com", page: "\/clientes\/pqueninos"/);
+  await access(new URL("public/clientes/pqueninos/logo.webp", root));
 });
