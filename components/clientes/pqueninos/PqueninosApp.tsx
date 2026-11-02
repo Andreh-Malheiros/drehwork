@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- fotos já otimizadas em WebP 760px; o vidro e o recorte da transição precisam do <img> simples. */
 
-import { AnimatePresence, motion, type Variants } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { flushSync } from "react-dom";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import { avaliacoes, instagramPosts, modelos, produtos, type Produto } from "@/content/clientes/pqueninos-catalogo";
@@ -66,53 +66,28 @@ function titleFor(r: Route) {
   return "Pqueninos Lembranças · Lembranças artesanais em BH";
 }
 
-/* ===== transições =====
-   Três estilos em teste (escolha por ?t=faixas | onda | fluido; padrão faixas):
-   - faixas: faixas na paleta da marca descem e cobrem a tela, a tela nova monta por baixo e as faixas sobem (inspirado na abertura do drehwork.com);
-   - onda: uma onda em duas camadas atravessa a tela de baixo para cima;
-   - fluido: a tela nova desliza por cima da anterior, como no iPhone.
-   Desempenho: só se anima transform e opacity (rodam na GPU, fora do processamento da página). Nas cortinas, a tela nova é montada
-   enquanto está coberta e só é revelada depois que as primeiras fotos estão decodificadas, então o trabalho pesado não aparece. */
+/* ===== transição em faixas (escolhida pelo Andreh em 02/11, inspirada na abertura do drehwork.com) =====
+   Faixas na paleta da marca descem e cobrem a tela, a tela nova monta por baixo e as faixas sobem; ao voltar, o movimento se inverte.
+   Desempenho: só transform é animado (roda na GPU). A tela nova é montada enquanto está coberta e só é revelada depois que as
+   primeiras fotos estão decodificadas, então o trabalho pesado não aparece. */
 type Dir = "fwd" | "bwd";
-type Mode = "faixas" | "onda" | "fluido";
 type Ctx = { dir: Dir };
-const MODES: Mode[] = ["faixas", "onda", "fluido"];
 const EASE = [0.32, 0.72, 0, 1] as const;
-const slide: Variants = {
-  initial: ({ dir }: Ctx) => (dir === "fwd" ? { transform: "translate3d(100%,0,0)", zIndex: 2 } : { transform: "translate3d(-26%,0,0)", zIndex: 1 }),
-  enter: { transform: "translate3d(0%,0,0)", transition: { duration: 0.44, ease: EASE } },
-  exit: ({ dir }: Ctx) => (dir === "fwd"
-    ? { transform: "translate3d(-26%,0,0)", zIndex: 1, transition: { duration: 0.44, ease: EASE } }
-    : { transform: "translate3d(100%,0,0)", zIndex: 2, transition: { duration: 0.4, ease: EASE } }),
-};
 const BANDS = 5;
 const wait = (ms: number) => new Promise<void>(r => window.setTimeout(r, ms));
 const frame = () => new Promise<void>(r => requestAnimationFrame(() => r()));
 function play(el: Element, from: string, to: string, opt: KeyframeAnimationOptions) {
   return el.animate([{ transform: from }, { transform: to }], { fill: "forwards", ...opt }).finished;
 }
-/** Cobre a tela (fase 1), deixa a troca acontecer por baixo e revela (fase 2). Faixas: descem e voltam a subir; onda: atravessa. */
-async function coverUp(root: HTMLElement, mode: Mode, dir: Dir) {
-  const els = Array.from(root.children);
-  const order = dir === "fwd" ? els : [...els].reverse();
-  if (mode === "faixas") {
-    const off = dir === "fwd" ? "-101%" : "101%";
-    await Promise.all(order.map((el, i) => play(el, `translate3d(0,${off},0)`, "translate3d(0,0,0)", { duration: 340, delay: i * 34, easing: "cubic-bezier(.76,0,.24,1)" })));
-  } else {
-    const off = dir === "fwd" ? "calc(100% + 72px)" : "calc(-100% - 72px)";
-    await Promise.all(els.map((el, i) => play(el, `translate3d(0,${off},0)`, "translate3d(0,0,0)", { duration: 420, delay: i * 70, easing: "cubic-bezier(.65,0,.35,1)" })));
-  }
+/** Fase 1: as faixas descem (ou sobem, ao voltar) e cobrem a tela, uma após a outra. */
+async function coverUp(root: HTMLElement, dir: Dir) {
+  const els = Array.from(root.children), order = dir === "fwd" ? els : [...els].reverse(), off = dir === "fwd" ? "-101%" : "101%";
+  await Promise.all(order.map((el, i) => play(el, `translate3d(0,${off},0)`, "translate3d(0,0,0)", { duration: 340, delay: i * 34, easing: "cubic-bezier(.76,0,.24,1)" })));
 }
-async function reveal(root: HTMLElement, mode: Mode, dir: Dir) {
-  const els = Array.from(root.children);
-  const order = dir === "fwd" ? els : [...els].reverse();
-  if (mode === "faixas") {
-    const off = dir === "fwd" ? "-101%" : "101%";
-    await Promise.all(order.map((el, i) => play(el, "translate3d(0,0,0)", `translate3d(0,${off},0)`, { duration: 420, delay: i * 38, easing: "cubic-bezier(.76,0,.24,1)" })));
-  } else {
-    const off = dir === "fwd" ? "calc(-100% - 72px)" : "calc(100% + 72px)";
-    await Promise.all([...els].reverse().map((el, i) => play(el, "translate3d(0,0,0)", `translate3d(0,${off},0)`, { duration: 460, delay: i * 70, easing: "cubic-bezier(.65,0,.35,1)" })));
-  }
+/** Fase 2: as faixas voltam por onde vieram e revelam a tela nova. */
+async function reveal(root: HTMLElement, dir: Dir) {
+  const els = Array.from(root.children), order = dir === "fwd" ? els : [...els].reverse(), off = dir === "fwd" ? "-101%" : "101%";
+  await Promise.all(order.map((el, i) => play(el, "translate3d(0,0,0)", `translate3d(0,${off},0)`, { duration: 420, delay: i * 38, easing: "cubic-bezier(.76,0,.24,1)" })));
   els.forEach(el => el.getAnimations().forEach(a => a.cancel()));
 }
 /** Espera as fotos visíveis da tela nova ficarem prontas (com limite), para ela já aparecer inteira. */
@@ -129,7 +104,6 @@ export function PqueninosApp() {
   // Montado só no navegador (ClientOnly), então pode ler endereço e armazenamento local já no estado inicial.
   const [route, setRoute] = useState<Route>(() => parse(location.hash));
   const [ctx, setCtx] = useState<Ctx>({ dir: "fwd" });
-  const [mode] = useState<Mode>(() => { const t = new URLSearchParams(location.search).get("t") as Mode; return MODES.includes(t) ? t : "faixas"; });
   const [bag, setBag] = useState<Bag>(() => store.get<Bag>("sacolinha", {}));
   const [pop, setPop] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
@@ -149,7 +123,7 @@ export function PqueninosApp() {
 
   const transition = useCallback(async (next: Route, dir: Dir) => {
     const app = appRef.current, curtain = curtainRef.current;
-    if (mode === "fluido" || !app || !curtain || matchMedia("(prefers-reduced-motion: reduce)").matches) { show(next, dir); return; }
+    if (!app || !curtain || matchMedia("(prefers-reduced-motion: reduce)").matches) { show(next, dir); return; }
     if (busy.current) { pending.current = { next, dir }; return; }
     // Pega a troca pedida enquanto a animação rodava (ex.: voltar do navegador), se houver.
     const take = () => { const p = pending.current; pending.current = null; return p; };
@@ -157,17 +131,17 @@ export function PqueninosApp() {
     try {
       let job: { next: Route; dir: Dir } | null = { next, dir };
       while (job) {
-        await coverUp(curtain, mode, job.dir);
+        await coverUp(curtain, job.dir);
         show(job.next, job.dir);
         await screenReady(app);
         // Pedidos que chegaram enquanto cobria: mostra o mais recente ainda por baixo da cortina.
         for (let p = take(); p; p = take()) { job = p; show(p.next, p.dir); await screenReady(app); }
-        await reveal(curtain, mode, job.dir);
+        await reveal(curtain, job.dir);
         // Pedido que chegou durante a revelação: roda outra transição completa.
         job = take();
       }
     } finally { busy.current = false; delete app.dataset.moving; }
-  }, [mode, show]);
+  }, [show]);
 
   useEffect(() => {
     const onHash = () => {
@@ -210,12 +184,8 @@ export function PqueninosApp() {
 
   return <>
     <div className="app" ref={appRef}>
-      {mode === "fluido"
-        ? <AnimatePresence initial={false} custom={ctx}><Screen key={k} id={k} ctx={ctx} mem={scrollMem} animated><View route={route} api={api} /></Screen></AnimatePresence>
-        : <Screen key={k} id={k} ctx={ctx} mem={scrollMem}><View route={route} api={api} /></Screen>}
-      {mode !== "fluido" && <div ref={curtainRef} className={`curtain c-${mode}`} aria-hidden>
-        {mode === "faixas" ? Array.from({ length: BANDS }, (_, i) => <i key={i} />) : <><i className="w1" /><i className="w2" /></>}
-      </div>}
+      <Screen key={k} id={k} ctx={ctx} mem={scrollMem}><View route={route} api={api} /></Screen>
+      <div ref={curtainRef} className="curtain" aria-hidden>{Array.from({ length: BANDS }, (_, i) => <i key={i} />)}</div>
     </div>
     <nav className="nav" ref={navRef} aria-label="Navegação principal">
       <a href="#inicio" className={route.name === "inicio" ? "on" : ""} data-go="inicio" onClick={e => { e.preventDefault(); go("inicio"); }}><Icon name="house" />Início</a>
@@ -230,7 +200,7 @@ export function PqueninosApp() {
 }
 
 /** Uma tela com rolagem própria; guarda a posição ao sair e a devolve quando se volta a ela. */
-function Screen({ id, ctx, mem, animated, children }: { id: string; ctx: Ctx; mem: RefObject<Record<string, number>>; animated?: boolean; children: ReactNode }) {
+function Screen({ id, ctx, mem, children }: { id: string; ctx: Ctx; mem: RefObject<Record<string, number>>; children: ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const [backward] = useState(ctx.dir === "bwd");
   useLayoutEffect(() => {
@@ -238,8 +208,7 @@ function Screen({ id, ctx, mem, animated, children }: { id: string; ctx: Ctx; me
     if (el) el.scrollTop = backward ? saved[id] || 0 : 0;
     return () => { if (el) saved[id] = el.scrollTop; };
   }, [backward, id, mem]);
-  if (!animated) return <main ref={ref} className="screen">{children}</main>;
-  return <motion.main ref={ref} className="screen" custom={ctx} variants={slide} initial="initial" animate="enter" exit="exit">{children}</motion.main>;
+  return <main ref={ref} className="screen">{children}</main>;
 }
 
 type Api = {
