@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Cobrança híbrida de boleto e Pix: o que muda para pequenas empresas](https://www.drehwork.com/insights/cobranca-hibrida-boleto-e-pix-banco-central): A Resolução BCB nº 587 criou a cobrança híbrida, com boleto e QR Code Pix no mesmo documento, prevista para 2027; o que foi confirmado e como se preparar.
 - [Instagram Features: vídeos de até 90 minutos e o que muda para empresas](https://www.drehwork.com/insights/instagram-features-videos-longos-90-minutos): O Instagram testa vídeos horizontais de até 90 minutos ligados a Reels; o que foi confirmado e como pequenas empresas podem se preparar.
 - [Central de negócios do Gemini: o que muda para pequenas empresas](https://www.drehwork.com/insights/gemini-central-de-negocios-pequenas-empresas): O Google lançou uma página de negócios no app Gemini, conectada ao Perfil da Empresa e ao Google Ads; o que foi anunciado e como se preparar.
 - [Horário de Natal e Ano Novo no Google: como configurar o Perfil da Empresa](https://www.drehwork.com/insights/horario-de-natal-e-ano-novo-no-google): Passo a passo para cadastrar o horário especial de fim de ano no Perfil da Empresa e checklist para site, Instagram e WhatsApp.

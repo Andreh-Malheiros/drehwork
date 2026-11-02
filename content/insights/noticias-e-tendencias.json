@@ -1,5 +1,95 @@
 [
   {
+    "slug": "cobranca-hibrida-boleto-e-pix-banco-central",
+    "title": "Cobrança híbrida de boleto e Pix: o que muda para pequenas empresas",
+    "seoTitle": "Cobrança híbrida de boleto e Pix: o que muda em 2027",
+    "description": "O Banco Central regulamentou a cobrança híbrida, que une boleto e QR Code Pix no mesmo documento, com início em 2027. Veja o que muda para sua empresa.",
+    "keyword": "cobrança híbrida de boleto e pix",
+    "category": "Notícias e tendências",
+    "date": "2026-11-02",
+    "updated": "2026-11-02",
+    "summary": "A Resolução BCB nº 587 criou a cobrança híbrida: um só documento com código de barras do boleto e QR Code do Pix Cobrança. Entenda o que foi confirmado, o que é opcional e como se preparar.",
+    "intro": "A cobrança híbrida de boleto e Pix é um documento de cobrança que traz, ao mesmo tempo, o código de barras do boleto e o QR Code do Pix Cobrança, para o cliente pagar da forma que preferir. Ela foi regulamentada pelo Banco Central na Resolução BCB nº 587, publicada em 18 de setembro de 2026, e, segundo a imprensa que acompanhou a norma, passa a valer em 1º de fevereiro de 2027. A oferta é facultativa para as instituições, ou seja, não é uma obrigação para a sua empresa nem garantia de que o seu banco vá oferecer o recurso desde o primeiro dia. Neste guia, com base nas fontes citadas ao final, explicamos o que foi confirmado, o que muda para quem cobra clientes e como se preparar sem correr riscos.",
+    "sections": [
+      {
+        "heading": "O que é a cobrança híbrida e o que o Banco Central definiu",
+        "paragraphs": [
+          "Pix Cobrança é a forma de cobrar com Pix usando um QR Code gerado pela empresa, e a versão com vencimento permite definir uma data limite para o pagamento. Boleto é o documento de cobrança tradicional, com código de barras, que o cliente paga no banco, no aplicativo ou na lotérica. A cobrança híbrida junta os dois no mesmo documento.",
+          "Segundo as reportagens consultadas, a norma estabelece critérios para que os dois instrumentos convivam com segurança e para evitar pagamentos indevidos ou em duplicidade. Quando o pagamento é feito por um dos caminhos, o outro precisa ser cancelado automaticamente. A norma também define as responsabilidades dos participantes em caso de falha operacional.",
+          "As fontes registram ainda que parte das instituições já usa um formato parecido. O que a Resolução BCB nº 587 faz é padronizar as regras desse formato dentro do regulamento do Pix."
+        ]
+      },
+      {
+        "heading": "Datas e o que ainda é opcional",
+        "paragraphs": [
+          "De acordo com o Poder360, as regras da cobrança híbrida têm vigência prevista para 1º de fevereiro de 2027. Até lá, nada muda na rotina de cobrança da sua empresa por causa dessa norma.",
+          "A norma trata a oferta da cobrança híbrida como facultativa para as instituições. Isso significa que cada banco, fintech ou plataforma de cobrança decide se e quando vai disponibilizar o recurso. Antes de planejar qualquer mudança, vale perguntar diretamente à instituição que emite os seus boletos se ela pretende oferecer a cobrança híbrida e a partir de quando.",
+          "A mesma resolução traz outras alterações no regulamento do Pix, como regras para o uso do Pix Automático em contas-salário, previstas para 1º de julho de 2027, e ajustes nos procedimentos de marcação de suspeita de fraude. Este guia trata apenas da cobrança híbrida."
+        ]
+      },
+      {
+        "heading": "O que muda na prática para quem cobra clientes",
+        "paragraphs": [
+          "Para uma empresa que emite boletos, como prestadores de serviço, escolas, academias, clínicas e lojas que vendem a prazo, o benefício possível é oferecer ao cliente mais de uma forma de pagar no mesmo documento. Quem prefere o Pix paga na hora pelo QR Code; quem prefere o boleto continua usando o código de barras.",
+          "O ponto de atenção é o controle financeiro. Como os dois caminhos levam à mesma cobrança, a conciliação, isto é, a conferência de quais cobranças foram pagas, depende de o banco ou do sistema de cobrança atualizar o status corretamente. As fontes consultadas não detalham como cada instituição vai apresentar isso ao cliente final, então não é possível afirmar prazos de compensação ou tarifas específicas.",
+          "Por isso, evite divulgar a novidade como algo já disponível. Enquanto a vigência não chegar e a sua instituição não confirmar, o caminho seguro é continuar com as formas de pagamento que você já usa e testar o novo recurso apenas quando ele estiver liberado."
+        ]
+      },
+      {
+        "heading": "Como se preparar sem inventar promessas",
+        "items": [
+          "Pergunte ao banco ou ao sistema que emite seus boletos se haverá cobrança híbrida e qual será a data de liberação.",
+          "Confira se o seu sistema de cobrança ou de gestão consegue registrar o pagamento por qualquer um dos caminhos e dar baixa automática.",
+          "Revise a página de pagamento, a loja virtual e as mensagens de cobrança para que expliquem claramente as formas de pagar, sem prometer recursos que ainda não existem.",
+          "Mantenha um canal de atendimento, como WhatsApp, para o cliente tirar dúvidas sobre um pagamento em duplicidade ou uma cobrança que apareça como pendente.",
+          "Atualize as informações de pagamento no site e nas redes sociais quando o recurso for liberado, em vez de antecipar a mudança."
+        ]
+      },
+      {
+        "heading": "Onde o site e a presença digital entram nisso",
+        "paragraphs": [
+          "Mudanças de pagamento só ajudam quando o cliente as encontra e entende. Uma página de pagamento ou de condições comerciais clara, com as formas aceitas e um contato visível, reduz dúvidas e mensagens repetidas no atendimento.",
+          "Em lojas virtuais, o meio de pagamento depende da plataforma e do gateway contratados, que são os serviços que processam o pagamento. Se a loja usa Shopify ou outra plataforma, acompanhe os comunicados do provedor de pagamento para saber se e quando o recurso será oferecido, em vez de supor que ele aparecerá automaticamente.",
+          "Também vale manter as informações de contato e de atendimento consistentes no Perfil da Empresa no Google, no Instagram e no site, para que o cliente sempre encontre o caminho certo quando tiver uma dúvida de cobrança."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O que é cobrança híbrida de boleto e Pix?",
+        "É um documento de cobrança que reúne o código de barras do boleto e o QR Code do Pix Cobrança. O cliente escolhe como pagar, e o outro meio é cancelado automaticamente para evitar pagamento em duplicidade, conforme descrito nas reportagens sobre a Resolução BCB nº 587."
+      ],
+      [
+        "Quando a cobrança híbrida começa a valer?",
+        "As reportagens consultadas indicam vigência a partir de 1º de fevereiro de 2027. A oferta é facultativa para as instituições, então confirme com o seu banco ou sistema de cobrança se e quando ele vai disponibilizar o recurso."
+      ],
+      [
+        "Minha empresa é obrigada a adotar a cobrança híbrida?",
+        "Não há indicação, nas fontes consultadas, de obrigação para as empresas que cobram. Trata-se de uma modalidade que as instituições podem oferecer, e a decisão de usá-la é do seu negócio, conforme o que o seu banco ou sistema disponibilizar."
+      ]
+    ],
+    "relatedServices": [
+      "sites-profissionais",
+      "lojas-shopify",
+      "presenca-digital"
+    ],
+    "sources": [
+      {
+        "title": "BC muda regras do Pix e cria cobrança híbrida com boleto (Poder360, setembro de 2026)",
+        "url": "https://www.poder360.com.br/poder-economia/bc-muda-regras-do-pix-e-cria-cobranca-hibrida-com-boleto/"
+      },
+      {
+        "title": "Pix: novas regras, Pix em conta-salário e QR Code (O Povo, outubro de 2026)",
+        "url": "https://www.opovo.com.br/noticias/economia/2026/10/06/pix-novas-regras-pix-em-conta-salario-e-qr-code.html"
+      },
+      {
+        "title": "Normativo do Banco Central aprimorando o Pix, 18 de setembro de 2026 (texto reproduzido pelo Poder360)",
+        "url": "https://static.poder360.com.br/uploads/2026/09/Exibe-Normativo-BC-aprimorando-PIX-18-set-2026.pdf"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "instagram-features-videos-longos-90-minutos",
     "title": "Instagram Features: vídeos de até 90 minutos e o que muda para empresas",
     "seoTitle": "Instagram Features: vídeos de 90 minutos para empresas",
