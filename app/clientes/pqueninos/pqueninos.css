@@ -294,3 +294,24 @@ input::-webkit-date-and-time-value{text-align:left}
 .back,.gal .arw,.tile > span,.foot .dw{position:relative}
 .gal .arw{position:absolute}
 .tile > span::after{background:linear-gradient(140deg,rgba(255,255,255,.7),rgba(255,255,255,.1) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.35))}
+
+/* Cortina das transições (faixas / onda). Fica sobre as telas e sob a barra de navegação; só transform é animado. */
+.curtain{position:absolute;inset:0;z-index:30;display:flex;pointer-events:none;overflow:hidden}
+.app[data-moving] .curtain{pointer-events:auto}
+.curtain i{display:block;will-change:transform;transform:translate3d(0,-101%,0);backface-visibility:hidden}
+.c-faixas i{flex:1 1 0;margin-right:-1px}
+.c-faixas i:nth-child(1){background:#56C3BF}
+.c-faixas i:nth-child(2){background:#8DD3CB}
+.c-faixas i:nth-child(3){background:#F8DCD3}
+.c-faixas i:nth-child(4){background:#F4B8AC}
+.c-faixas i:nth-child(5){background:#F09C90}
+/* Onda: camada alta com bordas onduladas em cima e embaixo (SVG da mesma cor), para não ter linha reta ao atravessar. */
+.c-onda i{position:absolute;left:0;right:0;top:0;bottom:0;transform:translate3d(0,calc(100% + 72px),0)}
+.c-onda i::before,.c-onda i::after{content:"";position:absolute;left:0;right:0;height:70px;background:inherit;
+  -webkit-mask:var(--wave) center/100% 100% no-repeat;mask:var(--wave) center/100% 100% no-repeat}
+.c-onda i::before{top:-69px}
+.c-onda i::after{bottom:-69px;transform:scaleY(-1)}
+.c-onda{--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 70' preserveAspectRatio='none'%3E%3Cpath d='M0 70V38C60 8 120 8 200 34S340 62 400 26V70Z'/%3E%3C/svg%3E")}
+.c-onda .w1{background:#56C3BF}
+.c-onda .w2{background:#FCEAE4}
+@media (prefers-reduced-motion:reduce){.curtain{display:none}}
