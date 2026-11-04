@@ -1,4 +1,4 @@
-// Catálogo da Pqueninos Lembranças (WhatsApp Business, coletado em 30/10/2026), avaliações públicas do Google e posts do Instagram.
+// Catálogo da Pqueninos Lembranças (WhatsApp Business, coletado em 30/10/2026 e atualizado em 04/11/2026), avaliações públicas do Google e posts do Instagram.
 // Gerado a partir de /mnt/project-files/pqueninos-pagina; corrigir na fonte e regenerar. Posts com rosto de criança ficam de fora.
 
 export type Produto = { n: number; nome: string; preco: number | null; info: string[]; min: number; cat: string; tam: "p" | "m" | "g" | null; fotos: number };
@@ -10,9 +10,10 @@ export const produtos: Produto[] = [
   "nome": "Divino Espírito Santo com imã + mini terço",
   "preco": 15.9,
   "info": [
-   "Divino Espírito Santo de resina, com imã + mini terço, embalagem de organza e cartão personalizado",
-   "Divino com detalhes dourado, tem alteração no valor",
-   "Medindo aproximadamente 7x7",
+   "Divino Espírito Santo de resina, com imã e mini terço",
+   "Embalagem de organza e cartão personalizado",
+   "Medida aproximada: 7x7",
+   "Detalhes dourados têm alteração no valor",
    "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
@@ -25,10 +26,10 @@ export const produtos: Produto[] = [
   "nome": "Anjinho de acrílico e cartão personalizado",
   "preco": 10.9,
   "info": [
-   "Novidade - Anjinho de acrílico com cartão personalizado de acordo com a sua ocasião",
-   "Medida aproximada 8x6",
-   "Pedido mínimo de 10 unidades",
-   "Acréscimo mini terço 2,00 unid"
+   "Novidade: anjinho de acrílico com cartão personalizado de acordo com a sua ocasião",
+   "Medida aproximada: 8x6",
+   "Mini terço opcional: acréscimo de R$ 2,00 por unidade",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "lembrancinhas",
@@ -40,8 +41,8 @@ export const produtos: Produto[] = [
   "nome": "Lembranças Primeira Eucaristia e Crisma",
   "preco": null,
   "info": [
-   "Velas no potinho a partir de 15,90 unid Velas de copo a partir de 24,90 unid Marcador de páginas 6,99 unid Divino com imã 15,90 unid",
-   "Nos envie o modelo desejado para que possa enviar as informações"
+   "Velas no potinho a partir de R$ 15,90 a unidade, velas no copo a partir de R$ 24,90, marcador de páginas por R$ 6,99 e Divino com imã por R$ 15,90",
+   "Envie o modelo desejado para receber as informações"
   ],
   "min": 1,
   "cat": "eucaristia",
@@ -53,7 +54,9 @@ export const produtos: Produto[] = [
   "nome": "Divino Espírito Santo com imã e TAG - detalhes dourado",
   "preco": 16.9,
   "info": [
-   "Divino Espírito Santo de resina, com imã + mini terço, embalagem de organza e TAG. Medindo aproximadamente 7x7",
+   "Divino Espírito Santo de resina, com imã e mini terço",
+   "Embalagem de organza e TAG, com detalhes dourados",
+   "Medida aproximada: 7x7",
    "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
@@ -67,10 +70,10 @@ export const produtos: Produto[] = [
   "preco": 18.9,
   "info": [
    "Vela produzida com cera 100% vegetal não poluente",
-   "Potinho de vidro 40gr, personalizada com pingente de anjinho, mini terço, TAG e embalagem",
-   "Valor referente a unidade",
-   "Detalhes podem ser alterados, entre em contato para melhor te ajudar.. Pedido mínimo de 10 unidades",
-   "Consulte o prazo de produção"
+   "Potinho de vidro de 40 g, personalizada com pingente de anjinho, mini terço, TAG e embalagem",
+   "Valor referente a cada unidade",
+   "Detalhes podem ser alterados, é só falar com a gente",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -83,10 +86,10 @@ export const produtos: Produto[] = [
   "preco": 18.9,
   "info": [
    "Vela produzida com cera 100% vegetal não poluente e essência",
-   "Potinho de vidro 40ml, personalizada com pingente de anjinho, mini terço, TAG e embalagem",
-   "Valor referente a unidade",
-   "Detalhes podem ser alterados, entre em contato para melhor te ajudar.. Pedido mínimo de 10 unidades",
-   "Consulte o prazo de produção"
+   "Potinho de vidro de 40 ml, personalizada com pingente de anjinho, mini terço, TAG e embalagem",
+   "Valor referente a cada unidade",
+   "Detalhes podem ser alterados, é só falar com a gente",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -98,9 +101,11 @@ export const produtos: Produto[] = [
   "nome": "Vela no copo personalizada",
   "preco": 24.9,
   "info": [
-   "Vela no copo 70ml - acompanha adesivo personalizado. Mini terço acréscimo de 2,00 por unidade",
-   "Opção com embalagem de organza - 24,90",
-   "Opção com laço e embalagem transparente - 25,90 Personalização do adesivo, pedido mínimo de 10 unidades"
+   "Vela no copo de 70 ml, com adesivo personalizado",
+   "Com embalagem de organza: R$ 24,90",
+   "Com laço e embalagem transparente: R$ 25,90",
+   "Mini terço opcional: acréscimo de R$ 2,00 por unidade",
+   "Personalização do adesivo, com pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -112,11 +117,12 @@ export const produtos: Produto[] = [
   "nome": "Vela no potinho com adesivo",
   "preco": 17.9,
   "info": [
-   "Vela no potinho de 40gr, com adesivo personalizado",
-   "Acompanha embalagem, cartão personalizado e mini terço. Vela produzida com cera 100% vegetal não poluente e essência",
-   "Valor referente a unidade",
-   "Detalhes podem ser alterados, entre em contato para melhor te ajudar.. Pedido mínimo de 10 unidades",
-   "Consulte o prazo de produção"
+   "Vela no potinho de 40 g, com adesivo personalizado",
+   "Acompanha embalagem, cartão personalizado e mini terço",
+   "Cera 100% vegetal não poluente e essência",
+   "Valor referente a cada unidade",
+   "Detalhes podem ser alterados, é só falar com a gente",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -128,9 +134,10 @@ export const produtos: Produto[] = [
   "nome": "Porta água benta - 60ml",
   "preco": 24.9,
   "info": [
-   "Porta água benta de 60ml, com laço, mini terço, e embalagem",
-   "Cores e detalhes podem ser alterados. A partir de 1 unid. 24,90",
-   "Cartão personalizado apenas acima de 8 unidades"
+   "Porta água benta de 60 ml, com laço, mini terço e embalagem",
+   "Cores e detalhes podem ser alterados",
+   "Cartão personalizado apenas em pedidos acima de 8 unidades",
+   "A partir de 1 unidade: R$ 24,90"
   ],
   "min": 1,
   "cat": "lembrancinhas",
@@ -140,11 +147,12 @@ export const produtos: Produto[] = [
  {
   "n": 10,
   "nome": "Kit Helena",
-  "preco": 146.0,
+  "preco": 149,
   "info": [
-   "Caixa em MDF medida 12x12 com conteúdo de sachê perfumado e vela no potinho ou",
-   "Porta água benta 60ml e vela no potinho Por fora personalizada com laço, ou divino Espírito Santo",
-   "Cores e mensagens podem ser alterados"
+   "Caixa em MDF de 12x12",
+   "Conteúdo: sachê perfumado e vela no potinho, ou porta água benta de 60 ml e vela no potinho",
+   "Por fora, personalizada com laço ou Divino Espírito Santo",
+   "Cores e mensagens podem ser alteradas"
   ],
   "min": 1,
   "cat": "kits",
@@ -154,10 +162,11 @@ export const produtos: Produto[] = [
  {
   "n": 12,
   "nome": "Kit Luz",
-  "preco": 146.0,
+  "preco": 149,
   "info": [
-   "Caixa em mdf medida 12x12 com conteúdo de vela no potinho e divino em imã",
-   "Por fora (na tampa da caixa) personalizada com laço",
+   "Caixa em MDF de 12x12",
+   "Conteúdo: vela no potinho e Divino em imã",
+   "Tampa personalizada com laço",
    "Cores e mensagens podem ser alteradas"
   ],
   "min": 1,
@@ -168,10 +177,11 @@ export const produtos: Produto[] = [
  {
   "n": 13,
   "nome": "Kit Divino",
-  "preco": 146.0,
+  "preco": 149,
   "info": [
-   "Caixa em mdf, medida 12x12 com conteúdo de porta água benta 60ml, vela no potinho e mensagem personalizada",
-   "Por fora personalizada com divino ou laço",
+   "Caixa em MDF de 12x12",
+   "Conteúdo: porta água benta de 60 ml, vela no potinho e mensagem personalizada",
+   "Por fora, personalizada com Divino ou laço",
    "Cores e mensagens podem ser alteradas"
   ],
   "min": 1,
@@ -182,10 +192,11 @@ export const produtos: Produto[] = [
  {
   "n": 14,
   "nome": "Kit Maria Cecília",
-  "preco": 146.0,
+  "preco": 149,
   "info": [
-   "Caixa em mdf medida 12x12 com conteúdo de porta água benta 60ml, Divino Espírito Santo com imã e mensagem personalizada",
-   "Por fora personalizada com laço",
+   "Caixa em MDF de 12x12",
+   "Conteúdo: porta água benta de 60 ml, Divino Espírito Santo com imã e mensagem personalizada",
+   "Por fora, personalizada com laço",
    "Cores e mensagens podem ser alteradas"
   ],
   "min": 1,
@@ -198,8 +209,11 @@ export const produtos: Produto[] = [
   "nome": "Vela no copo madrinha ou padrinho",
   "preco": 24.9,
   "info": [
-   "Valor referente a unidade Vela no copo 70ml - acompanha adesivo Madrinha ou Padrinho e laço",
-   "Mensagem padrão. Alteração apenas acima de 8 unidades.. Mini terço acréscimo de 2,40 por unidade. Personalização do adesivo, acima de 8 unidades"
+   "Vela no copo de 70 ml, com adesivo Madrinha ou Padrinho e laço",
+   "Valor referente a cada unidade",
+   "Mensagem padrão. Alteração apenas em pedidos acima de 8 unidades",
+   "Personalização do adesivo apenas acima de 8 unidades",
+   "Mini terço opcional: acréscimo de R$ 2,40 por unidade"
   ],
   "min": 1,
   "cat": "velas",
@@ -211,10 +225,11 @@ export const produtos: Produto[] = [
   "nome": "Kit vintage - 2 velas no copo",
   "preco": 99.9,
   "info": [
-   "Caixa em MDF com acabamento envernizado medindo 12x12 Conteúdo: 2 velas no copo 70ml",
-   "Mini terço acréscimo: R$ 2,40 unid",
+   "Caixa em MDF de 12x12, com acabamento envernizado",
+   "Conteúdo: 2 velas no copo de 70 ml",
    "Por fora, personalizada com laço e pingente de anjinho",
-   "Cores do laço e mensagens podem ser alteradas de acordo com sua necessidade"
+   "Cores do laço e mensagens podem ser alteradas",
+   "Mini terço opcional: acréscimo de R$ 2,40 por unidade"
   ],
   "min": 1,
   "cat": "kits",
@@ -226,11 +241,11 @@ export const produtos: Produto[] = [
   "nome": "Kit vintage - Alice",
   "preco": 99.9,
   "info": [
-   "Caixa em MDF envernizado - medida 12x12",
+   "Caixa em MDF envernizado, de 12x12",
    "Valor referente a 1 caixa com 2 conteúdos",
-   "Conteúdo: Porta água benta 60ml e vela no potinho. O conteúdo também pode ser alterado como exemplo: 1- Porta água benta e Divino ou Divino e vela no potinho",
+   "Conteúdo: porta água benta de 60 ml e vela no potinho. Também pode ser porta água benta e Divino, ou Divino e vela no potinho",
    "Por fora, personalizada com laço e pingente de anjinho",
-   "Cores do laço e mensagens podem ser alteradas de acordo com sua necessidade"
+   "Cores do laço e mensagens podem ser alteradas"
   ],
   "min": 1,
   "cat": "kits",
@@ -242,7 +257,8 @@ export const produtos: Produto[] = [
   "nome": "Primeira Eucaristia e Crisma",
   "preco": null,
   "info": [
-   "A personalização pode ser alterada de acordo com a sua necessidade. Nós envie o modelo escolhido para mais detalhes"
+   "Personalização de acordo com a sua necessidade",
+   "Envie o modelo escolhido para receber mais detalhes"
   ],
   "min": 1,
   "cat": "eucaristia",
@@ -254,9 +270,9 @@ export const produtos: Produto[] = [
   "nome": "Kit com Divino",
   "preco": 87.0,
   "info": [
-   "Caixa em mdf, medida 9x9 com divino espírito santo com imã e mini terço. Caixa revestida em tecido na parte externa e interna em pintura",
-   "Mensagem personalizada no verso",
-   "Consulte prazo de produção"
+   "Caixa em MDF de 9x9, com Divino Espírito Santo com imã e mini terço",
+   "Revestida em tecido por fora e com pintura por dentro",
+   "Mensagem personalizada no verso"
   ],
   "min": 1,
   "cat": "kits",
@@ -268,9 +284,9 @@ export const produtos: Produto[] = [
   "nome": "Kit com vela no potinho",
   "preco": 87.0,
   "info": [
-   "Caixa medindo 9x9 com vela no potinho Caixa revestida em tecido na parte externa e interna em pintura",
-   "Mensagem personalizada no verso",
-   "Consulte prazo de produção"
+   "Caixa de 9x9, com vela no potinho",
+   "Revestida em tecido por fora e com pintura por dentro",
+   "Mensagem personalizada no verso"
   ],
   "min": 1,
   "cat": "kits",
@@ -282,9 +298,9 @@ export const produtos: Produto[] = [
   "nome": "Caixa com vela no potinho",
   "preco": 87.0,
   "info": [
-   "Caixa em MDF medida 9x9 com vela no potinho. Caixa revestida em tecido na parte externa e interna em pintura",
-   "Mensagem personalizada no verso",
-   "Consulte prazo de produção"
+   "Caixa em MDF de 9x9, com vela no potinho",
+   "Revestida em tecido por fora e com pintura por dentro",
+   "Mensagem personalizada no verso"
   ],
   "min": 1,
   "cat": "kits",
@@ -294,10 +310,10 @@ export const produtos: Produto[] = [
  {
   "n": 22,
   "nome": "Kit com toalha de lavabo bordada e mini terço",
-  "preco": 159.9,
+  "preco": 169.9,
   "info": [
-   "Caixa em MDF medida 15x15, com toalha de lavabo bordada e mini terço",
-   "Para nome bordado na tampa, temos acréscimo no valor"
+   "Caixa em MDF de 15x15, com toalha de lavabo bordada e mini terço",
+   "Nome bordado na tampa: acréscimo no valor"
   ],
   "min": 1,
   "cat": "kits",
@@ -307,10 +323,11 @@ export const produtos: Produto[] = [
  {
   "n": 23,
   "nome": "Kit com toalha de lavabo bordada",
-  "preco": 159.9,
+  "preco": 169.9,
   "info": [
-   "Caixa em MDF medida 15x15, com toalha de lavabo bordada e mini terço",
-   "Tem opção de toalha e + 1 item ou em medidas maiores para acomodar mais itens. Com isso tem alteração no valor. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 15x15, com toalha de lavabo bordada e mini terço",
+   "Há opção de toalha com mais 1 item, ou de caixa maior para acomodar mais itens, com alteração no valor",
+   "Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -322,11 +339,12 @@ export const produtos: Produto[] = [
   "nome": "Vela personalizada",
   "preco": 13.9,
   "info": [
-   "Vela no potinho de 40gr, com adesivo personalizado",
-   "Embalagem e TAG - acréscimo de R$ 2,00 por unidade. Vela produzida com cera 100% vegetal não poluente e essência",
-   "Valor referente a unidade",
-   "Detalhes podem ser alterados, entre em contato para verificar disponibilidade. Pedido mínimo de 10 unidades",
-   "Consulte o prazo de produção"
+   "Vela no potinho de 40 g, com adesivo personalizado",
+   "Cera 100% vegetal não poluente e essência",
+   "Embalagem e TAG: acréscimo de R$ 2,00 por unidade",
+   "Valor referente a cada unidade",
+   "Detalhes podem ser alterados, conforme a disponibilidade",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -338,9 +356,10 @@ export const produtos: Produto[] = [
   "nome": "Marcador de páginas",
   "preco": 7.5,
   "info": [
-   "Marcador de páginas personalizado. Pode ser produzido para a ocasião que desejar",
+   "Marcador de páginas personalizado, que pode ser feito para a ocasião que você desejar",
    "Acompanha embalagem e mini terço",
-   "Acréscimo de Tassel R$ 0,95 unid. Pedido mínimo de 10 unidades"
+   "Tassel opcional: acréscimo de R$ 0,95 por unidade",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "lembrancinhas",
@@ -352,9 +371,10 @@ export const produtos: Produto[] = [
   "nome": "Marcador de páginas personalizado com frase",
   "preco": 6.99,
   "info": [
-   "Marcador de páginas personalizado. Pode ser produzido para a ocasião que desejar",
-   "Papel glossy 220gr",
-   "Acompanha embalagem e mini terço. Pedido mínimo de 10 unidades"
+   "Marcador de páginas personalizado com frase, que pode ser feito para a ocasião que você desejar",
+   "Papel glossy 220 g",
+   "Acompanha embalagem e mini terço",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "lembrancinhas",
@@ -366,7 +386,8 @@ export const produtos: Produto[] = [
   "nome": "Kits Personalizados",
   "preco": null,
   "info": [
-   "Opções personalizadas de acordo com sua necessidade. Me informe como deseja, para que possa te enviar um orçamento"
+   "Opções personalizadas de acordo com a sua necessidade",
+   "Conte como deseja, para receber um orçamento"
   ],
   "min": 1,
   "cat": "personalizados",
@@ -376,11 +397,11 @@ export const produtos: Produto[] = [
  {
   "n": 28,
   "nome": "Caixa em MDF com divino em imã",
-  "preco": 85.0,
+  "preco": 87,
   "info": [
-   "Caixa em MDF 8x8 com divino espírito santo com imã e mini terço. Caixa revestida em tecido na parte externa e interna em pintura",
-   "Mensagem personalizada no verso",
-   "Consulte prazo de produção"
+   "Caixa em MDF de 8x8, com Divino Espírito Santo com imã e mini terço",
+   "Revestida em tecido por fora e com pintura por dentro",
+   "Mensagem personalizada no verso"
   ],
   "min": 1,
   "cat": "kits",
@@ -392,7 +413,9 @@ export const produtos: Produto[] = [
   "nome": "Caixa Miguel em MDF",
   "preco": 199.0,
   "info": [
-   "Caixa em MDF medida 15x15x5 - conteúdo: sachê perfumado, vela no copo e mandala. Para nome bordado na tampa, temos acréscimo no valor"
+   "Caixa em MDF de 15x15x5",
+   "Conteúdo: sachê perfumado, vela no copo e mandala",
+   "Nome bordado na tampa: acréscimo no valor"
   ],
   "min": 1,
   "cat": "kits",
@@ -404,7 +427,8 @@ export const produtos: Produto[] = [
   "nome": "Caixa com mandala",
   "preco": 94.9,
   "info": [
-   "Caixa em mdf meidda 9x9 revestida em tecido na parte externa e por dentro em pintura. Com mandala perolada para pendurar"
+   "Caixa em MDF de 9x9, revestida em tecido por fora e com pintura por dentro",
+   "Acompanha mandala perolada para pendurar"
   ],
   "min": 1,
   "cat": "kits",
@@ -414,9 +438,10 @@ export const produtos: Produto[] = [
  {
   "n": 31,
   "nome": "Kit Lavínia",
-  "preco": 229.9,
+  "preco": 239.9,
   "info": [
-   "Caixa em MDF medida 18x18 Conteúdo: 1 toalha de lavabo bordada, sachê perfumado, vela no potinho e mensagem personalizada"
+   "Caixa em MDF de 18x18",
+   "Conteúdo: 1 toalha de lavabo bordada, sachê perfumado, vela no potinho e mensagem personalizada"
   ],
   "min": 1,
   "cat": "kits",
@@ -428,7 +453,8 @@ export const produtos: Produto[] = [
   "nome": "Kit - Convite ou agradecimento",
   "preco": 199.0,
   "info": [
-   "Caixa em mdf medida 15x15 - conteúdo: sachê perfumado, vela no potinho e divino com imã + mini terço e mensagem personalizada",
+   "Caixa em MDF de 15x15",
+   "Conteúdo: sachê perfumado, vela no potinho, Divino com imã e mini terço, e mensagem personalizada",
    "Mensagem e cores podem ser alteradas"
   ],
   "min": 1,
@@ -441,7 +467,9 @@ export const produtos: Produto[] = [
   "nome": "Kit Pedro - nome bordado",
   "preco": 199.0,
   "info": [
-   "Caixa em mdf, medida 15x15x5 - conteúdo: porta água benta, sachê perfumado e vela no copo. Nome bordado na tampa tem acréscimo no valor"
+   "Caixa em MDF de 15x15x5",
+   "Conteúdo: porta água benta, sachê perfumado e vela no copo",
+   "Nome bordado na tampa: acréscimo no valor"
   ],
   "min": 1,
   "cat": "kits",
@@ -453,8 +481,10 @@ export const produtos: Produto[] = [
   "nome": "Kit azul com porta água benta + 2 itens",
   "preco": 199.0,
   "info": [
-   "Caixa em mdf, medida 15x15 com porta água , vela no copo e mandala",
-   "Nome bordado na tampa, tem acréscimo no valor. O valor pode alterar de acordo com conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 15x15",
+   "Conteúdo: porta água benta, vela no copo e mandala",
+   "Nome bordado na tampa: acréscimo no valor",
+   "O valor pode mudar conforme conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -464,10 +494,12 @@ export const produtos: Produto[] = [
  {
   "n": 35,
   "nome": "Kit com porta água benta e + 2 itens",
-  "preco": 189.9,
+  "preco": 199,
   "info": [
-   "Caixa em MDF medida 15x15 com porta água , sachê perfumado e vela no potinho",
-   "Nome bordado na tampa, temos acréscimo no valor. O valor pode alterar de acordo com conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 15x15",
+   "Conteúdo: porta água benta, sachê perfumado e vela no potinho",
+   "Nome bordado na tampa: acréscimo no valor",
+   "O valor pode mudar conforme conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -477,9 +509,11 @@ export const produtos: Produto[] = [
  {
   "n": 36,
   "nome": "Kit - modelo Casal",
-  "preco": 289.9,
+  "preco": 295,
   "info": [
-   "Caixa em mdf, medindo 20x20x5 com 2 toalhas de lavabo bordadas, vela perfumada no potinho, porta água benta 60ml e mensagem personalizada. O valor pode alterar de acordo com tamanho, conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 20x20x5",
+   "Conteúdo: 2 toalhas de lavabo bordadas, vela perfumada no potinho, porta água benta de 60 ml e mensagem personalizada",
+   "O valor pode mudar conforme tamanho, conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -491,9 +525,10 @@ export const produtos: Produto[] = [
   "nome": "Marca páginas",
   "preco": 7.5,
   "info": [
-   "Marca página personalizado. Pode ser produzido para a ocasião que desejar",
+   "Marca página personalizado, que pode ser feito para a ocasião que você desejar",
    "Acompanha embalagem e mini terço",
-   "Acréscimo de Tassel R$ 0,95 unid. Pedido mínimo de 10 unidades"
+   "Tassel opcional: acréscimo de R$ 0,95 por unidade",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "lembrancinhas",
@@ -505,10 +540,10 @@ export const produtos: Produto[] = [
   "nome": "Toalha de lavabo bordada",
   "preco": 49.0,
   "info": [
-   "Pedido mínimo de 2 unidades",
+   "Toalha de lavabo bordada, com embalagem",
    "Valor referente a uma unidade",
-   "Toalha de lavabo bordada e embalagem",
-   "Opcional de mensagem personalizada - acréscimo de 5,00 por mensagem"
+   "Mensagem personalizada opcional: acréscimo de R$ 5,00 por mensagem",
+   "Pedido mínimo de 2 unidades"
   ],
   "min": 2,
   "cat": "toalhas",
@@ -520,10 +555,10 @@ export const produtos: Produto[] = [
   "nome": "Toalha de lavabo bordada + divino em imã",
   "preco": 68.9,
   "info": [
-   "Pedido mínimo de 2 unidades",
+   "Toalha de lavabo bordada, com embalagem e Divino em imã",
    "Valor referente a uma unidade",
-   "Toalha de lavabo bordada, embalagem + divino em imã",
-   "Opcional de mensagem personalizada acréscimo de 5,00 por mensagem"
+   "Mensagem personalizada opcional: acréscimo de R$ 5,00 por mensagem",
+   "Pedido mínimo de 2 unidades"
   ],
   "min": 2,
   "cat": "toalhas",
@@ -535,7 +570,9 @@ export const produtos: Produto[] = [
   "nome": "Kit Casal - Vela no copo",
   "preco": 299.9,
   "info": [
-   "Caixa medida 20x20x6 com 2 toalhas de lavabo bordadas, 2 velas no copo (70gr) com mini terço e mensagem personalizada. Para nome bordado na tampa tem caixa, temos acréscimo no valor"
+   "Caixa de 20x20x6",
+   "Conteúdo: 2 toalhas de lavabo bordadas, 2 velas no copo (70 g) com mini terço e mensagem personalizada",
+   "Nome bordado na tampa: acréscimo no valor"
   ],
   "min": 1,
   "cat": "kits",
@@ -547,7 +584,10 @@ export const produtos: Produto[] = [
   "nome": "Kit Marília - nome bordado",
   "preco": 185.0,
   "info": [
-   "Caixa em MDF medida 15x15 com porta água , sachê perfumado, vela no potinho e nome bordado na tampa (acréscimo) O valor pode alterar de acordo com conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 15x15",
+   "Conteúdo: porta água benta, sachê perfumado e vela no potinho",
+   "Nome bordado na tampa (acréscimo)",
+   "O valor pode mudar conforme conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -559,7 +599,9 @@ export const produtos: Produto[] = [
   "nome": "Kit com porta água benta e + 1 item",
   "preco": 169.0,
   "info": [
-   "Caixa em MDF medida 15x15 com porta água e + 1 item. sachê perfumado, vela no potinho ou divino em imã. O valor pode alterar de acordo com tamanho, conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa em MDF de 15x15",
+   "Conteúdo: porta água benta e mais 1 item à escolha: sachê perfumado, vela no potinho ou Divino em imã",
+   "O valor pode mudar conforme tamanho, conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -572,10 +614,10 @@ export const produtos: Produto[] = [
   "preco": 18.5,
   "info": [
    "Vela produzida com cera 100% vegetal não poluente",
-   "Potinho de vidro 40ml, personalizada com pingente de anjinho, mini terço, TAG e embalagem",
-   "Valor referente a unidade",
-   "Detalhes podem ser alterados, entre em contato para melhor te ajudar.. Pedido mínimo de 10 unidades",
-   "Consulte o prazo de produção"
+   "Potinho de vidro de 40 ml, personalizada com pingente de anjinho, mini terço, TAG quadrada e embalagem",
+   "Valor referente a cada unidade",
+   "Detalhes podem ser alterados, é só falar com a gente",
+   "Pedido mínimo de 10 unidades"
   ],
   "min": 10,
   "cat": "velas",
@@ -587,7 +629,9 @@ export const produtos: Produto[] = [
   "nome": "Caixa Gabriel - nome bordado",
   "preco": 169.0,
   "info": [
-   "Caixa medida 15x15 com porta água, sachê perfumado e nome bordado (acréscimo) O valor pode alterar de acordo com conteúdo, tecido e bordados. Nos informe o modelo desejado para melhor te ajudar"
+   "Caixa de 15x15",
+   "Conteúdo: porta água benta, sachê perfumado e nome bordado (acréscimo)",
+   "O valor pode mudar conforme conteúdo, tecido e bordados. Envie o modelo desejado para receber ajuda"
   ],
   "min": 1,
   "cat": "kits",
@@ -595,35 +639,13 @@ export const produtos: Produto[] = [
   "fotos": 3
  },
  {
-  "n": 47,
-  "nome": "Caixa com sapatinho",
-  "preco": 124.9,
-  "info": [
-   "Caixa em MDF com sapatinho para anúncio de gravidez, chá revelação ou convite para padrinhos. Caixa medida 12x12 toda revestida em tecido com mensagem personalizada"
-  ],
-  "min": 1,
-  "cat": "kits",
-  "tam": "m",
-  "fotos": 1
- },
- {
-  "n": 48,
-  "nome": "Caixa em MDF com sapatinho",
-  "preco": 124.9,
-  "info": [
-   "Caixa com sapatinho para anúncio de gravidez, chá revelação ou convite para padrinhos. Caixa medida 12x12 toda revestida em tecido com mensagem personalizada"
-  ],
-  "min": 1,
-  "cat": "kits",
-  "tam": "m",
-  "fotos": 2
- },
- {
   "n": 49,
   "nome": "Caixa em MDF com toalha bordada - anúncio de gravidez",
   "preco": 179.0,
   "info": [
-   "Caixa em MDF com toalha de lavabo bordada, tampa bordada externa e mensagem personalizada no verso. Caixa edida 15x15x5"
+   "Caixa em MDF de 15x15x5",
+   "Conteúdo: toalha de lavabo bordada",
+   "Tampa bordada por fora e mensagem personalizada no verso"
   ],
   "min": 1,
   "cat": "kits",
@@ -635,7 +657,8 @@ export const produtos: Produto[] = [
   "nome": "Porta água benta com mensagem personalizada",
   "preco": 35.5,
   "info": [
-   "Porta água benta de 120ml, com laço, mini terço, mensagem personalizada e embalagem de organza. Pedido mínimo de 2 unidades"
+   "Porta água benta de 120 ml, com laço, mini terço, mensagem personalizada e embalagem de organza",
+   "Pedido mínimo de 2 unidades"
   ],
   "min": 2,
   "cat": "lembrancinhas",
@@ -644,10 +667,9 @@ export const produtos: Produto[] = [
  }
 ];
 
-/** Quantidade de imagens de modelos de mensagem (itens 50 e 52 do catálogo). */
-export const modelos: Record<"50" | "52", number> = {
- "50": 9,
- "52": 10
+/** Modelos de mensagem das caixas e kits (item "Modelos de mensagem 2" do catálogo, 04/11/2026). */
+export const modelos: Record<"50", number> = {
+ "50": 9
 };
 
 export const avaliacoes: Avaliacao[] = [
