@@ -22,7 +22,7 @@ const CATS = [
   { id: "personalizados", nome: "Personalizados", cover: "27-01", sub: "Do seu jeito, com orçamento pelo WhatsApp." },
 ] as const;
 const TAM: Record<"p" | "m" | "g", [string, string]> = { p: ["Pequeno", "8 a 9 cm"], m: ["Médio", "12 cm"], g: ["Grande", "15 a 20 cm"] };
-const DESTAQUES = [13, 7, 1, 38, 2, 47];
+const DESTAQUES = [13, 7, 1, 38, 2, 49];
 const COVER: Record<number, number> = { 18: 2 };
 const NOVIDADE = new Set([2]);
 const OCASIOES = ["", "Batizado", "Primeira Eucaristia", "Crisma", "Padrinhos e madrinhas", "Anúncio de gravidez", "Chá revelação", "Casamento", "Outra"];
@@ -107,7 +107,7 @@ export function PqueninosApp() {
   const [bag, setBag] = useState<Bag>(() => store.get<Bag>("sacolinha", {}));
   const [pop, setPop] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
-  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [lightbox, setLightbox] = useState<{ list: string[]; start: number } | null>(null);
   const appRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const curtainRef = useRef<HTMLDivElement>(null);
@@ -195,7 +195,7 @@ export function PqueninosApp() {
       <a className="wa" href={waLink("Olá, Steh! Vim pelo site da Pqueninos e gostaria de mais informações.")} target="_blank" rel="noopener"><Icon name="b-wa-mono" />WhatsApp</a>
     </nav>
     <div className={`toast ${toast ? "show" : ""}`} role="status" aria-live="polite">{toast && <><Icon name="gift" />{toast}</>}</div>
-    {lightbox != null && <Lightbox start={lightbox} onClose={() => setLightbox(null)} />}
+    {lightbox != null && <Lightbox list={lightbox.list} start={lightbox.start} onClose={() => setLightbox(null)} />}
   </>;
 }
 
@@ -213,7 +213,7 @@ function Screen({ id, ctx, mem, children }: { id: string; ctx: Ctx; mem: RefObje
 
 type Api = {
   go: (h: string) => void; back: (f: string) => void; bag: Bag; saveBag: (change: (b: Bag) => Bag) => void; bumpBag: () => void;
-  say: (t: string) => void; flyToBag: (src: HTMLImageElement | null, done: () => void) => void; openModelos: (i: number) => void;
+  say: (t: string) => void; flyToBag: (src: HTMLImageElement | null, done: () => void) => void; openModelos: (m: { list: string[]; start: number }) => void;
 };
 
 function View({ route, api }: { route: Route; api: Api }) {
@@ -249,7 +249,7 @@ function Inicio({ api }: { api: Api }) {
   return <>
     <header className="brand"><div className="lg"><img src={`${BASE}/logo.webp`} alt="Logo Pqueninos Lembranças" /></div><div><h1>Pqueninos Lembranças</h1>
       <div className="rating"><Stars /><b>5,0</b> no Google</div></div></header>
-    <p className="hello"><b>Aqui, cada detalhe é feito com amor.</b> Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.</p>
+    <p className="hello"><b>Aqui, cada detalhe é feito com amor.</b> Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retiradas agendadas em Belo Horizonte ou Ibirité. Envio para todo o Brasil.</p>
     <nav className="short" aria-label="Atalhos">
       <button className="h" data-go="avaliacoes" onClick={() => api.go("avaliacoes")}><span className="ic"><Icon name="star" /></span>Avaliações<small>5,0 no Google</small></button>
       <a className="g" href={MAPS} target="_blank" rel="noopener"><span className="ic"><Icon name="b-google-icon" /></span>Google<small>ver perfil</small></a>
@@ -345,9 +345,11 @@ function ProdutoView({ p, api }: { p: Produto; api: Api }) {
         }}><Icon name="gift" />Adicionar à sacolinha</button>
         <a className="btn ghost" target="_blank" rel="noopener" href={wa}><Icon name="b-whatsapp-icon" />{p.preco == null ? "Pedir orçamento no WhatsApp" : "Pedir só este no WhatsApp"}</a>
       </div>
-      {hasMsg && <div className="note"><Icon name="heart" /><div>A mensagem interna pode ser personalizada como você desejar. <button onClick={() => api.openModelos(0)}>Ver modelos de mensagem</button></div></div>}
+      {hasMsg && <div className="note"><Icon name="heart" /><div>A mensagem interna pode ser personalizada como você desejar. <button onClick={() => api.openModelos({ list: modelosDe(p.cat), start: 0 })}>Ver modelos de mensagem</button></div></div>}
       <h3 className="h3">Detalhes</h3>
       <ul className="details">{info.map(t => <li key={t}><Icon name="check" /><span>{t}</span></li>)}</ul>
+      <h3 className="h3">Prazo de produção</h3>
+      <ul className="details"><li><Icon name="clock" /><span>De 12 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</span></li></ul>
     </div>
     <Foot />
   </>;
@@ -405,14 +407,17 @@ function Sacolinha({ api }: { api: Api }) {
           <select id="oc" value={ev.ocasiao} onChange={e => upd({ ...ev, ocasiao: e.target.value })}>{OCASIOES.map(o => <option key={o} value={o}>{o || "Opcional"}</option>)}</select></div>
         <div className="field"><label htmlFor="dt">Data do evento</label><input id="dt" type="date" value={ev.data} onChange={e => upd({ ...ev, data: e.target.value })} /></div>
       </div>
-      <p className="fine">Produção de 12 a 18 dias úteis, mais o prazo de entrega.</p>
+      <p className="fine">Produção de 12 a 18 dias úteis, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p>
       <a className="btn wa" target="_blank" rel="noopener" href={waLink(msg)}><Icon name="b-wa-mono" />Enviar pedido no WhatsApp</a>
     </div>
     <Foot />
   </>;
 }
 
-const modeloImgs = () => [...Array.from({ length: modelos["52"] }, (_, i) => img(52, i + 1)), ...Array.from({ length: modelos["50"] }, (_, i) => img(50, i + 1))];
+const MODELOS_CAIXAS = Array.from({ length: modelos["50"] }, (_, i) => img(50, i + 1));
+const MODELOS_LEMBRANCAS = [`${BASE}/msg/lembrancinhas.webp`];
+/** Mensagens das caixas e kits, ou das lembrancinhas (cartões), conforme a categoria do produto. */
+const modelosDe = (cat: string) => ["lembrancinhas", "velas", "eucaristia"].includes(cat) ? MODELOS_LEMBRANCAS : MODELOS_CAIXAS;
 
 function Como({ api }: { api: Api }) {
   return <>
@@ -422,13 +427,16 @@ function Como({ api }: { api: Api }) {
     <ol className="steps">
       <li><div><h3>Escolha as lembranças</h3><p>Navegue pelas categorias e adicione à sacolinha, ou peça direto pelo WhatsApp.</p></div></li>
       <li><div><h3>Personalize a mensagem</h3><p>Mensagem pessoal ou um dos nossos modelos. Cores e detalhes podem ser alterados.</p>
-        <div className="mini">{modeloImgs().map((s, i) => <button key={s} aria-label={`Ver modelo ${i + 1}`} onClick={() => api.openModelos(i)}><img src={s} alt="" loading="lazy" /></button>)}</div></div></li>
+        <p className="fine" style={{ margin: "8px 0 4px" }}>Caixas e kits</p>
+        <div className="mini">{MODELOS_CAIXAS.map((s, i) => <button key={s} aria-label={`Ver modelo de caixa ${i + 1}`} onClick={() => api.openModelos({ list: MODELOS_CAIXAS, start: i })}><img src={s} alt="" loading="lazy" /></button>)}</div>
+        <p className="fine" style={{ margin: "10px 0 4px" }}>Lembrancinhas</p>
+        <div className="mini">{MODELOS_LEMBRANCAS.map((s, i) => <button key={s} aria-label="Ver modelos de mensagem das lembrancinhas" style={{ flexBasis: 128, height: 92, background: "#fff" }} onClick={() => api.openModelos({ list: MODELOS_LEMBRANCAS, start: i })}><img src={s} alt="" loading="lazy" style={{ objectFit: "contain" }} /></button>)}</div></div></li>
       <li><div><h3>Pagamento</h3><p>Pix ou cartão (link de pagamento, com acréscimo no valor). A data do pedido é reservada e entra na fila de produção após a confirmação do pagamento.</p></div></li>
-      <li><div><h3>Produção e entrega</h3><p>De 12 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo da transportadora. Retirada ou entrega via Uber. Para urgência, consulte a possibilidade de encaixe.</p></div></li>
+      <li><div><h3>Produção e entrega</h3><p>De 12 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo da transportadora. Retirada ou entrega via Uber. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p></div></li>
     </ol>
     <div className="place">
       <div className="r"><span><Icon name="clock" /></span><div><b>Atendimento</b><br />Segunda a sexta, das 10h às 17h30</div></div>
-      <div className="r"><span><Icon name="truck" /></span><div><b>Retiradas ou envio para todo o Brasil</b><br />Retirada em BH com horário combinado</div></div>
+      <div className="r"><span><Icon name="truck" /></span><div><b>Retiradas ou envio para todo o Brasil</b><br />Retiradas agendadas em Belo Horizonte ou Ibirité</div></div>
       <div className="r"><span><Icon name="map-pin" /></span><div><b>Santo Antônio, Belo Horizonte</b><br /><a href={MAPS} target="_blank" rel="noopener" className="more">Abrir no Google Maps</a></div></div>
     </div>
     <Foot />
@@ -462,14 +470,13 @@ function Instagram({ api }: { api: Api }) {
   </>;
 }
 
-function Lightbox({ start, onClose }: { start: number; onClose: () => void }) {
-  const list = modeloImgs();
+function Lightbox({ list, start, onClose }: { list: string[]; start: number; onClose: () => void }) {
   const [i, setI] = useState(start);
   useEffect(() => { const k = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); }; document.addEventListener("keydown", k); return () => document.removeEventListener("keydown", k); }, [onClose]);
   const mv = (d: number) => setI(x => (x + d + list.length) % list.length);
   return <div className="lb" role="dialog" aria-label="Modelos de mensagem" onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-    <img src={list[i]} alt={`Modelo de mensagem ${i + 1} de ${list.length}`} />
-    <div style={{ color: "#fff", fontWeight: 700, fontSize: ".85rem" }}>{i + 1} de {list.length}</div>
-    <div className="ctl"><button onClick={() => mv(-1)}>Anterior</button><button onClick={onClose}>Fechar</button><button onClick={() => mv(1)}>Próximo</button></div>
+    <img src={list[i]} alt={list.length > 1 ? `Modelo de mensagem ${i + 1} de ${list.length}` : "Modelos de mensagem"} />
+    {list.length > 1 && <div style={{ color: "#fff", fontWeight: 700, fontSize: ".85rem" }}>{i + 1} de {list.length}</div>}
+    <div className="ctl">{list.length > 1 && <button onClick={() => mv(-1)}>Anterior</button>}<button onClick={onClose}>Fechar</button>{list.length > 1 && <button onClick={() => mv(1)}>Próximo</button>}</div>
   </div>;
 }
