@@ -65,6 +65,22 @@ export const produtos: Produto[] = [
   "fotos": 4
  },
  {
+  "n": 53,
+  "nome": "Divino Espírito Santo rosa com imã + mini terço",
+  "preco": 16.9,
+  "info": [
+   "Divino Espírito Santo de resina, com imã e mini terço",
+   "Detalhes na cor rosa",
+   "Embalagem de organza e cartão personalizado",
+   "Medida aproximada: 7x7",
+   "Pedido mínimo de 10 unidades"
+  ],
+  "min": 10,
+  "cat": "lembrancinhas",
+  "tam": null,
+  "fotos": 2
+ },
+ {
   "n": 5,
   "nome": "Vela aromática no potinho - completa",
   "preco": 18.9,
