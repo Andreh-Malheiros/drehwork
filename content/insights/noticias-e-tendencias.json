@@ -722,5 +722,110 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "botao-whatsapp-perfil-da-empresa-google",
+    "title": "Botão do WhatsApp no Perfil da Empresa do Google: o que muda para o seu negócio",
+    "seoTitle": "Botão do WhatsApp no Perfil da Empresa do Google",
+    "description": "O Google passou a mostrar um botão do WhatsApp na ficha de empresas na Busca. Veja o que foi confirmado e como configurar o chat no seu Perfil da Empresa.",
+    "keyword": "botão do whatsapp no perfil da empresa",
+    "category": "Notícias e tendências",
+    "date": "2026-11-04",
+    "updated": "2026-11-04",
+    "summary": "O Google foi visto exibindo um botão de WhatsApp no painel local da Busca. Entenda o que foi confirmado, o que ainda não foi e como configurar o chat no seu perfil.",
+    "intro": "O botão do WhatsApp no Perfil da Empresa do Google já foi visto na Busca: em alguns resultados locais, a ficha da empresa passou a exibir um botão para conversar pelo WhatsApp, ao lado de ligar, rota e site. Segundo o Search Engine Roundtable, que publicou a observação em 7 de outubro de 2026, o Google ainda não anunciou oficialmente o recurso e não está claro se é um teste ou uma liberação gradual. O que já existe de forma oficial é a opção de cadastrar o WhatsApp como canal de chat no perfil, em regiões onde o recurso está disponível. Para o dono de um negócio local, vale entender as duas coisas e se preparar, sem pressupor que o botão vai aparecer para todos.",
+    "sections": [
+      {
+        "heading": "O que foi observado na Busca do Google",
+        "paragraphs": [
+          "O Perfil da Empresa (antigo Google Meu Negócio) é a ficha gratuita que aparece quando alguém pesquisa o nome da sua empresa no Google ou a encontra no Google Maps. No computador e no celular, o painel local reúne botões de ação, como ligar, ver rota e abrir o site.",
+          "De acordo com o Search Engine Roundtable, o Google está exibindo botões de WhatsApp nesse painel local da Busca, junto dos botões de ação existentes ou no lugar de uma opção de chat. A reportagem diz que Sachin Patel foi quem primeiro notou a mudança e que o autor, Barry Schwartz, conseguiu reproduzi-la.",
+          "A publicação ressalta que o Google não fez um anúncio oficial e que o recurso pode ser liberado de forma ampla ou ser apenas um teste. Também não informa em quais países o botão aparece. Portanto, não é possível afirmar que ele já está disponível para empresas brasileiras."
+        ]
+      },
+      {
+        "heading": "O que o Google já oferece oficialmente: chat no Perfil da Empresa",
+        "paragraphs": [
+          "Independentemente do botão visto na Busca, a página de ajuda do Perfil da Empresa descreve como adicionar um canal de chat à ficha. O Google informa que as opções de chat estão disponíveis apenas em algumas regiões, então a opção pode não aparecer no seu painel.",
+          "Segundo a página de ajuda, o passo a passo é este:"
+        ],
+        "items": [
+          "Entre no seu Perfil da Empresa e escolha Editar perfil, depois Contato.",
+          "Ao lado de Chat, selecione Editar.",
+          "No menu de Chat, escolha WhatsApp (ou Mensagem de texto).",
+          "No campo de URL, informe o link do seu WhatsApp; para mensagem de texto, informe um telefone que receba SMS.",
+          "Clique em Salvar."
+        ]
+      },
+      {
+        "heading": "Requisitos e limites informados pelo Google",
+        "paragraphs": [
+          "A página de ajuda lista condições que valem a pena conhecer antes de configurar:"
+        ],
+        "items": [
+          "O perfil precisa estar reivindicado e verificado.",
+          "Só um tipo de chat é exibido: se você cadastrar WhatsApp e mensagem de texto ao mesmo tempo, apenas a opção de mensagem de texto é mostrada aos clientes.",
+          "Vários perfis podem usar o mesmo link de WhatsApp, o que ajuda quem tem mais de uma unidade.",
+          "As métricas de chat aparecem nos relatórios de desempenho do perfil."
+        ]
+      },
+      {
+        "heading": "O que isso muda para pequenas empresas brasileiras",
+        "paragraphs": [
+          "No Brasil, muita gente prefere chamar a empresa no WhatsApp a ligar. Um caminho de contato direto, dentro da própria ficha do Google, reduz um passo para o cliente que já está decidindo. Ainda assim, é prudente separar o que está confirmado do que é expectativa: o botão visto na Busca não foi anunciado, e o chat do perfil depende da região.",
+          "Também há uma questão prática: quem coloca o WhatsApp em evidência precisa conseguir responder. Antes de cadastrar o canal, vale definir quem atende, em quais horários e qual será a primeira mensagem de resposta. O WhatsApp Business, versão do aplicativo para empresas, permite configurar mensagem de ausência e saudação, o que ajuda a organizar o atendimento."
+        ]
+      },
+      {
+        "heading": "Checklist para se preparar",
+        "paragraphs": [
+          "Mesmo sem saber se o botão chegará ao seu perfil, estes passos são úteis em qualquer cenário:"
+        ],
+        "items": [
+          "Confirme que o Perfil da Empresa está verificado e com telefone, endereço e horários corretos.",
+          "Verifique no painel (Editar perfil, Contato) se a opção de Chat está disponível para você.",
+          "Use um número exclusivo da empresa e um link de WhatsApp que abra a conversa direto.",
+          "Defina horários de resposta e responsáveis pelo atendimento.",
+          "Mantenha também um botão de WhatsApp no seu site e no Instagram: o canal do Google pode mudar, os seus próprios canais continuam sob seu controle.",
+          "Acompanhe os relatórios de desempenho do perfil para ver se o chat está sendo usado."
+        ]
+      },
+      {
+        "heading": "Cuidados antes de apostar no recurso",
+        "paragraphs": [
+          "Não há garantia de resultado: o botão pode não aparecer na sua ficha, pode ser retirado ou mudar de lugar. Por isso, trate o WhatsApp do Perfil da Empresa como um canal a mais, e não como o único caminho de contato.",
+          "Se quiser revisar como o seu perfil, o seu site e o seu WhatsApp trabalham juntos, o diagnóstico gratuito da DrehWork ajuda a priorizar o que ajustar primeiro."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O botão do WhatsApp já aparece no Perfil da Empresa de empresas brasileiras?",
+        "Não há confirmação disso. O Search Engine Roundtable relatou o botão em resultados locais em 7 de outubro de 2026, mas não informou os países, e o Google não fez anúncio oficial. A página de ajuda do Google também diz que as opções de chat estão disponíveis só em algumas regiões."
+      ],
+      [
+        "Como adicionar o WhatsApp ao Perfil da Empresa?",
+        "Com o perfil verificado, vá em Editar perfil, Contato, e ao lado de Chat selecione Editar. Escolha WhatsApp, informe o link do seu WhatsApp no campo de URL e salve. Se a opção Chat não aparecer, ela pode ainda não estar disponível na sua região."
+      ],
+      [
+        "Posso cadastrar WhatsApp e mensagem de texto ao mesmo tempo?",
+        "Pode cadastrar, mas o Google informa que, nesse caso, apenas a opção de mensagem de texto é mostrada aos clientes. Se o seu atendimento é pelo WhatsApp, cadastre somente essa opção."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Google Local Panel Gains WhatsApp Button (Search Engine Roundtable, 7 de outubro de 2026)",
+        "url": "https://www.seroundtable.com/google-local-panel-whatsapp-button-42230.html"
+      },
+      {
+        "title": "Converse com clientes pelo Perfil da Empresa (Ajuda do Perfil da Empresa no Google)",
+        "url": "https://support.google.com/business/answer/15013580?hl=pt-BR"
+      }
+    ],
+    "status": "published"
   }
 ]
