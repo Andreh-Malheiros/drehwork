@@ -437,7 +437,7 @@ function Como({ api }: { api: Api }) {
     <div className="place">
       <div className="r"><span><Icon name="clock" /></span><div><b>Atendimento</b><br />Segunda a sexta, das 10h às 17h30</div></div>
       <div className="r"><span><Icon name="truck" /></span><div><b>Retiradas ou envio para todo o Brasil</b><br />Retiradas agendadas em Belo Horizonte ou Ibirité</div></div>
-      <div className="r"><span><Icon name="map-pin" /></span><div><b>Santo Antônio, Belo Horizonte</b><br /><a href={MAPS} target="_blank" rel="noopener" className="more">Abrir no Google Maps</a></div></div>
+      <div className="r"><span><Icon name="map-pin" /></span><div><b>Santo Antônio, Belo Horizonte</b><br />Não temos loja física aberta ao público. Atendemos apenas por pedidos online e retiradas agendadas.<br /><a href={MAPS} target="_blank" rel="noopener" className="more">Abrir no Google Maps</a></div></div>
     </div>
     <Foot />
   </>;
