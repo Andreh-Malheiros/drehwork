@@ -349,7 +349,7 @@ function ProdutoView({ p, api }: { p: Produto; api: Api }) {
       <h3 className="h3">Detalhes</h3>
       <ul className="details">{info.map(t => <li key={t}><Icon name="check" /><span>{t}</span></li>)}</ul>
       <h3 className="h3">Prazo de produção</h3>
-      <ul className="details"><li><Icon name="clock" /><span>De 12 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</span></li></ul>
+      <ul className="details"><li><Icon name="clock" /><span>De 7 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</span></li></ul>
     </div>
     <Foot />
   </>;
@@ -407,7 +407,7 @@ function Sacolinha({ api }: { api: Api }) {
           <select id="oc" value={ev.ocasiao} onChange={e => upd({ ...ev, ocasiao: e.target.value })}>{OCASIOES.map(o => <option key={o} value={o}>{o || "Opcional"}</option>)}</select></div>
         <div className="field"><label htmlFor="dt">Data do evento</label><input id="dt" type="date" value={ev.data} onChange={e => upd({ ...ev, data: e.target.value })} /></div>
       </div>
-      <p className="fine">Produção de 12 a 18 dias úteis, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p>
+      <p className="fine">Produção de 7 a 18 dias úteis, mais o prazo de entrega. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p>
       <a className="btn wa" target="_blank" rel="noopener" href={waLink(msg)}><Icon name="b-wa-mono" />Enviar pedido no WhatsApp</a>
     </div>
     <Foot />
@@ -432,7 +432,7 @@ function Como({ api }: { api: Api }) {
         <p className="fine" style={{ margin: "10px 0 4px" }}>Lembrancinhas</p>
         <div className="mini">{MODELOS_LEMBRANCAS.map((s, i) => <button key={s} aria-label="Ver modelos de mensagem das lembrancinhas" style={{ flexBasis: 128, height: 92, background: "#fff" }} onClick={() => api.openModelos({ list: MODELOS_LEMBRANCAS, start: i })}><img src={s} alt="" loading="lazy" style={{ objectFit: "contain" }} /></button>)}</div></div></li>
       <li><div><h3>Pagamento</h3><p>Pix ou cartão (link de pagamento, com acréscimo no valor). A data do pedido é reservada e entra na fila de produção após a confirmação do pagamento.</p></div></li>
-      <li><div><h3>Produção e entrega</h3><p>De 12 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo da transportadora. Retirada ou entrega via Uber. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p></div></li>
+      <li><div><h3>Produção e entrega</h3><p>De 7 a 18 dias úteis, conforme a agenda e a quantidade, mais o prazo da transportadora. Retirada ou entrega via Uber. Em caso de urgência, verifique a possibilidade de encaixe ou a disponibilidade da agenda.</p></div></li>
     </ol>
     <div className="place">
       <div className="r"><span><Icon name="clock" /></span><div><b>Atendimento</b><br />Segunda a sexta, das 10h às 17h30</div></div>
