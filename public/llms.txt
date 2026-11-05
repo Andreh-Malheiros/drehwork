@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Mensagens com IA no Perfil da Empresa do Google: o que muda para o seu negócio](https://www.drehwork.com/insights/mensagens-com-ia-perfil-da-empresa-google): O Google amplia, em teste, um agente de IA que responde clientes pelo Perfil da Empresa; o que foi relatado, o que falta confirmar e como preparar a ficha.
 - [Botão do WhatsApp no Perfil da Empresa do Google: o que muda para o seu negócio](https://www.drehwork.com/insights/botao-whatsapp-perfil-da-empresa-google): O Google foi visto exibindo um botão de WhatsApp na ficha de empresas na Busca; o que foi confirmado e como configurar o chat no Perfil da Empresa.
 - [Novo centro de distribuição da Nuvemshop no Rio: o que muda no frete da sua loja](https://www.drehwork.com/insights/nuvemshop-centro-de-distribuicao-rio-frete-black-friday): A Nuvemshop abriu um CD cross-dock no Rio de Janeiro e espera reduzir frete e prazos; o que foi confirmado e como se preparar para a Black Friday.
 - [Cobrança híbrida de boleto e Pix: o que muda para pequenas empresas](https://www.drehwork.com/insights/cobranca-hibrida-boleto-e-pix-banco-central): A Resolução BCB nº 587 criou a cobrança híbrida, com boleto e QR Code Pix no mesmo documento, prevista para 2027; o que foi confirmado e como se preparar.
