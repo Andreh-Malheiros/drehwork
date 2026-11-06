@@ -11,7 +11,12 @@ const securityHeaders = [
 ];
 
 // Páginas de clientes publicadas em subdomínio próprio (o domínio é adicionado no projeto da Vercel e no DNS).
-const clientSites = [{ host: "pqueninos.drehwork.com", page: "/clientes/pqueninos" }];
+const clientSites = [
+  { host: "pqueninos.drehwork.com", page: "/clientes/pqueninos" },
+  // Domínio próprio da cliente (renovado em 06/11/2026); o DNS é configurado no Registro.br.
+  { host: "pqueninos.com.br", page: "/clientes/pqueninos" },
+  { host: "www.pqueninos.com.br", page: "/clientes/pqueninos" },
+];
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
