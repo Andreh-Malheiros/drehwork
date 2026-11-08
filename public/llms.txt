@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Nome de usuário no WhatsApp e BSUID: o que muda para pequenas empresas](https://www.drehwork.com/insights/nome-de-usuario-whatsapp-bsuid-empresas): A Meta libera aos poucos nomes de usuário no WhatsApp e o BSUID para a API; o que foi confirmado e como preparar o atendimento.
 - [Anúncios no Modo IA do Google chegam ao Brasil: o que muda para pequenas empresas](https://www.drehwork.com/insights/anuncios-no-modo-ia-do-google-brasil): O Google prevê levar anúncios ao Modo IA no Brasil ainda em 2026; o que foi confirmado, o que falta saber e como se preparar.
 - [Google Business Home: o que é e o que muda para o Perfil da Empresa](https://www.drehwork.com/insights/google-business-home-perfil-da-empresa): O Google testa o Business Home, painel com IA que reúne Perfil da Empresa, Ads e YouTube, em beta fechado nos EUA e no Reino Unido; o que foi confirmado e como se preparar.
 - [Mensagens com IA no Perfil da Empresa do Google: o que muda para o seu negócio](https://www.drehwork.com/insights/mensagens-com-ia-perfil-da-empresa-google): O Google amplia, em teste, um agente de IA que responde clientes pelo Perfil da Empresa; o que foi relatado, o que falta confirmar e como preparar a ficha.
