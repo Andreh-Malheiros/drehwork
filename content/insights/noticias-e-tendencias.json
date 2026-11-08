@@ -1138,5 +1138,93 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "nome-de-usuario-whatsapp-bsuid-empresas",
+    "title": "Nome de usuário no WhatsApp e BSUID: o que muda para pequenas empresas",
+    "seoTitle": "Nome de usuário no WhatsApp: o que muda p/ empresas",
+    "description": "A Meta está liberando nomes de usuário no WhatsApp e um novo identificador, o BSUID. Veja o que foi confirmado e como preparar o atendimento da sua empresa.",
+    "keyword": "nome de usuário no whatsapp",
+    "category": "Notícias e tendências",
+    "date": "2026-11-08",
+    "updated": "2026-11-08",
+    "summary": "O WhatsApp está liberando nomes de usuário (@nome) e a Meta criou o BSUID, um identificador para empresas que usam a API. Entenda o que muda e o que é só para quem tem sistema integrado.",
+    "intro": "O nome de usuário no WhatsApp é um apelido opcional, no formato @nome, que a pessoa pode exibir no lugar do número de telefone; para as empresas, a Meta criou um identificador interno chamado BSUID, que passa a identificar o cliente quando o número não aparece. Segundo a documentação da Meta, a liberação dos nomes de usuário é gradual ao longo de 2026, e as empresas também poderão reservar um nome de usuário comercial. Quem usa só o aplicativo WhatsApp Business no celular quase não precisa mexer em nada agora; quem usa a API oficial (a conexão do WhatsApp com sistemas, chatbots e plataformas de atendimento) precisa se preparar. Neste guia explicamos, com base nas fontes citadas ao final, o que foi confirmado e o que fazer.",
+    "sections": [
+      {
+        "heading": "O que são nome de usuário e BSUID",
+        "paragraphs": [
+          "Segundo a Meta, o nome de usuário é um nome único e opcional que a pessoa pode definir no WhatsApp para aparecer no lugar do número de telefone. Ela pode trocá-lo de tempos em tempos, sem que isso altere o número ou o identificador interno.",
+          "O BSUID (sigla em inglês para identificador de usuário no escopo da empresa) é um código de bastidor que identifica de forma única uma pessoa para um determinado portfólio de empresa na Meta. Ele permite que a empresa continue a conversa mesmo sem conhecer o telefone do cliente. O leitor comum nunca vê esse código: ele aparece nos sistemas que se conectam à API.",
+          "Em resumo: o nome de usuário é o que o cliente enxerga; o BSUID é o que o sistema da empresa usa."
+        ]
+      },
+      {
+        "heading": "O que já foi confirmado e as datas",
+        "paragraphs": [
+          "A documentação da Meta informa que a liberação dos nomes de usuário será gradual em 2026. Ela registra que a Meta passou a compartilhar o BSUID em abril de 2026 e que, a partir de 29 de junho de 2026, as empresas podem começar a reservar um nome de usuário comercial. O envio de mensagens usando o BSUID pela API está previsto para julho de 2026.",
+          "O Manual do Usuário, ao cobrir o evento Meta Conversations, relatou em 11 de junho de 2026 que a Meta prometeu liberar os @nomes nas semanas seguintes, para que usuários não precisem compartilhar o número com empresas.",
+          "A documentação da Meta não traz um calendário específico por país. Por isso, não é possível afirmar quando cada cliente brasileiro terá o recurso: trate como uma mudança gradual e confira o status na sua conta."
+        ]
+      },
+      {
+        "heading": "O que muda para quem usa o aplicativo WhatsApp Business",
+        "paragraphs": [
+          "Para a pequena empresa que atende pelo aplicativo no celular, a mudança prática tende a ser pequena. A principal oportunidade é reservar o nome de usuário comercial, quando ele estiver disponível na sua conta, pelo WhatsApp Manager ou pelo Meta Business Suite, segundo a Meta.",
+          "As regras de formato publicadas pela Meta: de 3 a 35 caracteres, apenas letras do alfabeto inglês, números, pontos e sublinhados, com pelo menos uma letra. Também não pode começar ou terminar com ponto, nem terminar com um domínio como .com.",
+          "Um ponto importante: segundo a Meta, o nome de usuário comercial não esconde o número de telefone da empresa no aplicativo. Ele serve como um endereço mais fácil de lembrar, não como forma de anonimato."
+        ]
+      },
+      {
+        "heading": "O que muda para quem usa a API, chatbots e CRM",
+        "paragraphs": [
+          "Aqui a mudança é técnica e exige atenção. A Meta afirma que é preciso suportar o BSUID para continuar processando as mensagens, e que isso é exigido de parceiros, empresas com integração direta e anunciantes de anúncios que levam ao WhatsApp.",
+          "Na prática, o telefone pode chegar vazio nos eventos que a plataforma recebe, e o BSUID passa a ser a chave para reconhecer o cliente. A Meta também avisa que o BSUID muda se a pessoa trocar de número, e que a plataforma deve tratar esses avisos."
+        ],
+        "items": [
+          "Pergunte ao fornecedor do chatbot ou do CRM se ele já suporta o BSUID.",
+          "Confira se seus cadastros de clientes não dependem apenas do telefone como identificação.",
+          "Verifique se anúncios que levam ao WhatsApp continuam funcionando após a atualização da plataforma.",
+          "Guarde o telefone do cliente apenas quando ele o informar e tiver base legal para isso, conforme a LGPD."
+        ]
+      },
+      {
+        "heading": "Como se preparar sem pressa",
+        "paragraphs": [
+          "Primeiro, mantenha o WhatsApp Business com o nome, a foto, a descrição e o horário de atendimento corretos, e os mesmos dados no site e no Perfil da Empresa no Google. Cliente que encontra a empresa por nome precisa ver informações consistentes.",
+          "Segundo, divulgue um único caminho de contato no site, com botão de WhatsApp claro. Se a empresa passar a ter um nome de usuário, inclua-o nas redes e no site quando estiver disponível, sem retirar o telefone antes de confirmar que o recurso funciona para todos os clientes.",
+          "Por fim, não exponha dados desnecessários. Se você usa formulários no site para pedir telefone, explique o motivo e siga a LGPD. Nenhuma dessas medidas garante mais contatos, mas deixam o atendimento organizado para a mudança."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "Meu WhatsApp Business no celular vai parar de funcionar sem o BSUID?",
+        "Segundo a documentação da Meta, a exigência de suportar o BSUID vale para parceiros, empresas com integração direta pela API e anunciantes de anúncios que levam ao WhatsApp. O aplicativo no celular não faz parte dessa exigência técnica, mas confira os avisos da sua conta."
+      ],
+      [
+        "O nome de usuário esconde o número da minha empresa?",
+        "Não. A Meta informa que o nome de usuário comercial não oculta o número de telefone da empresa no aplicativo. Para clientes que adotarem seu próprio @nome, o número pode não aparecer para a empresa, e é por isso que existe o BSUID."
+      ],
+      [
+        "Já posso reservar um nome de usuário comercial?",
+        "A Meta informa que a reserva começou em 29 de junho de 2026 pelo WhatsApp Manager, pelo Meta Business Suite ou pela API. A liberação é gradual, então a opção pode ainda não aparecer em todas as contas."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "Meta for Developers: Business-scoped user IDs (BSUIDs) e nomes de usuário do WhatsApp",
+        "url": "https://developers.facebook.com/documentation/business-messaging/whatsapp/business-scoped-user-ids"
+      },
+      {
+        "title": "Manual do Usuário: As novidades do WhatsApp que a Meta não te contou",
+        "url": "https://manualdousuario.net/meta-conversations-2026-whatsapp-api/"
+      }
+    ],
+    "status": "published"
   }
 ]
