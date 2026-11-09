@@ -114,7 +114,7 @@ export const produtos: Produto[] = [
  },
  {
   "n": 7,
-  "nome": "Vela no copo personalizada",
+  "nome": "Vela de copo personalizada",
   "preco": 24.9,
   "info": [
    "Vela no copo de 70 ml, com adesivo personalizado",
@@ -126,7 +126,7 @@ export const produtos: Produto[] = [
   "min": 10,
   "cat": "velas",
   "tam": null,
-  "fotos": 6
+  "fotos": 8
  },
  {
   "n": 8,
