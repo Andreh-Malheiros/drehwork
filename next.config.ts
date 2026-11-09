@@ -32,11 +32,18 @@ const nextConfig: NextConfig = {
     // Cases sem autorização pública (decisão D13): as páginas antigas apontam para o portfólio.
     const cases = ["wayne-store", "noar-oficial"].map(slug => ({ source: `/projetos/${slug}`, destination: "/projetos", permanent: true }));
     // Subdomínios de clientes mostram só a página do cliente; qualquer outro caminho volta ao site principal (evita conteúdo duplicado).
-    const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|_next/).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
+    const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|_next/|favicon\\.ico|apple-touch-icon).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
     return [...cases, ...clientHosts];
   },
   async rewrites() {
-    return { beforeFiles: clientSites.map(({ host, page }) => ({ source: "/", has: [{ type: "host" as const, value: host }], destination: page })), afterFiles: [], fallback: [] };
+    // Navegadores pedem /favicon.ico e /apple-touch-icon.png na raiz do host: servir o ícone do cliente em vez do da DrehWork.
+    const icons = [
+      { source: "/favicon.ico", file: "favicon.ico" },
+      { source: "/apple-touch-icon.png", file: "apple-touch-icon.png" },
+      { source: "/apple-touch-icon-precomposed.png", file: "apple-touch-icon.png" },
+    ];
+    const iconRewrites = clientSites.flatMap(({ host, page }) => icons.map(({ source, file }) => ({ source, has: [{ type: "host" as const, value: host }], destination: `${page}/icons/${file}` })));
+    return { beforeFiles: [...clientSites.map(({ host, page }) => ({ source: "/", has: [{ type: "host" as const, value: host }], destination: page })), ...iconRewrites], afterFiles: [], fallback: [] };
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
