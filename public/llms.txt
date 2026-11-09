@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Golpes na Black Friday 2026: como sua loja virtual passa confiança e evita ser confundida com site falso](https://www.drehwork.com/insights/golpes-na-black-friday-2026-loja-virtual): Alertas do Reclame Aqui e do Procon-DF sobre sites falsos e preços maquiados; sinais de confiança que a loja pequena pode ter no site.
 - [Nome de usuário no WhatsApp e BSUID: o que muda para pequenas empresas](https://www.drehwork.com/insights/nome-de-usuario-whatsapp-bsuid-empresas): A Meta libera aos poucos nomes de usuário no WhatsApp e o BSUID para a API; o que foi confirmado e como preparar o atendimento.
 - [Anúncios no Modo IA do Google chegam ao Brasil: o que muda para pequenas empresas](https://www.drehwork.com/insights/anuncios-no-modo-ia-do-google-brasil): O Google prevê levar anúncios ao Modo IA no Brasil ainda em 2026; o que foi confirmado, o que falta saber e como se preparar.
 - [Google Business Home: o que é e o que muda para o Perfil da Empresa](https://www.drehwork.com/insights/google-business-home-perfil-da-empresa): O Google testa o Business Home, painel com IA que reúne Perfil da Empresa, Ads e YouTube, em beta fechado nos EUA e no Reino Unido; o que foi confirmado e como se preparar.
