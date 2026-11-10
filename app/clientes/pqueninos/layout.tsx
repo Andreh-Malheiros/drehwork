@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./pqueninos.css";
 
-// Página de cliente servida em pqueninos.drehwork.com e pqueninos.com.br (rewrite em next.config.ts). Fora da busca até a dona aprovar a publicação.
+// Página de cliente servida em pqueninos.drehwork.com e pqueninos.com.br (rewrite em next.config.ts). Indexação liberada em 10/11/2026 (aval do Andreh); o canonical aponta para pqueninos.com.br.
 // Fontes da marca (SIL Open Font License), subconjunto latino, versionadas no repositório: o next/font/google do Turbopack falhou de forma intermitente no build com várias famílias.
 const quicksand = localFont({ src: "./fonts/quicksand-latin-var.woff2", weight: "500 700", display: "swap", variable: "--font-quicksand" });
 const nunito = localFont({ src: "./fonts/nunito-latin-var.woff2", weight: "400 800", display: "swap", variable: "--font-nunito" });
@@ -11,7 +11,8 @@ const sacramento = localFont({ src: "./fonts/sacramento-latin.woff2", weight: "4
 export const metadata: Metadata = {
   title: "Pqueninos Lembranças · Lembranças artesanais em BH",
   description: "Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.",
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
+  alternates: { canonical: "/" },
   metadataBase: new URL("https://pqueninos.com.br"),
   applicationName: "Pqueninos Lembranças",
   manifest: "/clientes/pqueninos/manifest.webmanifest",
@@ -36,6 +37,23 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#FFF9F6", colorScheme: "light", viewportFit: "cover" };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Store",
+  name: "Pqueninos Lembranças",
+  url: "https://pqueninos.com.br/",
+  logo: "https://pqueninos.com.br/clientes/pqueninos/logo.webp",
+  image: "https://pqueninos.com.br/clientes/pqueninos/icons/og.png",
+  description: "Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.",
+  address: { "@type": "PostalAddress", addressLocality: "Belo Horizonte", addressRegion: "MG", addressCountry: "BR" },
+  sameAs: ["https://www.instagram.com/pqueninos/"],
+};
+
 export default function PqueninosLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <div className={`pq-root ${quicksand.variable} ${nunito.variable} ${sacramento.variable}`}>{children}</div>;
+  return (
+    <div className={`pq-root ${quicksand.variable} ${nunito.variable} ${sacramento.variable}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      {children}
+    </div>
+  );
 }
