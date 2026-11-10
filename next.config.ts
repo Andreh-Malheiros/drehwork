@@ -33,7 +33,15 @@ const nextConfig: NextConfig = {
     const cases = ["wayne-store", "noar-oficial"].map(slug => ({ source: `/projetos/${slug}`, destination: "/projetos", permanent: true }));
     // Subdomínios de clientes mostram só a página do cliente; qualquer outro caminho volta ao site principal (evita conteúdo duplicado).
     const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|_next/|favicon\\.ico|apple-touch-icon|robots\\.txt|sitemap\\.xml).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
-    return [...cases, ...clientHosts];
+    // Mantém compatibilidade com os links de produto do catálogo da Pqueninos que ainda usam o domínio da DrehWork.
+    // Next.js preserva os parâmetros de consulta, incluindo UTMs e fbclid.
+    const pqueninosProductRedirects = ["drehwork.com", "www.drehwork.com"].map(host => ({
+      source: "/produtos/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://pqueninoslembrancas.lojavirtualnuvem.com.br/produtos/:path*",
+      permanent: true,
+    }));
+    return [...cases, ...pqueninosProductRedirects, ...clientHosts];
   },
   async rewrites() {
     // Navegadores pedem /favicon.ico e /apple-touch-icon.png na raiz do host: servir o ícone do cliente em vez do da DrehWork.
