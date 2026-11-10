@@ -126,7 +126,23 @@ export const produtos: Produto[] = [
   "min": 10,
   "cat": "velas",
   "tam": null,
-  "fotos": 8
+  "fotos": 2
+ },
+ {
+  "n": 54,
+  "nome": "Vela no copo personalizada",
+  "preco": 24.9,
+  "info": [
+   "Vela no copo de 70 ml, com adesivo personalizado",
+   "Com embalagem de organza: R$ 24,90",
+   "Com laço e embalagem transparente: R$ 25,90",
+   "Mini terço opcional: acréscimo de R$ 2,00 por unidade",
+   "Personalização do adesivo, com pedido mínimo de 10 unidades"
+  ],
+  "min": 10,
+  "cat": "velas",
+  "tam": null,
+  "fotos": 6
  },
  {
   "n": 8,

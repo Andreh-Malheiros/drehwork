@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pqueninos.com.br/sitemap.xml
