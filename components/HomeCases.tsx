@@ -37,7 +37,7 @@ export function HomeCases() {
         onClick={() => setActive(index)}
       >
         <strong>{item.name}</strong>
-        <span>{item.createdByDrehWork ? "Criação e desenvolvimento" : "Manutenção e evolução"}</span>
+        <span>{item.role ?? (item.createdByDrehWork ? "Criação e desenvolvimento" : "Manutenção e evolução")}</span>
       </button>)}
     </div>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BrandSymbol } from "@/components/BrandLogo";
@@ -131,7 +132,7 @@ function PageHero({ eyebrow, title, lead, children, aside, compact = false }: { 
 function HeroFacts({ items }: { items: [string, React.ReactNode][] }) {
   return <dl className="hero-facts">{items.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>;
 }
-function projectRole(project: typeof projects[number]) { return project.createdByDrehWork ? "Criação e desenvolvimento" : "Manutenção e evolução"; }
+function projectRole(project: typeof projects[number]) { return project.role ?? (project.createdByDrehWork ? "Criação e desenvolvimento" : "Manutenção e evolução"); }
 function ProjectFrame({ project, mode = "hover", priority, sizes = "(max-width: 900px) 92vw, 720px" }: { project: typeof projects[number]; mode?: "hover" | "scroll"; priority?: boolean; sizes?: string }) {
   const cover = project.media[0];
   if (!cover.src) return null;
@@ -215,13 +216,34 @@ function ProjectsPage() { return <>
 function ProjectPage({ project }: { project: typeof projects[number] }) {
   const relatedServices = services.filter(s => s.relatedProjects.includes(project.slug));
   const others = projects.filter(p => p.slug !== project.slug);
-  const schema = { "@context": "https://schema.org", "@type": "CreativeWork", name: project.name, url: project.url, inLanguage: "pt-BR", creator: project.createdByDrehWork ? { "@id": `${brand.url}/#organization` } : undefined };
+  const caseStudy = project.caseStudy;
+  const canonicalUrl = `${brand.url}/projetos/${project.slug}`;
+  const publishedDate = caseStudy?.publishedAt.split("-").map(Number);
+  const publishedLabel = publishedDate ? new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(publishedDate[0], publishedDate[1] - 1, publishedDate[2]))) : null;
+  const schema = caseStudy
+    ? { "@context": "https://schema.org", "@type": "Article", "@id": `${canonicalUrl}#case-study`, headline: caseStudy.h1, description: caseStudy.metaDescription, image: project.media[0].src ? [`${brand.url}${project.media[0].src}`] : undefined, datePublished: caseStudy.publishedAt, dateModified: caseStudy.updatedAt, inLanguage: "pt-BR", mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl }, author: { "@id": `${brand.url}/#organization` }, publisher: { "@id": `${brand.url}/#organization` }, about: { "@type": "Brand", name: project.name, url: project.url } }
+    : { "@context": "https://schema.org", "@type": "CreativeWork", name: project.name, url: project.url, inLanguage: "pt-BR", creator: project.createdByDrehWork ? { "@id": `${brand.url}/#organization` } : undefined };
   return <>
-    <PageHero eyebrow={project.category} title={project.name} lead={project.createdByDrehWork ? "Projeto integralmente criado e desenvolvido pela DrehWork." : "Atuação contínua em manutenção, personalização, correções e evolução da experiência Shopify."} aside={<HeroFacts items={[["Papel da DrehWork", projectRole(project)], ["Situação", project.status], ["Endereço", <a key="url" className="text-link" href={project.url} target="_blank" rel="noreferrer">{hostOf(project.url)}</a>]]} />}>
-      <div className="button-row"><a className="button primary" href={project.url} target="_blank" rel="noreferrer">Abrir o site publicado</a><Link className="text-link" href="/diagnostico">Quero um projeto assim</Link></div>
-    </PageHero>
-    <section className="case-showcase"><div className="shell"><ProjectFrame project={project} mode="scroll" priority sizes="(max-width: 1240px) 94vw, 1180px" /><p className="case-showcase-hint">Role dentro da janela para percorrer a página publicada.</p></div></section>
-    <section className="section shell case-scope"><div><Eyebrow>Escopo</Eyebrow><SplitHeading>O que foi entregue</SplitHeading></div><ul className="scope-list" data-stagger>{project.scope.map(x => <li key={x}>{x}</li>)}</ul></section>
+    <article className="project-case">
+      <PageHero eyebrow={caseStudy ? "Projeto concluído · Estudo de caso" : project.category} title={caseStudy?.h1 ?? project.name} lead={caseStudy?.heroLead ?? (project.createdByDrehWork ? "Projeto integralmente criado e desenvolvido pela DrehWork." : "Atuação contínua em manutenção, personalização, correções e evolução da experiência Shopify.")} aside={<HeroFacts items={[["Papel da DrehWork", projectRole(project)], ["Situação", project.status], ["Endereço", <a key="url" className="text-link" href={project.url} target="_blank" rel="noreferrer">{hostOf(project.url)}</a>]]} />}>
+        {caseStudy && publishedLabel ? <p className="case-published"><time dateTime={caseStudy.publishedAt}>Publicado em {publishedLabel}</time></p> : null}
+        <div className="button-row"><a className="button primary" href={project.url} target="_blank" rel="noreferrer">Abrir o site publicado</a><Link className="text-link" href="/diagnostico">Quero um projeto assim</Link></div>
+      </PageHero>
+      <section className="case-showcase"><div className="shell"><ProjectFrame project={project} mode="scroll" priority sizes="(max-width: 1240px) 94vw, 1180px" /><p className="case-showcase-hint">{caseStudy ? "Vitrine publicada da Pqueninos Lembranças. Use a rolagem dentro da janela para conhecer a experiência." : "Role dentro da janela para percorrer a página publicada."}</p></div></section>
+      {caseStudy ? <>
+        <section className="section case-narrative"><div className="shell case-narrative-grid">
+          <div className="case-narrative-intro"><Eyebrow>Contexto</Eyebrow><SplitHeading>Uma vitrine pensada para a rotina da marca.</SplitHeading><p>{caseStudy.context}</p></div>
+          <div className="case-narrative-details">
+            <section><Eyebrow>Desafio</Eyebrow><h2>Organizar o catálogo e aproximar o pedido.</h2><p>{caseStudy.challenge}</p></section>
+            <section><Eyebrow>Solução</Eyebrow><h2>Uma jornada simples, do produto ao WhatsApp.</h2><p>{caseStudy.solution}</p></section>
+            <section><Eyebrow>Busca orgânica</Eyebrow><h2>Preparação técnica para indexação.</h2><p>{caseStudy.discoverability}</p></section>
+          </div>
+        </div></section>
+        {project.media.length > 1 ? <section className="section case-gallery-section"><div className="shell"><Eyebrow>Materiais do projeto</Eyebrow><SplitHeading>Experiência e relacionamento.</SplitHeading><div className="case-gallery-grid">{project.media.slice(1).map(item => item.src ? <figure key={item.src} className="case-gallery-item"><Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes="(max-width: 800px) 90vw, 480px" /><figcaption>{item.caption ?? item.alt}</figcaption></figure> : null)}</div></div></section> : null}
+        <section className="section case-followup"><div className="shell case-followup-inner"><div><Eyebrow>Continuidade do projeto</Eyebrow><SplitHeading>Uma boa experiência também se constrói depois da compra.</SplitHeading></div><p>{caseStudy.followUp}</p></div></section>
+      </> : null}
+      <section className="section shell case-scope"><div><Eyebrow>Escopo</Eyebrow><SplitHeading>O que foi entregue</SplitHeading></div><ul className="scope-list" data-stagger>{project.scope.map(x => <li key={x}>{x}</li>)}</ul></section>
+    </article>
     {relatedServices.length ? <section className="section other-services"><div className="shell"><Eyebrow>Serviços deste projeto</Eyebrow><nav className="need-links is-dark" aria-label="Serviços relacionados">{relatedServices.map(s => <Link key={s.slug} href={`/servicos/${s.slug}`}><span>{s.title}</span><b aria-hidden>↗</b></Link>)}</nav></div></section> : null}
     <section className="section next-cases"><div className="shell"><Eyebrow>Outros projetos</Eyebrow><nav className="next-case-list" aria-label="Outros projetos">{others.map(p => <Link key={p.slug} href={`/projetos/${p.slug}`}><strong>{p.name}</strong><span>{projectRole(p)}</span><b aria-hidden>↗</b></Link>)}</nav></div></section>
     <JsonLd data={schema}/><CTA context={`um projeto como ${project.name}`}/>
