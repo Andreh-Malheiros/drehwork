@@ -35,13 +35,34 @@ const nextConfig: NextConfig = {
     const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|_next/|favicon\\.ico|apple-touch-icon|robots\\.txt|sitemap\\.xml).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
     // Mantém compatibilidade com os links de produto do catálogo da Pqueninos que ainda usam o domínio da DrehWork.
     // Next.js preserva os parâmetros de consulta, incluindo UTMs e fbclid.
+    const legacyPqueninosProducts = [
+      { slug: "caixa-convite-ou-lembranca-para-padrinhos-de-batizado-ou-consagracao", productId: 17 },
+      { slug: "caixa-convite-ou-lembranca-com-vela-no-potinho-para-padrinhos", productId: 21 },
+      { slug: "caixa-padrinhos-de-batismo-pronta-entrega", productId: 12 },
+      { slug: "caixa-padrinhos-de-batismo-ou-avos-pronta-entrega", productId: 17 },
+      { slug: "caixa-anuncio-da-gravidez", productId: 49 },
+      { slug: "lembranca-de-batizado-marcadores-de-paginas-personalizado-10-unid", productId: 25 },
+      { slug: "caixa-convite-ou-lembranca-divino-espirito-santo", productId: 28 },
+      { slug: "lembrancinha-de-batizado-divino-espirito-santo-dourado-personalizado-com-nome", productId: 4 },
+      { slug: "lembrancinha-primeira-eucaristia-batizado-divino-espirito-santo", productId: 1 },
+      { slug: "caixa-convite-ou-lembranca-mandala-perolada", productId: 30 },
+    ];
+    const legacyPqueninosProductRedirects = legacyPqueninosProducts.flatMap(({ slug, productId }) =>
+      ["drehwork.com", "www.drehwork.com"].map(host => ({
+        source: `/produtos/${slug}`,
+        has: [{ type: "host" as const, value: host }],
+        destination: `https://pqueninos.com.br/#produto-${productId}`,
+        permanent: true,
+      }))
+    );
+    // Mantém uma saída para links antigos que não estejam no sitemap da loja anterior.
     const pqueninosProductRedirects = ["drehwork.com", "www.drehwork.com"].map(host => ({
       source: "/produtos/:path*",
       has: [{ type: "host" as const, value: host }],
       destination: "https://pqueninos.com.br/#inicio",
       permanent: true,
     }));
-    return [...cases, ...pqueninosProductRedirects, ...clientHosts];
+    return [...cases, ...legacyPqueninosProductRedirects, ...pqueninosProductRedirects, ...clientHosts];
   },
   async rewrites() {
     // Navegadores pedem /favicon.ico e /apple-touch-icon.png na raiz do host: servir o ícone do cliente em vez do da DrehWork.
