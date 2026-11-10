@@ -38,7 +38,7 @@ const nextConfig: NextConfig = {
     const pqueninosProductRedirects = ["drehwork.com", "www.drehwork.com"].map(host => ({
       source: "/produtos/:path*",
       has: [{ type: "host" as const, value: host }],
-      destination: "https://pqueninoslembrancas.lojavirtualnuvem.com.br/produtos/:path*",
+      destination: "https://pqueninos.com.br/#inicio",
       permanent: true,
     }));
     return [...cases, ...pqueninosProductRedirects, ...clientHosts];
