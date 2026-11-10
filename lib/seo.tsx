@@ -37,7 +37,9 @@ export function pageMetadata(path: string): Metadata {
   const meta: PageMeta | undefined = service
     ? { title: service.seoTitle, description: service.metaDescription }
     : project
-      ? { title: `${project.name}: ${project.category}`, description: `${project.name}: ${project.category}. Veja o escopo entregue pela DrehWork neste projeto: ${project.scope.slice(0, 4).join(", ").toLowerCase()}.` }
+      ? project.caseStudy
+        ? { title: project.caseStudy.seoTitle, description: project.caseStudy.metaDescription }
+        : { title: `${project.name}: ${project.category}`, description: `${project.name}: ${project.category}. Veja o escopo entregue pela DrehWork neste projeto: ${project.scope.slice(0, 4).join(", ").toLowerCase()}.` }
       : landing
         ? { title: landing.seoTitle, description: landing.description }
         : insight
@@ -47,13 +49,16 @@ export function pageMetadata(path: string): Metadata {
   const url = `${brand.url}/${path}`.replace(/\/$/, "");
   const title = path === "" ? { absolute: meta.title } : meta.title;
   const fullTitle = path === "" ? meta.title : `${meta.title} | DrehWork`;
+  const projectImage = project?.caseStudy ? project.media[0] : undefined;
+  const articleDate = project?.caseStudy?.publishedAt;
+  const articleUpdated = project?.caseStudy?.updatedAt;
   return {
     title,
     description: meta.description,
     alternates: { canonical: url },
     robots: meta.index === false ? { index: false, follow: true } : undefined,
-    openGraph: { ...(insight ? { type: "article" as const, publishedTime: insight.date, modifiedTime: insight.updated, section: insight.category } : { type: "website" as const }), locale: "pt_BR", siteName: "DrehWork", url, title: fullTitle, description: meta.description, images: [{ url: "/og.png", width: 1200, height: 630, alt: `DrehWork — ${brand.slogan}` }] },
-    twitter: { card: "summary_large_image", title: fullTitle, description: meta.description, images: ["/og.png"] },
+    openGraph: { ...(insight ? { type: "article" as const, publishedTime: insight.date, modifiedTime: insight.updated, section: insight.category } : project?.caseStudy ? { type: "article" as const, publishedTime: articleDate, modifiedTime: articleUpdated, section: "Estudo de caso" } : { type: "website" as const }), locale: "pt_BR", siteName: "DrehWork", url, title: fullTitle, description: meta.description, images: projectImage?.src ? [{ url: projectImage.src, width: projectImage.width, height: projectImage.height, alt: projectImage.alt }] : [{ url: "/og.png", width: 1200, height: 630, alt: `DrehWork — ${brand.slogan}` }] },
+    twitter: { card: "summary_large_image", title: fullTitle, description: meta.description, images: projectImage?.src ? [projectImage.src] : ["/og.png"] },
   };
 }
 

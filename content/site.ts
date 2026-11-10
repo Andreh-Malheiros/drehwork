@@ -8,6 +8,20 @@ export type MediaItem = {
   caption?: string;
 };
 
+export type ProjectCaseStudy = {
+  h1: string;
+  seoTitle: string;
+  metaDescription: string;
+  heroLead: string;
+  publishedAt: string;
+  updatedAt: string;
+  context: string;
+  challenge: string;
+  solution: string;
+  discoverability: string;
+  followUp: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -17,7 +31,9 @@ export type Project = {
   status: string;
   scope: string[];
   media: MediaItem[];
-  pendingCaseStudy: true;
+  pendingCaseStudy?: boolean;
+  role?: string;
+  caseStudy?: ProjectCaseStudy;
 };
 
 export type Service = {
@@ -84,7 +100,7 @@ export const services: Service[] = [
       ["Contato e conversão", "WhatsApp, formulários e eventos de medição configurados para registrar os contatos gerados."],
       ["Publicação verificada", "Domínio, certificado de segurança, formulários e indexação conferidos depois de publicar."],
     ],
-    relatedProjects: ["bh-carimbos", "amftv"],
+    relatedProjects: ["bh-carimbos", "amftv", "pqueninos"],
     faqs: [
       ["Para quem é um site profissional?", "Para empresas e profissionais que querem ser encontrados, transmitir confiança e receber contatos pela internet. Se a empresa não pretende atrair clientes online, o investimento não faz sentido."],
       ["O que está incluído na criação do site?", "Planejamento da arquitetura, design, desenvolvimento responsivo, publicação, configuração de domínio e base técnica de SEO. O escopo final é confirmado em proposta."],
@@ -191,7 +207,7 @@ export const services: Service[] = [
       ["Preparação para IA", "Dados estruturados, informações consistentes e conteúdo claro para facilitar a interpretação e a recomendação da marca por assistentes de inteligência artificial."],
       ["Identidade digital", "Consistência de nome, descrição, serviços e contatos em todos os canais em que a marca aparece."],
     ],
-    relatedProjects: ["bh-carimbos"],
+    relatedProjects: ["bh-carimbos", "pqueninos"],
     faqs: [
       ["O que é presença digital?", "É o conjunto de canais e informações que fazem uma empresa ser encontrada e escolhida na internet: site, Google Perfil da Empresa, Google Maps, Instagram, avaliações e a forma como buscadores e assistentes de IA descrevem a marca."],
       ["Vocês configuram o Google Perfil da Empresa?", "Sim. A criação, configuração e otimização do Google Perfil da Empresa fazem parte do serviço, para que a empresa apareça no Google Maps e nas buscas locais."],
@@ -253,6 +269,43 @@ const projectCover = (name: string, src: string, width: number, height: number):
 ];
 
 export const projects: Project[] = [
+  {
+    slug: "pqueninos",
+    name: "Pqueninos Lembranças",
+    url: "https://pqueninos.com.br/",
+    category: "Catálogo digital e presença nos resultados de busca",
+    createdByDrehWork: true,
+    role: "Estratégia, catálogo digital e SEO técnico",
+    status: "Concluído",
+    scope: [
+      "Arquitetura de catálogo mobile-first",
+      "Organização em seis categorias de produtos",
+      "Detalhes, preços e condições de encomenda",
+      "Solicitação de pedidos pelo WhatsApp",
+      "Metadados e URL canônica",
+      "Dados estruturados da loja",
+      "Robots.txt e sitemap.xml",
+      "Material visual para solicitar avaliações no Google",
+    ],
+    media: [
+      { type: "cover", src: "/images/cases/pqueninos-catalogo.webp", alt: "Tela inicial do catálogo digital da Pqueninos Lembranças, com avaliações, categorias de produtos e atalhos para o Google e WhatsApp", width: 460, height: 1100, priority: true, caption: "Catálogo digital organizado para consulta pelo celular, com categorias, avaliações e acesso rápido ao WhatsApp." },
+      { type: "gallery", src: "/images/cases/pqueninos-avaliacao-google.webp", alt: "Arte da Pqueninos Lembranças com QR Code para clientes avaliarem a marca no Google", width: 1122, height: 1402, caption: "Material de apoio para convidar clientes a compartilhar avaliações reais no Google." },
+    ],
+    pendingCaseStudy: false,
+    caseStudy: {
+      h1: "Catálogo digital para a Pqueninos Lembranças",
+      seoTitle: "Catálogo digital da Pqueninos Lembranças",
+      metaDescription: "Veja como a DrehWork criou para a Pqueninos um catálogo digital organizado, com pedidos pelo WhatsApp e base técnica preparada para indexação no Google.",
+      heroLead: "Uma vitrine mobile-first que reúne lembranças artesanais, informações de compra e pedidos pelo WhatsApp, com uma base técnica preparada para o Google.",
+      publishedAt: "2026-11-10",
+      updatedAt: "2026-11-10",
+      context: "A Pqueninos Lembranças cria peças artesanais para batizados, Primeira Eucaristia, Crisma e outros momentos especiais. O projeto transformou o catálogo da marca em uma vitrine digital própria, pensada primeiro para o celular.",
+      challenge: "Reunir produtos, categorias, fotos, preços e condições de encomenda em um caminho simples de consultar, sem deixar o pedido distante do atendimento da marca.",
+      solution: "A vitrine organiza o catálogo em categorias e páginas de detalhe dentro de uma experiência leve e responsiva. Cada item apresenta suas informações de compra e conduz a pessoa ao WhatsApp com o pedido preparado para a conversa.",
+      discoverability: "Na publicação, configuramos título e descrição da página, URL canônica no domínio da Pqueninos, dados estruturados da loja e arquivos próprios de robots.txt e sitemap.xml. A indexação foi liberada após a aprovação da marca. Essa base facilita a descoberta e a interpretação do site pelos buscadores, sem prometer posições ou resultados que ainda não foram medidos.",
+      followUp: "Como apoio ao relacionamento pós-compra, também criamos uma arte com QR Code para facilitar o convite a clientes para deixarem avaliações espontâneas no Google.",
+    },
+  },
   { slug: "bh-carimbos", name: "BH Carimbos", url: "https://bhcarimbos.com.br/", category: "Site institucional e presença local", createdByDrehWork: true, status: "Concluído", scope: ["Estratégia", "Arquitetura das páginas", "Design", "Desenvolvimento", "Responsividade", "Integrações", "Publicação", "Presença local", "Estrutura para busca"], media: projectCover("BH Carimbos", "/images/bhcarimbos.webp", 1905, 1811), pendingCaseStudy: true },
   { slug: "amftv", name: "AMFTV", url: "https://amftv.com.br/", category: "Site institucional", createdByDrehWork: true, status: "Concluído", scope: ["Estratégia", "Arquitetura", "Design", "Desenvolvimento", "Responsividade", "Publicação"], media: projectCover("AMFTV", "/images/amftv.webp", 1905, 905), pendingCaseStudy: true },
   { slug: "ammis-moda", name: "Ammis Moda", url: "https://ammismoda.com.br/", category: "Evolução contínua em Shopify", createdByDrehWork: false, status: "Atuação recorrente", scope: ["Manutenção mensal", "Personalização", "Correções", "Melhorias de interface", "Evolução da experiência", "Modificações Shopify", "Suporte técnico"], media: projectCover("Ammis Moda", "/images/ammismoda.webp", 1905, 2550), pendingCaseStudy: true },
