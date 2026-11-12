@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { services } from "@/content/site";
 import { isRateLimited, mailerConfigured, sendLeadEmail } from "@/lib/mailer";
+import { utmEmailRows } from "@/lib/utm";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (value: unknown, max: number) => typeof value === "string" ? value.replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, " ").trim().slice(0, max) : "";
@@ -21,6 +22,8 @@ export async function POST(request: Request) {
   const interests = Array.isArray(body.services) ? services.filter(s => (body.services as unknown[]).includes(s.slug)).map(s => s.title) : [];
 
   const rows: (readonly [string, string])[] = [["Nome", name], ["E-mail", email], ["Telefone", phone], ["Serviços de interesse", interests.join(", ") || "Não informado"], ["Mensagem", message]];
+  rows.push(...utmEmailRows(body.utm));
   const sent = await sendLeadEmail({ subject: `Pedido de orçamento: ${name}`, title: "Novo pedido de orçamento", rows, replyTo: email, source: "formulário de orçamento" });
   return sent ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
 }
+

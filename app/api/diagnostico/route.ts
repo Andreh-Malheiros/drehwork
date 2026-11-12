@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { DIAGNOSTIC_FIELDS, validateDiagnostic, type DiagnosticField } from "@/lib/diagnostic-schema";
 import { isRateLimited, mailerConfigured, sendLeadEmail } from "@/lib/mailer";
+import { utmEmailRows } from "@/lib/utm";
 
 export async function POST(request: Request) {
   if (!mailerConfigured()) return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
@@ -15,7 +16,9 @@ export async function POST(request: Request) {
   if (!result.ok) return NextResponse.json({ ok: false, error: result.error }, { status: 422 });
   const { data } = result;
 
-  const rows = (Object.keys(DIAGNOSTIC_FIELDS) as DiagnosticField[]).filter(field => data[field]).map(field => [DIAGNOSTIC_FIELDS[field].label, data[field]!] as const);
+  const rows: (readonly [string, string])[] = (Object.keys(DIAGNOSTIC_FIELDS) as DiagnosticField[]).filter(field => data[field]).map(field => [DIAGNOSTIC_FIELDS[field].label, data[field]!] as const);
+  rows.push(...utmEmailRows(body.utm));
   const sent = await sendLeadEmail({ subject: `Diagnóstico: ${data.company} (${data.solution})`, title: `Novo diagnóstico — ${data.company}`, rows, replyTo: data.email, source: "formulário de diagnóstico" });
   return sent ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
 }
+

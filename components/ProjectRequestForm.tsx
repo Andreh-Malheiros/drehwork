@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 import { services, whatsappUrl } from "@/content/site";
 import { track } from "@/lib/analytics";
 import { maskEmail, maskPhone } from "@/lib/masks";
+import { readUtmAttribution } from "@/lib/utm";
 
 type Status = "idle" | "sending" | "sent";
 
@@ -19,6 +20,7 @@ export function ProjectRequestForm() {
     const payload = {
       name: form.get("name"), email: form.get("email"), phone: form.get("phone"), message: form.get("message"),
       services: form.getAll("services"), consent: form.get("consent") === "on", website: form.get("website"),
+      utm: readUtmAttribution(),
     };
     setStatus("sending"); setError(""); setFallback(false);
     try {
@@ -63,3 +65,4 @@ export function ProjectRequestForm() {
     <button className="form-submit" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>{status === "sending" ? "Enviando…" : <>Enviar solicitação <span aria-hidden>→</span></>}</button>
   </form>;
 }
+
