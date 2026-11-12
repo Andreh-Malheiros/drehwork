@@ -20,6 +20,7 @@ export type ProjectCaseStudy = {
   solution: string;
   discoverability: string;
   followUp: string;
+  testimonials?: { quote: string; author: string; source: string }[];
 };
 
 export type Project = {
@@ -303,6 +304,10 @@ export const projects: Project[] = [
       challenge: "Reunir produtos, categorias, fotos, preços e condições de encomenda em um caminho simples de consultar, sem deixar o pedido distante do atendimento da marca.",
       solution: "A vitrine organiza o catálogo em categorias e páginas de detalhe dentro de uma experiência leve e responsiva. Cada item apresenta suas informações de compra e conduz a pessoa ao WhatsApp com o pedido preparado para a conversa.",
       discoverability: "Na publicação, configuramos título e descrição da página, URL canônica no domínio da Pqueninos, dados estruturados da loja e arquivos próprios de robots.txt e sitemap.xml. A indexação foi liberada após a aprovação da marca. Essa base facilita a descoberta e a interpretação do site pelos buscadores, sem prometer posições ou resultados que ainda não foram medidos.",
+      testimonials: [
+        { quote: "Um trabalho de excelência. Superou infinitamente minhas expectativas.", author: "Pqueninos Lembranças", source: "Comentário público no Instagram da marca, novembro de 2026" },
+        { quote: "Você é bom mesmo no que você faz.", author: "Pqueninos Lembranças", source: "Mensagem ao responsável pelo projeto, novembro de 2026, usada com autorização" },
+      ],
       followUp: "Como apoio ao relacionamento pós-compra, também criamos uma arte com QR Code para facilitar o convite a clientes para deixarem avaliações espontâneas no Google.",
     },
   },
