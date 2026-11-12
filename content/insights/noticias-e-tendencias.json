@@ -1,5 +1,90 @@
 [
   {
+    "slug": "atualizacao-principal-do-google-novembro-2026",
+    "title": "Atualização principal do Google de novembro de 2026: o que fazer se o seu site oscilar",
+    "seoTitle": "Atualização principal do Google (nov/2026): o que fazer",
+    "description": "O Google iniciou em 10/11 a atualização principal de novembro de 2026, global e em todos os idiomas. Veja o que muda e como agir se o site oscilar.",
+    "keyword": "atualização principal do google",
+    "category": "Notícias e tendências",
+    "date": "2026-11-12",
+    "updated": "2026-11-12",
+    "summary": "O Google começou em 10 de novembro a liberar a atualização principal de novembro de 2026, que vale para todos os países e idiomas e pode levar até duas semanas. Veja como acompanhar e o que não fazer no meio da Black Friday.",
+    "intro": "O Google começou a liberar em 10 de novembro de 2026 uma nova atualização principal do Google, chamada oficialmente de November 2026 core update. Ela vale para todos os países e idiomas, incluindo o Brasil, e pode levar até duas semanas para ser concluída. Na prática, isso significa que as posições do seu site nos resultados de busca podem subir, cair ou oscilar nos próximos dias, sem que você tenha mudado nada. A recomendação do próprio Google é não tomar decisões precipitadas: esperar o fim da atualização, comparar os dados com calma no Search Console e só então avaliar se é preciso melhorar alguma página. Para pequenas empresas, o momento pede atenção redobrada, porque a janela da atualização encosta na Black Friday.",
+    "sections": [
+      {
+        "heading": "O que o Google anunciou",
+        "paragraphs": [
+          "O anúncio foi feito no Painel de status da Pesquisa Google, a página oficial onde a empresa registra atualizações e problemas da busca. O registro mostra o início da atualização às 10h06 de 10 de novembro, no horário do Pacífico, o que corresponde ao início da tarde no horário de Brasília. O texto informa que a atualização se aplica globalmente e a todos os idiomas e que a liberação pode levar até duas semanas.",
+          "O Google não publicou um post de blog explicando o que mudou, nem citou setores, tipos de conteúdo ou países específicos. Isso é comum: as atualizações principais, ou core updates, são mudanças amplas nos sistemas que ordenam os resultados, feitas várias vezes por ano. Segundo a documentação do Google Search Central, elas não têm como alvo sites ou páginas específicos.",
+          "De acordo com a cobertura do PPC Land, se a liberação usar o prazo máximo de duas semanas, ela termina por volta de 24 de novembro, três dias antes da Black Friday, que cai em 27 de novembro. Essa data é uma estimativa calculada a partir do prazo divulgado, e não uma data confirmada pelo Google. Para saber quando a atualização terminou, a fonte certa é o próprio painel de status."
+        ]
+      },
+      {
+        "heading": "O que muda para pequenas empresas brasileiras",
+        "paragraphs": [
+          "Como a atualização é global, sites brasileiros também podem ser afetados, tanto lojas virtuais quanto sites institucionais de prestadores de serviço. Não há como saber de antemão quem vai ganhar ou perder posições, e o Google não divulga uma lista de critérios novos.",
+          "Para quem vende pela internet, o ponto de atenção é o calendário. Durante a liberação, é normal ver oscilações diárias no tráfego vindo do Google. Se isso coincidir com a preparação para a Black Friday, fica difícil separar o efeito da atualização do efeito das promoções, de campanhas pagas ou da sazonalidade. Por isso, vale anotar as datas: o início foi em 10 de novembro e a semana anterior, de 3 a 9 de novembro, é uma boa referência de comparação.",
+          "Também vale lembrar que o Perfil da Empresa no Google, que aparece no Maps e nos resultados locais, tem sinais próprios, como avaliações, categorias e horários. O Google não informou se esta atualização afeta especificamente os resultados locais. Mesmo assim, manter o perfil completo e atualizado continua sendo uma das formas mais diretas de ser encontrado por clientes da sua região."
+        ]
+      },
+      {
+        "heading": "Como acompanhar sem tomar decisões precipitadas",
+        "paragraphs": [
+          "A documentação oficial do Google sobre atualizações principais traz um roteiro simples, que resumimos abaixo. O Google Search Console é a ferramenta gratuita do Google que mostra como o seu site aparece na busca, com cliques, impressões e posição média."
+        ],
+        "items": [
+          "Confirme no Painel de status da Pesquisa Google se a atualização já terminou antes de tirar conclusões.",
+          "Espere pelo menos uma semana completa depois do fim da liberação para analisar os dados no Search Console, como recomenda o Google.",
+          "Compare a semana posterior à atualização com a semana anterior ao início dela, e não com períodos aleatórios.",
+          "Olhe as páginas e as buscas mais importantes do seu negócio. Quedas pequenas de posição, segundo o Google, não pedem mudanças radicais.",
+          "Separe a análise por tipo de busca, como pesquisa na Web, imagens e vídeos, para entender onde está a variação."
+        ]
+      },
+      {
+        "heading": "Se o tráfego cair: o que fazer e o que evitar",
+        "paragraphs": [
+          "Se a queda for grande e se mantiver depois da atualização, o Google sugere uma autoavaliação honesta do conteúdo, de preferência com ajuda de alguém de fora do negócio. A pergunta central é se as suas páginas ajudam de verdade quem pesquisa: se explicam bem o serviço, mostram preço ou forma de orçamento, região atendida, formas de contato e informações que o cliente procura. Vale comparar as páginas que caíram com as que passaram a aparecer na frente e entender o que elas oferecem a mais para o leitor.",
+          "O Google também alerta contra soluções rápidas baseadas em supostas regras de SEO e diz que apagar conteúdo deve ser o último recurso. Melhorias podem ter efeito em alguns dias, mas pode levar meses até os sistemas confirmarem que o site é útil e confiável. O Google não garante recuperação, e às vezes a mudança só aparece na próxima atualização principal.",
+          "Durante a Black Friday, evite trocar endereços de páginas, apagar produtos ou reescrever o site inteiro às pressas. Mudanças grandes no meio de uma oscilação dificultam saber o que funcionou. Ajustes pontuais, como corrigir informações erradas, melhorar a descrição de um serviço ou deixar o site mais rápido no celular, são bem-vindos a qualquer momento."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "A atualização principal do Google de novembro de 2026 já chegou ao Brasil?",
+        "Sim. O Google informou no painel de status que a atualização se aplica globalmente e a todos os idiomas, o que inclui sites em português. A liberação começou em 10 de novembro e pode levar até duas semanas."
+      ],
+      [
+        "Meu site caiu no Google esta semana. Devo mudar tudo?",
+        "Não. O Google recomenda esperar o fim da atualização e mais uma semana completa antes de analisar os dados. Durante a liberação, oscilações são normais. Se a queda se mantiver, revise as páginas mais afetadas com foco em ajudar quem pesquisa."
+      ],
+      [
+        "A atualização afeta o Perfil da Empresa no Google Maps?",
+        "O Google não informou se esta atualização mexe especificamente nos resultados locais. O Perfil da Empresa tem sinais próprios, como avaliações, categorias e horários, então manter essas informações completas continua importante."
+      ]
+    ],
+    "relatedServices": [
+      "reformulacao-de-sites",
+      "presenca-digital",
+      "manutencao"
+    ],
+    "sources": [
+      {
+        "title": "Painel de status da Pesquisa Google: November 2026 core update",
+        "url": "https://status.search.google.com/incidents/WLxcJyC6jMWMfryxsKMc"
+      },
+      {
+        "title": "Google Search Central: atualizações principais da Pesquisa Google e seu site",
+        "url": "https://developers.google.com/search/docs/appearance/core-updates?hl=pt-br"
+      },
+      {
+        "title": "PPC Land: Google's core update shifts rankings for up to 2 weeks before Black Friday",
+        "url": "https://ppc.land/googles-core-update-shifts-rankings-for-up-to-2-weeks-before-black-friday"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "anuncios-no-modo-ia-do-google-brasil",
     "title": "Anúncios no Modo IA do Google chegam ao Brasil: o que muda para pequenas empresas",
     "seoTitle": "Anúncios no Modo IA do Google no Brasil: o que muda",
