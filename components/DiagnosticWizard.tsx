@@ -7,6 +7,7 @@ import { submitDiagnostic } from "@/lib/diagnostic-service";
 import { DIAGNOSTIC_FIELDS, MAX_FIELD_LENGTH, type DiagnosticField } from "@/lib/diagnostic-schema";
 import { track } from "@/lib/analytics";
 import { FIELD_MASKS } from "@/lib/masks";
+import { readUtmAttribution } from "@/lib/utm";
 
 type Answers = Record<string, string | boolean>;
 type Status = "editing" | "sending" | "sent";
@@ -84,7 +85,7 @@ export function DiagnosticWizard() {
   async function submit() {
     if (!answers.consent) { setError("Confirme a ciência da Política de Privacidade para enviar."); return; }
     setStatus("sending"); setError("");
-    const result = await submitDiagnostic({ ...answers });
+    const result = await submitDiagnostic({ ...answers, utm: readUtmAttribution() });
     if (result.ok) {
       setStatus("sent"); track("diagnostic_submit", { solution: String(answers.solution || "") });
       try { localStorage.removeItem(STORAGE); } catch { /* ignore */ }

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { ANALYTICS_EVENT, track, type AnalyticsEvent, type AnalyticsPayload } from "@/lib/analytics";
 import { CONSENT_EVENT, readConsent, type ConsentState } from "@/lib/consent";
+import { captureUtmAttribution } from "@/lib/utm";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 // Vercel custom events are only counted on paid plans; keep them for conversions only.
@@ -52,6 +53,7 @@ export function AnalyticsBridge() {
   const consent = useRef<ConsentState | null>(null);
 
   useEffect(() => {
+    captureUtmAttribution(location.search);
     if (GA_ID) {
       ensureGtag()("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
     }

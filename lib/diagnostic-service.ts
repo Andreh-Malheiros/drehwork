@@ -1,4 +1,4 @@
-export type DiagnosticPayload = Record<string, string | boolean>;
+export type DiagnosticPayload = Record<string, unknown>;
 export type DiagnosticResult = { ok: true } | { ok: false; error: string; fallback: boolean };
 
 export async function submitDiagnostic(payload: DiagnosticPayload): Promise<DiagnosticResult> {
