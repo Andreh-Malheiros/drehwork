@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Atualização principal do Google de novembro de 2026: o que fazer se o seu site oscilar](https://www.drehwork.com/insights/atualizacao-principal-do-google-novembro-2026): O Google iniciou em 10/11 a core update de novembro de 2026, global e em todos os idiomas; como acompanhar no Search Console e o que evitar perto da Black Friday.
 - [Golpes na Black Friday 2026: como sua loja virtual passa confiança e evita ser confundida com site falso](https://www.drehwork.com/insights/golpes-na-black-friday-2026-loja-virtual): Alertas do Reclame Aqui e do Procon-DF sobre sites falsos e preços maquiados; sinais de confiança que a loja pequena pode ter no site.
 - [Nome de usuário no WhatsApp e BSUID: o que muda para pequenas empresas](https://www.drehwork.com/insights/nome-de-usuario-whatsapp-bsuid-empresas): A Meta libera aos poucos nomes de usuário no WhatsApp e o BSUID para a API; o que foi confirmado e como preparar o atendimento.
 - [Anúncios no Modo IA do Google chegam ao Brasil: o que muda para pequenas empresas](https://www.drehwork.com/insights/anuncios-no-modo-ia-do-google-brasil): O Google prevê levar anúncios ao Modo IA no Brasil ainda em 2026; o que foi confirmado, o que falta saber e como se preparar.
