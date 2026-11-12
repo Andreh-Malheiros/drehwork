@@ -65,4 +65,3 @@ export function ProjectRequestForm() {
     <button className="form-submit" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>{status === "sending" ? "Enviando…" : <>Enviar solicitação <span aria-hidden>→</span></>}</button>
   </form>;
 }
-

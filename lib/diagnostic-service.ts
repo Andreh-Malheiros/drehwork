@@ -13,4 +13,3 @@ export async function submitDiagnostic(payload: DiagnosticPayload): Promise<Diag
     return { ok: false, error: "Sem conexão. Seus dados continuam salvos neste navegador.", fallback: true };
   }
 }
-

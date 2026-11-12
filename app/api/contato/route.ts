@@ -26,4 +26,3 @@ export async function POST(request: Request) {
   const sent = await sendLeadEmail({ subject: `Pedido de orçamento: ${name}`, title: "Novo pedido de orçamento", rows, replyTo: email, source: "formulário de orçamento" });
   return sent ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
 }
-

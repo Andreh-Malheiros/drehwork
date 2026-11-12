@@ -127,4 +127,3 @@ export function DiagnosticWizard() {
     <p className="review-note">Seu progresso fica salvo neste navegador até o envio. Prefere ir direto ao ponto? <a href={whatsappUrl("um diagnóstico da minha presença digital")} target="_blank" rel="noreferrer">Fale pelo WhatsApp</a>.</p>
   </form>;
 }
-

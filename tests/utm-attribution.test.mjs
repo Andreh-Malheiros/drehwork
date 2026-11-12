@@ -21,4 +21,3 @@ test("captures, validates, preserves and includes UTM attribution in lead emails
   assert.match(contactRoute, /rows\.push\(\.\.\.utmEmailRows\(body\.utm\)\)/);
   assert.match(diagnosticRoute, /rows\.push\(\.\.\.utmEmailRows\(body\.utm\)\)/);
 });
-

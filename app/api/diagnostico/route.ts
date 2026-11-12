@@ -21,4 +21,3 @@ export async function POST(request: Request) {
   const sent = await sendLeadEmail({ subject: `Diagnóstico: ${data.company} (${data.solution})`, title: `Novo diagnóstico — ${data.company}`, rows, replyTo: data.email, source: "formulário de diagnóstico" });
   return sent ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
 }
-

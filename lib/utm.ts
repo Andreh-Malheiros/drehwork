@@ -56,4 +56,3 @@ export function utmEmailRows(value: unknown): (readonly [string, string])[] {
   ];
   return rows.filter(([, entry]) => Boolean(entry));
 }
-
