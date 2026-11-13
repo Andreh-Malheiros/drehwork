@@ -1,5 +1,107 @@
 [
   {
+    "slug": "perfil-da-empresa-no-chatgpt-business-hub",
+    "title": "Perfil da empresa no ChatGPT: o que é o Business Hub e o que muda para pequenas empresas",
+    "seoTitle": "Perfil da empresa no ChatGPT: o que muda (Business Hub)",
+    "description": "A OpenAI lançou em 10/11, em beta, o perfil da empresa no ChatGPT, gerido pelo Business Hub. Veja o que já vale no Brasil e como se preparar.",
+    "keyword": "perfil da empresa no chatgpt",
+    "category": "Notícias e tendências",
+    "date": "2026-11-13",
+    "updated": "2026-11-13",
+    "summary": "A OpenAI lançou em 10 de novembro de 2026, em versão beta, o Businesses in ChatGPT: empresas podem reivindicar o próprio perfil, corrigir informações e ver métricas no Business Hub. Os agentes de atendimento ainda são só para os EUA. Veja o que isso significa para pequenas empresas brasileiras.",
+    "intro": "A OpenAI lançou em 10 de novembro de 2026, em versão beta, o perfil da empresa no ChatGPT, chamado oficialmente de Businesses in ChatGPT. Pelo novo painel Business Hub, empresas elegíveis podem reivindicar o próprio perfil, corrigir as informações que o ChatGPT mostra sobre elas, enviar catálogo de produtos com preço e disponibilidade e acompanhar quantas vezes são citadas e quantos cliques o site recebe a partir das respostas. Para pequenas empresas brasileiras, a resposta curta é: vale acompanhar e, se o seu negócio for elegível, reivindicar o perfil, mas sem esperar milagre. A própria OpenAI avisa que reivindicar o perfil não garante mais visibilidade, e parte dos recursos, como os agentes de atendimento, por enquanto vale só para empresas dos Estados Unidos.",
+    "sections": [
+      {
+        "heading": "O que a OpenAI anunciou",
+        "paragraphs": [
+          "O Businesses in ChatGPT funciona como uma ficha oficial da empresa dentro do ChatGPT, em uma lógica parecida com a do Perfil da Empresa no Google. A gestão é feita no Business Hub, um painel acessado com uma conta do ChatGPT. Segundo a VentureBeat, o processo é: entrar com a conta de trabalho, abrir o Business Hub, buscar o nome da empresa (ou digitá-lo, se não aparecer), clicar em começar e concluir as etapas de configuração.",
+          "Depois de aprovada a reivindicação, a empresa pode atualizar as informações exibidas aos usuários e, no caso de lojas, enviar um feed de produtos, que é um arquivo com a lista de itens, preços e estoque. Lojas Shopify podem conectar a loja para sincronizar esses dados automaticamente.",
+          "O anúncio também trouxe os Business Agents, agentes de IA que respondem dúvidas de clientes sobre produtos e políticas da loja dentro do ChatGPT. Esses agentes estão limitados, por enquanto, a empresas de comércio eletrônico e serviços on-line dos Estados Unidos que tenham site, e podem ser usados como destino de anúncios no ChatGPT, em um teste restrito a anunciantes selecionados."
+        ]
+      },
+      {
+        "heading": "O que já vale para empresas brasileiras",
+        "paragraphs": [
+          "A OpenAI informa que a reivindicação está aberta a empresas elegíveis nos mercados em que o ChatGPT funciona e em que a empresa oferece suporte à verificação. A empresa não publicou uma lista detalhada desses países, então a forma mais segura de saber se o seu negócio pode participar é tentar a reivindicação no próprio Business Hub.",
+          "Há uma restrição importante para negócios locais. De acordo com a VentureBeat, lojas físicas e restaurantes, por enquanto, só podem reivindicar uma ficha que já exista nos Estados Unidos. Na prática, isso quer dizer que uma clínica, um salão ou uma loja de bairro no Brasil ainda não tem como reivindicar uma ficha local. Para quem vende on-line, como lojas virtuais e prestadores de serviço digital, o caminho tende a estar mais aberto, desde que a verificação esteja disponível.",
+          "Também não há agente de atendimento para empresas brasileiras neste momento. A OpenAI diz que pretende levar o recurso a mais mercados e categorias, mas não divulgou datas."
+        ]
+      },
+      {
+        "heading": "Como funciona a verificação e o que o painel mostra",
+        "paragraphs": [
+          "A verificação acontece em duas etapas. Primeiro, a OpenAI confirma que você tem ligação com a empresa. Depois, quem administra o perfil passa por uma verificação de identidade feita pela Persona, uma empresa especializada nesse tipo de checagem. Só após essa segunda etapa é possível editar o perfil, conectar o catálogo, ver as métricas ou criar um agente. Quando a identidade é aprovada, o perfil recebe um selo azul."
+        ],
+        "items": [
+          "Formas de comprovar o vínculo: telefone comercial, e-mail com o domínio da empresa, registro no domínio do site ou conta Shopify.",
+          "Métricas dos últimos 28 dias: cliques no site, menções e temas recorrentes nas respostas em que a empresa aparece.",
+          "Para negócios on-line, a menção só conta quando o ChatGPT cita o site da empresa, não apenas o nome da marca.",
+          "Métricas em branco podem significar que os dados ainda estão sendo coletados ou que o volume não atingiu o mínimo para aparecer.",
+          "Segundo a OpenAI, as conversas dos usuários com o ChatGPT e com os agentes não são compartilhadas com as empresas."
+        ]
+      },
+      {
+        "heading": "Custos e limites: o que o perfil não resolve",
+        "paragraphs": [
+          "Reivindicar o perfil e publicar um agente é gratuito no lançamento, segundo informação do vice-presidente de monetização da OpenAI ao Digiday, citada pela VentureBeat. A empresa não descartou cobrar no futuro. Não é necessário ter conta de anúncios nem contrato corporativo com a OpenAI para reivindicar o perfil.",
+          "O ponto mais importante é o limite que a própria OpenAI deixa claro: o ChatGPT continua fazendo recomendações independentes, e reivindicar o perfil não garante melhor posição nem mais vendas. O perfil é uma fonte a mais de informação correta sobre o seu negócio, e não um atalho para ser recomendado.",
+          "Isso reforça o que já vale para a busca tradicional e para as respostas com IA: o ChatGPT forma a resposta a partir do que encontra sobre a empresa em várias fontes. Um site claro, com serviços, região atendida, preços ou forma de orçamento e contato bem explicados, um Perfil da Empresa no Google completo e informações iguais em todos os canais continuam sendo a base."
+        ]
+      },
+      {
+        "heading": "O que fazer agora",
+        "paragraphs": [
+          "Mesmo que o seu negócio ainda não possa usar todos os recursos, dá para se preparar com ações simples, que também ajudam no Google:"
+        ],
+        "items": [
+          "Pergunte ao ChatGPT sobre a sua empresa e anote o que está errado ou desatualizado, como endereço, horário, serviços e site.",
+          "Corrija essas informações na origem: site, Perfil da Empresa no Google, redes sociais e marketplaces.",
+          "Garanta um e-mail com o domínio da empresa (por exemplo, contato@suaempresa.com.br), que é uma das formas de verificação aceitas.",
+          "Se você tem loja virtual, mantenha o catálogo organizado, com nomes, preços e estoque corretos, para facilitar um eventual envio de feed.",
+          "Tente a reivindicação no Business Hub e, se o recurso não estiver disponível para o seu tipo de negócio, acompanhe a expansão anunciada pela OpenAI."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "Empresas brasileiras já podem criar o perfil da empresa no ChatGPT?",
+        "Depende do tipo de negócio. A OpenAI abriu a reivindicação para empresas elegíveis nos mercados onde o ChatGPT funciona e onde há suporte à verificação. Segundo a VentureBeat, lojas físicas e restaurantes, por enquanto, só podem reivindicar fichas já existentes nos Estados Unidos."
+      ],
+      [
+        "Reivindicar o perfil faz o ChatGPT recomendar minha empresa?",
+        "Não necessariamente. A OpenAI afirma que o ChatGPT continua fazendo recomendações independentes e que reivindicar o perfil não garante mais visibilidade nem vendas. O perfil ajuda a manter as informações corretas."
+      ],
+      [
+        "O perfil da empresa no ChatGPT é pago?",
+        "No lançamento, reivindicar o perfil e publicar um agente é gratuito, segundo informação da OpenAI ao Digiday citada pela VentureBeat. A empresa não descartou cobrar no futuro. Anúncios no ChatGPT são um produto à parte."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais",
+      "lojas-shopify"
+    ],
+    "sources": [
+      {
+        "title": "OpenAI: Introducing Businesses in ChatGPT",
+        "url": "https://openai.com/index/introducing-businesses-chatgpt/"
+      },
+      {
+        "title": "Central de Ajuda da OpenAI: Setting up your business on ChatGPT",
+        "url": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt"
+      },
+      {
+        "title": "VentureBeat: OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep",
+        "url": "https://venturebeat.com/technology/openai-lets-you-claim-your-business-in-chatgpt-and-set-up-a-custom-agentic-ai-customer-sales-rep"
+      },
+      {
+        "title": "The Decoder: OpenAI turns ChatGPT into a business directory with AI agents that handle customer questions",
+        "url": "https://the-decoder.com/openai-turns-chatgpt-into-a-business-directory-with-ai-agents-that-handle-customer-questions/"
+      }
+    ],
+    "status": "published"
+  },
+  {
     "slug": "atualizacao-principal-do-google-novembro-2026",
     "title": "Atualização principal do Google de novembro de 2026: o que fazer se o seu site oscilar",
     "seoTitle": "Atualização principal do Google (nov/2026): o que fazer",
