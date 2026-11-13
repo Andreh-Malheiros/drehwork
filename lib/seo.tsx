@@ -6,13 +6,13 @@ import { insights, type Insight } from "@/content/insights";
 type PageMeta = { title: string; description: string; index?: boolean };
 
 export const staticPages: Record<string, PageMeta> = {
-  "": { title: "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork", description: "Criação de sites profissionais, landing pages, lojas Shopify e presença digital com SEO. Empresa de Belo Horizonte com atendimento em todo o Brasil. Diagnóstico gratuito." },
-  servicos: { title: "Serviços de Criação de Sites, Lojas Virtuais e SEO", description: "Sites profissionais, landing pages, reformulação, lojas Shopify, presença digital e manutenção — cada serviço parte do resultado que a empresa precisa gerar." },
+  "": { title: "Sites, lojas, sistemas e automações | DrehWork", description: "A DrehWork cria a solução digital que o seu negócio precisa: site, loja, sistema sob medida, automação, integrações, Instagram e presença no Google." },
+  servicos: { title: "Serviços digitais para negócios | DrehWork", description: "Alguns negócios precisam de um site mais claro ou de uma loja. Outros precisam de um sistema próprio, automações, integrações ou presença no Google e no Instagram." },
   projetos: { title: "Portfólio de Sites e Lojas Virtuais", description: "Projetos publicados pela DrehWork em sites institucionais, comércio eletrônico e evolução contínua de lojas Shopify." },
   processo: { title: "Como Criamos o seu Site: Processo em 10 Etapas", description: "Planejar, criar e evoluir: o método da DrehWork em 10 etapas, do diagnóstico à publicação verificada e à evolução contínua." },
   sobre: { title: "Sobre a DrehWork, Estúdio Digital de Belo Horizonte", description: "Quem está por trás da DrehWork, como o trabalho é conduzido e por que a presença digital é tratada como investimento." },
-  diagnostico: { title: "Diagnóstico Gratuito de Site e Presença Digital", description: "Responda algumas perguntas e receba gratuitamente uma análise inicial do seu site, Google e Instagram, com o próximo passo recomendado e sem compromisso." },
-  contato: { title: "Contato e Orçamento de Site pelo WhatsApp", description: `Peça um orçamento de site, landing page ou loja virtual pelo WhatsApp ou e-mail (${brand.email}). Belo Horizonte e todo o Brasil, ${brand.hours.toLowerCase()}.` },
+  diagnostico: { title: "Diagnóstico digital para empresas | DrehWork", description: "Conte sobre sua empresa e os canais que quer analisar. A gente observa as informações disponíveis e devolve pontos de atenção e um próximo passo possível." },
+  contato: { title: "Contato para soluções digitais | DrehWork", description: "Conte o que gostaria de melhorar e onde seu negócio aparece hoje. Atendimento em Belo Horizonte e remotamente para outras regiões do Brasil." },
   insights: { title: "Guias sobre Sites, Google, Lojas Virtuais e IA", description: "Guias práticos para donos de negócio: como aparecer no Google e no Maps, quanto custa um site, Shopify ou Nuvemshop, SEO, IA e presença digital." },
   "politica-de-privacidade": { title: "Política de Privacidade", description: "Como a DrehWork trata dados pessoais em conformidade com a LGPD (Lei 13.709/2018)." },
   "politica-de-cookies": { title: "Política de Cookies", description: "Quais cookies e tecnologias semelhantes o site da DrehWork utiliza e como gerenciar seu consentimento." },

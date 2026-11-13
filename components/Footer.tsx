@@ -15,9 +15,9 @@ const landingLabels: Record<string, string> = {
 export function Footer() {
   return <footer className="site-footer foot">
     <div className="shell foot-lead">
-      <p className="foot-statement">Qualidade precisa ser <em>percebida.</em></p>
+      <p className="foot-statement">Quer saber o que o seu negócio precisa no digital?</p>
       <div className="foot-actions">
-        <Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito</Link>
+        <Link className="button primary" href="/diagnostico">Pedir diagnóstico gratuito</Link>
         <a className="button foot-whatsapp" href={whatsappUrl("meu projeto")} target="_blank" rel="noreferrer">Conversar no WhatsApp</a>
       </div>
     </div>

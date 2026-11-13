@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="kicker">{children}</p>; }
-function CTA({ context = "meu projeto" }: { context?: string }) { return <section className="cta-band"><div className="cta-band-field" aria-hidden><BrandSymbol className="cta-band-symbol" /></div><div className="shell" data-reveal><Eyebrow>Próximo passo</Eyebrow><SplitHeading>Sua empresa está sendo encontrada por quem procura o seu serviço?</SplitHeading><p>O diagnóstico é gratuito e sem compromisso: mostramos o que um cliente encontra hoje quando procura a sua empresa e o que vale ajustar primeiro. Se não fizer sentido para o seu momento, diremos isso com clareza.</p><div className="button-row"><Link className="button light" href="/diagnostico">Solicitar diagnóstico gratuito</Link><a className="text-link light" href={whatsappUrl(context)} target="_blank" rel="noreferrer">Conversar no WhatsApp</a></div></div></section>; }
+function CTA({ context = "meu projeto", title, description, primaryLabel = "Solicitar diagnóstico gratuito", showSecondary = true }: { context?: string; title?: string; description?: string; primaryLabel?: string; showSecondary?: boolean }) { return <section className="cta-band"><div className="cta-band-field" aria-hidden><BrandSymbol className="cta-band-symbol" /></div><div className="shell" data-reveal><Eyebrow>Próximo passo</Eyebrow><SplitHeading>{title ?? "Sua empresa está sendo encontrada por quem procura o seu serviço?"}</SplitHeading>{description === "" ? null : <p>{description ?? "O diagnóstico é gratuito e sem compromisso: mostramos o que um cliente encontra hoje quando procura a sua empresa e o que vale ajustar primeiro. Se não fizer sentido para o seu momento, diremos isso com clareza."}</p>}<div className="button-row"><Link className="button light" href="/diagnostico">{primaryLabel}</Link>{showSecondary ? <a className="text-link light" href={whatsappUrl(context)} target="_blank" rel="noreferrer">Conversar no WhatsApp</a> : null}</div></div></section>; }
 const processPhases = [
   ["Entender", processSteps.slice(0, 2)],
   ["Estruturar", processSteps.slice(2, 4)],
@@ -54,10 +54,9 @@ function Home() { return <>
   <section className="hero home-hero glsl-hero">
     <HomeHills />
     <div className="glsl-hero-copy">
-      <h1 className="hero-keyword">Criação de sites profissionais, lojas virtuais e presença digital</h1>
-      <div className="hero-slogan"><span>Visão que transforma.<br /></span>Estratégia que gera resultado.</div>
-      <p>Sites, landing pages, lojas Shopify, SEO e Google Perfil da Empresa para empresas que querem ser encontradas, transmitir confiança e receber clientes pela internet. De Belo Horizonte para todo o Brasil, desde {brand.activeSince}.</p>
-      <div className="hero-actions"><Link className="button primary" href="/diagnostico">Solicitar diagnóstico gratuito</Link><a className="text-link" href={whatsappUrl("um site para minha empresa")} target="_blank" rel="noreferrer">Falar no WhatsApp</a></div>
+      <h1 className="hero-slogan">O que o seu negócio precisa ter no digital?</h1>
+      <p>A DrehWork cria a solução digital que o seu negócio precisa: site, loja, sistema sob medida, automação, integrações, Instagram e presença no Google. Primeiro, a gente analisa o que você tem hoje e indica por onde começar. Atendimento em Belo Horizonte e remoto para outras regiões do Brasil.</p>
+      <div className="hero-actions"><Link className="button primary" href="/diagnostico">Pedir diagnóstico gratuito</Link><a className="text-link" href={whatsappUrl("tirar uma dúvida sobre meu projeto")} target="_blank" rel="noreferrer">Tirar uma dúvida</a></div>
     </div>
   </section>
 
@@ -71,7 +70,6 @@ function Home() { return <>
       <div className="home-section-heading"><SplitHeading id="home-proof-title">Empresas reais. Entregas publicadas. Evolução contínua.</SplitHeading><Link className="text-link" href="/projetos">Ver portfólio</Link></div>
       <HomeCases />
       <dl className="proof-facts" data-stagger>
-        <div><dt>Atuação profissional</dt><dd>Desde {brand.activeSince}</dd></div>
         <div><dt>Atendimento</dt><dd>Todo o Brasil</dd></div>
         <div><dt>Formalização</dt><dd>Contrato e NF</dd></div>
         <div><dt>Execução</dt><dd>Direto com quem faz</dd></div>
@@ -100,7 +98,7 @@ function Home() { return <>
     </div>
   </section>
 
-  <section className="section home-svc"><div className="shell"><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>Um sistema de crescimento, não uma página isolada.</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><HomeServices /></div></section>
+  <section className="section home-svc"><div className="shell"><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>O que o seu negócio precisa resolver?</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><p>Site, loja, sistema, automação e presença no Google resolvem necessidades diferentes. No diagnóstico, a gente identifica o que vale olhar primeiro.</p><HomeServices /></div></section>
 
   <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Planejar / Criar / Evoluir</Eyebrow><div className="home-section-heading"><SplitHeading>Estratégia antes do design.</SplitHeading><p>O visual entra quando objetivo, mensagem e próximo passo do cliente já estão definidos. É isso que separa um site bonito de um site que gera resultado.</p></div><ol className="process-phases" data-stagger>{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
 
@@ -114,7 +112,7 @@ function Home() { return <>
 
   <section className="section home-faq"><div className="shell faq-layout" data-reveal><div><Eyebrow>Perguntas frequentes</Eyebrow><SplitHeading>Respostas diretas, antes da primeira conversa.</SplitHeading><p>Escopo, prazo e investimento são confirmados em proposta, de acordo com cada projeto. Veja <Link className="text-link" href="/quanto-custa-um-site">o que define o preço de um site</Link>.</p></div><div className="faq-list" data-stagger>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden>+</span></summary><p>{answer}</p></details>)}</div></div></section>
   <JsonLd data={homeFaqSchema()} />
-  <CTA />
+  <CTA title="Quer saber o que o seu negócio precisa no digital?" primaryLabel="Pedir diagnóstico gratuito" showSecondary={false} description="" />
 </>; }
 
 function PageHero({ eyebrow, title, lead, children, aside, compact = false }: { eyebrow: string; title: string; lead: React.ReactNode; children?: React.ReactNode; aside?: React.ReactNode; compact?: boolean }) {
@@ -155,21 +153,27 @@ function GuideList({ list, showCategory = true }: { list: Insight[]; showCategor
   return <ul className={`guide-list${showCategory ? "" : " is-plain"}`} data-stagger>{list.map(i => <li key={i.slug}><Link href={`/insights/${i.slug}`}>{showCategory ? <span className="guide-list-category">{i.category}</span> : null}<span className="guide-list-main"><strong>{i.title}</strong>{showCategory ? null : <span className="guide-list-summary">{i.summary}</span>}</span><span className="guide-list-time">{readingMinutes(i)} min de leitura</span></Link></li>)}</ul>;
 }
 
-function ServicesPage() { return <>
-  <PageHero eyebrow="Serviços" title="Tudo o que sua presença digital precisa para gerar resultado." lead="O site é o centro. Estratégia, SEO, automação e evolução contínua completam o sistema. Cada serviço começa pelo problema do negócio, não pelo layout.">
-    <div className="button-row"><Link className="button primary" href="/diagnostico">Não sei por onde começar</Link></div>
+function ServicesPage() {
+  const serviceChoices = [
+    { title: "Criar um site", description: "organizar oferta e contato.", href: "/servicos/sites-profissionais" },
+    { title: "Melhorar um site", description: "rever leitura, clareza e navegação.", href: "/servicos/reformulacao-de-sites" },
+    { title: "Montar uma loja", description: "estruturar catálogo e compra.", href: "/servicos/lojas-shopify" },
+    { title: "Criar um sistema sob medida", description: "painéis, cadastros, agendamentos e processos do seu negócio.", href: "/contato" },
+    { title: "Automatizar e integrar", description: "WhatsApp, e-mail, planilhas e ferramentas trabalhando juntas.", href: "/servicos/automacao-de-processos" },
+    { title: "Organizar Google e Instagram", description: "informações, perfil e caminhos de contato.", href: "/servicos/presenca-digital" },
+    { title: "Outra ideia ou projeto", description: "conte o que você imagina e a gente avalia.", href: "/contato" },
+  ] as const;
+  return <>
+  <PageHero eyebrow="Serviços" title="Do site ao sistema sob medida: o que o seu negócio precisa?" lead="Alguns negócios precisam de um site mais claro ou de uma loja. Outros precisam de um sistema próprio, de automações para o atendimento, de integrações ou de uma presença organizada no Google e no Instagram. A gente começa entendendo o que existe hoje e o que você quer resolver.">
+    <div className="button-row"><Link className="button primary" href="/diagnostico">Pedir diagnóstico gratuito</Link></div>
   </PageHero>
   <section className="section services-index-section"><div className="shell">
-    <ul className="service-index" data-stagger>{services.map(s => <li key={s.slug}><Link className="service-row" href={`/servicos/${s.slug}`}>
-      <span className="service-row-eyebrow">{s.eyebrow}</span>
-      <h2>{s.title}</h2>
-      <p>{s.summary}</p>
-      <ul className="service-row-items">{s.items.map(item => <li key={item}>{item}</li>)}</ul>
-      <b aria-hidden>↗</b>
-    </Link></li>)}</ul>
+    <ul className="service-index" data-stagger>{serviceChoices.map(choice => <li key={choice.title}>
+      <Link className="service-row" href={choice.href}><h2>{choice.title}</h2><p>{choice.description}</p><b aria-hidden>↗</b></Link>
+    </li>)}</ul>
   </div></section>
-  <section className="section section-light needs-section"><div className="shell"><Eyebrow>Soluções por necessidade</Eyebrow><div className="home-section-heading"><SplitHeading>Encontre o caminho certo para o seu negócio.</SplitHeading></div><nav className="need-links" aria-label="Soluções por necessidade">{landings.map(l => <Link key={l.slug} href={`/${l.slug}`}><span>{l.seoTitle}</span><b aria-hidden>↗</b></Link>)}</nav></div></section>
-  <CTA />
+  <section className="section section-light needs-section"><div className="shell"><Eyebrow>O que você quer resolver?</Eyebrow><div className="home-section-heading"><SplitHeading>Encontre o caminho certo para o seu negócio.</SplitHeading></div><nav className="need-links" aria-label="Soluções por necessidade">{landings.map(l => <Link key={l.slug} href={`/${l.slug}`}><span>{l.seoTitle}</span><b aria-hidden>↗</b></Link>)}</nav></div></section>
+  <CTA title="Ainda não sabe qual caminho combina com o que precisa?" primaryLabel="Pedir diagnóstico gratuito" showSecondary={false} description="" />
 </>; }
 function RelatedProjects({ slugs }: { slugs: string[] }) {
   const list = slugs.map(slug => projects.find(p => p.slug === slug)).filter((p): p is typeof projects[number] => Boolean(p));
@@ -259,7 +263,9 @@ function ProcessPage() {
   </>;
 }
 function ContactPage() { return <>
-  <PageHero eyebrow="Contato" title="Fale direto com quem vai executar o seu projeto." lead="Sem intermediários e sem roteiro de vendas. Empresa de Belo Horizonte (MG), com atendimento remoto para todo o Brasil." />
+  <PageHero eyebrow="Contato" title="O que seu negócio precisa resolver?" lead="Conte o que gostaria de melhorar e onde seu negócio aparece hoje. A DrehWork atende em Belo Horizonte e remotamente em outras regiões do Brasil.">
+    <div className="button-row"><Link className="button primary" href="/diagnostico">Pedir diagnóstico gratuito</Link><a className="text-link" href={whatsappUrl("falar sobre meu caso")} target="_blank" rel="noreferrer">Falar sobre meu caso</a></div>
+  </PageHero>
   <section className="section contact-section"><div className="shell"><ul className="contact-rows" data-stagger>
     <li><a href={whatsappUrl("minha presença digital")} target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>{brand.whatsapp}</strong><small>{brand.hours}</small><b aria-hidden>↗</b></a></li>
     <li><a href={`mailto:${brand.email}`}><span>E-mail</span><strong>{brand.email}</strong><small>Para propostas e informações</small><b aria-hidden>↗</b></a></li>
@@ -268,7 +274,7 @@ function ContactPage() { return <>
   <CTA/>
 </>; }
 function AboutPage() { return <>
-  <PageHero eyebrow="Sobre" title="Uma empresa enxuta, com responsabilidade direta sobre cada entrega." lead={<>A DrehWork é conduzida por {brand.legalName}. Atuação profissional desde {brand.activeSince}, com projetos para empresas de diferentes segmentos.</>} />
+  <PageHero eyebrow="Sobre" title="Uma empresa enxuta, com responsabilidade direta sobre cada entrega." lead={<>A DrehWork é conduzida por {brand.legalName}, com projetos para empresas de diferentes segmentos.</>} />
   <section className="section principles-section"><div className="shell audience-grid"><div><Eyebrow>Como trabalhamos</Eyebrow><SplitHeading>Planejar. Criar. Evoluir.</SplitHeading></div><dl className="deliverable-list is-single" data-stagger>
     <div><dt>Atendimento direto</dt><dd>Sem intermediários entre você e quem executa.</dd></div>
     <div><dt>Estratégia antes do design</dt><dd>Objetivo, público e mensagem definidos primeiro.</dd></div>
@@ -281,7 +287,6 @@ function AboutPage() { return <>
     <div><dt>CNPJ</dt><dd>{brand.cnpj}</dd></div>
     <div><dt>Base</dt><dd>Belo Horizonte (MG)</dd></div>
     <div><dt>Atendimento</dt><dd>Remoto, em todo o Brasil</dd></div>
-    <div><dt>Atuação desde</dt><dd>{brand.activeSince}</dd></div>
   </dl></div></div></section>
   <CTA context="trabalhar com a DrehWork"/>
 </>; }
@@ -317,4 +322,4 @@ function LegalPage({kind}:{kind:keyof typeof legalDocuments}) { const doc=legalD
 
 export default async function Page({params}:Props){const path=(await params).slug?.join("/")||""; return <>{renderPage(path)}<JsonLd data={breadcrumbFor(path)}/></>;}
 
-function renderPage(path:string){ if(!valid.has(path))notFound(); if(!path)return <Home/>; if(path==="servicos")return <ServicesPage/>; if(path==="projetos")return <ProjectsPage/>; if(path==="processo")return <ProcessPage/>; if(path==="diagnostico")return <><PageHero compact eyebrow="Diagnóstico gratuito" title="Uma análise inicial para organizar o próximo passo." lead="Cinco etapas rápidas. Você recebe uma leitura objetiva da sua presença digital e do caminho recomendado, sem compromisso de contratação." /><section className="section shell"><DiagnosticWizard/></section></>; if(path==="contato")return <ContactPage/>; if(path==="insights")return <InsightsPage/>; const insight=insights.find(i=>`insights/${i.slug}`===path); if(insight)return <InsightPage insight={insight}/>; if(path==="sobre")return <AboutPage/>; const service=services.find(s=>`servicos/${s.slug}`===path); if(service)return <ServicePage service={service}/>; const project=projects.find(p=>`projetos/${p.slug}`===path); if(project)return <ProjectPage project={project}/>; const landing=landings.find(l=>l.slug===path); if(landing)return <LandingPage landing={landing}/>; if(path.startsWith("politica")||path==="termos-de-uso")return <LegalPage kind={path as keyof typeof legalDocuments}/>; notFound();}
+function renderPage(path:string){ if(!valid.has(path))notFound(); if(!path)return <Home/>; if(path==="servicos")return <ServicesPage/>; if(path==="projetos")return <ProjectsPage/>; if(path==="processo")return <ProcessPage/>; if(path==="diagnostico")return <><PageHero compact eyebrow="Diagnóstico gratuito" title="O que uma pessoa encontra ao procurar seu negócio?" lead="Conte sobre sua empresa e os canais que quer analisar. A gente observa as informações disponíveis e devolve pontos de atenção e um próximo passo possível. O diagnóstico é gratuito e sem compromisso." /><section className="section shell"><DiagnosticWizard/></section></>; if(path==="contato")return <ContactPage/>; if(path==="insights")return <InsightsPage/>; const insight=insights.find(i=>`insights/${i.slug}`===path); if(insight)return <InsightPage insight={insight}/>; if(path==="sobre")return <AboutPage/>; const service=services.find(s=>`servicos/${s.slug}`===path); if(service)return <ServicePage service={service}/>; const project=projects.find(p=>`projetos/${p.slug}`===path); if(project)return <ProjectPage project={project}/>; const landing=landings.find(l=>l.slug===path); if(landing)return <LandingPage landing={landing}/>; if(path.startsWith("politica")||path==="termos-de-uso")return <LegalPage kind={path as keyof typeof legalDocuments}/>; notFound();}

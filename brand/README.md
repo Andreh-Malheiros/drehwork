@@ -8,5 +8,5 @@ Logo oficial: símbolo "D" geométrico (dois planos) + assinatura tipográfica D
 - Artes originais: `assets/brand/source/`
 - Componente React: `components/BrandLogo.tsx`
 
-Slogan: "Visão que transforma. Estratégia que gera resultado."
+Assinatura: "DrehWork · sites e soluções digitais para negócios."
 Pilares: Planejar / Criar / Evoluir. Base preto e branco; tipografia Poppins.
