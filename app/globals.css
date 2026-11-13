@@ -6877,7 +6877,7 @@ button.text-link { appearance: none; background-color: transparent; border: 0; b
   .svc-tabs button { height: auto; min-height: 64px; padding: 10px 14px; }
   .found-window { grid-template-columns: 1fr; }
   .found-tabs { display: flex; }
-  .found-tabs button { flex: 1; padding: 0 6px; font-size: 13px; }
+  .found-tabs button { flex: 0 1 auto; min-width: max-content; padding: 0 6px; font-size: 13px; }
   .found-screen { height: 420px; }
   .found-google { padding: 20px 18px; }
   .found-result.is-other:last-child { display: none; }
