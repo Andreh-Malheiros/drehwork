@@ -98,7 +98,7 @@ function Home() { return <>
     </div>
   </section>
 
-  <section className="section home-svc"><div className="shell"><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>O que precisa ficar mais claro para o seu cliente?</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><p>Site, loja, sistema, automação e presença no Google resolvem necessidades diferentes. No diagnóstico, a gente identifica o que vale olhar primeiro.</p><HomeServices /></div></section>
+  <section className="section home-svc"><div className="shell"><Eyebrow>O que fazemos</Eyebrow><div className="home-section-heading"><SplitHeading>O que o seu negócio precisa resolver?</SplitHeading><Link className="text-link" href="/servicos">Todos os serviços</Link></div><p>Site, loja, sistema, automação e presença no Google resolvem necessidades diferentes. No diagnóstico, a gente identifica o que vale olhar primeiro.</p><HomeServices /></div></section>
 
   <section className="section home-process"><div className="shell" data-reveal><Eyebrow>Planejar / Criar / Evoluir</Eyebrow><div className="home-section-heading"><SplitHeading>Estratégia antes do design.</SplitHeading><p>O visual entra quando objetivo, mensagem e próximo passo do cliente já estão definidos. É isso que separa um site bonito de um site que gera resultado.</p></div><ol className="process-phases" data-stagger>{processPhases.map(([phase, steps], index) => <li key={phase}><span>{String(index + 1).padStart(2, "0")}</span><h3>{phase}</h3><p>{steps.join(" · ")}</p><i aria-hidden /></li>)}</ol><Link className="text-link process-link" href="/processo">Ver processo detalhado</Link></div></section>
 
@@ -158,7 +158,7 @@ function ServicesPage() {
     { title: "Criar um site", description: "organizar oferta e contato.", href: "/servicos/sites-profissionais" },
     { title: "Melhorar um site", description: "rever leitura, clareza e navegação.", href: "/servicos/reformulacao-de-sites" },
     { title: "Montar uma loja", description: "estruturar catálogo e compra.", href: "/servicos/lojas-shopify" },
-    { title: "Criar um sistema sob medida", description: "painéis, cadastros, agendamentos e processos do seu negócio." },
+    { title: "Criar um sistema sob medida", description: "painéis, cadastros, agendamentos e processos do seu negócio.", href: "/contato" },
     { title: "Automatizar e integrar", description: "WhatsApp, e-mail, planilhas e ferramentas trabalhando juntas.", href: "/servicos/automacao-de-processos" },
     { title: "Organizar Google e Instagram", description: "informações, perfil e caminhos de contato.", href: "/servicos/presenca-digital" },
     { title: "Outra ideia ou projeto", description: "conte o que você imagina e a gente avalia.", href: "/contato" },
@@ -169,9 +169,7 @@ function ServicesPage() {
   </PageHero>
   <section className="section services-index-section"><div className="shell">
     <ul className="service-index" data-stagger>{serviceChoices.map(choice => <li key={choice.title}>
-      {"href" in choice
-        ? <Link className="service-row" href={choice.href}><h2>{choice.title}</h2><p>{choice.description}</p><b aria-hidden>↗</b></Link>
-        : <div className="service-row"><h2>{choice.title}</h2><p>{choice.description}</p></div>}
+      <Link className="service-row" href={choice.href}><h2>{choice.title}</h2><p>{choice.description}</p><b aria-hidden>↗</b></Link>
     </li>)}</ul>
   </div></section>
   <section className="section section-light needs-section"><div className="shell"><Eyebrow>O que você quer resolver?</Eyebrow><div className="home-section-heading"><SplitHeading>Encontre o caminho certo para o seu negócio.</SplitHeading></div><nav className="need-links" aria-label="Soluções por necessidade">{landings.map(l => <Link key={l.slug} href={`/${l.slug}`}><span>{l.seoTitle}</span><b aria-hidden>↗</b></Link>)}</nav></div></section>

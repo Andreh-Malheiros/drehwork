@@ -6,13 +6,13 @@ import { insights, type Insight } from "@/content/insights";
 type PageMeta = { title: string; description: string; index?: boolean };
 
 export const staticPages: Record<string, PageMeta> = {
-  "": { title: "O que o seu negócio precisa ter no digital? | DrehWork", description: "A DrehWork cria a solução digital que o seu negócio precisa: site, loja, sistema sob medida, automação, integrações, Instagram e presença no Google." },
-  servicos: { title: "Do site ao sistema sob medida: o que o seu negócio precisa?", description: "Alguns negócios precisam de um site mais claro ou de uma loja. Outros precisam de um sistema próprio, automações, integrações ou presença no Google e no Instagram." },
+  "": { title: "Sites, lojas, sistemas e automações | DrehWork", description: "A DrehWork cria a solução digital que o seu negócio precisa: site, loja, sistema sob medida, automação, integrações, Instagram e presença no Google." },
+  servicos: { title: "Serviços digitais para negócios | DrehWork", description: "Alguns negócios precisam de um site mais claro ou de uma loja. Outros precisam de um sistema próprio, automações, integrações ou presença no Google e no Instagram." },
   projetos: { title: "Portfólio de Sites e Lojas Virtuais", description: "Projetos publicados pela DrehWork em sites institucionais, comércio eletrônico e evolução contínua de lojas Shopify." },
   processo: { title: "Como Criamos o seu Site: Processo em 10 Etapas", description: "Planejar, criar e evoluir: o método da DrehWork em 10 etapas, do diagnóstico à publicação verificada e à evolução contínua." },
   sobre: { title: "Sobre a DrehWork, Estúdio Digital de Belo Horizonte", description: "Quem está por trás da DrehWork, como o trabalho é conduzido e por que a presença digital é tratada como investimento." },
-  diagnostico: { title: "O que uma pessoa encontra ao procurar seu negócio?", description: "Conte sobre sua empresa e os canais que quer analisar. A gente observa as informações disponíveis e devolve pontos de atenção e um próximo passo possível." },
-  contato: { title: "O que seu negócio precisa resolver?", description: "Conte o que gostaria de melhorar e onde seu negócio aparece hoje. Atendimento em Belo Horizonte e remotamente para outras regiões do Brasil." },
+  diagnostico: { title: "Diagnóstico digital para empresas | DrehWork", description: "Conte sobre sua empresa e os canais que quer analisar. A gente observa as informações disponíveis e devolve pontos de atenção e um próximo passo possível." },
+  contato: { title: "Contato para soluções digitais | DrehWork", description: "Conte o que gostaria de melhorar e onde seu negócio aparece hoje. Atendimento em Belo Horizonte e remotamente para outras regiões do Brasil." },
   insights: { title: "Guias sobre Sites, Google, Lojas Virtuais e IA", description: "Guias práticos para donos de negócio: como aparecer no Google e no Maps, quanto custa um site, Shopify ou Nuvemshop, SEO, IA e presença digital." },
   "politica-de-privacidade": { title: "Política de Privacidade", description: "Como a DrehWork trata dados pessoais em conformidade com a LGPD (Lei 13.709/2018)." },
   "politica-de-cookies": { title: "Política de Cookies", description: "Quais cookies e tecnologias semelhantes o site da DrehWork utiliza e como gerenciar seu consentimento." },
