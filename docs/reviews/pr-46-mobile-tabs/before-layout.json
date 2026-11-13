@@ -1,0 +1,400 @@
+{
+  "baseUrl": "http://127.0.0.1:3106",
+  "capturedAt": "2026-11-13T18:47:24.991Z",
+  "browser": "Chrome headless",
+  "widths": [
+    360,
+    390,
+    414
+  ],
+  "routes": [
+    "/"
+  ],
+  "results": [
+    {
+      "url": "http://127.0.0.1:3106/",
+      "title": "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork",
+      "viewport": 360,
+      "clientWidth": 360,
+      "documentScrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "horizontalOverflow": false,
+      "offscreenElements": [
+        {
+          "tag": "INPUT",
+          "cls": "honeypot",
+          "left": -9999,
+          "right": -9639,
+          "width": 360,
+          "text": ""
+        },
+        {
+          "tag": "I",
+          "cls": "",
+          "left": 348.5,
+          "right": 387.1,
+          "width": 38.7,
+          "text": "Pedir orçamento"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 248.1,
+          "right": 390.5,
+          "width": 142.4,
+          "text": "BH Carimbos"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 267.1,
+          "right": 371.5,
+          "width": 104.4,
+          "text": "BH Carimbos"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 398.5,
+          "right": 490.6,
+          "width": 92.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 417.5,
+          "right": 471.6,
+          "width": 54.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 498.6,
+          "right": 643.3,
+          "width": 144.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 517.6,
+          "right": 624.3,
+          "width": 106.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "left": 208.8,
+          "right": 374.4,
+          "width": 165.6,
+          "text": ""
+        },
+        {
+          "tag": "polygon",
+          "cls": "",
+          "left": 244.7,
+          "right": 372,
+          "width": 127.3,
+          "text": ""
+        }
+      ],
+      "clippedText": [
+        {
+          "tag": "P",
+          "cls": "sr-only",
+          "text": "Exemplo ilustrativo: um site desorganizado, com mensagem genérica, links soltos e um “clique aqui” n",
+          "scrollWidth": 1638,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "nowrap",
+          "right": 14,
+          "viewport": 360
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "text": "WhatsApp",
+          "scrollWidth": 75,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "right": 313,
+          "viewport": 360
+        }
+      ],
+      "foundTabs": [
+        {
+          "text": "Google",
+          "scrollWidth": 59,
+          "clientWidth": 59,
+          "right": 77.9
+        },
+        {
+          "text": "Maps",
+          "scrollWidth": 48,
+          "clientWidth": 48,
+          "right": 130
+        },
+        {
+          "text": "Assistente de IA",
+          "scrollWidth": 116,
+          "clientWidth": 116,
+          "right": 249.5
+        }
+      ],
+      "documentHeight": 18351,
+      "requestedWidth": 360,
+      "screenshot": "review-before-pr46-360-home.png",
+      "tabsScreenshot": "review-before-pr46-tabs-360.png"
+    },
+    {
+      "url": "http://127.0.0.1:3106/",
+      "title": "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork",
+      "viewport": 390,
+      "clientWidth": 390,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": false,
+      "offscreenElements": [
+        {
+          "tag": "INPUT",
+          "cls": "honeypot",
+          "left": -9999,
+          "right": -9609,
+          "width": 390,
+          "text": ""
+        },
+        {
+          "tag": "I",
+          "cls": "",
+          "left": 378.8,
+          "right": 421.1,
+          "width": 42.2,
+          "text": "Pedir orçamento"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 398.5,
+          "right": 490.6,
+          "width": 92.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 417.5,
+          "right": 471.6,
+          "width": 54.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 498.6,
+          "right": 643.3,
+          "width": 144.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 517.6,
+          "right": 624.3,
+          "width": 106.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "left": 226.2,
+          "right": 405.6,
+          "width": 179.4,
+          "text": ""
+        },
+        {
+          "tag": "polygon",
+          "cls": "",
+          "left": 265.1,
+          "right": 403,
+          "width": 137.9,
+          "text": ""
+        }
+      ],
+      "clippedText": [
+        {
+          "tag": "P",
+          "cls": "sr-only",
+          "text": "Exemplo ilustrativo: um site desorganizado, com mensagem genérica, links soltos e um “clique aqui” n",
+          "scrollWidth": 1638,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "nowrap",
+          "right": 14,
+          "viewport": 390
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "text": "WhatsApp",
+          "scrollWidth": 75,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "right": 343,
+          "viewport": 390
+        }
+      ],
+      "foundTabs": [
+        {
+          "text": "Google",
+          "scrollWidth": 59,
+          "clientWidth": 59,
+          "right": 77.9
+        },
+        {
+          "text": "Maps",
+          "scrollWidth": 48,
+          "clientWidth": 48,
+          "right": 130
+        },
+        {
+          "text": "Assistente de IA",
+          "scrollWidth": 116,
+          "clientWidth": 116,
+          "right": 249.5
+        }
+      ],
+      "documentHeight": 17806,
+      "requestedWidth": 390,
+      "screenshot": "review-before-pr46-390-home.png",
+      "tabsScreenshot": "review-before-pr46-tabs-390.png"
+    },
+    {
+      "url": "http://127.0.0.1:3106/",
+      "title": "Criação de Sites Profissionais em BH e todo o Brasil | DrehWork",
+      "viewport": 414,
+      "clientWidth": 414,
+      "documentScrollWidth": 414,
+      "bodyScrollWidth": 414,
+      "horizontalOverflow": false,
+      "offscreenElements": [
+        {
+          "tag": "INPUT",
+          "cls": "honeypot",
+          "left": -9999,
+          "right": -9585,
+          "width": 414,
+          "text": ""
+        },
+        {
+          "tag": "I",
+          "cls": "",
+          "left": 402.9,
+          "right": 447.9,
+          "width": 45,
+          "text": "Pedir orçamento"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 398.5,
+          "right": 490.6,
+          "width": 92.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 417.5,
+          "right": 471.6,
+          "width": 54.1,
+          "text": "AMFTV"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "case-viewer-tab",
+          "left": 498.6,
+          "right": 643.3,
+          "width": 144.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "STRONG",
+          "cls": "",
+          "left": 517.6,
+          "right": 624.3,
+          "width": 106.7,
+          "text": "Ammis Moda"
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "left": 240.1,
+          "right": 430.5,
+          "width": 190.4,
+          "text": ""
+        },
+        {
+          "tag": "polygon",
+          "cls": "",
+          "left": 281.4,
+          "right": 427.8,
+          "width": 146.4,
+          "text": ""
+        }
+      ],
+      "clippedText": [
+        {
+          "tag": "P",
+          "cls": "sr-only",
+          "text": "Exemplo ilustrativo: um site desorganizado, com mensagem genérica, links soltos e um “clique aqui” n",
+          "scrollWidth": 1638,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "nowrap",
+          "right": 14,
+          "viewport": 414
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "text": "WhatsApp",
+          "scrollWidth": 75,
+          "clientWidth": 1,
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "right": 367,
+          "viewport": 414
+        }
+      ],
+      "foundTabs": [
+        {
+          "text": "Google",
+          "scrollWidth": 59,
+          "clientWidth": 59,
+          "right": 77.9
+        },
+        {
+          "text": "Maps",
+          "scrollWidth": 48,
+          "clientWidth": 48,
+          "right": 130
+        },
+        {
+          "text": "Assistente de IA",
+          "scrollWidth": 116,
+          "clientWidth": 116,
+          "right": 249.5
+        }
+      ],
+      "documentHeight": 17738,
+      "requestedWidth": 414,
+      "screenshot": "review-before-pr46-414-home.png",
+      "tabsScreenshot": "review-before-pr46-tabs-414.png"
+    }
+  ]
+}
