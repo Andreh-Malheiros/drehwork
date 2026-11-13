@@ -4,7 +4,7 @@ import { insights } from "@/content/insights";
 import { indexablePaths } from "@/lib/seo";
 
 // Update when page content changes; a build-time date would mark every URL as modified on each deploy.
-const lastModified = new Date("2026-11-12");
+const lastModified = new Date("2026-11-13");
 const casePublishedOn = new Date("2026-11-10");
 
 export default function sitemap(): MetadataRoute.Sitemap {
