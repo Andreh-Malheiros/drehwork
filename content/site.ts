@@ -55,7 +55,7 @@ export type Service = {
 
 export const brand = {
   name: "DrehWork",
-  positioning: "Parceiro de crescimento digital: sites, estratégia, SEO e automação para empresas que tratam presença digital como investimento.",
+  positioning: "A DrehWork cria sites, lojas, sistemas sob medida, automações e integrações, além de organizar a presença no Instagram e no Google.",
   email: "contato@drehwork.com",
   whatsapp: "+55 31 98541-5964",
   whatsappDigits: "5531985415964",
@@ -68,10 +68,8 @@ export const brand = {
   hours: "Atendimento todos os dias, 24 horas",
   lead: "Andreh Malheiros",
   legalName: "Andreh Malheiros Tiberio",
-  /** Início da atuação profissional: 19/08/2024 (decisão D11). */
-  activeSince: "agosto de 2024",
   cnpj: "65.415.209/0001-61",
-  slogan: "Visão que transforma. Estratégia que gera resultado.",
+  slogan: "DrehWork · sites e soluções digitais para negócios.",
   pillars: ["Planejar", "Criar", "Evoluir"],
   logo: "/brand/icon-512.png",
   instagramUrl: "https://instagram.com/dreh.work",

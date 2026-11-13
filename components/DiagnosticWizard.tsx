@@ -13,7 +13,7 @@ type Answers = Record<string, string | boolean>;
 type Status = "editing" | "sending" | "sent";
 const STORAGE = "dreh:diagnostic:v1";
 const steps = [
-  { id: "company", title: "Sobre a empresa", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "select"]] },
+  { id: "company", title: "Conte primeiro sobre o negócio.", fields: [["company", "Nome da empresa", "text"], ["responsible", "Seu nome", "text"], ["segment", "Segmento", "select"]] },
   { id: "location", title: "Onde a empresa atua?", fields: [["city", "Cidade", "text"], ["state", "Estado", "select"]] },
   { id: "presence", title: "Presença atual", fields: [["hasSite", "A empresa possui site?", "select"], ["siteUrl", "Endereço do site (se existir)", "text"], ["instagram", "Instagram (opcional)", "text"], ["googleProfile", "Possui Google Perfil da Empresa? (opcional)", "select"]] },
   { id: "need", title: "O que precisa mudar?", fields: [["situation", "Situação atual", "select"], ["objective", "Principal objetivo", "select"], ["solution", "Solução de interesse", "select"], ["timeline", "Prazo desejado (opcional)", "text"]] },
@@ -124,6 +124,6 @@ export function DiagnosticWizard() {
       : <input type={type} value={String(answers[id] || "")} aria-invalid={invalid.includes(id) || undefined} aria-describedby={invalid.includes(id) ? "wizard-error" : undefined} onChange={e => update(id, (FIELD_MASKS[id] ?? String)(e.target.value))} inputMode={({ whatsapp: "tel", email: "email", siteUrl: "url" } as Record<string, "tel" | "email" | "url">)[id]} placeholder={({ whatsapp: "(31) 99999-9999", state: "MG", instagram: "@suaempresa", siteUrl: "www.suaempresa.com.br", email: "voce@empresa.com" } as Record<string, string>)[id]} maxLength={MAX_FIELD_LENGTH} required={isRequired(id)} autoComplete={({ responsible: "name", email: "email", whatsapp: "tel", company: "organization", city: "address-level2", state: "address-level1", siteUrl: "url" } as Record<string, string>)[id]} />}</label>)}</div>
     {error && <p className="form-error" id="wizard-error" role="alert">{error}</p>}
     <div className="wizard-actions">{step > 0 && <button type="button" className="button secondary" onClick={back}>Voltar</button>}<button type="submit" className="button primary">Continuar</button><button type="button" className="text-link" onClick={restart}>Recomeçar</button></div>
-    <p className="review-note">Seu progresso fica salvo neste navegador até o envio. Prefere ir direto ao ponto? <a href={whatsappUrl("um diagnóstico da minha presença digital")} target="_blank" rel="noreferrer">Fale pelo WhatsApp</a>.</p>
+    <p className="review-note">Seu progresso fica salvo neste navegador até o envio. Prefere explicar em uma mensagem? <a href={whatsappUrl("um diagnóstico da minha presença digital")} target="_blank" rel="noreferrer">Fale com a DrehWork</a>.</p>
   </form>;
 }
