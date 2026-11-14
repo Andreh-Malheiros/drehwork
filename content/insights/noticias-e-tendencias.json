@@ -1516,5 +1516,113 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "bloquear-treinamento-de-ia-robots-txt",
+    "title": "Bloquear treinamento de IA no seu site: a nova regra comum do robots.txt e o que muda para pequenas empresas",
+    "seoTitle": "Bloquear treinamento de IA no site: nova regra do robots.txt",
+    "description": "Google, Microsoft, OpenAI e Anthropic anunciaram apoio a uma regra única no robots.txt para recusar treino de IA. Veja se sua empresa deve usar e quando.",
+    "keyword": "bloquear treinamento de ia",
+    "category": "Notícias e tendências",
+    "date": "2026-11-14",
+    "updated": "2026-11-14",
+    "summary": "Em 30 de outubro, Google e Microsoft anunciaram apoio a um sinal comum no robots.txt para recusar o uso do site no treinamento de IA, com início previsto para 2027. Entenda a diferença entre treinar a IA e aparecer nas respostas dela antes de mexer no seu site.",
+    "intro": "Em breve vai ser possível bloquear treinamento de IA no seu site com uma única regra no arquivo robots.txt, válida para várias empresas ao mesmo tempo. Em 30 de outubro de 2026, o Google anunciou no blog oficial do Search Central que pretende apoiar esse sinal comum em 2027, e a Microsoft informou que começa a respeitá-lo em 1º de fevereiro de 2027; segundo a imprensa especializada, OpenAI e Anthropic também declararam apoio. Para a maioria das pequenas empresas, a resposta direta é: não há nada urgente a fazer agora, e bloquear o treinamento não é o mesmo que sumir das respostas do ChatGPT ou do Google. Recusar o treinamento faz sentido para quem vende conteúdo próprio, como cursos, textos ou fotos; para quem quer ser encontrado e recomendado, o mais importante é não bloquear por engano o que traz clientes. Abaixo, o que foi anunciado, o que ainda é proposta e como decidir.",
+    "sections": [
+      {
+        "heading": "O que foi anunciado em 30 de outubro",
+        "paragraphs": [
+          "O robots.txt é um arquivo de texto simples, na raiz do site, que diz aos robôs de busca e de IA quais páginas eles podem ou não acessar. Até hoje, quem queria recusar o uso do conteúdo para treinar modelos de IA precisava escrever uma regra para cada empresa, usando o nome do robô de cada uma, como o Google-Extended, no caso do Google.",
+          "No post de 30 de outubro, assinado por John Mueller, o Google explica que vai apoiar um controle compartilhado de treinamento de IA no robots.txt, baseado no trabalho do grupo AIPREF do IETF, a organização que define padrões técnicos da internet. A ideia é que o dono do site use um único marcador, chamado de policy token, para expressar a preferência de treinamento para vários provedores de IA de uma vez. O Google diz que pretende oferecer esse suporte em 2027 e que vai publicar atualizações sobre o andamento.",
+          "No mesmo dia, a Microsoft publicou no blog do Bing que começa a respeitar as novas preferências em 1º de fevereiro de 2027. Segundo o site Coywolf, que reuniu os anúncios das quatro empresas, a Anthropic já respeita o sinal, a OpenAI prevê implementar nos próximos meses, e o marcador usado na linha User-Agent do robots.txt é __usage_ai-training."
+        ]
+      },
+      {
+        "heading": "Treinar a IA não é o mesmo que aparecer nas respostas da IA",
+        "paragraphs": [
+          "Esse é o ponto que mais importa para o dono de negócio. Treinamento é o uso do conteúdo para ajustar o próprio modelo de IA, aquilo que ele aprende de forma permanente. Aparecer nas respostas é outra coisa: quando alguém pergunta algo a um assistente, ele pode buscar páginas na hora para montar a resposta e citar a fonte. A Microsoft chama esse segundo uso de grounding (ancoragem) e trata os dois como preferências independentes: mudar uma não muda a outra.",
+          "Segundo a Microsoft, essas preferências não alteram a elegibilidade para os resultados tradicionais do Bing. A empresa avisa, porém, que restringir o grounding reduz a visibilidade da marca nas experiências de IA. No caso do Google, a documentação do novo sinal informa que quem usar o marcador para recusar o treinamento, sem mencionar o Google-Extended, será tratado como se tivesse bloqueado o Google-Extended. O próprio Google lembra que controles específicos de cada empresa continuam funcionando junto com o sinal comum.",
+          "Na prática: recusar o treinamento protege o seu conteúdo de virar parte do modelo, mas, pelo que as empresas informaram, não deveria tirar o seu site da busca tradicional. Já bloquear os robôs que buscam páginas para responder perguntas pode, sim, diminuir as chances de a sua empresa ser citada por assistentes de IA."
+        ]
+      },
+      {
+        "heading": "E o controle do Google para AI Overviews e Modo IA?",
+        "paragraphs": [
+          "Existe um terceiro controle, que já está valendo e costuma ser confundido com o anúncio de outubro. Segundo a Central de Ajuda do Search Console, desde 31 de agosto de 2026 todos os sites do mundo têm acesso ao controle de IA generativa da Busca, em Configurações. Ele permite incluir ou excluir os links e o conteúdo do site das visões gerais criadas por IA (AI Overviews), do Modo IA e dos recursos de IA generativa do Discover. O padrão é incluir.",
+          "O Google afirma que esse controle não afeta o treinamento de IA, que ele não é usado como sinal de classificação para outras partes da Busca e que a mudança costuma levar alguns dias para valer. Quem escolhe excluir deixa de receber impressões e visitas vindas desses recursos. Para limitar o treinamento dos modelos, a orientação do Google continua sendo o Google-Extended.",
+          "Resumindo os três controles: o sinal comum do robots.txt trata de treinamento em vários provedores e começa em 2027; o Google-Extended trata do treinamento no Google e já funciona; e a configuração no Search Console decide se o site aparece nas respostas de IA da Busca do Google."
+        ]
+      },
+      {
+        "heading": "Sua empresa deve bloquear o treinamento de IA?",
+        "paragraphs": [
+          "Não existe resposta única, e nenhuma das fontes traz dados sobre o efeito dessa escolha no tráfego de pequenas empresas. Por isso, vale decidir pelo tipo de conteúdo que o seu site tem:"
+        ],
+        "items": [
+          "Negócio local ou de serviços (clínica, escritório, loja, restaurante): o site existe para ser encontrado. Em geral, não há motivo para bloquear o acesso aos robôs de busca, e recusar o treinamento é uma escolha de princípio, sem urgência.",
+          "Quem vende conteúdo (cursos, e-books, receitas, artigos, fotografia): faz mais sentido considerar a recusa do treinamento, porque o conteúdo é o produto. Ainda assim, mantenha a página de vendas acessível para ser encontrada.",
+          "Loja virtual: as descrições de produto e as políticas ajudam a loja a aparecer em buscas e comparações. Antes de bloquear qualquer coisa, confira com quem cuida do site quais robôs já estão liberados.",
+          "Em qualquer caso, não copie regras de robots.txt da internet sem entender cada linha. Um Disallow no lugar errado pode tirar o site inteiro do Google."
+        ]
+      },
+      {
+        "heading": "O que fazer agora, sem pressa",
+        "items": [
+          "Abra o endereço seudominio.com.br/robots.txt e veja o que já está lá. Plataformas como Shopify e construtores de site costumam gerar esse arquivo automaticamente.",
+          "Se você já usa regras para GPTBot, ClaudeBot ou Google-Extended, mantenha. As empresas informaram que os controles específicos continuam valendo.",
+          "Se quiser usar o novo marcador comum, faça isso com acompanhamento técnico e lembre que, pelas datas anunciadas, Google e Microsoft só passam a respeitá-lo em 2027.",
+          "Quem usa as tags NoArchive ou NoCache para limitar o uso pela IA da Microsoft deve revisar a configuração: a empresa informou que elas deixam de ser lidas como preferência de treinamento e grounding, e recomenda agir até 1º de março de 2027.",
+          "Antes de excluir o site das respostas de IA no Search Console, consulte o relatório de desempenho de IA generativa, como o próprio Google recomenda, para entender quanto tráfego vem desses recursos."
+        ]
+      },
+      {
+        "heading": "O que ainda não está definido",
+        "paragraphs": [
+          "O Google descreve o controle como uma proposta em rascunho e diz que as discussões com várias partes interessadas continuam no IETF. Isso significa que nomes, detalhes de sintaxe e datas podem mudar até a implementação. O robots.txt também é um pedido, não uma trava: ele é respeitado por quem decide respeitá-lo, e robôs que ignoram as regras não são bloqueados por ele. Nenhuma dessas configurações garante que a sua empresa seja recomendada, ou deixe de ser, por um assistente de IA. Vamos atualizar este guia quando Google e OpenAI publicarem a documentação final."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "Se eu bloquear o treinamento de IA, meu site some do Google?",
+        "Pelo que Google e Microsoft informaram, não. Recusar o treinamento é diferente de bloquear a indexação na busca. A Microsoft afirma que essas preferências não mudam a elegibilidade para os resultados tradicionais do Bing, e o Google trata o sinal como equivalente ao Google-Extended, que é um controle de treinamento. O que tira o site da busca são regras que bloqueiam o próprio robô de busca ou a tag noindex."
+      ],
+      [
+        "Bloquear o treinamento impede minha empresa de aparecer no ChatGPT ou no Modo IA?",
+        "Não necessariamente. Aparecer em uma resposta depende de o assistente conseguir buscar e citar a sua página, o que é tratado por outros controles. No Google, quem decide isso é a configuração de IA generativa no Search Console. Bloquear também esses robôs pode reduzir a visibilidade da marca nas respostas de IA, como alerta a Microsoft."
+      ],
+      [
+        "Preciso mexer no robots.txt agora?",
+        "Não há prazo obrigatório para quem não usa nenhuma regra de IA hoje. O sinal comum deve ser respeitado por Google e Microsoft só em 2027, e a proposta ainda pode mudar. A exceção é quem usa NoArchive ou NoCache para limitar a IA da Microsoft, que deve revisar isso até 1º de março de 2027."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais",
+      "manutencao"
+    ],
+    "sources": [
+      {
+        "title": "Google Search Central Blog: Supporting a shared AI training control for websites (30/10/2026)",
+        "url": "https://developers.google.com/search/blog/2026/10/ai-training-control"
+      },
+      {
+        "title": "Bing Blog: Your content, your choice — clearer preferences for training and grounding (30/10/2026)",
+        "url": "https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/"
+      },
+      {
+        "title": "Central de Ajuda do Search Console: controle de IA generativa da Busca",
+        "url": "https://support.google.com/webmasters/answer/16908024"
+      },
+      {
+        "title": "Coywolf: Google, OpenAI, Microsoft e Anthropic apoiam sinal comum de treinamento no robots.txt (1/11/2026)",
+        "url": "https://coywolf.com/news/seo/google-openai-microsoft-and-anthropic-back-a-shared-robotstxt-ai-training-signal/"
+      },
+      {
+        "title": "Search Engine Roundtable: Google Adopts New AI Training Control (30/10/2026)",
+        "url": "https://www.seroundtable.com/google-ai-training-control-42430.html"
+      }
+    ],
+    "status": "published"
   }
 ]
