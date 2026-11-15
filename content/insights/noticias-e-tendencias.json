@@ -1624,5 +1624,102 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "base-de-conhecimento-shopify-agentes-de-ia",
+    "title": "Base de conhecimento da Shopify: o que a loja precisa revisar para os agentes de IA após a Edição de Outono 2026",
+    "seoTitle": "Base de conhecimento da Shopify para agentes de IA",
+    "description": "A Shopify levou a base de conhecimento para o painel e lançou a Edição de Outono 2026. Veja o que revisar na sua loja antes que a IA responda por ela.",
+    "keyword": "base de conhecimento da shopify",
+    "category": "Notícias e tendências",
+    "date": "2026-11-15",
+    "updated": "2026-11-15",
+    "summary": "Na Edição de Outono 2026 (Fall '26 Edition), lançada em 28 de outubro, a Shopify colocou a base de conhecimento dentro do painel da loja: é ali que o lojista aprova os fatos que ChatGPT, Gemini e outros agentes de IA vão repetir aos clientes. Entenda o que mudou, o que ainda não chegou ao Brasil e o que revisar agora.",
+    "intro": "A base de conhecimento da Shopify é a área do painel onde o lojista revisa e publica os fatos da loja que os agentes de IA, como ChatGPT, Gemini e outros assistentes de compra, usam para responder clientes: prazo de troca, regiões de entrega, embalagem para presente e perguntas frequentes. Com a Edição de Outono 2026 (Fall '26 Edition), lançada em 28 de outubro de 2026, a Shopify levou esse recurso para dentro do painel, no canal de vendas Agentic, e passou a sugerir rascunhos a partir do conteúdo da própria loja; nada vai para os agentes sem a aprovação do lojista. A resposta direta para quem tem loja Shopify no Brasil: vale abrir o painel, conferir se a área já aparece para você e revisar políticas e perguntas frequentes antes do fim do ano, porque informação errada nessa base pode virar resposta errada de uma IA. Abaixo, o que foi anunciado, o que ainda está restrito a outros países e um roteiro simples de revisão.",
+    "sections": [
+      {
+        "heading": "O que a Shopify anunciou em 28 de outubro",
+        "paragraphs": [
+          "Duas vezes por ano a Shopify reúne suas novidades em uma \"edição\". A de outono de 2026 se chama Exponential e, segundo a própria empresa, foi publicada em 28 de outubro. O tema central é o chamado comércio agêntico: compras feitas com a ajuda de agentes de IA, programas que pesquisam produtos, comparam opções e, em alguns casos, finalizam a compra em nome do cliente.",
+          "Segundo o comunicado da Shopify, a base de conhecimento agora fica no painel, em canais de vendas, na área Agentic. Ali o lojista revisa e publica os fatos que os agentes recebem sobre a loja, como janela de devolução, destinos de entrega e serviços de presente. A Shopify cria rascunhos desses fatos a partir da vitrine e sugere atualizações, mas, nas palavras da empresa, nada do que ela redige chega a um agente sem a aprovação do lojista.",
+          "Segundo o blog da Ordoro, parceira da Shopify que resumiu a edição, os rascunhos ficam privados até serem publicados, e o antigo aplicativo separado Knowledge Base deixa de funcionar em 15 de janeiro de 2027. Quem usava esse aplicativo precisa conferir se as informações foram para a nova área do painel."
+        ]
+      },
+      {
+        "heading": "Por que isso importa para uma pequena loja",
+        "paragraphs": [
+          "Quando alguém pergunta a um assistente de IA se uma loja troca produtos ou entrega em determinada cidade, o assistente precisa tirar a resposta de algum lugar. A Shopify afirma que ChatGPT, Copilot, Meta e outros agentes recebem informações de produtos pelo Shopify Catalog, o catálogo que reúne dados das lojas da plataforma. A base de conhecimento complementa esse catálogo com os fatos sobre a operação da loja.",
+          "Na prática, a sua política de trocas, o prazo de envio e as respostas das perguntas frequentes deixam de ser só textos de rodapé. Elas passam a ser a matéria-prima do que uma IA pode dizer sobre a sua empresa. Se a página de trocas está desatualizada, ou se o prazo de entrega mudou e ninguém atualizou o site, o risco é o agente repetir a informação antiga para um cliente que está decidindo a compra.",
+          "Segundo a Shopify, o painel também passou a mostrar se a loja é elegível para o Shopify Catalog e a indicar o que está impedindo essa elegibilidade. É um bom ponto de partida para entender se os seus produtos estão chegando, ou não, aos agentes de compra."
+        ]
+      },
+      {
+        "heading": "O que mais mudou e o que ainda não vale no Brasil",
+        "paragraphs": [
+          "A edição traz mais de 150 atualizações, segundo a Ordoro. Para pequenas lojas brasileiras, estas são as que merecem atenção, com as limitações que as próprias fontes informam:"
+        ],
+        "items": [
+          "Sidekick, o assistente de IA do painel, foi reconstruído: segundo a Shopify, ele faz cálculos, escreve código, pesquisa na internet e lembra o que o lojista ensina, sempre pedindo aprovação antes de aplicar mudanças. O Canvas, que permite editar a loja com o Sidekick, está em acesso antecipado.",
+          "Shopify Protect ganhou ferramentas contra fraude e contestações de pagamento (chargebacks), incluindo regras de risco criadas pelo próprio lojista. Na página da edição, parte desses recursos aparece como em liberação ou prevista para breve.",
+          "Venda pelo Google, no Modo IA da Busca e no app Gemini, com checkout da Shopify: segundo a Ordoro, está sendo liberada apenas nos Estados Unidos, no Canadá e na Austrália. Não há anúncio para o Brasil.",
+          "Campos personalizados no checkout, como instruções de entrega e mensagem de presente, aparecem como em liberação; segundo a Ordoro, não chegam antes da Black Friday e da Cyber Monday deste ano.",
+          "O programa Shop Promise, que pode dar mais destaque a produtos com selo de entrega, é gratuito apenas para lojas elegíveis dos Estados Unidos, segundo a Shopify."
+        ]
+      },
+      {
+        "heading": "Roteiro de revisão para fazer ainda em novembro",
+        "paragraphs": [
+          "O comunicado da Shopify não informa em quais países cada recurso está liberado, então o primeiro passo é conferir o seu próprio painel. Depois disso, a revisão é a mesma de qualquer loja bem cuidada, só que agora com um motivo a mais:"
+        ],
+        "items": [
+          "Abra os canais de vendas e veja se a área Agentic e a base de conhecimento já aparecem para a sua loja. Se aparecerem, leia cada rascunho sugerido antes de publicar.",
+          "Revise a política de trocas e devoluções: prazo, condições e quem paga o frete de volta. Ela precisa estar de acordo com o Código de Defesa do Consumidor, inclusive o direito de arrependimento nas compras online.",
+          "Confira regiões atendidas, prazos médios de envio e formas de entrega. Para o Natal, deixe claro até quando um pedido chega a tempo.",
+          "Atualize as perguntas frequentes com as dúvidas que mais chegam pelo WhatsApp e pelo Instagram, com respostas curtas e objetivas.",
+          "Verifique se os produtos têm título, descrição, preço, estoque e fotos completos, porque é isso que os agentes leem no catálogo.",
+          "Se você usava o aplicativo Knowledge Base, confirme que as informações estão no painel antes de 15 de janeiro de 2027."
+        ]
+      },
+      {
+        "heading": "O que ainda não se sabe",
+        "paragraphs": [
+          "A Shopify não informou, nas fontes consultadas, quanto peso os agentes dão à base de conhecimento em relação ao restante do site, nem quais agentes já a consultam no Brasil. Também não há garantia de que publicar esses fatos faça a sua loja ser recomendada por uma IA: o que a base faz é reduzir o risco de a IA responder errado sobre você. Por isso, ela não substitui um site com políticas claras, boas páginas de produto e atendimento rápido. Vamos atualizar este guia quando a Shopify detalhar a disponibilidade dos recursos no Brasil."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "A base de conhecimento da Shopify já está disponível no Brasil?",
+        "O comunicado da Shopify não traz uma lista de países para esse recurso. O jeito mais seguro de saber é abrir o painel da sua loja e procurar a área Agentic dentro de canais de vendas. Já a venda pelo Modo IA do Google e pelo Gemini com checkout da Shopify, segundo a Ordoro, está sendo liberada apenas nos Estados Unidos, no Canadá e na Austrália."
+      ],
+      [
+        "A Shopify publica informações da minha loja para a IA sem eu aprovar?",
+        "Segundo a Shopify, não. A plataforma cria rascunhos dos fatos a partir da vitrine e sugere atualizações, mas nada chega aos agentes sem a aprovação do lojista. Os rascunhos ficam privados até serem publicados."
+      ],
+      [
+        "Preciso mudar de plataforma ou contratar algo novo para aparecer em agentes de IA?",
+        "Não necessariamente. O ponto de partida é ter políticas, prazos, perguntas frequentes e fichas de produto corretas e completas, o que já ajuda clientes humanos. Nenhuma plataforma garante que a loja será recomendada por uma IA; o que dá para controlar é a qualidade e a precisão das informações publicadas."
+      ]
+    ],
+    "relatedServices": [
+      "lojas-shopify",
+      "presenca-digital",
+      "manutencao"
+    ],
+    "sources": [
+      {
+        "title": "Shopify News: Exponential: Shopify's Fall '26 Edition (28/10/2026)",
+        "url": "https://www.shopify.com/news/fall-26-edition-merchant"
+      },
+      {
+        "title": "Shopify Editions Fall '26: lista completa de novidades",
+        "url": "https://www.shopify.com/editions/fall2026"
+      },
+      {
+        "title": "Ordoro: Shopify Editions Fall 2026 — What It Means for Operations (06/11/2026)",
+        "url": "https://blog.ordoro.com/2026/11/06/shopify-editions-fall-2026/"
+      }
+    ],
+    "status": "published"
   }
 ]
