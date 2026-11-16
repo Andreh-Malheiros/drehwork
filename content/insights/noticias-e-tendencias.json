@@ -1721,5 +1721,93 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "pix-offline-proximos-passos-do-pix-banco-central",
+    "title": "Pix offline e os próximos passos do Pix: o que muda para pequenas empresas",
+    "seoTitle": "Pix offline e os próximos passos do Pix: o que muda",
+    "description": "Nos seis anos do Pix, o Banco Central anunciou Pix offline por aproximação, melhorias no Pix Automático e duplicatas por QR Code. Veja o que muda.",
+    "keyword": "pix offline",
+    "category": "Notícias e tendências",
+    "date": "2026-11-16",
+    "updated": "2026-11-16",
+    "summary": "O Banco Central marcou os seis anos do Pix projetando o Pix offline por aproximação, ajustes no Pix Automático e integração com o crédito. Ainda não há datas. Entenda o que muda para quem vende.",
+    "intro": "O Pix offline é a próxima grande novidade projetada pelo Banco Central: um pagamento por aproximação que, segundo o comunicado divulgado em 16 de novembro de 2026, nos seis anos do Pix, \"permitirá pagamentos sem conexão à internet por meio de NFC em celulares, cartões com chip, tags e wearables\". NFC é a tecnologia de aproximação, a mesma usada quando o cliente encosta o cartão ou o celular na maquininha. O mesmo comunicado prevê melhorias no Pix Automático e a liquidação de duplicatas por QR Code. A resposta curta para o dono de pequena empresa é: por enquanto, nada muda no seu caixa, porque o Banco Central não divulgou datas de lançamento. Mas vale entender o que vem por aí para planejar maquininha, cobrança recorrente e site sem pressa e sem cair em promessas de fornecedores. Neste guia, com base nas reportagens citadas ao final, explicamos cada anúncio e o que fazer agora.",
+    "sections": [
+      {
+        "heading": "O que o Banco Central anunciou nos seis anos do Pix",
+        "paragraphs": [
+          "Na segunda-feira, 16 de novembro de 2026, o Banco Central publicou uma nota para marcar os seis anos de lançamento do Pix. Segundo as reportagens da Reuters publicadas pela CNN Brasil e pelo Money Times, a nota lista quatro frentes de evolução do sistema: o Pix por aproximação offline, aprimoramentos no Pix Automático, integração com o mercado de crédito e, ainda em estudo, a ligação direta com plataformas de pagamento de outros países.",
+          "O ponto mais importante para quem tem um negócio é o tom do anúncio. Os verbos usados nas reportagens são \"projeta\", \"prevê\" e \"estuda\". Ou seja, são planos do regulador, e as matérias não trazem cronograma de implantação para nenhuma das novidades. Até que o Banco Central publique as regras e as datas, nenhum banco ou maquininha é obrigado a oferecer esses recursos.",
+          "Por isso, desconfie de qualquer oferta que diga que já vende \"Pix offline\" com base nesse anúncio. Se um fornecedor afirmar isso, peça que ele indique a norma do Banco Central que regulamenta o recurso."
+        ]
+      },
+      {
+        "heading": "Pix offline por aproximação: como deve funcionar",
+        "paragraphs": [
+          "Hoje, o Pix por aproximação depende de o celular do cliente estar conectado à internet para concluir o pagamento. A proposta do Pix offline é permitir o pagamento sem essa conexão, usando NFC em celulares, cartões com chip, tags (pequenas etiquetas eletrônicas) e wearables, que são dispositivos vestíveis como relógios e pulseiras inteligentes, conforme o texto do comunicado reproduzido pela imprensa.",
+          "Para o pequeno comércio, a ideia é relevante em situações em que o sinal falha: feiras, eventos, food trucks, áreas rurais, subsolos de shopping ou lojas com cobertura ruim. Também abre espaço para o cliente pagar com um cartão com chip ou uma pulseira, sem precisar abrir o aplicativo do banco.",
+          "O que as fontes não dizem: quais maquininhas serão compatíveis, se haverá limite de valor específico para pagamentos offline, como funcionará a confirmação do pagamento para o lojista nem quando o recurso estará disponível. Esses detalhes dependem de regulamentação futura, e não vamos supor respostas aqui."
+        ]
+      },
+      {
+        "heading": "Pix Automático e duplicatas: o que pode mudar na cobrança",
+        "paragraphs": [
+          "O Pix Automático é a modalidade em que o cliente autoriza uma única vez e os pagamentos recorrentes são debitados automaticamente, útil para mensalidades, assinaturas e planos. Segundo as reportagens, o Banco Central prevê três melhorias: a possibilidade de pagamento parcial da cobrança, novas regras para alterar a recorrência e o uso do Pix Automático em situações sem periodicidade definida previamente.",
+          "Na prática, isso pode interessar a academias, escolas, clínicas, prestadores de serviço por contrato e negócios de assinatura que cobram valores que variam de um mês para outro ou que não seguem um calendário fixo. Ainda assim, as regras detalhadas não foram divulgadas, então qualquer mudança no seu modelo de cobrança deve esperar a regulamentação.",
+          "Na frente de crédito, o comunicado cita a liquidação instantânea de duplicatas escriturais por QR Code e o uso de fluxos futuros de recebíveis do Pix como garantia em financiamentos. Duplicata é o título que representa uma venda a prazo entre empresas; na versão escritural, ela é registrada eletronicamente. Para quem vende para outras empresas, isso aponta para receber duplicatas com a mesma praticidade de um Pix e, no futuro, usar o que entra por Pix como garantia ao pedir crédito. Também aqui não há datas nem condições publicadas."
+        ]
+      },
+      {
+        "heading": "O que fazer agora: checklist para pequenas empresas",
+        "items": [
+          "Não troque de maquininha nem de banco por causa do Pix offline: o recurso ainda não tem data. Quando for lançado, pergunte à operadora se o seu equipamento é compatível.",
+          "Mantenha mais de uma forma de receber, como QR Code do Pix, chave Pix, link de pagamento e cartão, para não perder vendas quando a internet falhar.",
+          "Se você cobra mensalidades, avalie o Pix Automático atual com seu banco ou gateway (o serviço que processa os pagamentos) e acompanhe as melhorias anunciadas.",
+          "Se vende a prazo para outras empresas, converse com seu contador e com o banco sobre duplicatas escriturais e como elas se encaixam na sua rotina.",
+          "Deixe claro no site, no Perfil da Empresa no Google e no Instagram quais formas de pagamento você aceita hoje, sem anunciar recursos que ainda não oferece.",
+          "Desconfie de mensagens que usem a novidade como isca, como links para \"ativar o Pix offline\". Confirme qualquer informação no site oficial do Banco Central ou no aplicativo do seu banco."
+        ]
+      },
+      {
+        "heading": "E o site e a loja virtual?",
+        "paragraphs": [
+          "O Pix offline foi pensado para o pagamento presencial, por aproximação. Para quem vende pela internet, o anúncio não traz mudança imediata no checkout da loja, que continua dependendo do provedor de pagamento contratado. Já as melhorias no Pix Automático podem, no futuro, interessar a lojas e serviços que vendem por assinatura, desde que a plataforma e o gateway as ofereçam.",
+          "O que vale fazer desde já é organizar a informação: uma página clara de formas de pagamento, um passo a passo para quem paga por Pix e um canal rápido de atendimento, como o WhatsApp, para tirar dúvidas. Quando as novidades forem regulamentadas, fica mais simples atualizar uma página bem estruturada do que corrigir informações espalhadas em vários lugares.",
+          "Se a sua cobrança recorrente ainda é feita manualmente, por mensagem e conferência de extrato, a automação de processos pode ajudar a organizar lembretes, conferências e registros, independentemente de qual meio de pagamento você usa."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O Pix offline já está funcionando?",
+        "Não. Segundo as reportagens sobre a nota do Banco Central de 16 de novembro de 2026, o Pix por aproximação offline é um projeto, e não foi divulgada data de lançamento. Até a regulamentação, nenhum banco ou maquininha é obrigado a oferecê-lo."
+      ],
+      [
+        "Vou precisar trocar de maquininha para aceitar o Pix offline?",
+        "As fontes não informam quais equipamentos serão compatíveis. O mais prudente é esperar a regulamentação e, quando o recurso for lançado, perguntar à sua operadora se o seu modelo aceita pagamentos offline por aproximação."
+      ],
+      [
+        "O que muda no Pix Automático?",
+        "O Banco Central prevê permitir pagamento parcial da cobrança, novas regras para alterar a recorrência e uso sem periodicidade definida. As regras detalhadas e as datas ainda não foram publicadas, segundo as reportagens."
+      ]
+    ],
+    "relatedServices": [
+      "automacao-de-processos",
+      "sites-profissionais",
+      "lojas-shopify",
+      "presenca-digital"
+    ],
+    "sources": [
+      {
+        "title": "Seis anos do Pix: BC projeta aproximação offline e integração internacional (CNN Brasil/Reuters, 16/11/2026)",
+        "url": "https://www.cnnbrasil.com.br/noticias/seis-anos-do-pix-bc-projeta-aproximacao-offline-e-integracao-internacional/"
+      },
+      {
+        "title": "Banco Central projeta Pix por aproximação offline e integração internacional (Money Times/Reuters, 16/11/2026)",
+        "url": "https://www.moneytimes.com.br/banco-central-projeta-pix-por-aproximacao-offline-e-integracao-internacional-mlem/"
+      }
+    ],
+    "status": "published"
   }
 ]
