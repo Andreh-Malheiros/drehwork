@@ -1809,5 +1809,109 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "consultas-de-marca-no-search-console",
+    "title": "Consultas de marca no Search Console: como saber quem busca sua empresa pelo nome",
+    "seoTitle": "Consultas de marca no Search Console: como usar o filtro",
+    "description": "O Google levou o filtro de consultas de marca do Search Console para a API em 16/11/2026. Veja o que ele mostra e como usar na pequena empresa.",
+    "keyword": "consultas de marca no search console",
+    "category": "Notícias e tendências",
+    "date": "2026-11-17",
+    "updated": "2026-11-17",
+    "summary": "O filtro de consultas de marca no Search Console separa quem já procura sua empresa pelo nome de quem a encontra buscando um serviço. Em 16/11/2026 o Google levou o recurso para a API. Entenda como usar.",
+    "intro": "As consultas de marca no Search Console são as buscas no Google que incluem o nome da sua empresa, e o filtro que separa essas buscas das demais é uma das formas mais simples de responder a duas perguntas de qualquer dono de negócio: \"quantas pessoas já me procuram pelo nome?\" e \"quantas me encontram sem me conhecer?\". O Search Console é a ferramenta gratuita do Google que mostra como o seu site aparece nas buscas. O filtro existe no relatório de desempenho desde novembro de 2025 e, segundo o Google, está disponível para todos os sites elegíveis desde 11 de março de 2026. A novidade é de 16 de novembro de 2026: o Google anunciou no blog oficial Search Central que o filtro de marca, o relatório de busca multimodal e os filtros de vários países e dispositivos agora também estão na API do Search Console, a conexão usada por painéis e ferramentas de relatório. Neste guia explicamos o que muda, onde encontrar o filtro e como interpretar os números sem se enganar.",
+    "sections": [
+      {
+        "heading": "O que o Google anunciou em 16 de novembro",
+        "paragraphs": [
+          "Na segunda-feira, 16 de novembro de 2026, a equipe do Search Console publicou no blog Google Search Central que três recursos que já existiam no relatório de desempenho passaram a estar disponíveis na Search Analytics API, a interface de programação que permite puxar os dados do Search Console para planilhas, painéis e ferramentas de terceiros.",
+          "Os três recursos são: a classificação de consultas de marca e de não marca; o tipo de busca multimodal da web, que reúne buscas feitas com imagens; e a possibilidade de filtrar vários países ou vários dispositivos em uma única consulta. Segundo o Google, a mudança atende a pedidos de quem monta relatórios personalizados e automatizados, que antes precisava juntar várias requisições ou manter listas de palavras-chave para separar o tráfego de marca.",
+          "Para a maioria das pequenas empresas, que olha o Search Console direto no navegador, nada muda na tela. O que muda é que relatórios automáticos, como os montados no Looker Studio ou em ferramentas de SEO, poderão separar marca e não marca sem gambiarras, à medida que essas ferramentas adotarem os novos campos."
+        ]
+      },
+      {
+        "heading": "O que são consultas de marca e como o Google as identifica",
+        "paragraphs": [
+          "Pela definição do próprio Google, uma consulta de marca é uma busca que inclui o nome da sua marca. Entram nessa conta variações e erros de digitação do nome e também buscas por produtos ou serviços exclusivos da marca, mesmo sem o nome dela. O exemplo dado pelo Google é que, para o site google.com, uma busca por Gmail conta como consulta de marca.",
+          "A classificação não é feita por uma lista de palavras que você cadastra. O Google explica que ela é determinada por um sistema interno assistido por inteligência artificial e que funciona com o nome da marca em todos os idiomas. Por isso, o próprio Google avisa que algumas consultas podem ser classificadas de forma errada de vez em quando.",
+          "Também há regras de elegibilidade. O filtro só aparece em propriedades de nível superior, isto é, cadastradas para o domínio inteiro, e não para uma pasta ou um subdomínio. Além disso, o site precisa ter um volume suficiente de buscas e impressões. O Google não informa qual é esse volume mínimo; na prática, sites muito novos ou com pouco tráfego podem não ver o filtro. Na API, segundo o anúncio, propriedades não elegíveis recebem uma resposta sem dados."
+        ]
+      },
+      {
+        "heading": "Onde encontrar o filtro e o que ele mostra",
+        "paragraphs": [
+          "No Search Console, o filtro fica no relatório de desempenho dos resultados da busca. Ao aplicá-lo, você escolhe entre a visão de marca e a visão de não marca, e ele funciona para buscas na web, em imagens, em vídeos e em notícias. O relatório Insights do Search Console também ganhou um cartão que mostra a divisão do total de cliques entre tráfego de marca e de não marca.",
+          "Para quem tem um negócio local ou uma loja virtual, a leitura prática é esta:"
+        ],
+        "items": [
+          "Cliques de marca: pessoas que já conhecem a empresa e procuram por ela, por indicação, Instagram, anúncio, fachada ou compra anterior.",
+          "Cliques de não marca: pessoas que buscaram um serviço ou produto, como \"conserto de celular no centro\", e chegaram ao seu site sem procurar o seu nome.",
+          "Crescimento das buscas de marca ao longo dos meses: sinal de que mais gente lembra da empresa, o que o Google descreve como uma forma de medir o reconhecimento da marca.",
+          "Páginas que recebem tráfego de não marca: são elas que estão trazendo clientes novos e merecem ser mantidas atualizadas."
+        ]
+      },
+      {
+        "heading": "Busca por imagem também entrou no relatório",
+        "paragraphs": [
+          "O segundo recurso levado à API é o tipo de busca multimodal da web, anunciado no Search Console em 24 de setembro de 2026. Ele mostra como o seu conteúdo aparece quando as pessoas pesquisam usando imagens: pelo Google Lens, pelo Circule para Pesquisar no Android, pelo envio de imagens na Busca e pela opção \"Pesquisar imagem\" do Chrome.",
+          "Segundo o Google, esses números só aparecem se o site de fato receber tráfego desse tipo de busca. Para lojas de roupas, decoração, peças ou alimentos, em que o cliente muitas vezes fotografa um produto para encontrar onde comprar, vale abrir o relatório de desempenho e conferir se o filtro multimodal já mostra dados. Fotos próprias, nítidas e com descrições claras ajudam o Google a entender o que cada imagem mostra, mas o Google não promete posição a ninguém, e não há garantia de aparecer nessas buscas."
+        ]
+      },
+      {
+        "heading": "O que fazer com essa informação na sua empresa",
+        "paragraphs": [
+          "O filtro não muda o ranqueamento. O Google afirma que ele não tem efeito sobre como a Busca classifica os sites; é só uma forma de enxergar os dados. O valor está em tomar decisões melhores. Alguns passos práticos:"
+        ],
+        "items": [
+          "Confira se o seu site está cadastrado no Search Console como propriedade de domínio. Se só existir uma propriedade de prefixo de URL, vale criar a de domínio, que é a forma mais completa.",
+          "Compare os dois lados por pelo menos três meses antes de tirar conclusões. Datas sazonais, como Black Friday e Natal, mexem nos números.",
+          "Se quase todo o tráfego vem de buscas de marca, o site está atendendo quem já conhece a empresa, mas quase não traz clientes novos. Isso costuma indicar falta de páginas por serviço, por cidade ou por produto.",
+          "Se o tráfego de não marca cresce e o de marca não, as pessoas encontram o site, mas talvez não se lembrem da empresa depois. Reforçar nome, logotipo e Perfil da Empresa no Google ajuda a fixar a marca.",
+          "Se você usa um painel de relatórios feito por agência ou freelancer, pergunte se ele já separa marca e não marca com os novos campos da API, em vez de listas manuais de palavras."
+        ]
+      },
+      {
+        "heading": "Como interpretar sem se enganar",
+        "paragraphs": [
+          "Três cuidados evitam conclusões erradas. Primeiro, a classificação é automática e pode errar em casos isolados, principalmente quando o nome da empresa é uma palavra comum, como \"Casa Bela\" ou \"Ponto Certo\". Nesses casos, vale olhar as consultas uma a uma na aba de consultas do relatório.",
+          "Segundo, o Search Console mostra apenas buscas no Google que geraram impressões do seu site. Quem procurou sua empresa no Instagram, no WhatsApp ou direto no Google Maps sem passar pelo site não entra nesses números. Para o Maps, as métricas ficam no próprio Perfil da Empresa no Google.",
+          "Terceiro, se o filtro não aparecer, isso não significa erro no site. Pode ser só falta de volume de buscas para o Google classificar, ou a propriedade não ser de nível superior. Enquanto isso, a aba de consultas com o filtro por texto continua sendo uma forma manual de ver quantas buscas contêm o nome da empresa."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "O filtro de consultas de marca está disponível para qualquer site?",
+        "Não. Segundo o Google, ele só aparece em propriedades de nível superior, cadastradas para o domínio inteiro, e em sites com volume suficiente de buscas e impressões. O Google não divulga qual é esse volume mínimo."
+      ],
+      [
+        "Usar o filtro de marca ajuda meu site a subir no Google?",
+        "Não. O Google afirma que o filtro não tem efeito sobre o ranqueamento. Ele serve para entender de onde vêm as visitas e decidir onde investir, como criar páginas de serviço para atrair quem ainda não conhece a empresa."
+      ],
+      [
+        "O que mudou em 16 de novembro de 2026?",
+        "O Google levou para a API do Search Console três recursos que já existiam no painel: o filtro de consultas de marca, o tipo de busca multimodal, que mostra buscas feitas com imagens, e o filtro de vários países e dispositivos ao mesmo tempo. Quem usa o Search Console pelo navegador não vê mudança na tela; a novidade beneficia painéis e ferramentas de relatório."
+      ]
+    ],
+    "relatedServices": [
+      "presenca-digital",
+      "sites-profissionais"
+    ],
+    "sources": [
+      {
+        "title": "New filtering and reporting capabilities in the Search Analytics API (Google Search Central Blog, 16 de novembro de 2026)",
+        "url": "https://developers.google.com/search/blog/2026/11/search-analytics-api-update"
+      },
+      {
+        "title": "Introducing the branded queries filter in Search Console (Google Search Central Blog, 20 de novembro de 2025, atualizado em 11 de março de 2026)",
+        "url": "https://developers.google.com/search/blog/2025/11/search-console-branded-filter"
+      },
+      {
+        "title": "Anúncio da busca multimodal da web no Search Console (Google Search Central Blog, 24 de setembro de 2026)",
+        "url": "https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc"
+      }
+    ],
+    "status": "published"
   }
 ]
