@@ -9,10 +9,10 @@ const nunito = localFont({ src: "./fonts/nunito-latin-var.woff2", weight: "400 8
 const sacramento = localFont({ src: "./fonts/sacramento-latin.woff2", weight: "400", display: "swap", variable: "--font-sacramento" });
 
 export const metadata: Metadata = {
-  title: "Pqueninos Lembranças · Lembranças artesanais em BH",
-  description: "Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.",
+  title: "Lembrancinhas de batizado artesanais em BH | Pqueninos Lembranças",
+  description: "Lembrancinhas de batizado, Primeira Eucaristia e Crisma feitas à mão em Belo Horizonte: Divino, velas, kits em caixa e toalhas bordadas. Envio para todo o Brasil.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://pqueninos.com.br/" },
   metadataBase: new URL("https://pqueninos.com.br"),
   applicationName: "Pqueninos Lembranças",
   manifest: "/clientes/pqueninos/manifest.webmanifest",
@@ -28,8 +28,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "Pqueninos Lembranças",
-    title: "Pqueninos Lembranças · Lembranças artesanais em BH",
-    description: "Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.",
+    url: "https://pqueninos.com.br/",
+    title: "Lembrancinhas de batizado artesanais em BH | Pqueninos Lembranças",
+    description: "Lembrancinhas de batizado, Primeira Eucaristia e Crisma feitas à mão em Belo Horizonte: Divino, velas, kits em caixa e toalhas bordadas. Envio para todo o Brasil.",
     images: [{ url: "/clientes/pqueninos/icons/og.png", width: 1200, height: 630, alt: "Pqueninos Lembranças" }],
   },
   twitter: { card: "summary_large_image", title: "Pqueninos Lembranças", description: "Lembranças artesanais em Belo Horizonte.", images: ["/clientes/pqueninos/icons/og.png"] },
@@ -37,22 +38,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#FFF9F6", colorScheme: "light", viewportFit: "cover" };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  name: "Pqueninos Lembranças",
-  url: "https://pqueninos.com.br/",
-  logo: "https://pqueninos.com.br/clientes/pqueninos/logo.webp",
-  image: "https://pqueninos.com.br/clientes/pqueninos/icons/og.png",
-  description: "Lembranças 100% artesanais para batizado, Eucaristia e momentos especiais. Retirada em BH ou envio para todo o Brasil.",
-  address: { "@type": "PostalAddress", addressLocality: "Belo Horizonte", addressRegion: "MG", addressCountry: "BR" },
-  sameAs: ["https://www.instagram.com/pqueninos/"],
-};
-
 export default function PqueninosLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className={`pq-root ${quicksand.variable} ${nunito.variable} ${sacramento.variable}`}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       {children}
     </div>
   );
