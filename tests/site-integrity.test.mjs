@@ -91,7 +91,7 @@ test("analytics only loads Google after consent", async () => {
 test("client page for Pqueninos stays out of search and is served on its subdomain", async () => {
   const [layout, config] = await Promise.all([read("app/clientes/pqueninos/layout.tsx"), read("next.config.ts")]);
   assert.match(layout, /robots: \{ index: true, follow: true \}/);
-  assert.match(layout, /alternates: \{ canonical: "\/" \}/);
+  assert.match(layout, /canonical: "https:\/\/pqueninos\.com\.br\/"/);
   assert.doesNotMatch(layout, /globals\.css/);
   assert.match(config, /host: "pqueninos\.drehwork\.com", page: "\/clientes\/pqueninos"/);
   await access(new URL("public/clientes/pqueninos/logo.webp", root));

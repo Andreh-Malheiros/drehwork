@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     // Cases sem autorização pública (decisão D13): as páginas antigas apontam para o portfólio.
     const cases = ["wayne-store", "noar-oficial"].map(slug => ({ source: `/projetos/${slug}`, destination: "/projetos", permanent: true }));
     // Subdomínios de clientes mostram só a página do cliente; qualquer outro caminho volta ao site principal (evita conteúdo duplicado).
-    const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|_next/|favicon\\.ico|apple-touch-icon|robots\\.txt|sitemap\\.xml).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
+    const clientHosts = clientSites.map(({ host }) => ({ source: "/:path((?!clientes/|produto/|categoria/|_next/|favicon\\.ico|apple-touch-icon|robots\\.txt|sitemap\\.xml).+)", has: [{ type: "host" as const, value: host }], destination: "https://www.drehwork.com/:path", permanent: false }));
     // Mantém compatibilidade com os links de produto do catálogo da Pqueninos que ainda usam o domínio da DrehWork.
     // Next.js preserva os parâmetros de consulta, incluindo UTMs e fbclid.
     const legacyPqueninosProducts = [
@@ -62,7 +62,9 @@ const nextConfig: NextConfig = {
       destination: "https://pqueninos.com.br/#inicio",
       permanent: true,
     }));
-    return [...cases, ...legacyPqueninosProductRedirects, ...pqueninosProductRedirects, ...clientHosts];
+    // www.pqueninos.com.br responde 200 igual ao domínio sem www (conteúdo duplicado): leva tudo ao endereço canônico.
+    const pqueninosWww = [{ source: "/:path*", has: [{ type: "host" as const, value: "www.pqueninos.com.br" }], destination: "https://pqueninos.com.br/:path*", permanent: true }];
+    return [...pqueninosWww, ...cases, ...legacyPqueninosProductRedirects, ...pqueninosProductRedirects, ...clientHosts];
   },
   async rewrites() {
     // Navegadores pedem /favicon.ico e /apple-touch-icon.png na raiz do host: servir o ícone do cliente em vez do da DrehWork.
@@ -74,7 +76,9 @@ const nextConfig: NextConfig = {
     const iconRewrites = clientSites.flatMap(({ host, page }) => icons.map(({ source, file }) => ({ source, has: [{ type: "host" as const, value: host }], destination: `${page}/icons/${file}` })));
     // robots.txt e sitemap próprios do cliente (o do site principal listaria as páginas da DrehWork).
     const seoRewrites = clientSites.flatMap(({ host, page }) => ["robots.txt", "sitemap.xml"].map(file => ({ source: `/${file}`, has: [{ type: "host" as const, value: host }], destination: `${page}/${file}` })));
-    return { beforeFiles: [...clientSites.map(({ host, page }) => ({ source: "/", has: [{ type: "host" as const, value: host }], destination: page })), ...iconRewrites, ...seoRewrites], afterFiles: [], fallback: [] };
+    // Páginas indexáveis de produto e categoria: URLs curtas no domínio do cliente.
+    const pageRewrites = clientSites.flatMap(({ host, page }) => ["produto/:slug", "categoria/:id"].map(path => ({ source: `/${path}`, has: [{ type: "host" as const, value: host }], destination: `${page}/${path}` })));
+    return { beforeFiles: [...pageRewrites, ...clientSites.map(({ host, page }) => ({ source: "/", has: [{ type: "host" as const, value: host }], destination: page })), ...iconRewrites, ...seoRewrites], afterFiles: [], fallback: [] };
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
