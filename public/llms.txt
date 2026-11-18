@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Pergunte ao Maps agora monta roteiros com IA: o que muda para pequenas empresas](https://www.drehwork.com/insights/pergunte-ao-maps-roteiros-com-ia-google-maps): Em 16/11/2026 o Google anunciou roteiros com IA e busca em listas salvas no Pergunte ao Maps (Ask Maps), válidos onde o assistente existe; agendamentos e dicas de rota só nos EUA; como preparar o Perfil da Empresa.
 - [Pix offline e os próximos passos do Pix: o que muda para pequenas empresas](https://www.drehwork.com/insights/pix-offline-proximos-passos-do-pix-banco-central): Nos seis anos do Pix (16/11/2026), o Banco Central projetou o Pix offline por aproximação, melhorias no Pix Automático e duplicatas por QR Code, ainda sem datas; o que muda e o que fazer agora.
 - [Base de conhecimento da Shopify: o que a loja precisa revisar para os agentes de IA após a Edição de Outono 2026](https://www.drehwork.com/insights/base-de-conhecimento-shopify-agentes-de-ia): Na Fall '26 Edition (28/10/2026), a Shopify levou ao painel a base de conhecimento que alimenta agentes de IA; o que mudou, o que ainda não vale no Brasil e o que revisar na loja.
 - [Bloquear treinamento de IA no seu site: a nova regra comum do robots.txt e o que muda para pequenas empresas](https://www.drehwork.com/insights/bloquear-treinamento-de-ia-robots-txt): Google e Microsoft anunciaram em 30/10/2026 apoio a um sinal único no robots.txt para recusar treino de IA, a partir de 2027; diferença entre treinar a IA e aparecer nas respostas.
