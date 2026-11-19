@@ -1809,5 +1809,92 @@
       }
     ],
     "status": "published"
+  },
+  {
+    "slug": "site-novo-nao-aparece-no-google",
+    "title": "Site novo não aparece no Google? O que o Google disse em novembro de 2026 e o que fazer",
+    "seoTitle": "Site novo não aparece no Google: o que fazer",
+    "description": "Em novembro de 2026, John Mueller, do Google, disse que leva tempo para entender o valor de um site novo. Veja por que isso acontece e o que fazer na prática.",
+    "keyword": "site novo não aparece no google",
+    "category": "Notícias e tendências",
+    "date": "2026-11-19",
+    "updated": "2026-11-19",
+    "summary": "Em comentário relatado em 10/11/2026, John Mueller, do Google, explicou que os sistemas levam tempo para entender o valor único de um site novo e recomendou qualidade acima de quantidade. Veja o que a documentação oficial diz e o que fazer.",
+    "intro": "Se o seu site novo não aparece no Google, a explicação mais comum é simples: o Google ainda não rastreou, não indexou ou ainda não entendeu o que as páginas oferecem de diferente. Em novembro de 2026, John Mueller, da equipe da Pesquisa Google, reforçou esse ponto ao responder um dono de site: segundo ele, pode levar tempo para os sistemas entenderem o valor único de um site novo, e por isso vale caprichar na qualidade, e não na quantidade de páginas. A própria documentação do Google diz que o rastreamento pode levar de alguns dias a algumas semanas e que pedir a indexação não garante que a página vá aparecer. Na prática, o que o dono de uma pequena empresa pode fazer é confirmar que o site está acessível ao Google, enviar o sitemap no Search Console, garantir que cada página tenha conteúdo útil e acompanhar com paciência.",
+    "sections": [
+      {
+        "heading": "O que o Google disse",
+        "paragraphs": [
+          "O comentário foi feito por John Mueller, que trabalha com relações com a comunidade de sites na Pesquisa Google, em uma resposta publicada no Bluesky e relatada pelo Search Engine Roundtable em 10 de novembro de 2026. Um dono de site perguntou por que páginas novas não estavam sendo indexadas por completo e contou que o botão de solicitar indexação no Search Console mostrava uma mensagem de erro.",
+          "Mueller respondeu que pode levar tempo para os sistemas entenderem o valor único de tudo aquilo e que, por isso, é bom garantir que o conteúdo seja realmente de primeira, com qualidade acima de quantidade. Ele disse que repassaria o problema do botão à equipe e recomendou focar no rastreamento e na indexação normais, em vez de depender da solicitação manual de indexação.",
+          "Não se trata de uma regra nova nem de uma atualização de algoritmo. É uma confirmação, vinda de alguém do Google, de algo que a documentação oficial já dizia: estar no ar não é o mesmo que estar no Google, e o tempo até aparecer depende também do que o site oferece."
+        ]
+      },
+      {
+        "heading": "Por que um site novo demora a aparecer",
+        "paragraphs": [
+          "O Google explica que a Pesquisa funciona em três etapas: rastreamento, quando um robô visita as páginas; indexação, quando o Google analisa o conteúdo e decide guardá-lo no seu índice; e exibição, quando a página aparece para quem pesquisa. Nem toda página passa por todas as etapas, e o Google afirma que não garante rastrear, indexar ou exibir nenhuma página, mesmo que ela siga as diretrizes.",
+          "Na documentação sobre como pedir um novo rastreamento, o Google informa que o rastreamento pode levar de alguns dias a algumas semanas e que solicitar o rastreamento não garante a inclusão imediata nos resultados, nem mesmo que ela aconteça. Também avisa que há uma cota para envio de URLs individuais e que pedir várias vezes o mesmo endereço não acelera nada.",
+          "Entre os motivos que impedem uma página de seguir adiante, o Google cita problemas no servidor ou na rede, regras do arquivo robots.txt que bloqueiam o robô e conteúdo de baixa qualidade. Páginas muito parecidas entre si também entram nessa conta: o Google agrupa conteúdo duplicado e escolhe uma versão principal, chamada canônica, para mostrar. Para um site recém-lançado, com poucos links apontando para ele, tudo isso pesa ainda mais."
+        ]
+      },
+      {
+        "heading": "O que muda para pequenas empresas brasileiras",
+        "paragraphs": [
+          "Para quem acabou de lançar o site da empresa ou uma loja virtual, a principal lição é ajustar a expectativa. Ver o site fora do Google nas primeiras semanas não significa, por si só, que algo deu errado. Por outro lado, também não adianta esperar parado: o comentário de Mueller deixa claro que o conteúdo influencia o tempo que o Google leva para dar valor ao site.",
+          "Um erro comum em sites de pequenas empresas é publicar muitas páginas parecidas para tentar aparecer em mais buscas, como uma página por bairro ou por cidade com o mesmo texto trocando só o nome. Esse tipo de conteúdo é justamente o que tem menos valor único. Costuma funcionar melhor ter menos páginas, cada uma explicando de verdade um serviço, com informações como região atendida, como funciona o atendimento, formas de contato e respostas às dúvidas reais dos clientes.",
+          "Vale lembrar ainda que o Perfil da Empresa no Google é um caminho separado. Ele pode aparecer no Maps e nos resultados locais mesmo enquanto o site ainda está sendo indexado, e o próprio perfil pode ter o link para o site. Para negócios locais, cuidar dos dois ao mesmo tempo é o mais sensato."
+        ]
+      },
+      {
+        "heading": "O que fazer se o seu site novo não aparece no Google",
+        "paragraphs": [
+          "O Google Search Console é a ferramenta gratuita do Google que mostra como o site aparece na busca e se as páginas estão indexadas. Com ele, dá para seguir um roteiro simples, baseado na documentação oficial:"
+        ],
+        "items": [
+          "Cadastre e verifique o site no Search Console. Sem isso, você não enxerga o que o Google está vendo.",
+          "Envie o sitemap, o arquivo que lista as páginas do site. O Google recomenda o sitemap especialmente para sites novos e diz que prioriza o rastreamento das páginas listadas nele.",
+          "Use a ferramenta de inspeção de URL para conferir a página inicial e as páginas de serviço mais importantes e ver se o Google consegue acessá-las. Peça a indexação dessas poucas páginas uma única vez, sem repetir.",
+          "Confira se o site não está bloqueado: um robots.txt mal configurado ou uma marcação noindex esquecida, comum em sites que ficaram em modo de construção, impede a indexação.",
+          "Revise o conteúdo: cada página deve responder a uma pergunta clara do cliente e não repetir o texto de outra.",
+          "Ligue o site aos canais que você já tem, como o Perfil da Empresa, a bio do Instagram e o WhatsApp, para que clientes e o próprio Google encontrem os endereços.",
+          "Acompanhe o relatório de indexação de páginas por algumas semanas antes de concluir que há um problema. Se o relatório apontar erros, corrija e só então peça um novo rastreamento."
+        ]
+      }
+    ],
+    "faqs": [
+      [
+        "Quanto tempo um site novo leva para aparecer no Google?",
+        "O Google não dá um prazo fixo. A documentação oficial diz que o rastreamento pode levar de alguns dias a algumas semanas, e John Mueller lembrou em novembro de 2026 que também leva tempo para os sistemas entenderem o valor único de um site novo."
+      ],
+      [
+        "Pedir indexação no Search Console faz o site aparecer mais rápido?",
+        "Pode ajudar o Google a conhecer uma página, mas não garante que ela entre nos resultados. Existe cota para pedidos individuais e repetir o pedido não acelera nada. Para várias páginas, o caminho indicado é enviar o sitemap."
+      ],
+      [
+        "Ter muitas páginas ajuda um site novo a aparecer?",
+        "Não necessariamente. A recomendação de Mueller foi priorizar qualidade em vez de quantidade. Páginas parecidas entre si têm pouco valor único e podem nem ser indexadas. Poucas páginas completas e úteis costumam ser um começo melhor."
+      ]
+    ],
+    "relatedServices": [
+      "sites-profissionais",
+      "presenca-digital",
+      "manutencao"
+    ],
+    "sources": [
+      {
+        "title": "Search Engine Roundtable: Google: It Can Take Time To Understand The Unique Value Of New Websites",
+        "url": "https://www.seroundtable.com/google-new-sites-time-value-42489.html"
+      },
+      {
+        "title": "Google Search Central: peça ao Google para rastrear novamente seus URLs",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl?hl=pt-br"
+      },
+      {
+        "title": "Google Search Central: guia detalhado sobre como funciona a Pesquisa Google",
+        "url": "https://developers.google.com/search/docs/fundamentals/how-search-works?hl=pt-br"
+      }
+    ],
+    "status": "published"
   }
 ]

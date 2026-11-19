@@ -40,6 +40,7 @@
 
 ## Guias (/insights)
 
+- [Site novo não aparece no Google? O que o Google disse em novembro de 2026 e o que fazer](https://www.drehwork.com/insights/site-novo-nao-aparece-no-google): Em 10/11/2026, John Mueller (Google) disse que leva tempo para entender o valor único de um site novo e pediu qualidade acima de quantidade; prazos de rastreamento, limites do pedido de indexação e roteiro no Search Console.
 - [Pix offline e os próximos passos do Pix: o que muda para pequenas empresas](https://www.drehwork.com/insights/pix-offline-proximos-passos-do-pix-banco-central): Nos seis anos do Pix (16/11/2026), o Banco Central projetou o Pix offline por aproximação, melhorias no Pix Automático e duplicatas por QR Code, ainda sem datas; o que muda e o que fazer agora.
 - [Base de conhecimento da Shopify: o que a loja precisa revisar para os agentes de IA após a Edição de Outono 2026](https://www.drehwork.com/insights/base-de-conhecimento-shopify-agentes-de-ia): Na Fall '26 Edition (28/10/2026), a Shopify levou ao painel a base de conhecimento que alimenta agentes de IA; o que mudou, o que ainda não vale no Brasil e o que revisar na loja.
 - [Bloquear treinamento de IA no seu site: a nova regra comum do robots.txt e o que muda para pequenas empresas](https://www.drehwork.com/insights/bloquear-treinamento-de-ia-robots-txt): Google e Microsoft anunciaram em 30/10/2026 apoio a um sinal único no robots.txt para recusar treino de IA, a partir de 2027; diferença entre treinar a IA e aparecer nas respostas.
